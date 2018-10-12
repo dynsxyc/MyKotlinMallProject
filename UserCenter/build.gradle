@@ -5,12 +5,19 @@ if (isUserModule.toBoolean()) {
 }
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
+kapt {
+    arguments {
+        arg("moduleName", project.getName())
+    }
+}
+
 android {
     compileSdkVersion 27
-
     defaultConfig {
-        minSdkVersion 19
-        targetSdkVersion 27
+        minSdkVersion min_sdk_version
+        targetSdkVersion target_sdk_version
         versionCode 1
         versionName "1.0"
 
@@ -41,13 +48,14 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-
-    implementation 'com.android.support:appcompat-v7:27.1.1'
-    implementation 'com.android.support.constraint:constraint-layout:1.1.2'
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
     testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:1.0.2'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     compile project(':Provider')
-}
 
-apply plugin: 'kotlin-android-extensions'
+    //dagger2
+    kapt "com.google.dagger:dagger-compiler:$dagger_version"
+    //arouter
+    kapt "com.alibaba:arouter-compiler:${arouter_compiler_version}"
+}

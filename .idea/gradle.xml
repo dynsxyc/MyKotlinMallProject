@@ -13,6 +13,7 @@
             <option value="$PROJECT_DIR$/App" />
             <option value="$PROJECT_DIR$/BaseLibrary" />
             <option value="$PROJECT_DIR$/Provider" />
+            <option value="$PROJECT_DIR$/SplashModule" />
             <option value="$PROJECT_DIR$/UserCenter" />
           </set>
         </option>
