@@ -10,6 +10,7 @@
         android:name="com.zhongjiang.kotlin.base.common.BaseApplication"
         android:theme="@style/AppTheme">
         <activity android:name=".ui.activity.AppSplashActivity"
+            android:theme="@style/AppSplashTheme"
             >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

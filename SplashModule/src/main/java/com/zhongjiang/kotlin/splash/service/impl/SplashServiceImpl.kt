@@ -11,7 +11,7 @@ import javax.inject.Inject
 /**
  * Created by dyn on 2018/7/25.
  */
-class SplashServiceIml @Inject constructor() : SplashService {
+class SplashServiceImpl @Inject constructor() : SplashService {
     @Inject
     lateinit var splashRepository : SplashRepository
 

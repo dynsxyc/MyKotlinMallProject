@@ -35,9 +35,6 @@ open class CommonParamsInterceptor constructor(val mGson: Gson) : Interceptor {
             commomParamsMap.put(API_DATA_V, "f05e4d4e017a40ed9c810a64664f0b90|Android|5.0_21|20|3.0.2")
             commomParamsMap.put(API_DATA_TICKET, "d69ac27116d294647804bbf4ba1b90ae1fe8d412b7cc3e87fed09915a91f3360830d63f3a427e17f8696074aadbfef61")
 
-            commomParamsMap.put("gpsX", "120.260192")
-            commomParamsMap.put("gpsY", "30.317689")
-
             var rootMap = HashMap<String, String>()
             //公共参数加进去
             rootMap.putAll(commomParamsMap)
@@ -47,22 +44,30 @@ open class CommonParamsInterceptor constructor(val mGson: Gson) : Interceptor {
                 paramNames.forEach {
                     mHttpUrl.queryParameter(it)?.let { it1 -> rootMap.put(it, it1) }
                 }
-//
-//                //加上公共参数 hashmap
-//                rootMap.put("publicParams", commomParamsMap)
-//                //新的json参数
-//                val newParamJson = mGson.toJson(rootMap)
-//                var url = mHttpUrl.toString()
-//                val index = url.indexOf("?")
-//                if (index > 0) {
-//                    url = url.substring(0, index)
-//                }
-//                url = url + "?" + Constant.PARAM + "=" + newParamJson
-                rootMap.remove("verifyCode")
-                rootMap.remove("pwd")
-                rootMap.put(API_DATA_SIGNATURE,NetWorkUtils.getSign(rootMap, "4c1dde4fa3bcd0c1c03a637c95adb593"))
+                //签名
+                rootMap.put(API_DATA_SIGNATURE, NetWorkUtils.getSign(rootMap, "4c1dde4fa3bcd0c1c03a637c95adb593"))
+
+                var url = mHttpUrl.toString()
+                val index = url.indexOf("?")
+                if (index > 0) {
+                    url = url.substring(0, index)
+                }
+                val builderStr = StringBuilder()
+                val iterator = rootMap.iterator()
+
+                while (iterator.hasNext()) {
+                    val next = iterator.next()
+                    if (!iterator.hasNext()) {
+                        builderStr.append(next.key + "=" + next.value)
+                    }else{
+                        builderStr.append(next.key + "=" + next.value + "&")
+
+                    }
+                }
+                url = url + "?" + builderStr.toString()
+
                 //重新构建请求
-                request = request.newBuilder().url(mHttpUrl).build()
+                request = request.newBuilder().url(url).build()
             } else if ("POST" == method) {
                 val body = request.body()
                 if (body is FormBody) {
@@ -73,18 +78,16 @@ open class CommonParamsInterceptor constructor(val mGson: Gson) : Interceptor {
                     val buffer = Buffer()
                     body!!.writeTo(buffer)
                     val oldJsonParams = buffer.readUtf8()
-                    val map =  mGson.fromJson<HashMap<String,String>>(
+                    val map = mGson.fromJson<HashMap<String, String>>(
                             oldJsonParams,
-                            object : TypeToken<HashMap<String,String>>(){}.type
+                            object : TypeToken<HashMap<String, String>>() {}.type
                     )
                     rootMap.putAll(map)
-                    rootMap.remove("verifyCode")
-                    rootMap.remove("pwd")
-                    rootMap.put(API_DATA_SIGNATURE,NetWorkUtils.getSign(rootMap, "4c1dde4fa3bcd0c1c03a637c95adb593"))
+                    rootMap.put(API_DATA_SIGNATURE, NetWorkUtils.getSign(rootMap, "4c1dde4fa3bcd0c1c03a637c95adb593"))
 
                     val formBody = FormBody.Builder()
                     rootMap.forEach({
-                        formBody.add(it.key,it.value)
+                        formBody.add(it.key, it.value)
                     })
                     request = request.newBuilder().post(formBody.build()).url(request.url()).build()
                 }

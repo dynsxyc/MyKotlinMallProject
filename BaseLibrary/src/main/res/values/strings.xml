@@ -15,4 +15,16 @@
     <string name="nav_bar_cart">购物车</string>
     <string name="nav_bar_msg">消息</string>
     <string name="nav_bar_user">我的</string>
+
+
+    <string-array name="default_img_colors">
+        <item>"#cfddd6"</item>
+        <item>"#d4d9de"</item>
+        <item>"#dadbd1"</item>
+        <item>"#cbdad9"</item>
+        <item>"#d6dfec"</item>
+        <item>"#dad7e4"</item>
+        <item>"#dcd5cf"</item>
+        <item>"#d9d2dc"</item>
+    </string-array>
 </resources>

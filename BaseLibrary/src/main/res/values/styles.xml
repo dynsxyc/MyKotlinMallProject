@@ -10,6 +10,17 @@
         <item name="colorPrimaryDark">@color/common_black</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
+    <style name="AppSplashTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!--android 8.0 windowIsTranslucent 全屏透明报 Only fullscreen opaque activities can request orientation-->
+        <item name="android:windowIsTranslucent">false</item>
+        <item name="android:windowBackground">@drawable/loading</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowDisablePreview">true</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:orientation">vertical</item>
+        <!--<item name="colorPrimaryDark">@color/white</item>-->
+    </style>
+
     <!-- Window黑色背景主题 -->
     <style name="AppTheme.Black" parent="@style/AppTheme">
         <item name="android:windowBackground">@color/common_black</item>

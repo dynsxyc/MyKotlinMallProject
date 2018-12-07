@@ -4,7 +4,7 @@ import com.zhongjiang.kotlin.base.ext.execute
 import com.zhongjiang.kotlin.base.presenter.BasePresenter
 import com.zhongjiang.kotlin.base.rx.BaseSubscriber
 import com.zhongjiang.kotlin.splash.presenter.view.SplashView
-import com.zhongjiang.kotlin.splash.service.impl.SplashServiceIml
+import com.zhongjiang.kotlin.splash.service.impl.SplashServiceImpl
 import org.json.JSONObject
 import javax.inject.Inject
 
@@ -13,7 +13,7 @@ import javax.inject.Inject
  */
 class SplashPresenter @Inject constructor() : BasePresenter<SplashView>() {
     @Inject
-    lateinit var splashService : SplashServiceIml
+    lateinit var splashService : SplashServiceImpl
 
     fun getSplashAd(){
         splashService.onLoadAd().execute(object :BaseSubscriber<JSONObject>(mView){

@@ -14,7 +14,6 @@ import com.jph.takephoto.compress.CompressConfig
 import com.jph.takephoto.model.TResult
 import com.kotlin.base.utils.AppPrefsUtils
 import com.kotlin.base.utils.DateUtils
-import com.kotlin.base.utils.GlideUtils
 import com.kotlin.provider.common.ProviderConstant
 import com.kotlin.user.utils.UserPrefsUtils
 import com.qiniu.android.http.ResponseInfo
@@ -92,7 +91,7 @@ class UserInfoActivity : BaseMvpActivity<UserInfoPresenter>(), UserInfoView, Vie
 
         mRemoteFileUrl = mUserIcon
         if (mUserIcon != ""){
-            GlideUtils.loadUrlImage(this,mUserIcon!!,mUserIconIv)
+//            GlideUtils.loadUrlImage(this,mUserIcon!!,mUserIconIv)
         }
         mUserNameEt.setText(mUserName)
         mUserMobileTv.text = mUserMobile
@@ -167,7 +166,7 @@ class UserInfoActivity : BaseMvpActivity<UserInfoPresenter>(), UserInfoView, Vie
         uploadManager.put(mLocalFileUrl,null,result,object :UpCompletionHandler{
             override fun complete(key: String?, info: ResponseInfo?, response: JSONObject?) {
                 mRemoteFileUrl =  IMAGE_SERVER_ADDRESS+ response?.get("hash")
-                GlideUtils.loadUrlImage(this@UserInfoActivity, mRemoteFileUrl!!,mUserIconIv)
+//                GlideUtils.loadUrlImage(this@UserInfoActivity, mRemoteFileUrl!!,mUserIconIv)
             }
 
         },null)

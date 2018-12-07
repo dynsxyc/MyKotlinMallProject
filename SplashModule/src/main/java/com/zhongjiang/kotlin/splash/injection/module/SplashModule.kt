@@ -1,7 +1,7 @@
 package com.zhongjiang.kotlin.user.injection.module
 
 import com.zhongjiang.kotlin.splash.service.SplashService
-import com.zhongjiang.kotlin.splash.service.impl.SplashServiceIml
+import com.zhongjiang.kotlin.splash.service.impl.SplashServiceImpl
 import dagger.Module
 import dagger.Provides
 
@@ -11,7 +11,7 @@ import dagger.Provides
 @Module
 class SplashModule {
     @Provides
-    fun providesSplashService(service: SplashServiceIml):SplashService{
+    fun providesSplashService(service: SplashServiceImpl):SplashService{
         return service
     }
 

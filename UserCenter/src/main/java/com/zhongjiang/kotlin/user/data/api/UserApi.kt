@@ -13,9 +13,9 @@ import rx.Observable
  * Created by dyn on 2018/7/16.
  */
 interface UserApi {
-    @GET("app/qt/firstPageShop/getShopInfoById")
+    @GET("app/user/2.0/getUserInfo")
     fun register(@Query("id") mobile:String,@Query("pwd") pwd:String,@Query("verifyCode") verifyCode:String):Observable<BaseResp<String>>
-    @POST("app/qt/firstPageShop/getShopInfoById")
+    @POST("app/user/2.0/getUserInfo")
     fun login(@Body registerReq: RegisterReq):Observable<BaseResp<UserInfo>>
     @GET("get")
     fun forgetPwd(@Query("mobile") mobile:String,@Query("verifyCode") verifyCode:String):Observable<BaseResp<String>>
