@@ -4,11 +4,11 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
 android {
-    compileSdkVersion 27
-    buildToolsVersion build_tools_version
+    compileSdkVersion rootProject.ext.android["compileSdkVersion"]
+    buildToolsVersion rootProject.ext.android["buildToolsVersion"]
     defaultConfig {
-        minSdkVersion min_sdk_version
-        targetSdkVersion target_sdk_version
+        minSdkVersion rootProject.ext.android["minSdkVersion"]
+        targetSdkVersion rootProject.ext.android["targetSdkVersion"]
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -20,73 +20,71 @@ android {
         }
     }
 }
-
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:1.0.2'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    testImplementation rootProject.ext.dependencies["junit"]
+    androidTestImplementation rootProject.ext.dependencies["espresso-test-runner"]
+    androidTestImplementation rootProject.ext.dependencies["espresso-core"]
 
     //android-support
-    compile "com.android.support:recyclerview-v7:${android_support_version}"
-    compile "com.android.support:appcompat-v7:${android_support_version}"
-//    compile "com.android.support:support-v4:${android_support_version}"
+    implementation rootProject.ext.dependencies["appcompat-v7"]
+    implementation rootProject.ext.dependencies["recyclerview-v7"]
 
-    compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
-    // Appcompat-v7 (only Anko Commons)
-    compile "org.jetbrains.anko:anko-appcompat-v7-commons:$anko_version"
-    // Support-v4 (only Anko Commons)
-    compile "org.jetbrains.anko:anko-support-v4-commons:$anko_version"
+    implementation rootProject.ext.dependencies["kotlin-android"]
 
-    // Anko Commons
-    compile "org.jetbrains.anko:anko-commons:$anko_version"
+    // Anko
+    implementation rootProject.ext.dependencies["ankoV7"]
+    implementation rootProject.ext.dependencies["ankoV4"]
+    implementation rootProject.ext.dependencies["ankoCommons"]
 
     //Rx-Kotlin and Rx-Android
-    compile "io.reactivex:rxkotlin:$rx_kotlin_version"
-    compile "io.reactivex:rxandroid:$rx_android_version"
+    implementation rootProject.ext.dependencies["rxKotlin"]
+    implementation rootProject.ext.dependencies["rxAndroid"]
 
     //retrofit 配置
-    api "com.squareup.retrofit2:retrofit:$retrofit_version"
-    api "com.squareup.retrofit2:converter-gson:$retrofit_version"
-    api "com.squareup.retrofit2:adapter-rxjava:$retrofit_version"
-    api "com.squareup.okhttp3:okhttp:$okhttp_version"
-    api "com.squareup.okhttp3:logging-interceptor:$okhttp_version"
+    implementation rootProject.ext.dependencies["retrofit"]
+    implementation rootProject.ext.dependencies["retrofit-adapter-rxjava2"]
+    implementation rootProject.ext.dependencies["retrofit-converter-gson"]
+    implementation rootProject.ext.dependencies["okhttp3"]
+    implementation rootProject.ext.dependencies["okhttp3-logging-interceptor"]
 
     //dagger2
-    compile "com.google.dagger:dagger:$dagger_version"
-    kapt "com.google.dagger:dagger-compiler:$dagger_version"
+    api rootProject.ext.dependencies["dagger-android"]
+    api rootProject.ext.dependencies["dagger-android-support"]
+    annotationProcessor rootProject.ext.dependencies["dagger-compiler"]
+    annotationProcessor rootProject.ext.dependencies["dagger-android-processor"]
 
     //RxLifecycle
-    compile "com.trello:rxlifecycle-kotlin:$rx_lifecycle_version"
-    compile "com.trello:rxlifecycle-components:$rx_lifecycle_version"
+    annotationProcessor rootProject.ext.dependencies["rxLifecycleKotlin"]
+    annotationProcessor rootProject.ext.dependencies["rxLifecycleComponents"]
 
     //Glide
-    compile "com.github.bumptech.glide:glide:$glide_version"
-    implementation 'jp.wasabeef:glide-transformations:2.0.2'
-
+    //glide
+    api rootProject.ext.dependencies["glide"]
+    annotationProcessor rootProject.ext.dependencies["glide-compiler"]
 
     //Circle ImageView
-    compile "de.hdodenhof:circleimageview:${circle_imageView_version}"
+    annotationProcessor rootProject.ext.dependencies["circleImageview"]
+
     //Take Photo
-    compile "com.jph.takephoto:takephoto_library:$take_photo_version"
+//    implementation "com.jph.takephoto:takephoto_library:$take_photo_version"
     //Alert View
-    compile "com.bigkoo:alertview:${alert_view_version}"
-    //七牛
-    compile 'com.qiniu:qiniu-android-sdk:7.3.+'
+//    implementation "com.bigkoo:alertview:${alert_view_version}"
     //底部导航
-    compile 'com.ashokvarma.android:bottom-navigation-bar:2.0.4'
+    annotationProcessor rootProject.ext.dependencies["navigationBar"]
 
     //Arouter
-    compile "com.alibaba:arouter-api:${arouter_api_version}"
+    annotationProcessor rootProject.ext.dependencies["router"]
 
     //fragmentTation start  如果不想继承SupportActivity/Fragment，自己定制Support，可仅依赖:
-    compile "me.yokeyword:fragmentation-core:${fragmentation_version}"
+    annotationProcessor rootProject.ext.dependencies["fragmentationCore"]
     // swipeback基于fragmentation, 如果是自定制SupportActivity/Fragment，则参照SwipeBackActivity/Fragment实现即可
-    compile "me.yokeyword:fragmentation-swipeback:${fragmentation_version}"
+    annotationProcessor rootProject.ext.dependencies["fragmentationSwipeback"]
 
 
 }
+
 repositories {
     mavenCentral()
 }

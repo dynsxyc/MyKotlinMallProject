@@ -14,10 +14,10 @@ kapt {
 }
 
 android {
-    compileSdkVersion 27
+    compileSdkVersion rootProject.ext.android["compileSdkVersion"]
     defaultConfig {
-        minSdkVersion min_sdk_version
-        targetSdkVersion target_sdk_version
+        minSdkVersion rootProject.ext.android["minSdkVersion"]
+        targetSdkVersion rootProject.ext.android["targetSdkVersion"]
         versionCode 1
         versionName "1.0"
 
@@ -48,14 +48,14 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+    androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     testImplementation 'junit:junit:4.12'
-    compile project(':Provider')
+    implementation project(':Provider')
 
     //dagger2
-    kapt "com.google.dagger:dagger-compiler:$dagger_version"
+    annotationProcessor rootProject.ext.dependencies["dagger-compiler"]
     //arouter
-    kapt "com.alibaba:arouter-compiler:${arouter_compiler_version}"
+    annotationProcessor rootProject.ext.dependencies["router-compiler"]
 }

@@ -31,7 +31,9 @@ class SplashFragment : BaseMvpFragment<SplashPresenter>(), SplashView {
 
 
     override fun injectComponent() {
-        DaggerSplashComponent.builder().activityComponent(activityComponent).splashModule(SplashModule()).build().inject(this)
+        DaggerSplashComponent.builder().activityComponent(activityComponent)
+                .splashModule(SplashModule())
+         .build().inject(this)
         mPresenter.mView = this
     }
 

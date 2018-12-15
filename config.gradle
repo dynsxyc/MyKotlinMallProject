@@ -1,0 +1,118 @@
+ext {
+    android = [
+            compileSdkVersion: 28,
+            buildToolsVersion: "28.0.3",
+            applicationId    : "com.qingmei2.mvparchitecture",
+            minSdkVersion    : 16,
+            targetSdkVersion : 28,
+            versionCode      : 1,
+            versionName      : "1.0"
+    ]
+    def dependVersion = [
+            retrofit_version       : '2.3.0',
+            okhttp_version         : '3.9.0',
+            dagger_version         : '2.11',
+            lombok_version         : '1.16.18',
+            kotlin_version         : '1.2.71',
+            autodispose_version    : '0.5.1',
+            support_version        : '27.1.1',
+            espresso_version       : '2.2.2',
+            glide_version          : '4.2.0',
+            routerVersion          : "1.2.4",
+            routerCompilerVersion  : "1.1.4",
+            anko_version           : '0.10.5',
+            circleImageview_version: '2.1.0',
+            fragmentationVersion   : '1.3.5',
+            rx_lifecycle_version   : '1.0'
+    ]
+    dependencies = [
+            //android-support
+            "support-v4"                 : "com.android.support:support-v4:${dependVersion.support_version}",
+            "appcompat-v7"               : "com.android.support:appcompat-v7:${dependVersion.support_version}",
+            "design"                     : "com.android.support:design:${dependVersion.support_version}",
+            "recyclerview-v7"            : "com.android.support:recyclerview-v7:${dependVersion.support_version}",
+            "cardview-v7"                : "com.android.support:cardview-v7:${dependVersion.support_version}",
+            "support-annotations"        : "com.android.support:support-annotations:${dependVersion.support_version}",
+            "constraint-layout"          : "com.android.support.constraint:constraint-layout:1.0.2",
+
+            //kotlin
+            "kotlin-android"             : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$dependVersion.kotlin_version",
+
+            //anko
+            "ankoV7"                     : "org.jetbrains.anko:anko-appcompat-v7-commons:$dependVersion.anko_version",
+            "ankoV4"                     : "org.jetbrains.anko:anko-support-v4-commons:$dependVersion.anko_version",
+            "ankoCommons"                : "org.jetbrains.anko:anko-commons:$dependVersion.anko_version",
+
+            //java8-support
+            "stream"                     : "com.annimon:stream:1.1.8",
+
+            //rx
+            "rxJava2"                    : "io.reactivex.rxjava2:rxjava:2.1.3",
+            "rxAndroid"                  : "io.reactivex.rxjava2:rxandroid:2.0.1",
+            "rxKotlin"                   : "io.reactivex.rxjava2:rxkotlin:2.2.0",
+
+            "rxbinding"                  : "com.jakewharton.rxbinding2:rxbinding:2.0.0",
+            "auto-dispose"               : "com.uber.autodispose:autodispose-android:${dependVersion.autodispose_version}",
+            "auto-dispose-archcomponents": "com.uber.autodispose:autodispose-android-archcomponents:${dependVersion.autodispose_version}",
+
+            //retrofit
+            "retrofit"                   : "com.squareup.retrofit2:retrofit:${dependVersion.retrofit_version}",
+            "retrofit-adapter-rxjava2"   : "com.squareup.retrofit2:adapter-rxjava2:${dependVersion.retrofit_version}",
+            "retrofit-mock"              : "com.squareup.retrofit2:retrofit-mock:${dependVersion.retrofit_version}",
+            "retrofit-converter-gson"    : "com.squareup.retrofit2:converter-gson:${dependVersion.retrofit_version}",
+
+            //dagger
+            "dagger-android"             : "com.google.dagger:dagger-android:${dependVersion.dagger_version}",
+            "dagger-android-support"     : "com.google.dagger:dagger-android-support:${dependVersion.dagger_version}",
+            "dagger-compiler"            : "com.google.dagger:dagger-compiler:${dependVersion.dagger_version}",
+            "dagger-android-processor"   : "com.google.dagger:dagger-android-processor:${dependVersion.dagger_version}",
+
+            "circleImageview"            : "de.hdodenhof:circleimageview:${dependVersion.circleImageview_version}",
+
+            //router
+            "router"                     : "com.alibaba:arouter-api:${dependVersion.routerVersion}",
+            "router-compiler"            : "com.alibaba:arouter-compiler:${dependVersion.routerCompilerVersion}",
+
+            //okHttp3
+            "okhttp3"                    : "com.squareup.okhttp3:okhttp:${dependVersion.okhttp_version}",
+            "okhttp3-logging-interceptor": "com.github.ihsanbal:LoggingInterceptor:2.0.4",
+
+            //lombok
+            "lombok"                     : "org.projectlombok:lombok:${dependVersion.lombok_version}",
+
+            //glide
+            "glide"                      : "com.github.bumptech.glide:glide:${dependVersion.glide_version}",
+            "glide-compiler"             : "com.github.bumptech.glide:compiler:${dependVersion.glide_version}",
+
+            //junit
+            "junit"                      : "junit:junit:4.12",
+
+            //rxCache
+            "rxCache"                    : "com.github.VictorAlbertos.RxCache:runtime:1.8.1-2.x",
+            "rxCache-Jolyglot"           : "com.github.VictorAlbertos.Jolyglot:gson:0.0.3",
+
+            //fragmentTation start  如果不想继承SupportActivity/Fragment，自己定制Support，可仅依赖:
+            "fragmentationCore"          : "me.yokeyword:fragmentation-core:${dependVersion.fragmentationVersion}",
+            // swipeback基于fragmentation, 如果是自定制SupportActivity/Fragment，则参照SwipeBackActivity/Fragment实现即可
+            "fragmentationSwipeback"     : "me.yokeyword:fragmentation-swipeback:${dependVersion.fragmentationVersion}",
+
+            //mock
+            "mockito-kotlin"             : "com.nhaarman:mockito-kotlin-kt1.1:1.5.0",
+            "navigationBar"             : "'com.ashokvarma.android:bottom-navigation-bar:2.0.4'",
+
+            //robolectric
+            "robolectric"                : "org.robolectric:robolectric:3.3.2",
+            "robolectric-v4"             : "org.robolectric:shadows-support-v4:3.3.2",
+
+            //rxLifecycle
+            "rxLifecycleKotlin" :"com.trello:rxlifecycle-kotlin:$dependVersion.rx_lifecycle_version",
+            "rxLifecycleComponents": "com.trello:rxlifecycle-components:$dependVersion.rx_lifecycle_version",
+            //espresso
+            "espresso-core"              : "com.android.support.test.espresso:espresso-core:${dependVersion.espresso_version}",
+            "espresso-contrib"           : "com.android.support.test.espresso:espresso-contrib:${dependVersion.espresso_version}",
+            "espresso-idling-resource"   : "com.android.support.test.espresso:espresso-idling-resource:${dependVersion.espresso_version}",
+            "espresso-test-runner"       : "com.android.support.test:runner:0.5",
+            "espresso-test-rules"        : "com.android.support.test:rules:0.5"
+    ]
+
+}

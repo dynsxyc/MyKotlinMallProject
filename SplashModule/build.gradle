@@ -14,7 +14,7 @@ kapt {
 }
 
 android {
-    compileSdkVersion 26
+    compileSdkVersion rootProject.ext.android["compileSdkVersion"]
 
     defaultConfig {
         minSdkVersion 19
@@ -54,6 +54,6 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 
     //dagger2
-    kapt "com.google.dagger:dagger-compiler:$dagger_version"
+    annotationProcessor rootProject.ext.dependencies["dagger-compiler"]
     implementation project(':Provider')
 }

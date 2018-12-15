@@ -8,10 +8,9 @@
     <RelativeLayout
         android:id="@+id/ll_splash_ad_show"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:visibility="gone">
-        <ImageView
-            android:id="@+id/splash_ad_logo"
+        android:layout_height="wrap_content">
+        <com.zhongjiang.kotlin.base.imageloader.YXImageView
+            android:id="@+id/mYxImageView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="centerCrop"

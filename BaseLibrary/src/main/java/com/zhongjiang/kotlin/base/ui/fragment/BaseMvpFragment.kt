@@ -1,11 +1,7 @@
 package com.zhongjiang.kotlin.base.ui.fragment
 
 import android.os.Bundle
-import com.zhongjiang.kotlin.base.common.BaseApplication
 import com.zhongjiang.kotlin.base.injection.component.ActivityComponent
-import com.zhongjiang.kotlin.base.injection.component.DaggerActivityComponent
-import com.zhongjiang.kotlin.base.injection.module.ActivityModule
-import com.zhongjiang.kotlin.base.injection.module.LifecycleProviderModule
 import com.zhongjiang.kotlin.base.presenter.BasePresenter
 import com.zhongjiang.kotlin.base.presenter.view.BaseView
 import com.zhongjiang.kotlin.base.ui.activity.BaseFragment
@@ -39,9 +35,9 @@ open abstract class BaseMvpFragment<T: BasePresenter<*>> : BaseFragment() , Base
     abstract fun injectComponent()
 
     private fun initActivityInjection() {
-        activityComponent =   DaggerActivityComponent.builder().lifecycleProviderModule(LifecycleProviderModule(this))
-                .appComponent((_mActivity.application as BaseApplication).appComponent)
-                .activityModule(ActivityModule(_mActivity)).build()
+//        activityComponent =   DaggerActivityComponent.builder().lifecycleProviderModule(LifecycleProviderModule(this))
+//                .appComponent((_mActivity.application as BaseApplication).appComponent)
+//                .activityModule(ActivityModule(_mActivity)).build()
     }
 
 
