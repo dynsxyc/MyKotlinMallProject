@@ -2,7 +2,8 @@ package com.zhongjiang.kotlin.base.rx
 
 import com.zhongjiang.kotlin.base.common.ResultCode.Companion.SUCCESS
 import com.zhongjiang.kotlin.base.data.protocol.BaseResp
-import io.reactivex.Observable
+import rx.Observable
+import rx.functions.Func1
 
 /**
  * Created by dyn on 2018/7/17.

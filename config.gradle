@@ -36,12 +36,12 @@ ext {
             "constraint-layout"          : "com.android.support.constraint:constraint-layout:1.0.2",
 
             //kotlin
-            "kotlin-android"             : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$dependVersion.kotlin_version",
+            "kotlin-android"             : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${dependVersion.kotlin_version}",
 
             //anko
-            "ankoV7"                     : "org.jetbrains.anko:anko-appcompat-v7-commons:$dependVersion.anko_version",
-            "ankoV4"                     : "org.jetbrains.anko:anko-support-v4-commons:$dependVersion.anko_version",
-            "ankoCommons"                : "org.jetbrains.anko:anko-commons:$dependVersion.anko_version",
+            "ankoV7"                     : "org.jetbrains.anko:anko-appcompat-v7-commons:${dependVersion.anko_version}",
+            "ankoV4"                     : "org.jetbrains.anko:anko-support-v4-commons:${dependVersion.anko_version}",
+            "ankoCommons"                : "org.jetbrains.anko:anko-commons:${dependVersion.anko_version}",
 
             //java8-support
             "stream"                     : "com.annimon:stream:1.1.8",
@@ -98,15 +98,15 @@ ext {
 
             //mock
             "mockito-kotlin"             : "com.nhaarman:mockito-kotlin-kt1.1:1.5.0",
-            "navigationBar"             : "'com.ashokvarma.android:bottom-navigation-bar:2.0.4'",
+            "navigationBar"              : "com.ashokvarma.android:bottom-navigation-bar:2.0.4",
 
             //robolectric
             "robolectric"                : "org.robolectric:robolectric:3.3.2",
             "robolectric-v4"             : "org.robolectric:shadows-support-v4:3.3.2",
 
             //rxLifecycle
-            "rxLifecycleKotlin" :"com.trello:rxlifecycle-kotlin:$dependVersion.rx_lifecycle_version",
-            "rxLifecycleComponents": "com.trello:rxlifecycle-components:$dependVersion.rx_lifecycle_version",
+            "rxLifecycleKotlin"          : "com.trello:rxlifecycle-kotlin:${dependVersion.rx_lifecycle_version}",
+            "rxLifecycleComponents"      : "com.trello:rxlifecycle-components:${dependVersion.rx_lifecycle_version}",
             //espresso
             "espresso-core"              : "com.android.support.test.espresso:espresso-core:${dependVersion.espresso_version}",
             "espresso-contrib"           : "com.android.support.test.espresso:espresso-contrib:${dependVersion.espresso_version}",

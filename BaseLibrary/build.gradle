@@ -56,8 +56,8 @@ dependencies {
     annotationProcessor rootProject.ext.dependencies["dagger-android-processor"]
 
     //RxLifecycle
-    annotationProcessor rootProject.ext.dependencies["rxLifecycleKotlin"]
-    annotationProcessor rootProject.ext.dependencies["rxLifecycleComponents"]
+    implementation rootProject.ext.dependencies["rxLifecycleKotlin"]
+    implementation rootProject.ext.dependencies["rxLifecycleComponents"]
 
     //Glide
     //glide
@@ -65,22 +65,22 @@ dependencies {
     annotationProcessor rootProject.ext.dependencies["glide-compiler"]
 
     //Circle ImageView
-    annotationProcessor rootProject.ext.dependencies["circleImageview"]
+    implementation rootProject.ext.dependencies["circleImageview"]
 
     //Take Photo
 //    implementation "com.jph.takephoto:takephoto_library:$take_photo_version"
     //Alert View
 //    implementation "com.bigkoo:alertview:${alert_view_version}"
     //底部导航
-    annotationProcessor rootProject.ext.dependencies["navigationBar"]
+    implementation rootProject.ext.dependencies["navigationBar"]
 
     //Arouter
-    annotationProcessor rootProject.ext.dependencies["router"]
+    implementation rootProject.ext.dependencies["router"]
 
     //fragmentTation start  如果不想继承SupportActivity/Fragment，自己定制Support，可仅依赖:
-    annotationProcessor rootProject.ext.dependencies["fragmentationCore"]
+    implementation rootProject.ext.dependencies["fragmentationCore"]
     // swipeback基于fragmentation, 如果是自定制SupportActivity/Fragment，则参照SwipeBackActivity/Fragment实现即可
-    annotationProcessor rootProject.ext.dependencies["fragmentationSwipeback"]
+    implementation rootProject.ext.dependencies["fragmentationSwipeback"]
 
 
 }
