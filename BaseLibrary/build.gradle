@@ -20,67 +20,69 @@ android {
         }
     }
 }
+configurations.all {
+    resolutionStrategy.force rootProject.ext.dependencies["support-v4"]
+}
+
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    api fileTree(dir: 'libs', include: ['*.jar'])
 
     testImplementation rootProject.ext.dependencies["junit"]
     androidTestImplementation rootProject.ext.dependencies["espresso-test-runner"]
     androidTestImplementation rootProject.ext.dependencies["espresso-core"]
 
     //android-support
-//    implementation rootProject.ext.dependencies["appcompat-v7"]
-    implementation rootProject.ext.dependencies["recyclerview-v7"]
+//    api rootProject.ext.dependencies["appcompat-v7"]
+    api rootProject.ext.dependencies["recyclerview-v7"]
 
-    implementation rootProject.ext.dependencies["kotlin-android"]
+    api rootProject.ext.dependencies["kotlin-android"]
 
     // Anko
-    implementation rootProject.ext.dependencies["ankoV7"]
-    implementation rootProject.ext.dependencies["ankoV4"]
-    implementation rootProject.ext.dependencies["ankoCommons"]
+    api rootProject.ext.dependencies["ankoV7"]
+    api rootProject.ext.dependencies["ankoV4"]
+    api rootProject.ext.dependencies["ankoCommons"]
 
     //Rx-Kotlin and Rx-Android
-    implementation rootProject.ext.dependencies["rxKotlin"]
-    implementation rootProject.ext.dependencies["rxAndroid"]
+    api rootProject.ext.dependencies["rxKotlin"]
+    api rootProject.ext.dependencies["rxAndroid"]
 
     //retrofit 配置
-    implementation rootProject.ext.dependencies["retrofit"]
-    implementation rootProject.ext.dependencies["retrofit-adapter-rxjava2"]
-    implementation rootProject.ext.dependencies["retrofit-converter-gson"]
-    implementation rootProject.ext.dependencies["okhttp3"]
-    implementation rootProject.ext.dependencies["okhttp3-logging-interceptor"]
+    api rootProject.ext.dependencies["retrofit"]
+    api rootProject.ext.dependencies["retrofit-adapter-rxjava2"]
+    api rootProject.ext.dependencies["retrofit-converter-gson"]
+    api rootProject.ext.dependencies["okhttp3"]
+    api rootProject.ext.dependencies["okhttp3-logging-interceptor"]
 
     //dagger2
     api rootProject.ext.dependencies["dagger-android"]
     api rootProject.ext.dependencies["dagger-android-support"]
-    annotationProcessor rootProject.ext.dependencies["dagger-compiler"]
-    annotationProcessor rootProject.ext.dependencies["dagger-android-processor"]
+    kapt rootProject.ext.dependencies["dagger-compiler"]
 
     //RxLifecycle
-    implementation rootProject.ext.dependencies["rxLifecycleKotlin"]
-    implementation rootProject.ext.dependencies["rxLifecycleComponents"]
+    api rootProject.ext.dependencies["rxLifecycleKotlin"]
+    api rootProject.ext.dependencies["rxLifecycleComponents"]
 
     //Glide
-    //glide
     api rootProject.ext.dependencies["glide"]
     annotationProcessor rootProject.ext.dependencies["glide-compiler"]
 
     //Circle ImageView
-    implementation rootProject.ext.dependencies["circleImageview"]
+    api rootProject.ext.dependencies["circleImageview"]
 
     //Take Photo
-//    implementation "com.jph.takephoto:takephoto_library:$take_photo_version"
+//    api "com.jph.takephoto:takephoto_library:$take_photo_version"
     //Alert View
-//    implementation "com.bigkoo:alertview:${alert_view_version}"
+//    api "com.bigkoo:alertview:${alert_view_version}"
     //底部导航
-    implementation rootProject.ext.dependencies["navigationBar"]
+    api rootProject.ext.dependencies["navigationBar"]
 
     //Arouter
-    implementation rootProject.ext.dependencies["router"]
+//    api rootProject.ext.dependencies["router"]
 
     //fragmentTation start  如果不想继承SupportActivity/Fragment，自己定制Support，可仅依赖:
-    implementation rootProject.ext.dependencies["fragmentationCore"]
+    api rootProject.ext.dependencies["fragmentationCore"]
     // swipeback基于fragmentation, 如果是自定制SupportActivity/Fragment，则参照SwipeBackActivity/Fragment实现即可
-    implementation rootProject.ext.dependencies["fragmentationSwipeback"]
+    api rootProject.ext.dependencies["fragmentationSwipeback"]
 
 
 }

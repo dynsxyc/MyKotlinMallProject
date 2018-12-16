@@ -16,6 +16,7 @@ class SplashServiceImpl @Inject constructor() : SplashService {
     lateinit var splashRepository : SplashRepository
 
     override fun onLoadAd(): Observable<JSONObject> {
-        return splashRepository.LoadAd(SplashAdReq("1","1","10")).convert()
+//        return splashRepository.LoadAd(SplashAdReq("1","1","10")).ob
+        return Observable.just(null);
     }
 }

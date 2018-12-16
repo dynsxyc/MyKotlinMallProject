@@ -2,7 +2,11 @@ package com.zhongjiang.kotlin.base.ui.activity
 
 import android.os.Bundle
 import android.support.annotation.LayoutRes
+import com.zhongjiang.kotlin.base.common.BaseApplication
 import com.zhongjiang.kotlin.base.injection.component.ActivityComponent
+import com.zhongjiang.kotlin.base.injection.component.DaggerActivityComponent
+import com.zhongjiang.kotlin.base.injection.module.ActivityModule
+import com.zhongjiang.kotlin.base.injection.module.LifecycleProviderModule
 import com.zhongjiang.kotlin.base.presenter.BasePresenter
 import com.zhongjiang.kotlin.base.presenter.view.BaseView
 import com.zhongjiang.kotlin.base.widgets.ProgressLoading
@@ -49,6 +53,6 @@ open abstract class BaseMvpActivity<T : BasePresenter<*>> : BaseActivity(), Base
     abstract fun initThisView()
 
     private fun initActivityInjection() {
-//        activityComponent = DaggerActivityComponent.builder().lifecycleProviderModule(LifecycleProviderModule(this)).appComponent((application as BaseApplication).appComponent).activityModule(ActivityModule(this)).build()
+        activityComponent = DaggerActivityComponent.builder().lifecycleProviderModule(LifecycleProviderModule(lifecycleProvider = this)).appComponent((application as BaseApplication).appComponent).activityModule(ActivityModule(this)).build()
     }
 }

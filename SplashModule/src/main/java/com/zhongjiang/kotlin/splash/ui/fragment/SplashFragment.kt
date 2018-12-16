@@ -43,7 +43,7 @@ class SplashFragment : BaseMvpFragment<SplashPresenter>(), SplashView {
         return attachToSwipeBack(view)
     }
     fun initThisView(){
-        mYxImageView.setImageUserIconUrl("https://www.baidu.com/img/xinshouye_77c426fce3f7fd448db185a7975efae5.png")
+        mYxImageView.setImageUserIconUrl("https://youxuan-pic.oss-cn-hangzhou.aliyuncs.com/shop/head/20181215/dd77da56-e90e-4f89-aade-f3db119ad394And.png")
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

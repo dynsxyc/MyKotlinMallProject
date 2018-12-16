@@ -5,6 +5,7 @@ import com.zhongjiang.kotlin.base.data.protocol.BaseResp
 import com.zhongjiang.kotlin.user.data.api.SplashApi
 import com.zhongjiang.kotlin.user.data.protocol.SplashAdReq
 import org.json.JSONObject
+import retrofit2.Call
 import rx.Observable
 import javax.inject.Inject
 
@@ -13,7 +14,7 @@ import javax.inject.Inject
  * 直接访问网络
  */
 open class SplashRepository @Inject constructor() {
-    fun LoadAd(splashAdReq: SplashAdReq): Observable<BaseResp<JSONObject>> {
+    fun LoadAd(splashAdReq: SplashAdReq): Call<BaseResp<JSONObject>> {
        return RetrofitFactory.instance.create(SplashApi:: class.java).LoadAd(splashAdReq)
     }
 

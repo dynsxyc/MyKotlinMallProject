@@ -36,4 +36,10 @@ dependencies {
     implementation project(':Provider')
     //dagger2
     annotationProcessor rootProject.ext.dependencies["dagger-compiler"]
+
+
+    api rootProject.ext.dependencies["constraint-layout"]
+}
+repositories {
+    mavenCentral()
 }
