@@ -27,7 +27,7 @@ class ForgetPwdActivity : BaseMvpActivity<ForgetPwdPresenter>(), ForgetPwdView, 
     }
 
     override fun injectComponent() {
-        DaggerUserComponent.builder().activityComponent(activityComponent).build().inject(this)
+        DaggerUserComponent.builder().activityComponent(baseActivityComponent).build().inject(this)
         mPresenter.mView = this
     }
 

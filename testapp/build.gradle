@@ -4,6 +4,7 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
 kapt {
+    generateStubs = true
     arguments {
         arg("moduleName", project.getName())
     }
@@ -13,8 +14,8 @@ android {
     compileSdkVersion rootProject.ext.android["compileSdkVersion"]
     defaultConfig {
         applicationId "mall.kotlin.zhongjiang.com.testapp"
-        minSdkVersion 16
-        targetSdkVersion 28
+        minSdkVersion rootProject.ext.android["minSdkVersion"]
+        targetSdkVersion rootProject.ext.android["targetSdkVersion"]
         versionCode 1
         versionName "1.0"
 
@@ -30,12 +31,15 @@ android {
     }
 
 }
-
+configurations.all {
+    resolutionStrategy.force rootProject.ext.dependencies["support-v4"]
+    resolutionStrategy.force rootProject.ext.dependencies["appcompat-v7"]
+}
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation project(':Provider')
     //dagger2
-    annotationProcessor rootProject.ext.dependencies["dagger-compiler"]
+    kapt rootProject.ext.dependencies["dagger-compiler"]
 
 
     api rootProject.ext.dependencies["constraint-layout"]

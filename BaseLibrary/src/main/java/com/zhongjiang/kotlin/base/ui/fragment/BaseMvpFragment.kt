@@ -1,25 +1,22 @@
 package com.zhongjiang.kotlin.base.ui.fragment
 
+import android.arch.lifecycle.Lifecycle
 import android.os.Bundle
-import com.zhongjiang.kotlin.base.common.BaseApplication
-import com.zhongjiang.kotlin.base.injection.component.ActivityComponent
-import com.zhongjiang.kotlin.base.injection.component.DaggerActivityComponent
-import com.zhongjiang.kotlin.base.injection.module.ActivityModule
-import com.zhongjiang.kotlin.base.injection.module.LifecycleProviderModule
-import com.zhongjiang.kotlin.base.presenter.BasePresenter
-import com.zhongjiang.kotlin.base.presenter.view.BaseView
-import com.zhongjiang.kotlin.base.ui.activity.BaseFragment
+import android.support.annotation.CallSuper
+import android.support.annotation.MainThread
+import android.view.View
+import com.zhongjiang.kotlin.base.presenter.IFragment
+import com.zhongjiang.kotlin.base.presenter.IPresenter
 import org.jetbrains.anko.support.v4.toast
 import javax.inject.Inject
 
 /**
  * Created by dyn on 2018/7/13.
  */
-open abstract class BaseMvpFragment<T: BasePresenter<*>> : BaseFragment() , BaseView {
+abstract class BaseMvpFragment<P: IPresenter> : BaseFragment() , IFragment {
     @Inject
-    lateinit var mPresenter : T
+    protected lateinit var mPresenter : P
 
-    lateinit var activityComponent : ActivityComponent
     override fun showLoading() {
     }
 
@@ -30,18 +27,15 @@ open abstract class BaseMvpFragment<T: BasePresenter<*>> : BaseFragment() , Base
     override fun hideLoading() {
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        initActivityInjection()
-        injectComponent()
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        initLifecycleObserver(lifecycle)
     }
-
-    abstract fun injectComponent()
-
-    private fun initActivityInjection() {
-        activityComponent =   DaggerActivityComponent.builder().lifecycleProviderModule(LifecycleProviderModule(this))
-                .appComponent((_mActivity.application as BaseApplication).appComponent)
-                .activityModule(ActivityModule(_mActivity)).build()
+    @CallSuper
+    @MainThread
+    protected fun initLifecycleObserver(lifecycle: Lifecycle) {
+        mPresenter.setLifecycleOwner(this)
+        lifecycle.addObserver(mPresenter)
     }
 
 

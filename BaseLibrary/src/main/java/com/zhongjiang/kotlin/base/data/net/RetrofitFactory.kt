@@ -61,10 +61,10 @@ class RetrofitFactory private constructor() {
     }
 
     fun getUserAgent(): String {
-        var userAgent = ""
+        var userAgent: String
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
             try {
-                userAgent = WebSettings.getDefaultUserAgent(BaseApplication.context)
+                userAgent = WebSettings.getDefaultUserAgent(BaseApplication.instance)
             } catch (e: Exception) {
                 userAgent = System.getProperty("http.agent")
             }

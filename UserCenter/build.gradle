@@ -23,6 +23,11 @@ android {
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [AROUTER_MODULE_NAME: project.getName()]
+            }
+        }
     }
 
     buildTypes {
@@ -45,6 +50,9 @@ android {
         }
     }
 }
+configurations.all {
+    resolutionStrategy.force rootProject.ext.dependencies["support-v4"]
+}
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
@@ -55,9 +63,9 @@ dependencies {
     implementation project(':Provider')
 
     //dagger2
-    annotationProcessor rootProject.ext.dependencies["dagger-compiler"]
+    kapt rootProject.ext.dependencies["dagger-compiler"]
     //arouter
-    annotationProcessor rootProject.ext.dependencies["router-compiler"]
+    kapt rootProject.ext.dependencies["router-compiler"]
 }
 repositories {
     mavenCentral()

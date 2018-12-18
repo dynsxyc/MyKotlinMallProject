@@ -7,6 +7,8 @@ android {
     compileSdkVersion rootProject.ext.android["compileSdkVersion"]
     buildToolsVersion rootProject.ext.android["buildToolsVersion"]
     defaultConfig {
+
+        multiDexEnabled true
         minSdkVersion rootProject.ext.android["minSdkVersion"]
         targetSdkVersion rootProject.ext.android["targetSdkVersion"]
         versionCode 1
@@ -45,6 +47,8 @@ dependencies {
     //Rx-Kotlin and Rx-Android
     api rootProject.ext.dependencies["rxKotlin"]
     api rootProject.ext.dependencies["rxAndroid"]
+    api rootProject.ext.dependencies["auto-dispose"]
+    api rootProject.ext.dependencies["auto-dispose-archcomponents"]
 
     //retrofit 配置
     api rootProject.ext.dependencies["retrofit"]
@@ -55,10 +59,12 @@ dependencies {
 
     //dagger2
     api rootProject.ext.dependencies["dagger-android"]
+    api rootProject.ext.dependencies["dagger"]
     api rootProject.ext.dependencies["dagger-android-support"]
+    kapt rootProject.ext.dependencies["dagger-android-processor"]
     kapt rootProject.ext.dependencies["dagger-compiler"]
 
-    //RxLifecycle
+    //RxLifecycleb
     api rootProject.ext.dependencies["rxLifecycleKotlin"]
     api rootProject.ext.dependencies["rxLifecycleComponents"]
 
@@ -77,12 +83,16 @@ dependencies {
     api rootProject.ext.dependencies["navigationBar"]
 
     //Arouter
-//    api rootProject.ext.dependencies["router"]
+    api rootProject.ext.dependencies["router"]
 
     //fragmentTation start  如果不想继承SupportActivity/Fragment，自己定制Support，可仅依赖:
     api rootProject.ext.dependencies["fragmentationCore"]
     // swipeback基于fragmentation, 如果是自定制SupportActivity/Fragment，则参照SwipeBackActivity/Fragment实现即可
     api rootProject.ext.dependencies["fragmentationSwipeback"]
+
+    //RxCache
+    api(rootProject.ext.dependencies["rxCache"])
+    api rootProject.ext.dependencies["rxCache-Jolyglot"]
 
 
 }

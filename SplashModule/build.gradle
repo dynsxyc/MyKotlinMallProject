@@ -22,8 +22,15 @@ android {
         versionCode 1
         versionName "1.0"
 
+        multiDexEnabled true
+
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [ moduleName : project.getName() ]
+            }
+        }
     }
 
     buildTypes {
@@ -48,6 +55,7 @@ android {
 }
 configurations.all {
     resolutionStrategy.force rootProject.ext.dependencies["support-v4"]
+    resolutionStrategy.force rootProject.ext.dependencies["appcompat-v7"]
 }
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
@@ -57,6 +65,7 @@ dependencies {
 
     //dagger2
     kapt rootProject.ext.dependencies["dagger-compiler"]
+    kapt rootProject.ext.dependencies["dagger-android-processor"]
     implementation project(':Provider')
 }
 repositories {
