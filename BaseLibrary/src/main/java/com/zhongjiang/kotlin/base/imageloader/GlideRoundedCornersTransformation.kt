@@ -11,7 +11,7 @@ import java.security.MessageDigest
 /**
  * Created by dyn on 2018/12/4.
  */
-class GlideRoundedCornersTransformation(context: Context) : BitmapTransformation(context) {
+class GlideRoundedCornersTransformation() : BitmapTransformation() {
 
     override fun updateDiskCacheKey(messageDigest: MessageDigest) {
 
@@ -75,7 +75,7 @@ class GlideRoundedCornersTransformation(context: Context) : BitmapTransformation
 
     }
 
-    constructor(context: Context, radius: Int,cornerType: CornerType):this(context) {
+    constructor(context: Context, radius: Int,cornerType: CornerType):this() {
         var radius = radius
         radius = context.dip(radius)
         mRadius = radius

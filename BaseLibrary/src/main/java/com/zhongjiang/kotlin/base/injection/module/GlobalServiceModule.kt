@@ -6,13 +6,15 @@ import dagger.Module
 import dagger.Provides
 import retrofit2.Retrofit
 import javax.inject.Singleton
-
+/**
+ * 全局公用接口 在baseModel 中可以调用
+ * */
 @Module
 class GlobalServiceModule {
 
     @Singleton
     @Provides
-    fun provideUserInfoService(retrofit: Retrofit): GlobalService {
+    fun provideGlobalService(retrofit: Retrofit): GlobalService {
         return retrofit.create(GlobalService::class.java)
     }
 }

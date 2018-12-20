@@ -32,7 +32,9 @@ buildscript {
         google()
         jcenter()
     }
+    ext.objectboxVersion = '2.2.0'
     dependencies {
+        classpath "io.objectbox:objectbox-gradle-plugin:$objectboxVersion"
         classpath 'com.android.tools.build:gradle:3.2.1'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
 

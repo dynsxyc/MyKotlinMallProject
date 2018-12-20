@@ -5,13 +5,19 @@ import android.app.Fragment
 import android.app.Service
 import android.content.BroadcastReceiver
 import android.content.ContentProvider
-import android.support.multidex.MultiDexApplication
-import android.support.v4.content.ContextCompat
+import android.content.Context
+import android.graphics.Point
+import android.os.Build
+import android.view.WindowManager
+import androidx.core.content.ContextCompat
+import androidx.multidex.MultiDexApplication
 import com.alibaba.android.arouter.launcher.ARouter
 import com.ihsanbal.logging.Level
 import com.ihsanbal.logging.LoggingInterceptor
 import com.zhongjiang.kotlin.base.BuildConfig
+import com.zhongjiang.kotlin.base.common.YouXuanNetInterfaceConstant.Companion.BASE_URL_DEVELOP_TEST
 import com.zhongjiang.kotlin.base.data.net.interceptor.HttpRequestHandler
+import com.zhongjiang.kotlin.base.injection.WindowScreenInfo
 import com.zhongjiang.kotlin.base.injection.module.AppModule
 import com.zhongjiang.kotlin.base.injection.module.CacheModule
 import com.zhongjiang.kotlin.base.injection.module.GlobalConfigModule
@@ -20,6 +26,7 @@ import dagger.android.*
 import dagger.android.support.HasSupportFragmentInjector
 import okhttp3.internal.platform.Platform
 import javax.inject.Inject
+
 
 /**
  * Created by dyn on 2018/7/17.
@@ -36,7 +43,7 @@ abstract class BaseApplication : MultiDexApplication(), HasActivityInjector,
     @Inject
     lateinit var fragmentInjector: DispatchingAndroidInjector<Fragment>
     @Inject
-    lateinit var supportFragmentInjector: DispatchingAndroidInjector<android.support.v4.app.Fragment>
+    lateinit var supportFragmentInjector: DispatchingAndroidInjector<androidx.fragment.app.Fragment>
     @Inject
     lateinit var broadcastReceiverInjector: DispatchingAndroidInjector<BroadcastReceiver>
     @Inject
@@ -65,7 +72,7 @@ abstract class BaseApplication : MultiDexApplication(), HasActivityInjector,
         return contentProviderInjector
     }
 
-    override fun supportFragmentInjector(): DispatchingAndroidInjector<android.support.v4.app.Fragment>? {
+    override fun supportFragmentInjector(): DispatchingAndroidInjector<androidx.fragment.app.Fragment>? {
         return supportFragmentInjector
     }
 
@@ -93,6 +100,7 @@ abstract class BaseApplication : MultiDexApplication(), HasActivityInjector,
         }
         ARouter.init(this)
     }
+
     /**
      * 这是类库底层的injectApp代码示例，你应该在你的Module中重写该方法:
      * <p>
@@ -118,7 +126,7 @@ abstract class BaseApplication : MultiDexApplication(), HasActivityInjector,
 
     protected fun getGlobalConfigModule(): GlobalConfigModule {
         return GlobalConfigModule.Buidler()
-                .baseurl("https://api.github.com/")
+                .baseurl(BASE_URL_DEVELOP_TEST)
                 .addInterceptor(LoggingInterceptor.Builder()
                         .loggable(BuildConfig.DEBUG)
                         .setLevel(Level.BASIC)
@@ -126,6 +134,7 @@ abstract class BaseApplication : MultiDexApplication(), HasActivityInjector,
                         .request("Request")
                         .response("Response")
                         .build())
+                .setWindowScreenInfo(getScreenInfo())
                 .globeHttpHandler(HttpRequestHandler.EMPTY)
                 .build()
     }
@@ -136,5 +145,22 @@ abstract class BaseApplication : MultiDexApplication(), HasActivityInjector,
 
     protected fun getCacheModule(): CacheModule {
         return CacheModule(ContextCompat.getExternalCacheDirs(this)[0])
+    }
+
+    /**
+     * Return the width of screen, in pixel.
+     *
+     * @return the width of screen, in pixel
+     */
+    fun getScreenInfo(): WindowScreenInfo {
+        val wm = getSystemService(Context.WINDOW_SERVICE) as WindowManager
+        val point = Point()
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+
+            wm.defaultDisplay.getRealSize(point)
+        } else {
+            wm.defaultDisplay.getSize(point)
+        }
+        return WindowScreenInfo(point.x, point.y)
     }
 }

@@ -3,7 +3,7 @@ package com.zhongjiang.kotlin.base.common
 /**
  * Created by dyn on 2018/7/25.
  */
-class YouXuanFieldConstant {
+interface YouXuanFieldConstant {
     companion object {
             val API_DATA_FIELD_ARTICLEID = "articleId"
             val API_DATA_FIELD_OSTYPE = "osType"

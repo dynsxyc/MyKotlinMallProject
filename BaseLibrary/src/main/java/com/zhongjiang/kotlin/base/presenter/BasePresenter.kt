@@ -1,8 +1,8 @@
 package com.zhongjiang.kotlin.base.presenter
 
-import android.arch.lifecycle.LifecycleOwner
-import android.support.annotation.CallSuper
-import android.support.annotation.MainThread
+import androidx.annotation.CallSuper
+import androidx.annotation.MainThread
+import androidx.lifecycle.LifecycleOwner
 import com.uber.autodispose.AutoDisposeConverter
 import com.zhongjiang.kotlin.base.NetWorkUtils
 import com.zhongjiang.kotlin.base.common.BaseApplication
@@ -25,10 +25,6 @@ open class BasePresenter<V : IView,M:IModel>  constructor(view:V,model:M): IPres
 
     lateinit var lifecycleProvider: LifecycleOwner
 
-//    fun const(view:V,model:M){
-//        mView = view
-//        mModel = model
-//    }
 
     fun checkNetWork(): Boolean {
         if (NetWorkUtils.isNetWorkAvailable(context)) {
@@ -38,7 +34,7 @@ open class BasePresenter<V : IView,M:IModel>  constructor(view:V,model:M): IPres
         return false
     }
 
-    fun <T> bindLifecycle(): AutoDisposeConverter<T> {
+    fun <T> bindLifecycle(): AutoDisposeConverter<T>{
         return RxLifecycleUtils.bindLifecycle(lifecycleProvider)
     }
 

@@ -1,10 +1,10 @@
 package com.zhongjiang.kotlin.base.ui.fragment
 
-import android.arch.lifecycle.Lifecycle
 import android.os.Bundle
-import android.support.annotation.CallSuper
-import android.support.annotation.MainThread
 import android.view.View
+import androidx.annotation.CallSuper
+import androidx.annotation.MainThread
+import androidx.lifecycle.Lifecycle
 import com.zhongjiang.kotlin.base.presenter.IFragment
 import com.zhongjiang.kotlin.base.presenter.IPresenter
 import org.jetbrains.anko.support.v4.toast

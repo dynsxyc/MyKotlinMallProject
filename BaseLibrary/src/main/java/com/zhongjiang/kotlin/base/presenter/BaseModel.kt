@@ -22,7 +22,7 @@ open class BaseModel<S : BaseServiceManager> constructor(serviceManager: S) : IM
     }
 
     @Inject
-    protected lateinit var cacheProviders: CacheProviders
+    lateinit var cacheProviders: CacheProviders
 
     @Inject
     lateinit var schedulers: SchedulerProvider

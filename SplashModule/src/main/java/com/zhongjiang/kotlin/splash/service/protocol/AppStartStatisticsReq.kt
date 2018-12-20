@@ -1,4 +1,4 @@
-package com.zhongjiang.kotlin.splash.data.protocol
+package com.zhongjiang.kotlin.splash.service.protocol
 
 /**
  * Created by dyn on 2018/7/16.

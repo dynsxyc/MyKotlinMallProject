@@ -7,6 +7,7 @@ import com.zhongjiang.kotlin.user.injection.module.SplashModule
 import dagger.Component
 import dagger.android.AndroidInjectionModule
 import dagger.android.support.AndroidSupportInjectionModule
+import okhttp3.HttpUrl
 import okhttp3.OkHttpClient
 import javax.inject.Singleton
 
@@ -17,6 +18,7 @@ import javax.inject.Singleton
 @Component(modules = arrayOf(AndroidInjectionModule ::class,
         AndroidSupportInjectionModule::class,
         GlobalConfigModule::class,
+        BoxStoreModule::class,
         AppModule::class,
         HttpClientModule::class,
         GlobalServiceModule::class,
@@ -27,5 +29,6 @@ interface SplashModuleComponent {
     fun gson():Gson
     fun baseApplication():BaseApplication
     fun okHttpClient(): OkHttpClient
+    fun netUrl():HttpUrl?
     fun inject(baseApplication: BaseApplication)
 }

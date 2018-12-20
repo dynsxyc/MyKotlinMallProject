@@ -2,18 +2,18 @@ package com.zhongjiang.kotlin.base.rx
 
 import com.zhongjiang.kotlin.base.common.ResultCode.Companion.SUCCESS
 import com.zhongjiang.kotlin.base.data.protocol.BaseResp
-import rx.Observable
-import rx.functions.Func1
+import io.reactivex.Maybe
+import io.reactivex.MaybeSource
+import io.reactivex.functions.Function
 
 /**
  * Created by dyn on 2018/7/17.
  */
-class BaseFunc<T> : Func1<BaseResp<T>, Observable<T>> {
-    override fun call(t: BaseResp<T>): Observable<T> {
+class BaseFunc<T> : Function<BaseResp<T>, MaybeSource<T>> {
+    override fun apply(t: BaseResp<T>): MaybeSource<T> {
         if (t.status != SUCCESS){
-            return Observable.error(BaseException(t.status, t.showMessage))
+            return Maybe.error(BaseException(t.status,t.showMessage))
         }
-        return Observable.just(t.data)
+        return Maybe.just(t.data)
     }
-
 }

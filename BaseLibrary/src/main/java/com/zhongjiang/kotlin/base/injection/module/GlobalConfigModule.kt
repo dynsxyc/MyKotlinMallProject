@@ -2,6 +2,7 @@ package com.zhongjiang.kotlin.base.injection.module
 
 import android.text.TextUtils
 import com.zhongjiang.kotlin.base.data.net.interceptor.HttpRequestHandler
+import com.zhongjiang.kotlin.base.injection.WindowScreenInfo
 import dagger.Module
 import dagger.Provides
 import okhttp3.HttpUrl
@@ -31,6 +32,12 @@ class GlobalConfigModule  constructor(var buidler: Buidler) {
 
     @Singleton
     @Provides
+    fun provideWindowScreenInfo(): WindowScreenInfo {
+        return buidler.screenInfo
+    }
+
+    @Singleton
+    @Provides
     fun provideHttpRequestHandler(): HttpRequestHandler? {
         return buidler.handler // HttpRequestHandler.EMPTY//打印请求信息
     }
@@ -40,6 +47,7 @@ class GlobalConfigModule  constructor(var buidler: Buidler) {
         var interceptors = ArrayList<@JvmSuppressWildcards Interceptor>()
         lateinit var handler: HttpRequestHandler
         lateinit var cacheFile: File
+        lateinit var screenInfo: WindowScreenInfo
 
         fun baseurl(baseurl: String): Buidler {
             if (TextUtils.isEmpty(baseurl)) {
@@ -56,6 +64,11 @@ class GlobalConfigModule  constructor(var buidler: Buidler) {
 
         fun addInterceptor(interceptor: Interceptor): Buidler {
             this.interceptors.add(interceptor)
+            return this
+        }
+
+        fun setWindowScreenInfo(screenInfo: WindowScreenInfo):Buidler{
+            this.screenInfo =  screenInfo
             return this
         }
 

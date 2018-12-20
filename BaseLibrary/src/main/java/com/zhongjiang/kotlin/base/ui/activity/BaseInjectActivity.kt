@@ -1,7 +1,7 @@
 package com.zhongjiang.kotlin.base.ui.activity
 
 import android.os.Bundle
-import android.support.v4.app.Fragment
+import androidx.fragment.app.Fragment
 import com.alibaba.android.arouter.launcher.ARouter
 import dagger.android.AndroidInjection
 import dagger.android.AndroidInjector
@@ -10,11 +10,12 @@ import dagger.android.HasFragmentInjector
 import dagger.android.support.HasSupportFragmentInjector
 import javax.inject.Inject
 
-open abstract class BaseInjectActivity : BaseSupportActivity() ,HasFragmentInjector,HasSupportFragmentInjector{
+open abstract class BaseInjectActivity : BaseSupportActivity(), HasFragmentInjector, HasSupportFragmentInjector {
     @Inject
-    lateinit var fragmentInjector : DispatchingAndroidInjector<android.app.Fragment>
-     @Inject
-    lateinit var supportFragmentInjector : DispatchingAndroidInjector<Fragment>
+    lateinit var fragmentInjector: DispatchingAndroidInjector<android.app.Fragment>
+    @Inject
+    lateinit var supportFragmentInjector: DispatchingAndroidInjector<Fragment>
+
     override fun supportFragmentInjector(): AndroidInjector<Fragment> {
         return supportFragmentInjector
     }
@@ -30,7 +31,7 @@ open abstract class BaseInjectActivity : BaseSupportActivity() ,HasFragmentInjec
 
     private fun inject() {
         AndroidInjection.inject(this)
-        if (injectRouter()){
+        if (injectRouter()) {
             ARouter.getInstance().inject(this)
         }
     }

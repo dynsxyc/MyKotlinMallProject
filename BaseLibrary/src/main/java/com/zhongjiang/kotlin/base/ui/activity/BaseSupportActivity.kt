@@ -1,8 +1,8 @@
 package com.zhongjiang.kotlin.base.ui.activity
 
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
 import android.view.MotionEvent
+import androidx.appcompat.app.AppCompatActivity
 import com.zhongjiang.kotlin.base.common.AppManager
 import me.yokeyword.fragmentation.*
 import me.yokeyword.fragmentation.anim.FragmentAnimator

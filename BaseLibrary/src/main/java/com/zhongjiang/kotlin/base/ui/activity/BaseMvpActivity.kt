@@ -1,11 +1,11 @@
 package com.zhongjiang.kotlin.base.ui.activity
 
 import android.annotation.SuppressLint
-import android.arch.lifecycle.Lifecycle
 import android.os.Bundle
-import android.support.annotation.CallSuper
-import android.support.annotation.LayoutRes
-import android.support.annotation.MainThread
+import androidx.annotation.CallSuper
+import androidx.annotation.LayoutRes
+import androidx.annotation.MainThread
+import androidx.lifecycle.Lifecycle
 import com.zhongjiang.kotlin.base.presenter.IPresenter
 import com.zhongjiang.kotlin.base.presenter.IView
 import com.zhongjiang.kotlin.base.widgets.ProgressLoading
@@ -50,7 +50,8 @@ abstract class BaseMvpActivity<P :IPresenter> : BaseActivity(), IView {
     }
 
     /**获取当前页  layoutId资源Id*/
-    @LayoutRes abstract fun getContentLayoutRes():Int
+    @LayoutRes
+    abstract fun getContentLayoutRes():Int
     /**获取当前页数据*/
     abstract fun loadThisData()
     /**初始化当前页控件*/

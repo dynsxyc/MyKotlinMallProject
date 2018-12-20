@@ -1,6 +1,7 @@
 package com.zhongjiang.kotlin.base.data.net.service
 
 import com.zhongjiang.kotlin.base.data.net.entity.UserInfo
+import com.zhongjiang.kotlin.base.data.protocol.BaseResp
 
 import io.reactivex.Maybe
 import retrofit2.http.GET
@@ -11,5 +12,5 @@ import retrofit2.http.Path
  */
 interface GlobalService {
     @GET("users/{user}")
-    fun getUserInfo(@Path("user") user: String): Maybe<UserInfo>
+    fun getUserInfo(@Path("user") user: String): Maybe<BaseResp<UserInfo>>
 }

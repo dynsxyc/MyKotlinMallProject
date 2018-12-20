@@ -5,10 +5,7 @@ import javax.inject.Singleton
 
 @Singleton
 class GlobalServiceManager @Inject
-constructor(userInfoService: GlobalService) : BaseServiceManager {
-
-    var userInfoService: GlobalService = userInfoService
-
+constructor(val userInfoService: GlobalService) : BaseServiceManager {
     override fun destroy() {
     }
 }

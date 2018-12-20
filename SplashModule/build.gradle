@@ -6,6 +6,7 @@ if (isUserModule.toBoolean()) {
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
+apply plugin: 'io.objectbox'
 
 kapt {
     arguments {
@@ -30,6 +31,10 @@ android {
             annotationProcessorOptions {
                 arguments = [ moduleName : project.getName() ]
             }
+        }
+        compileOptions {
+            sourceCompatibility 1.8
+            targetCompatibility 1.8
         }
     }
 
@@ -66,6 +71,7 @@ dependencies {
     //dagger2
     kapt rootProject.ext.dependencies["dagger-compiler"]
     kapt rootProject.ext.dependencies["dagger-android-processor"]
+    kapt rootProject.ext.dependencies["glide-compiler"]
     implementation project(':Provider')
 }
 repositories {
