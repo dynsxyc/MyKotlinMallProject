@@ -12,7 +12,7 @@ import me.yokeyword.fragmentation_swipeback.core.SwipeBackActivityDelegate
 /**
  * Created by dyn on 2018/7/13.
  */
-open abstract class BaseSupportActivity : AppCompatActivity(), ISupportActivity ,ISwipeBackActivity{
+abstract class BaseSupportActivity : AppCompatActivity(), ISupportActivity ,ISwipeBackActivity{
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         AppManager.instance.addActivity(this)
@@ -200,7 +200,7 @@ open abstract class BaseSupportActivity : AppCompatActivity(), ISupportActivity 
     override fun setSwipeBackEnable(enable: Boolean) {
         mSwipeBackDelegate.setSwipeBackEnable(getSwipeBackEnable())
     }
-    fun getSwipeBackEnable() : Boolean{
+    protected open fun getSwipeBackEnable() : Boolean{
         return true
     }
     /******************** SwipeBack end ************************/

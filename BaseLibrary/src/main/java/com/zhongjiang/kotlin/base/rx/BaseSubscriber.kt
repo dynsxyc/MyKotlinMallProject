@@ -11,6 +11,7 @@ import io.reactivex.disposables.Disposable
  */
 open class BaseMaybeObserver<T>(val iView: IView) : MaybeObserver<T> {
     override fun onError(e: Throwable) {
+        e.printStackTrace()
         iView.hideLoading()
         if (e is BaseException){
             iView.onError(e.msg)

@@ -3,7 +3,7 @@ package com.zhongjiang.kotlin.splash.presenter.model
 import com.zhongjiang.kotlin.base.ext.convertList
 import com.zhongjiang.kotlin.base.ext.handlerThread
 import com.zhongjiang.kotlin.base.presenter.BaseModel
-import com.zhongjiang.kotlin.splash.data.SplashAdBean
+import com.zhongjiang.kotlin.base.data.db.SplashAdBean
 import com.zhongjiang.kotlin.splash.presenter.contract.SplashContract
 import com.zhongjiang.kotlin.splash.service.SplashServiceManager
 import com.zhongjiang.kotlin.user.data.protocol.SplashAdReq
@@ -13,7 +13,7 @@ import javax.inject.Inject
 class SplashFragmentModel @Inject constructor(manager: SplashServiceManager) : BaseModel<SplashServiceManager>(manager),SplashContract.Model {
 
 
-    override fun requestUserInfo(name: String): Maybe<List<SplashAdBean>> {
+    override fun requestAdInfo(name: String): Maybe<List<SplashAdBean>> {
         return serviceManager.splashService.LoadAd(SplashAdReq("1","1","")).convertList().handlerThread(schedulers)
     }
 

@@ -15,4 +15,7 @@ class AppSplashActivity : BaseActivity(){
         loadRootFragment(R.id.splash_content,SplashFragment.newInstance())
     }
 
+    override fun getSwipeBackEnable(): Boolean {
+        return false
+    }
 }

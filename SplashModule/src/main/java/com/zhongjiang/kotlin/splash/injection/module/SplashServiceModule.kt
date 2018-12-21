@@ -13,4 +13,5 @@ class SplashServiceModule {
     fun provideSplashService(retrofit: Retrofit): SplashService {
         return retrofit.create(SplashService::class.java)
     }
+
 }

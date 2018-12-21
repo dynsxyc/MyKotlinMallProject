@@ -26,6 +26,11 @@ android {
         sourceCompatibility 1.8
         targetCompatibility 1.8
     }
+
+    dataBinding {
+        enabled = true
+    }
+
 }
 configurations.all {
     resolutionStrategy.force rootProject.ext.dependencies["support-v4"]
@@ -47,10 +52,13 @@ dependencies {
     api rootProject.ext.dependencies["ankoV7"]
     api rootProject.ext.dependencies["ankoV4"]
     api rootProject.ext.dependencies["ankoCommons"]
+    api rootProject.ext.dependencies["RoundView"]
 
     //Rx-Kotlin and Rx-Android
     api rootProject.ext.dependencies["rxKotlin"]
     api rootProject.ext.dependencies["rxAndroid"]
+    api rootProject.ext.dependencies["rxbinding"]
+    api rootProject.ext.dependencies["rxPermissions"]
     api rootProject.ext.dependencies["ktx-autodispose-android-archcomponents"]
 
     //retrofit 配置

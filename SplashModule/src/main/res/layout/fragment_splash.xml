@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/common_white"
-    >
+    android:background="@color/common_white">
 
     <RelativeLayout
         android:id="@+id/ll_splash_ad_show"
@@ -21,13 +22,17 @@
             android:layout_alignParentRight="true"
             android:orientation="horizontal">
 
-            <TextView
+            <com.flyco.roundview.RoundTextView
                 android:id="@+id/tv_down_time"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
                 android:layout_gravity="center"
                 android:textColor="@color/white"
-                android:visibility="gone"/>
+                android:textSize="8sp"
+                android:text="5"
+                android:background="#80000000"
+                app:rv_isRadiusHalfHeight="true"
+                />
 
             <TextView
                 android:id="@+id/tv_skip"
@@ -36,17 +41,5 @@
                 android:visibility="gone"
                 android:layout_width="wrap_content" />
         </LinearLayout>
-        <TextView
-            android:id="@+id/mTvContent"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            />
-        <TextView
-            android:id="@+id/mTvNetUrl"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            />
     </RelativeLayout>
 </RelativeLayout>

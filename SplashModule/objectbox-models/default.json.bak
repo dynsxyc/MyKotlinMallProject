@@ -1,0 +1,78 @@
+{
+  "_note1": "KEEP THIS FILE! Check it into a version control system (VCS) like git.",
+  "_note2": "ObjectBox manages crucial IDs for your object model. See docs for details.",
+  "_note3": "If you have VCS merge conflicts, you must resolve them according to ObjectBox docs.",
+  "entities": [
+    {
+      "id": "1:1326743650525191631",
+      "lastPropertyId": "13:1053860540281663004",
+      "name": "SplashAdBean",
+      "properties": [
+        {
+          "id": "1:8253626771752341435",
+          "name": "id"
+        },
+        {
+          "id": "2:2638953670909455316",
+          "name": "imgTitle"
+        },
+        {
+          "id": "3:7590766378392924316",
+          "name": "imgPathUrl"
+        },
+        {
+          "id": "4:8899798352300622999",
+          "name": "imgPageUrl"
+        },
+        {
+          "id": "5:8319352370025537503",
+          "name": "pageStatus"
+        },
+        {
+          "id": "6:5933701321746225704",
+          "name": "appType"
+        },
+        {
+          "id": "7:5200855227354742805",
+          "name": "showTime"
+        },
+        {
+          "id": "8:2444122042882888799",
+          "name": "funcType"
+        },
+        {
+          "id": "9:5626683535181942441",
+          "name": "ISSHARE"
+        },
+        {
+          "id": "10:1415330397269984637",
+          "name": "shareTitle"
+        },
+        {
+          "id": "11:1846178700434269841",
+          "name": "shareContents"
+        },
+        {
+          "id": "12:5206064375741929588",
+          "name": "sharePic"
+        },
+        {
+          "id": "13:1053860540281663004",
+          "name": "shareUrl"
+        }
+      ],
+      "relations": []
+    }
+  ],
+  "lastEntityId": "1:1326743650525191631",
+  "lastIndexId": "0:0",
+  "lastRelationId": "0:0",
+  "lastSequenceId": "0:0",
+  "modelVersion": 4,
+  "modelVersionParserMinimum": 4,
+  "retiredEntityUids": [],
+  "retiredIndexUids": [],
+  "retiredPropertyUids": [],
+  "retiredRelationUids": [],
+  "version": 1
+}

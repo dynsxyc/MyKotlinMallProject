@@ -11,12 +11,13 @@ import dagger.Provides
 class SplashFragmentModule {
     @Provides
     @ActivityScope
-    fun provideSplashView(splashFragment: SplashFragment):SplashContract.View{
+    fun provideSplashView(splashFragment: SplashFragment): SplashContract.View {
         return splashFragment
     }
+
     @Provides
     @ActivityScope
-    fun provideSplashModel(splashFragmentModel: SplashFragmentModel):SplashContract.Model{
+    fun provideSplashModel(splashFragmentModel: SplashFragmentModel): SplashContract.Model {
         return splashFragmentModel
     }
 

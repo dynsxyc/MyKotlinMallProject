@@ -34,17 +34,93 @@
         }
       ],
       "relations": []
+    },
+    {
+      "id": "4:6028401282459423611",
+      "lastPropertyId": "13:4850462354854280613",
+      "name": "SplashAdBean",
+      "properties": [
+        {
+          "id": "1:2580199734258782229",
+          "name": "id"
+        },
+        {
+          "id": "2:715508969386043212",
+          "name": "imgTitle"
+        },
+        {
+          "id": "3:5156819427592442547",
+          "name": "imgPathUrl"
+        },
+        {
+          "id": "4:2923171636853011729",
+          "name": "imgPageUrl"
+        },
+        {
+          "id": "5:305001032822951083",
+          "name": "pageStatus"
+        },
+        {
+          "id": "6:4759816889332307470",
+          "name": "appType"
+        },
+        {
+          "id": "7:6701384814898972933",
+          "name": "showTime"
+        },
+        {
+          "id": "8:4323858207582898333",
+          "name": "funcType"
+        },
+        {
+          "id": "9:8643978369929206215",
+          "name": "isShare"
+        },
+        {
+          "id": "10:990067333037475935",
+          "name": "shareTitle"
+        },
+        {
+          "id": "11:7742459533916521165",
+          "name": "shareContents"
+        },
+        {
+          "id": "12:8620439240078570871",
+          "name": "sharePic"
+        },
+        {
+          "id": "13:4850462354854280613",
+          "name": "shareUrl"
+        }
+      ],
+      "relations": []
     }
   ],
-  "lastEntityId": "2:2091588382334992386",
+  "lastEntityId": "4:6028401282459423611",
   "lastIndexId": "0:0",
   "lastRelationId": "0:0",
   "lastSequenceId": "0:0",
   "modelVersion": 4,
   "modelVersionParserMinimum": 4,
-  "retiredEntityUids": [],
+  "retiredEntityUids": [
+    1923266992385543724
+  ],
   "retiredIndexUids": [],
-  "retiredPropertyUids": [],
+  "retiredPropertyUids": [
+    8426950720153882336,
+    8769511314993183007,
+    3758998771464939451,
+    4896552110779126085,
+    3183852791379152138,
+    5934297508834085018,
+    2485158388826288297,
+    1842981034013640319,
+    8167677787028812998,
+    4103148071215648048,
+    5628604481655269776,
+    710957777308575623,
+    3548546199548775358
+  ],
   "retiredRelationUids": [],
   "version": 1
 }

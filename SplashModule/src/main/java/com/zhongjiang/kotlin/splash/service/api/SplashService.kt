@@ -4,7 +4,7 @@ import com.zhongjiang.kotlin.base.common.YouXuanNetInterfaceConstant.Companion.A
 import com.zhongjiang.kotlin.base.common.YouXuanNetInterfaceConstant.Companion.API_METHOD_APP_INSERT_OPEN_NUMBER
 import com.zhongjiang.kotlin.base.data.protocol.BaseListResp
 import com.zhongjiang.kotlin.base.data.protocol.BaseResp
-import com.zhongjiang.kotlin.splash.data.SplashAdBean
+import com.zhongjiang.kotlin.base.data.db.SplashAdBean
 import com.zhongjiang.kotlin.splash.service.protocol.AppStartStatisticsReq
 import com.zhongjiang.kotlin.user.data.protocol.SplashAdReq
 import io.reactivex.Maybe

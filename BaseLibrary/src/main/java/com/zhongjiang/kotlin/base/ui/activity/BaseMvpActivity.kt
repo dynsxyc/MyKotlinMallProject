@@ -1,6 +1,5 @@
 package com.zhongjiang.kotlin.base.ui.activity
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.annotation.CallSuper
 import androidx.annotation.LayoutRes
@@ -15,31 +14,38 @@ import javax.inject.Inject
 /**
  * Created by dyn on 2018/7/13.
  */
-abstract class BaseMvpActivity<P :IPresenter> : BaseActivity(), IView {
+abstract class BaseMvpActivity<P : IPresenter> : BaseInjectActivity(), IView {
     @Inject
     lateinit var mPresenter: P
 
-    private lateinit var progressLoading: ProgressLoading
+    val progressLoading by lazy {
+         ProgressLoading.create(this)
+    }
+    @MainThread
     override fun showLoading() {
         progressLoading.showLoading()
     }
-
+    @MainThread
     override fun onError(text: String) {
         toast(text)
     }
-
+    @MainThread
     override fun hideLoading() {
         progressLoading.hideLoading()
     }
 
-    @SuppressLint("RestrictedApi")
+
+    override fun onStart() {
+        super.onStart()
+        setSwipeBackEnable(true)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(getContentLayoutRes())
+        setContentView(getLayoutId())
         initLifecycleObserver(lifecycle)
-        initThisView()
-        loadThisData()
-        progressLoading = ProgressLoading.create(this)
+        initView()
+        initData()
     }
 
     @CallSuper
@@ -51,11 +57,16 @@ abstract class BaseMvpActivity<P :IPresenter> : BaseActivity(), IView {
 
     /**获取当前页  layoutId资源Id*/
     @LayoutRes
-    abstract fun getContentLayoutRes():Int
+    @MainThread
+    abstract fun getLayoutId(): Int
+
     /**获取当前页数据*/
-    abstract fun loadThisData()
+    @MainThread
+    abstract fun initData()
+
     /**初始化当前页控件*/
-    abstract fun initThisView()
+    @MainThread
+    abstract fun initView()
 
 
 }

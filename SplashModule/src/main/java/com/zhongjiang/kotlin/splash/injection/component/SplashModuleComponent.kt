@@ -18,9 +18,9 @@ import javax.inject.Singleton
 @Component(modules = arrayOf(AndroidInjectionModule ::class,
         AndroidSupportInjectionModule::class,
         GlobalConfigModule::class,
-        BoxStoreModule::class,
         AppModule::class,
         HttpClientModule::class,
+        BaseBoxStoreModule::class,
         GlobalServiceModule::class,
         CacheModule::class,
         SplashModule::class

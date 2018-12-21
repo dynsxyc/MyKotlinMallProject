@@ -275,7 +275,7 @@ open class BaseSupperFragment : Fragment(), ISupportFragment,ISwipeBackFragment{
         mSwipeBackDelegate.setSwipeBackEnable(getSwipeBackEnable())
     }
 
-    protected fun getSwipeBackEnable(): Boolean {
+    protected open fun getSwipeBackEnable(): Boolean {
         return true
     }
     /*********************** SwipeBack  end ********************************/
