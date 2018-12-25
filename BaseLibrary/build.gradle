@@ -49,8 +49,6 @@ dependencies {
     api rootProject.ext.dependencies["kotlin-android"]
 
     // Anko
-    api rootProject.ext.dependencies["ankoV7"]
-    api rootProject.ext.dependencies["ankoV4"]
     api rootProject.ext.dependencies["ankoCommons"]
     api rootProject.ext.dependencies["RoundView"]
 
@@ -60,6 +58,7 @@ dependencies {
     api rootProject.ext.dependencies["rxbinding"]
     api rootProject.ext.dependencies["rxPermissions"]
     api rootProject.ext.dependencies["ktx-autodispose-android-archcomponents"]
+    api rootProject.ext.dependencies["ktx-autodispose"]
 
     //retrofit 配置
     api rootProject.ext.dependencies["retrofit"]

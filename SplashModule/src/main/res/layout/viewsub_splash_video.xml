@@ -1,0 +1,145 @@
+<LinearLayout android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="#88000000"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <ImageView
+        android:id="@+id/splashvideo_img_logo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="70dp"
+        android:alpha="1"
+        android:src="@drawable/img_login_logo" />
+
+    <LinearLayout
+        android:id="@+id/splashvideo_ll_phone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:alpha="1"
+        android:orientation="vertical">
+
+        <TextView
+            style="@style/WrapWrapTextSize13.ff"
+            android:layout_marginTop="50dp"
+            android:text="@string/cell_phone_number"/>
+
+        <LinearLayout
+            style="@style/MatchWrap"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <TextView
+                style="@style/WrapWrapTextSize21.ff.bold"
+                android:text="+86" />
+
+            <com.zhongjiang.kotlin.base.widgets.ClearEditText
+                android:id="@+id/splashvideo_edittext_phone"
+                style="@style/MatchWrapTextSize21.ff.bold"
+                android:paddingTop="@dimen/common_padding_middle"
+                android:paddingBottom="@dimen/common_padding_middle"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/common_margin"
+                android:gravity="start|center_vertical"
+                android:background="@color/transparent"
+                android:inputType="number"
+                android:cursorVisible="true"
+                android:textCursorDrawable="@drawable/cursor_drawable_white"
+                app:iconClear="@drawable/img_white_finish" />
+        </LinearLayout>
+
+        <View
+            style="@style/MatchOne"
+            android:alpha="0.6"
+            android:background="@color/common_white" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/splashvideo_ll_code"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:alpha="1"
+        android:orientation="vertical">
+
+        <TextView
+            style="@style/WrapWrapTextSize13.ff"
+            android:layout_marginTop="15dp"
+            android:text="@string/verification_code"/>
+
+        <RelativeLayout
+            style="@style/MatchWrap"
+            android:gravity="center_vertical">
+
+            <com.flyco.roundview.RoundTextView
+                android:id="@+id/splashvideo_tv_getverification_code"
+                style="@style/WWRound3_BgTransparent_strokeWhite"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:paddingBottom="5dp"
+                android:paddingTop="5dp"
+                android:paddingLeft="12dp"
+                android:paddingRight="12dp"
+                android:onClick="onButterKnifeClick"
+                android:text="@string/get_verification_code" />
+
+            <com.zhongjiang.kotlin.base.widgets.ClearEditText
+                android:id="@+id/splashvideo_edittext_verificationcode"
+                android:layout_width="match_parent"
+                style="@style/MatchWrapTextSize21.ff.bold"
+                android:layout_marginRight="@dimen/common_margin_middle"
+                android:paddingTop="@dimen/common_padding_middle"
+                android:paddingBottom="@dimen/common_padding_middle"
+                android:cursorVisible="true"
+                android:layout_toLeftOf="@+id/splashvideo_tv_getverification_code"
+                android:background="@color/transparent"
+                android:hint="@string/input_verification_code"
+                android:inputType="number"
+                android:textColorHint="#4cffffff"
+                android:textCursorDrawable="@drawable/cursor_drawable_white"
+                android:textStyle="bold"
+                app:iconClear="@drawable/img_white_finish" />
+        </RelativeLayout>
+
+
+        <View
+            style="@style/MatchOne"
+            android:alpha="0.6"
+            android:background="@color/common_white" />
+    </LinearLayout>
+
+    <com.flyco.roundview.RoundTextView
+        android:id="@+id/splashvideo_bt_login"
+        style="@style/MWRound3_Bg99Red"
+        android:layout_marginTop="30dp"
+        android:alpha="1"
+        android:paddingTop="@dimen/common_padding_middle"
+        android:paddingBottom="@dimen/common_padding_middle"
+        android:onClick="onButterKnifeClick"
+        android:text="@string/login"/>
+
+    <LinearLayout
+        android:id="@+id/splashvideo_ll_server_agreement"
+        style="@style/MatchWrap"
+        android:layout_gravity="bottom|center_horizontal"
+        android:layout_weight="1.0"
+        android:alpha="1"
+        android:gravity="bottom"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/splashvideo_tv_server_agreement"
+            style="@style/WrapWrapTextSize14.ff"
+            android:onClick="onButterKnifeClick"
+            android:layout_gravity="center_horizontal"
+            android:text="@string/user_server_agreement" />
+
+        <TextView
+            style="@style/WrapWrapTextSize12.ff"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="5dp"
+            android:alpha="0.6"
+            android:text="登录、即表示你同意并注册" />
+    </LinearLayout>
+</LinearLayout>

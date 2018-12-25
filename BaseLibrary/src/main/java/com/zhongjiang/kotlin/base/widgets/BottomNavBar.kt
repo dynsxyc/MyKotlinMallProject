@@ -25,18 +25,18 @@ class BottomNavBar @JvmOverloads constructor(
         val homeItem = BottomNavigationItem(R.drawable.btn_nav_home_press,resources.getString(R.string.nav_bar_home))
                 .setInactiveIconResource(R.drawable.btn_nav_home_normal)
                 .setActiveColorResource(R.color.common_blue)
-                .setInActiveColorResource(R.color.text_normal)
+                .setInActiveColorResource(R.color.text_color_66)
         //分类
         val categoryItem = BottomNavigationItem(R.drawable.btn_nav_category_press,resources.getString(R.string.nav_bar_category))
                 .setInactiveIconResource(R.drawable.btn_nav_category_normal)
                 .setActiveColorResource(R.color.common_blue)
-                .setInActiveColorResource(R.color.text_normal)
+                .setInActiveColorResource(R.color.text_color_66)
 
         //购物车
         val cartItem = BottomNavigationItem(R.drawable.btn_nav_cart_press,resources.getString(R.string.nav_bar_cart))
                 .setInactiveIconResource(R.drawable.btn_nav_cart_normal)
                 .setActiveColorResource(R.color.common_blue)
-                .setInActiveColorResource(R.color.text_normal)
+                .setInActiveColorResource(R.color.text_color_66)
 
         mCartBadge = TextBadgeItem()
         cartItem.setBadgeItem(mCartBadge)
@@ -45,7 +45,7 @@ class BottomNavBar @JvmOverloads constructor(
         val msgItem = BottomNavigationItem(R.drawable.btn_nav_msg_press,resources.getString(R.string.nav_bar_msg))
                 .setInactiveIconResource(R.drawable.btn_nav_msg_normal)
                 .setActiveColorResource(R.color.common_blue)
-                .setInActiveColorResource(R.color.text_normal)
+                .setInActiveColorResource(R.color.text_color_66)
 
         mMsgBadge = ShapeBadgeItem()
         mMsgBadge.setShape(ShapeBadgeItem.SHAPE_OVAL)
@@ -55,7 +55,7 @@ class BottomNavBar @JvmOverloads constructor(
         val userItem = BottomNavigationItem(R.drawable.btn_nav_user_press,resources.getString(R.string.nav_bar_user))
                 .setInactiveIconResource(R.drawable.btn_nav_user_normal)
                 .setActiveColorResource(R.color.common_blue)
-                .setInActiveColorResource(R.color.text_normal)
+                .setInActiveColorResource(R.color.text_color_66)
 
         //设置底部导航模式及样式
         setMode(BottomNavigationBar.MODE_FIXED)

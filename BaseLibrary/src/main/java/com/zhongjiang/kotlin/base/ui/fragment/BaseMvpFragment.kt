@@ -53,7 +53,7 @@ abstract class BaseMvpFragment<P: IPresenter> : BaseInjectFragment() , IFragment
     }
 
     val progressLoading by lazy {
-        ProgressLoading.create(this!!.activity!!)
+        ProgressLoading.create(activity!!)
     }
     @MainThread
     override fun showLoading() {

@@ -1,12 +1,16 @@
 package com.zhongjiang.kotlin.base.presenter
 
+import android.content.Context
+import android.content.Intent
 import androidx.annotation.CallSuper
 import androidx.annotation.MainThread
 import androidx.lifecycle.LifecycleOwner
-import com.uber.autodispose.AutoDisposeConverter
+import com.uber.autodispose.ScopeProvider
 import com.zhongjiang.kotlin.base.NetWorkUtils
 import com.zhongjiang.kotlin.base.common.BaseApplication
+import com.zhongjiang.kotlin.base.data.db.UserInfoEntity
 import com.zhongjiang.kotlin.base.utils.RxLifecycleUtils
+import io.objectbox.Box
 import javax.inject.Inject
 
 /**
@@ -23,8 +27,8 @@ open class BasePresenter<V : IView,M:IModel>  constructor(view:V,model:M): IPres
     @Inject
     lateinit var context: BaseApplication
 
-    lateinit var lifecycleProvider: LifecycleOwner
-
+    @Inject
+    lateinit var mUserInfoEntity: Box<UserInfoEntity>
 
     fun checkNetWork(): Boolean {
         if (NetWorkUtils.isNetWorkAvailable(context)) {
@@ -34,7 +38,9 @@ open class BasePresenter<V : IView,M:IModel>  constructor(view:V,model:M): IPres
         return false
     }
 
-    fun <T> bindLifecycle(): AutoDisposeConverter<T>{
+    lateinit var lifecycleProvider: LifecycleOwner
+
+    fun  bindLifecycle(): ScopeProvider{
         return RxLifecycleUtils.bindLifecycle(lifecycleProvider)
     }
 
@@ -67,6 +73,47 @@ open class BasePresenter<V : IView,M:IModel>  constructor(view:V,model:M): IPres
     @CallSuper
     @MainThread
     override fun onLifecycleChanged(owner: LifecycleOwner) {
+    }
+
+    /**
+     * 退出应用程序
+     */
+    fun appExit(context: Context) {
+        try {
+            val i = Intent(Intent.ACTION_MAIN)
+            i.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+            i.addCategory(Intent.CATEGORY_HOME)
+            context.startActivity(i)
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+
+    }
+    /**判断用户是否登录*/
+    fun isUserLogin() : Boolean {
+        if (mUserInfoEntity.count() <= 0){
+            return false
+        }
+        var userInfo = mUserInfoEntity.all[0]
+        return !userInfo.ticket.isEmpty()
+    }
+    /**获取用户信息*/
+    fun getUserInfo() : UserInfoEntity {
+        return mUserInfoEntity.all[0]
+    }
+    /**更新/添加用户信息*/
+    fun setUserInfo(userInfoEntity: UserInfoEntity){
+        if (mUserInfoEntity.count() <= 0) {
+            mUserInfoEntity.put(userInfoEntity)
+        } else {
+            var Bean = mUserInfoEntity.all[0]
+            Bean.clone(userInfoEntity)
+            mUserInfoEntity.put(Bean)
+        }
+    }
+    /**退出登录 移除用户信息*/
+    fun removeUserInfo(){
+        mUserInfoEntity.removeAll()
     }
 
 }

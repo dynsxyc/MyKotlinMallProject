@@ -3,15 +3,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/common_white">
+    android:layout_height="match_parent">
 
     <RelativeLayout
-        android:id="@+id/ll_splash_ad_show"
+        android:id="@+id/mSplashFragmentRlAd"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <com.zhongjiang.kotlin.base.imageloader.YXImageView
-            android:id="@+id/mYxImageView"
+            android:id="@+id/mSplashFragmentImgAd"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="centerCrop"
@@ -20,26 +19,36 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
+            android:layout_marginTop="30dp"
+            android:layout_marginRight="40dp"
             android:orientation="horizontal">
 
             <com.flyco.roundview.RoundTextView
-                android:id="@+id/tv_down_time"
+                android:id="@+id/mSplashFragmentTvTime"
                 android:layout_width="25dp"
-                android:layout_height="25dp"
-                android:layout_gravity="center"
-                android:textColor="@color/white"
-                android:textSize="8sp"
-                android:text="5"
-                android:background="#80000000"
+                android:layout_height="match_parent"
+                android:padding="2dp"
+                android:gravity="center"
+                android:textColor="@color/common_white"
+                android:textSize="10dp"
+                app:rv_backgroundColor="#80000000"
                 app:rv_isRadiusHalfHeight="true"
                 />
 
-            <TextView
-                android:id="@+id/tv_skip"
+            <com.flyco.roundview.RoundTextView
+                android:id="@+id/mSplashFragmentTvSkip"
                 android:layout_height="25dp"
-                android:textColor="@color/white"
-                android:visibility="gone"
-                android:layout_width="wrap_content" />
+                android:textColor="@color/common_red"
+                android:layout_width="wrap_content"
+                android:layout_marginLeft="20dp"
+                app:rv_backgroundColor="#80000000"
+                android:textSize="10dp"
+                android:gravity="center"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                app:rv_isRadiusHalfHeight="true"
+                android:text="跳过"
+                />
         </LinearLayout>
     </RelativeLayout>
 </RelativeLayout>

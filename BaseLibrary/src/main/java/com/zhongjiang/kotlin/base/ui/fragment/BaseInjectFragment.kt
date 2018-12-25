@@ -4,7 +4,7 @@ import android.app.Activity
 import com.alibaba.android.arouter.launcher.ARouter
 import com.zhongjiang.kotlin.base.ui.activity.BaseSupperFragment
 import dagger.android.support.AndroidSupportInjection
-
+/**注入类型*/
 abstract class BaseInjectFragment : BaseSupperFragment(){
     protected fun inject() {
         AndroidSupportInjection.inject(this)

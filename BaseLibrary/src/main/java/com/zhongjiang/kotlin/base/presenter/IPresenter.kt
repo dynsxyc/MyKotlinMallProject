@@ -7,7 +7,7 @@ import androidx.lifecycle.OnLifecycleEvent
 import org.jetbrains.annotations.NotNull
 
 interface IPresenter : LifecycleObserver {
-    fun setLifecycleOwner(lifecycleObserver: LifecycleOwner)
+    fun setLifecycleOwner(lifecycleOwner: LifecycleOwner)
 
     @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
     fun onCreate(@NotNull owner: LifecycleOwner)

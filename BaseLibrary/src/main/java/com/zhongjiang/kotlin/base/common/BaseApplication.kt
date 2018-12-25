@@ -1,7 +1,6 @@
 package com.zhongjiang.kotlin.base.common
 
 import android.app.Activity
-import android.app.Fragment
 import android.app.Service
 import android.content.BroadcastReceiver
 import android.content.ContentProvider
@@ -33,15 +32,12 @@ import javax.inject.Inject
  */
 abstract class BaseApplication : MultiDexApplication(), HasActivityInjector,
         HasBroadcastReceiverInjector,
-        HasFragmentInjector,
         HasServiceInjector,
         HasContentProviderInjector,
         HasSupportFragmentInjector {
     @Inject
     lateinit var activityInjector: DispatchingAndroidInjector<Activity>
 
-    @Inject
-    lateinit var fragmentInjector: DispatchingAndroidInjector<Fragment>
     @Inject
     lateinit var supportFragmentInjector: DispatchingAndroidInjector<androidx.fragment.app.Fragment>
     @Inject
@@ -58,10 +54,6 @@ abstract class BaseApplication : MultiDexApplication(), HasActivityInjector,
 
     override fun broadcastReceiverInjector(): DispatchingAndroidInjector<BroadcastReceiver>? {
         return broadcastReceiverInjector
-    }
-
-    override fun fragmentInjector(): DispatchingAndroidInjector<Fragment>? {
-        return fragmentInjector
     }
 
     override fun serviceInjector(): DispatchingAndroidInjector<Service>? {

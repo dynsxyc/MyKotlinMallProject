@@ -4,7 +4,7 @@ import com.zhongjiang.kotlin.base.common.YouXuanNetInterfaceConstant.Companion.A
 import com.zhongjiang.kotlin.base.common.YouXuanNetInterfaceConstant.Companion.API_METHOD_APP_INSERT_OPEN_NUMBER
 import com.zhongjiang.kotlin.base.data.protocol.BaseListResp
 import com.zhongjiang.kotlin.base.data.protocol.BaseResp
-import com.zhongjiang.kotlin.base.data.db.SplashAdBean
+import com.zhongjiang.kotlin.base.data.db.SplashAdEntity
 import com.zhongjiang.kotlin.splash.service.protocol.AppStartStatisticsReq
 import com.zhongjiang.kotlin.user.data.protocol.SplashAdReq
 import io.reactivex.Maybe
@@ -17,7 +17,7 @@ import retrofit2.http.POST
 interface SplashService {
     /**启动页广告*/
     @POST(API_METHOD_APP_APLASH_AD)
-    fun LoadAd(@Body splashAdReq: SplashAdReq): Maybe<BaseListResp<List<SplashAdBean>>>
+    fun LoadAd(@Body splashAdReq: SplashAdReq): Maybe<BaseListResp<List<SplashAdEntity>>>
 
     /**APP打开次数*/
     @POST(API_METHOD_APP_INSERT_OPEN_NUMBER)

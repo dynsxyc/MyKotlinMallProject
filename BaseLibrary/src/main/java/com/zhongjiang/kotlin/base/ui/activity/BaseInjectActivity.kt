@@ -24,6 +24,10 @@ open abstract class BaseInjectActivity : BaseSupportActivity(), HasFragmentInjec
         return fragmentInjector
     }
 
+    override fun onStart() {
+        super.onStart()
+        setSwipeBackEnable(true)
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         inject();
         super.onCreate(savedInstanceState)

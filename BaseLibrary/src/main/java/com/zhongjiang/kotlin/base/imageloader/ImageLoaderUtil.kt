@@ -151,7 +151,7 @@ class ImageLoaderUtil {
                 ImageLoaderUtil.IMAGE_STYLE_TYPE.IMAGE_TYPE_SHOP_HEADER -> {
                     transformations = arrayOf()
                     transformations[0] = CenterCrop()
-                    transformations[1] = GlideRoundedCornersTransformation(context, 5, true, 2, context.resources.getColor(R.color.white), GlideRoundedCornersTransformation.CornerType.ALL)
+                    transformations[1] = GlideRoundedCornersTransformation(context, 5, true, 2, context.resources.getColor(R.color.common_white), GlideRoundedCornersTransformation.CornerType.ALL)
                 }
             }
             return transformations

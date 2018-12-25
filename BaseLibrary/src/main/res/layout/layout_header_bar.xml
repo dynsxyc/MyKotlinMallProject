@@ -10,7 +10,7 @@
                android:src="@drawable/icon_back"/>
     <TextView
             android:id="@+id/mTitleTv"
-            android:textSize="@dimen/text_large_size"
+            android:textSize="@dimen/text_size_18"
             android:textColor="@color/common_white"
             style="@style/WrapWrap"
             android:layout_centerInParent="true"/>

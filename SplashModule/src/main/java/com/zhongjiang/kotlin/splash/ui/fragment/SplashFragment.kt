@@ -1,5 +1,6 @@
 package com.zhongjiang.kotlin.splash.ui.fragment
 
+import android.annotation.SuppressLint
 import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.util.Log
@@ -12,8 +13,8 @@ import com.zhongjiang.kotlin.base.imageloader.ImageLoaderUtil
 import com.zhongjiang.kotlin.base.injection.WindowScreenInfo
 import com.zhongjiang.kotlin.base.ui.fragment.BaseMvpFragment
 import com.zhongjiang.kotlin.splash.R
-import com.zhongjiang.kotlin.splash.presenter.SplashPresenter
-import com.zhongjiang.kotlin.splash.presenter.contract.SplashContract
+import com.zhongjiang.kotlin.splash.presenter.SplashFragmentPresenter
+import com.zhongjiang.kotlin.splash.presenter.contract.SplashFragmentContract
 import kotlinx.android.synthetic.main.fragment_splash.*
 import org.jetbrains.anko.toast
 import java.util.concurrent.TimeUnit
@@ -22,37 +23,21 @@ import javax.inject.Inject
 /**
  * Created by dyn on 2018/7/25.
  */
-class SplashFragment : BaseMvpFragment<SplashPresenter>(), SplashContract.View {
-
+class SplashFragment : BaseMvpFragment<SplashFragmentPresenter>(), SplashFragmentContract.View {
+    @Inject
+    lateinit var screenWidth: WindowScreenInfo
+    /**公共实现部分 start*/
     override fun initData() {
         mPresenter.requestAdInfo("")
     }
 
     override fun getLayoutRes(): Int {
-        return  R.layout.fragment_splash
+        return R.layout.fragment_splash
     }
-
-    override fun onShowAd(adImgPathUrl: String) {
-        ImageLoaderUtil.displayImage(adImgPathUrl, mYxImageView, ImageLoaderUtil.IMAGE_STYLE_TYPE.IMAGE_TYPE_RESOURCE, object : RequestListener<Drawable> {
-            override fun onLoadFailed(e: GlideException?, model: Any?, target: Target<Drawable>?, isFirstResource: Boolean): Boolean {
-                return false;
-            }
-
-            override fun onResourceReady(resource: Drawable?, model: Any?, target: Target<Drawable>?, dataSource: DataSource?, isFirstResource: Boolean): Boolean {
-                return false;
-            }
-
-        }, 0, 0)
-        RxView.clicks(mYxImageView)
-                .throttleFirst(800, TimeUnit.MILLISECONDS)
-                .subscribe{
-                    activity!!.toast("测试点击")
-                    Log.i("test1","-------------")
-                };
+    override fun initView() {
+        mSplashFragmentImgAd.layoutParams.width = screenWidth.width
+        mSplashFragmentImgAd.layoutParams.height = screenWidth.height * 1080 / 1334
     }
-    @Inject
-    lateinit var screenWidth:WindowScreenInfo
-
     companion object {
         fun newInstance(): SplashFragment {
             val args = Bundle()
@@ -62,13 +47,51 @@ class SplashFragment : BaseMvpFragment<SplashPresenter>(), SplashContract.View {
         }
     }
 
-    override fun initView(){
-        mYxImageView.layoutParams.width = screenWidth.width
-        mYxImageView.layoutParams.height = screenWidth.height* 1080 / 1334
-    }
-
-    override fun getSwipeBackEnable():Boolean{
+    override fun getSwipeBackEnable(): Boolean {
         return false
     }
+
+    override fun onResume() {
+        super.onResume()
+        mPresenter.checkTimerDisposable()
+    }
+    /**公共实现部分 end*/
+
+    /**当前业务部分 start*/
+    @SuppressLint("AutoDispose")
+    override fun onShowAd(adImgPathUrl: String) {
+        ImageLoaderUtil.displayImage(adImgPathUrl, mSplashFragmentImgAd, ImageLoaderUtil.IMAGE_STYLE_TYPE.IMAGE_TYPE_RESOURCE, object : RequestListener<Drawable> {
+            override fun onLoadFailed(e: GlideException?, model: Any?, target: Target<Drawable>?, isFirstResource: Boolean): Boolean {
+                return false;
+            }
+
+            override fun onResourceReady(resource: Drawable?, model: Any?, target: Target<Drawable>?, dataSource: DataSource?, isFirstResource: Boolean): Boolean {
+                return false;
+            }
+
+        }, screenWidth.width, screenWidth.height * 1080 / 1334)
+        RxView.clicks(mSplashFragmentImgAd)
+                .throttleFirst(800, TimeUnit.MILLISECONDS)
+                .subscribe {
+                    activity!!.toast("测试点击")
+                    Log.i("test1", "-------------")
+                }
+    }
+
+    override fun onRefreshTimer(userInfo: String) {
+        mSplashFragmentTvTime.text = userInfo
+    }
+    override fun skipMain() {
+
+    }
+
+    override fun skipLogin() {
+        replaceFragment(LoginFragment.newInstance(),false)
+    }
+
+    override fun skipWeb() {
+
+    }
+    /**当前业务部分 end*/
 
 }

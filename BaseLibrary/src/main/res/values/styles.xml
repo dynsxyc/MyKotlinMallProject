@@ -3,7 +3,7 @@
     <!-- 主题样式 -->
     <style name="AppTheme" parent="@style/Theme.AppCompat.Light.DarkActionBar">
         <item name="android:windowContentOverlay">@null</item>
-        <item name="android:textSize">@dimen/text_middle_size</item>
+        <item name="android:textSize">@dimen/text_size_15</item>
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
         <item name="colorPrimary">@color/common_black</item>
@@ -92,7 +92,7 @@
     </style>
     <!-- TabLayout文字样式-->
     <style name="TabLayoutTextStyle">
-        <item name="android:textSize">@dimen/text_big_size</item>
+        <item name="android:textSize">@dimen/text_size_15</item>
     </style>
     <!-- TabLayout通用样式-->
     <!--<style name="TabsStyle">
@@ -135,14 +135,14 @@
     </style>
     <!-- 自定义标签字体样式 -->
     <style name="LabelTitleTextStyle">
-        <item name="android:textSize">@dimen/text_middle_size</item>
-        <item name="android:textColor">@color/text_normal</item>
+        <item name="android:textSize">@dimen/text_size_15</item>
+        <item name="android:textColor">@color/text_color_66</item>
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
     </style>
     <!-- 自定义标签内容字体样式 -->
     <style name="LabelContentTextStyle" parent="@style/LabelTitleTextStyle">
-        <item name="android:textColor">@color/text_light_dark</item>
+        <item name="android:textColor">@color/text_color_33</item>
     </style>
     <!-- 横屏按钮样式，带不可用状态 -->
     <!-- 按钮样式-->

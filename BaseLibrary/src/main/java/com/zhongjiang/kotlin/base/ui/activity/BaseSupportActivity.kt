@@ -12,21 +12,22 @@ import me.yokeyword.fragmentation_swipeback.core.SwipeBackActivityDelegate
 /**
  * Created by dyn on 2018/7/13.
  */
-abstract class BaseSupportActivity : AppCompatActivity(), ISupportActivity ,ISwipeBackActivity{
+abstract class BaseSupportActivity : AppCompatActivity(), ISupportActivity, ISwipeBackActivity {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         AppManager.instance.addActivity(this)
-        mDelegate.onCreate(savedInstanceState)
+        mDelegate?.onCreate(savedInstanceState)
         mSwipeBackDelegate.onCreate(savedInstanceState)
     }
 
     override fun onDestroy() {
         super.onDestroy()
         AppManager.instance.finishActivity(this)
-        mDelegate.onDestroy()
+        mDelegate?.onDestroy()
     }
-    var mSwipeBackDelegate : SwipeBackActivityDelegate = SwipeBackActivityDelegate(this)
-    var mDelegate: SupportActivityDelegate = SupportActivityDelegate(this);
+
+    val mSwipeBackDelegate by lazy { SwipeBackActivityDelegate(this) }
+    val mDelegate by lazy { SupportActivityDelegate(this) }
 
     override fun getSupportDelegate(): SupportActivityDelegate {
         return mDelegate;
@@ -36,12 +37,11 @@ abstract class BaseSupportActivity : AppCompatActivity(), ISupportActivity ,ISwi
      * Perform some extra transactions.
      * 额外的事务：自定义Tag，添加SharedElement动画，操作非回退栈Fragment
      */
-    override fun extraTransaction() : ExtraTransaction
-    {
+    override fun extraTransaction(): ExtraTransaction {
         return mDelegate.extraTransaction();
     }
-    override fun onPostCreate(savedInstanceState: Bundle?)
-    {
+
+    override fun onPostCreate(savedInstanceState: Bundle?) {
         super.onPostCreate(savedInstanceState);
         mDelegate.onPostCreate(savedInstanceState);
         mSwipeBackDelegate.onPostCreate(savedInstanceState)
@@ -50,16 +50,14 @@ abstract class BaseSupportActivity : AppCompatActivity(), ISupportActivity ,ISwi
     /**
      * Note： return mDelegate.dispatchTouchEvent(ev) || super.dispatchTouchEvent(ev);
      */
-    override fun dispatchTouchEvent(ev : MotionEvent):Boolean
-    {
+    override fun dispatchTouchEvent(ev: MotionEvent): Boolean {
         return mDelegate.dispatchTouchEvent(ev) || super.dispatchTouchEvent(ev);
     }
 
     /**
      * 不建议复写该方法,请使用 {@link #onBackPressedSupport} 代替
      */
-    override fun onBackPressed()
-    {
+    override fun onBackPressed() {
         mDelegate.onBackPressed();
     }
 
@@ -67,8 +65,7 @@ abstract class BaseSupportActivity : AppCompatActivity(), ISupportActivity ,ISwi
      * 该方法回调时机为,Activity回退栈内Fragment的数量 小于等于1 时,默认finish Activity
      * 请尽量复写该方法,避免复写onBackPress(),以保证SupportFragment内的onBackPressedSupport()回退事件正常执行
      */
-    override fun onBackPressedSupport()
-    {
+    override fun onBackPressedSupport() {
         mDelegate.onBackPressedSupport();
     }
 
@@ -77,8 +74,7 @@ abstract class BaseSupportActivity : AppCompatActivity(), ISupportActivity ,ISwi
      *
      * @return FragmentAnimator
      */
-    override fun getFragmentAnimator() : FragmentAnimator
-    {
+    override fun getFragmentAnimator(): FragmentAnimator {
         return mDelegate.getFragmentAnimator();
     }
 
@@ -86,10 +82,10 @@ abstract class BaseSupportActivity : AppCompatActivity(), ISupportActivity ,ISwi
      * Set all fragments animation.
      * 设置Fragment内的全局动画
      */
-    override fun setFragmentAnimator(fragmentAnimator : FragmentAnimator)
-    {
+    override fun setFragmentAnimator(fragmentAnimator: FragmentAnimator) {
         mDelegate.setFragmentAnimator(fragmentAnimator);
     }
+
     /**
      * Set all fragments animation.
      * 构建Fragment转场动画
@@ -200,7 +196,8 @@ abstract class BaseSupportActivity : AppCompatActivity(), ISupportActivity ,ISwi
     override fun setSwipeBackEnable(enable: Boolean) {
         mSwipeBackDelegate.setSwipeBackEnable(getSwipeBackEnable())
     }
-    protected open fun getSwipeBackEnable() : Boolean{
+
+    protected open fun getSwipeBackEnable(): Boolean {
         return true
     }
     /******************** SwipeBack end ************************/

@@ -20,7 +20,7 @@ ext {
             glide_version          : '4.8.0',
             routerVersion          : "1.4.1",
             routerCompilerVersion  : "1.2.2",
-            anko_version           : '0.10.5',
+            anko_version           : '0.10.8',
             circleImageview_version: '2.1.0',
             fragmentationVersion   : '1.3.6',
             rx_lifecycle_version   : '1.0',

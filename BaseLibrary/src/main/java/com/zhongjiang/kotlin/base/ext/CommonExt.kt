@@ -12,6 +12,7 @@ import com.zhongjiang.kotlin.base.injection.module.sheduler.SchedulerProvider
 import com.zhongjiang.kotlin.base.rx.BaseFunc
 import com.zhongjiang.kotlin.base.rx.BaseFuncBoolean
 import com.zhongjiang.kotlin.base.rx.BaseFuncList
+import io.reactivex.Flowable
 import io.reactivex.Maybe
 
 /**
@@ -19,6 +20,9 @@ import io.reactivex.Maybe
  * 扩展
  */
 fun <T> Maybe<T>.handlerThread(schedulers: SchedulerProvider): Maybe<T> {
+    return this.subscribeOn(schedulers.io()).observeOn(schedulers.ui());
+}
+fun <T> Flowable<T>.handlerThread(schedulers: SchedulerProvider): Flowable<T> {
     return this.subscribeOn(schedulers.io()).observeOn(schedulers.ui());
 }
 fun <T> Maybe<BaseResp<T>>.convert(): Maybe<T> {
