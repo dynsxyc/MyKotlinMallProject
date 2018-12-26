@@ -12,11 +12,10 @@
     <style name="MatchWrapRoundHeight" parent="MatchWrap">
         <item name="rv_isRadiusHalfHeight">true</item>
     </style>
-    app:rv_strokeColor="@color/common_white"
-    app:rv_strokeWidth="@dimen/common_border_size"
     <style name="WWRound3_BgTransparent_strokeWhite" parent="WrapWrapRound3">
         <item name="rv_strokeColor">@color/common_white</item>
         <item name="rv_backgroundPressColor">@color/common_white_press</item>
+        <item name="rv_backgroundColor">@color/transparent</item>
         <item name="rv_strokePressColor">@color/common_white_press</item>
         <item name="rv_strokeWidth">@dimen/common_border_size</item>
         <item name="android:textColor">@color/common_white</item>
@@ -26,6 +25,7 @@
     <style name="MWRound3_BgTransparent_strokeWhite" parent="MatchWrapRound3">
         <item name="rv_strokeColor">@color/common_white</item>
         <item name="rv_backgroundPressColor">@color/common_white_press</item>
+        <item name="rv_backgroundColor">@color/transparent</item>
         <item name="rv_strokePressColor">@color/common_white_press</item>
         <item name="rv_strokeWidth">@dimen/common_border_size</item>
         <item name="android:textColor">@color/common_white</item>
@@ -33,8 +33,8 @@
         <item name="android:gravity">center</item>
     </style>
     <style name="MWRound3_Bg99Red" parent="MatchWrapRound3">
-        <item name="rv_backgroundPressColor">#99dc2828</item>
-        <item name="rv_backgroundColor">#99dc2828</item>
+        <item name="rv_backgroundPressColor">@color/common_red_press</item>
+        <item name="rv_backgroundColor">@color/common_red_press</item>
         <item name="android:textColor">@color/common_white</item>
         <item name="rv_textPressColor">@color/common_white_press</item>
         <item name="android:gravity">center</item>

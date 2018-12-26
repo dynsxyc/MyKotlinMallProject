@@ -20,6 +20,7 @@ open class BaseMaybeObserver<T>(val iView: IView) : MaybeObserver<T> {
     }
 
     override fun onSuccess(t: T) {
+        iView.hideLoading()
         Log.i("test1","onSuccess")
     }
 

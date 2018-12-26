@@ -1,54 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
-    <RelativeLayout
-        android:id="@+id/mSplashFragmentRlAd"
+    <com.zhongjiang.kotlin.base.imageloader.YXImageView
+        android:id="@+id/mSplashFragmentImgAd"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <com.zhongjiang.kotlin.base.imageloader.YXImageView
-            android:id="@+id/mSplashFragmentImgAd"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scaleType="centerCrop"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop" />
+
+    <LinearLayout
+        android:id="@+id/mSplashFragmentLlTimeer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="30dp"
+        android:layout_marginRight="40dp"
+        android:orientation="horizontal">
+
+        <com.flyco.roundview.RoundTextView
+            android:id="@+id/mSplashFragmentTvTime"
+            style="@style/WrapWrapTextSize10.ff"
+            android:layout_height="25dp"
+            android:layout_width="25dp"
+            android:gravity="center"
+            android:padding="2dp"
+            android:textColor="@color/common_white"
+            android:textSize="10dp"
+            app:rv_backgroundColor="#80000000"
+            app:rv_isRadiusHalfHeight="true" />
+
+        <com.flyco.roundview.RoundTextView
+            android:id="@+id/mSplashFragmentTvSkip"
+            style="@style/WrapWrapTextSize10.ff"
+            android:layout_height="25dp"
+            android:layout_marginLeft="@dimen/common_margin"
+            android:gravity="center"
+            android:paddingLeft="@dimen/common_padding_middle"
+            android:paddingRight="@dimen/common_padding_middle"
+            android:text="跳过"
+            app:rv_backgroundColor="#80000000"
+            app:rv_isRadiusHalfHeight="true"
             />
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_marginTop="30dp"
-            android:layout_marginRight="40dp"
-            android:orientation="horizontal">
-
-            <com.flyco.roundview.RoundTextView
-                android:id="@+id/mSplashFragmentTvTime"
-                android:layout_width="25dp"
-                android:layout_height="match_parent"
-                android:padding="2dp"
-                android:gravity="center"
-                android:textColor="@color/common_white"
-                android:textSize="10dp"
-                app:rv_backgroundColor="#80000000"
-                app:rv_isRadiusHalfHeight="true"
-                />
-
-            <com.flyco.roundview.RoundTextView
-                android:id="@+id/mSplashFragmentTvSkip"
-                android:layout_height="25dp"
-                android:textColor="@color/common_red"
-                android:layout_width="wrap_content"
-                android:layout_marginLeft="20dp"
-                app:rv_backgroundColor="#80000000"
-                android:textSize="10dp"
-                android:gravity="center"
-                android:paddingLeft="5dp"
-                android:paddingRight="5dp"
-                app:rv_isRadiusHalfHeight="true"
-                android:text="跳过"
-                />
-        </LinearLayout>
-    </RelativeLayout>
+    </LinearLayout>
 </RelativeLayout>

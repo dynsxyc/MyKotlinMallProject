@@ -22,7 +22,6 @@ import javax.inject.Inject
 class SplashFragmentPresenter @Inject constructor(view: SplashFragmentContract.View, model: SplashFragmentContract.Model) : BasePresenter<SplashFragmentContract.View, SplashFragmentContract.Model>(view, model), SplashFragmentContract.Presenter {
     @Inject
     lateinit var adInfoBox: Box<SplashAdEntity>
-
     @Inject
     lateinit var mContent: SplashFragment
 
@@ -53,8 +52,7 @@ class SplashFragmentPresenter @Inject constructor(view: SplashFragmentContract.V
         if (adInfoBox.count() > 0) {
             var adBean = adInfoBox.all[0]
             if (adBean.imgPathUrl.isNotEmpty()) {
-                mView.onShowAd(adBean.imgPathUrl)
-                startTime(adBean.showTime.toLong())
+                mView.onShowAd(adBean)
             }
         }
         checkPermissions()

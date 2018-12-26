@@ -1,15 +1,30 @@
 package com.zhongjiang.kotlin.splash.ui.fragment
 
+import android.animation.Animator
+import android.animation.AnimatorSet
+import android.animation.ObjectAnimator
+import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
+import android.view.animation.BounceInterpolator
+import com.jakewharton.rxbinding2.view.RxView
+import com.zhongjiang.kotlin.base.ext.editEnable
+import com.zhongjiang.kotlin.base.ext.setVisible
+import com.zhongjiang.kotlin.base.ext.shieldDoubleClick
 import com.zhongjiang.kotlin.base.ui.fragment.BaseMvpFragment
+import com.zhongjiang.kotlin.base.utils.FromatPhoneTextWatcher
+import com.zhongjiang.kotlin.base.utils.StatusBarUtil
 import com.zhongjiang.kotlin.splash.R
+import com.zhongjiang.kotlin.splash.data.VerificationCodeResuleInfo
 import com.zhongjiang.kotlin.splash.presenter.LoginFragmentPresenter
 import com.zhongjiang.kotlin.splash.presenter.contract.LoginFragmentContract
 import kotlinx.android.synthetic.main.fragment_login.*
+import kotlinx.android.synthetic.main.viewsub_login_video.*
+import org.jetbrains.anko.toast
 
 class LoginFragment : BaseMvpFragment<LoginFragmentPresenter>(), LoginFragmentContract.View {
     /**公共实现部分 start*/
+    var mSingleCode:String = ""
     companion object {
         fun newInstance(): LoginFragment {
             val args = Bundle()
@@ -22,10 +37,12 @@ class LoginFragment : BaseMvpFragment<LoginFragmentPresenter>(), LoginFragmentCo
     override fun initView() {
         mLoginFragmentVideoView.setVideoURI(Uri.parse("android.resource://" + activity?.getPackageName() + "/" + R.raw.splash_video))
         mLoginFragmentVideoView.setOnCompletionListener { mLoginFragmentVideoView.start() }
-        mLoginFragmentVideoView.setOnPreparedListener{
-            mp ->
+        mLoginFragmentVideoView.setOnPreparedListener { mp ->
             mp.setVolume(0f, 0f)
             mp.start()
+        }
+        RxView.clicks(mLoginFragmentRoundTvSkip).shieldDoubleClick {
+            showLoginView()
         }
     }
 
@@ -33,7 +50,7 @@ class LoginFragment : BaseMvpFragment<LoginFragmentPresenter>(), LoginFragmentCo
     }
 
     override fun getLayoutRes(): Int {
-        return  R.layout.fragment_login
+        return R.layout.fragment_login
     }
 
     override fun getSwipeBackEnable(): Boolean {
@@ -54,5 +71,134 @@ class LoginFragment : BaseMvpFragment<LoginFragmentPresenter>(), LoginFragmentCo
         mPresenter.appExit(activity!!)
         return true
     }
+
+    fun initSubView() {
+        mLoginFragmentEtPhone.addTextChangedListener(FromatPhoneTextWatcher(mLoginFragmentEtPhone) {checkLoginEnable()})
+        mLoginFragmentEtPhone.requestFocus()
+        mLoginFragmentRoundTvLogin.editEnable(mLoginFragmentEtVerificationCode) { checkLoginEnable() }
+
+        RxView.clicks(mLoginFragmentRoundTvGetVerificationCode).shieldDoubleClick {
+            //            获取验证码
+            val phoneNumber = mLoginFragmentEtPhone.text.toString().replace(" ", "")
+            mPresenter.requestVerificationCode(phoneNumber)
+        }
+        RxView.clicks(mLoginFragmentTvServerAgreement).shieldDoubleClick {
+            //服务协议
+        }
+        RxView.clicks(mLoginFragmentRoundTvLogin).shieldDoubleClick {
+            //登录
+            val phoneNumber = mLoginFragmentEtPhone.text.toString().replace(" ", "")
+            mPresenter.requestLogin(mSingleCode,phoneNumber,mLoginFragmentEtVerificationCode.text.toString())
+        }
+    }
     /**公共实现部分 end*/
+
+
+    /**
+     * 显示登录内容
+     */
+    fun showLoginView() {
+        mLoginFragmentViewSub.inflate()
+        initSubView()
+        mLoginFragmentRoundTvSkip.animate().alpha(0f).translationY(500f).setDuration(500).start()
+        mLoginFragmentTvCompanyCatchword.animate().alpha(0f).translationY(300f).setDuration(500).setListener(object : Animator.AnimatorListener {
+            override fun onAnimationStart(animation: Animator) {
+
+            }
+
+            override fun onAnimationEnd(animation: Animator) {
+                mLoginFragmentRoundTvSkip.setClickable(false)
+                startLoginContentAnimate()
+            }
+
+            override fun onAnimationCancel(animation: Animator) {
+
+            }
+
+            override fun onAnimationRepeat(animation: Animator) {
+
+            }
+        }).start()
+
+    }
+
+    /**
+     * 显示登录页动画
+     */
+    fun startLoginContentAnimate() {
+        StatusBarUtil.setStatusBarVisibility(activity!!,true)
+        StatusBarUtil.setStatusBarAlpha(activity!!)
+        val phoneAlphaAn = ObjectAnimator.ofFloat(mLoginFragmentLlPhone, "alpha", 0f, 1f)
+        val logoAlphaAn = ObjectAnimator.ofFloat(mLoginFragmentImgLogo, "alpha", 0f, 1f)
+        val codeAlphaAn = ObjectAnimator.ofFloat(mLoginFragmentLlCode, "alpha", 0f, 1f)
+        val btLoginAlphaAn = ObjectAnimator.ofFloat(mLoginFragmentRoundTvLogin, "alpha", 0f, 1f)
+        val llServerAgreementAlphaAn = ObjectAnimator.ofFloat(mLoginFragmentLlAgreement, "alpha", 0f, 1f)
+
+        val phoneTyAn = ObjectAnimator.ofFloat(mLoginFragmentLlPhone, "translationY", 100f, 0f)
+        val codeTyAn = ObjectAnimator.ofFloat(mLoginFragmentLlCode, "translationY", 300f, 0f)
+        val btLoginTyAn = ObjectAnimator.ofFloat(mLoginFragmentRoundTvLogin, "translationY", 500f, 1f)
+        val llServerAgreementTyAn = ObjectAnimator.ofFloat(mLoginFragmentLlAgreement, "translationY", 200f, 0f)
+
+        logoAlphaAn.setDuration(800)
+        logoAlphaAn.start()
+        val phoneSet = AnimatorSet()
+        phoneSet.duration = 300
+        phoneSet.interpolator = BounceInterpolator()
+        phoneSet.playTogether(phoneAlphaAn, phoneTyAn)
+        phoneSet.start()
+        val codeSet = AnimatorSet()
+        codeSet.duration = 500
+        codeSet.interpolator = BounceInterpolator()
+        codeSet.playTogether(codeAlphaAn, codeTyAn)
+        codeSet.start()
+        val btSet = AnimatorSet()
+        btSet.duration = 800
+        btSet.interpolator = BounceInterpolator()
+        btSet.playTogether(btLoginAlphaAn, btLoginTyAn)
+        btSet.start()
+        val llServerAgreementSet = AnimatorSet()
+        llServerAgreementSet.duration = 300
+        llServerAgreementSet.interpolator = BounceInterpolator()
+        llServerAgreementSet.playTogether(llServerAgreementAlphaAn, llServerAgreementTyAn)
+        llServerAgreementSet.start()
+    }
+
+    fun checkLoginEnable(): Boolean {
+        var phoneStatus = mLoginFragmentEtPhone.text.isNullOrEmpty().not() and mPresenter.isMobileNO(mLoginFragmentEtPhone.text.toString())
+        var codeStatus = mLoginFragmentEtVerificationCode.text.isNullOrEmpty().not()
+        var result = phoneStatus and codeStatus
+
+        if (result) {
+            mLoginFragmentRoundTvLogin.delegate.backgroundColor = resources.getColor(R.color.common_red)
+        } else {
+            mLoginFragmentRoundTvLogin.delegate.backgroundColor = Color.parseColor("#99dc2828")
+        }
+        mLoginFragmentRoundTvGetVerificationCode.setVisible(phoneStatus)
+        return result
+    }
+
+    override fun refreshVerificationCodeView(long: String) {
+        mLoginFragmentRoundTvGetVerificationCode.text = "$long 秒后重发"
+        mLoginFragmentRoundTvGetVerificationCode.isClickable = false
+        mLoginFragmentEtPhone.isEnabled = false
+    }
+
+    override fun loginSuccess() {
+        var userInfo = mPresenter.getUserInfo()
+        if (userInfo != null){
+            context!!.toast(userInfo.nickName)
+        }
+    }
+
+    override fun timerFinish() {
+        mLoginFragmentRoundTvGetVerificationCode.text = "重新发送"
+        mLoginFragmentRoundTvGetVerificationCode.isClickable = true
+        mLoginFragmentEtPhone.isEnabled = true
+    }
+
+    override fun getVerificationCodeSuccess(t: VerificationCodeResuleInfo) {
+        mSingleCode = t.code
+        context!!.toast(t.showMessage)
+    }
+
 }

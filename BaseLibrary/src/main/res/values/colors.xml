@@ -15,7 +15,7 @@
     <color name="common_red">#dc2828</color>
     <color name="common_red_press">#aadc2828</color>
     <color name="common_white">#ffffff</color>
-    <color name="common_white_press">#aaffffff</color>
+    <color name="common_white_press">#e5e5e5</color>
     <color name="common_yellow">#fe9c2f</color>
 
     <color name="text_color_99">#999999</color>

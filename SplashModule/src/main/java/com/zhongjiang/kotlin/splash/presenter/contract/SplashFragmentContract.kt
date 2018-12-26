@@ -19,11 +19,11 @@ class SplashFragmentContract {
     }
 
     interface View : IView {
-        fun onShowAd(userInfo: String)
+        fun onShowAd(adBean: SplashAdEntity)
         fun onRefreshTimer(userInfo: String)
         fun skipMain()
         fun skipLogin()
-        fun skipWeb()
+        fun skipWeb(webUrl:String)
     }
 
 }

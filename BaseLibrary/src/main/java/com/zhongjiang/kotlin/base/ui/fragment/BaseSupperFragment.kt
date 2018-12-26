@@ -156,6 +156,12 @@ abstract class BaseSupperFragment : Fragment(), ISupportFragment, ISwipeBackFrag
         mDelegate?.putNewBundle(newBundle)
     }
 
+    /**
+     * 加载多个同级根Fragment,类似Wechat, QQ主页的场景
+     */
+    fun loadMultipleRootFragment(containerId: Int, showPosition: Int, vararg toFragments: ISupportFragment) {
+        mDelegate?.loadMultipleRootFragment(containerId, showPosition, *toFragments)
+    }
 
     /****************************************以下为可选方法(Optional methods)******************************************************/
     // 自定制Support时，可移除不必要的方法

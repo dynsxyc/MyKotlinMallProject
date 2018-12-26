@@ -17,28 +17,27 @@
         android:focusableInTouchMode="false" />
 
     <View
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        style="@style/MatchMatch"
         android:background="#66000000" />
 
     <LinearLayout
-        style="@style/MatchWrap"
-        android:layout_alignParentBottom="true"
-        android:orientation="vertical">
+        style="@style/MatchWrap.Vertical"
+        android:layout_alignParentBottom="true">
 
         <com.flyco.roundview.RoundTextView
-            android:id="@+id/splashvideo_bt_skip"
+            android:id="@+id/mLoginFragmentRoundTvSkip"
             style="@style/MWRound3_BgTransparent_strokeWhite"
             android:layout_marginLeft="65dp"
             android:layout_marginRight="65dp"
             android:paddingTop="@dimen/common_padding_middle"
             android:paddingBottom="@dimen/common_padding_middle"
+
             android:textSize="@dimen/text_size_15"
             android:alpha="1"
             android:text="@string/openYouXuan" />
 
         <TextView
-            android:id="@+id/splashvideo_tv_skip"
+            android:id="@+id/mLoginFragmentTvCompanyCatchword"
             style="@style/WrapWrapTextSize13.ff"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="@dimen/common_margin_middle"
@@ -47,20 +46,12 @@
             android:text="@string/company_catchword" />
     </LinearLayout>
     <ViewStub
-        android:id="@+id/splashvideo_viewSub"
+        android:id="@+id/mLoginFragmentViewSub"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginBottom="30dp"
         android:layout_marginLeft="36dp"
         android:layout_marginRight="36dp"
-        android:layout="@layout/viewsub_splash_video"
-        />
-    <TextView
-        android:id="@+id/splashvideo_bt_huangjing"
-        android:layout_width="35dp"
-        android:layout_height="35dp"
-        android:background="@color/common_red"
-        android:layout_alignParentBottom="true"
-        android:visibility="gone"
+        android:layout="@layout/viewsub_login_video"
         />
 </RelativeLayout>

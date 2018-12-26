@@ -12,17 +12,14 @@ import androidx.appcompat.widget.AppCompatEditText
 import com.zhongjiang.kotlin.base.R
 import org.jetbrains.anko.dip
 
-class ClearEditText constructor(context:Context): AppCompatEditText(context) {
+class ClearEditText (context:Context,attributes: AttributeSet): AppCompatEditText(context,attributes) {
     /** 默认的清除按钮图标资源  */
     private val ICON_CLEAR_DEFAULT = R.drawable.img_login_delete
 
-    lateinit var drawableClear:Drawable
+    var drawableClear:Drawable
 
-    constructor(context: Context,attributes: AttributeSet) : this(context){
-        init(context,attributes)
-    }
 
-    fun init(context: Context ,attributes: AttributeSet) {
+    init{
         // 获取自定义属性
         val typedArray = context.obtainStyledAttributes(attributes, R.styleable.ClearEditText)
         // 获取清除按钮图标资源

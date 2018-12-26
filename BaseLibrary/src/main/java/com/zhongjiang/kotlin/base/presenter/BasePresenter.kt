@@ -2,6 +2,7 @@ package com.zhongjiang.kotlin.base.presenter
 
 import android.content.Context
 import android.content.Intent
+import android.text.TextUtils
 import androidx.annotation.CallSuper
 import androidx.annotation.MainThread
 import androidx.lifecycle.LifecycleOwner
@@ -11,6 +12,7 @@ import com.zhongjiang.kotlin.base.common.BaseApplication
 import com.zhongjiang.kotlin.base.data.db.UserInfoEntity
 import com.zhongjiang.kotlin.base.utils.RxLifecycleUtils
 import io.objectbox.Box
+import java.util.regex.Pattern
 import javax.inject.Inject
 
 /**
@@ -106,14 +108,29 @@ open class BasePresenter<V : IView,M:IModel>  constructor(view:V,model:M): IPres
         if (mUserInfoEntity.count() <= 0) {
             mUserInfoEntity.put(userInfoEntity)
         } else {
-            var Bean = mUserInfoEntity.all[0]
-            Bean.clone(userInfoEntity)
-            mUserInfoEntity.put(Bean)
+            var bean = mUserInfoEntity.all[0]
+            bean.clone(userInfoEntity)
+            mUserInfoEntity.put(bean)
         }
     }
     /**退出登录 移除用户信息*/
     fun removeUserInfo(){
         mUserInfoEntity.removeAll()
+    }
+
+    var PATTERN_MOBILE = Pattern.compile("^1\\d{10}$")
+
+    /**
+     * 判断输入的手机号是否合法 true 合法 false 不合法
+     */
+    fun isMobileNO(mobiles: String): Boolean {
+        var mobiles = mobiles
+        if (TextUtils.isEmpty(mobiles)) {
+            return false
+        }
+        mobiles = mobiles.replace(" ".toRegex(), "")
+        val m = PATTERN_MOBILE.matcher(mobiles)
+        return m.matches()
     }
 
 }
