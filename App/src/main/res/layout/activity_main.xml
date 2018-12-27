@@ -5,9 +5,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.zhongjiang.kotlin.mall.ui.activity.MainActivity">
-
-    <com.zhongjiang.kotlin.base.widgets.BottomNavBar
-        style="@style/MatchWrap"
-        ></com.zhongjiang.kotlin.base.widgets.BottomNavBar>
+    <TextView
+        android:id="@+id/testTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="hello world"
+        />
 
 </RelativeLayout>

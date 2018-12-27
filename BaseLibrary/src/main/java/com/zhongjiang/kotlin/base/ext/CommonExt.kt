@@ -28,6 +28,9 @@ import java.util.concurrent.TimeUnit
 fun <T> Maybe<T>.excute(scopeProvider: ScopeProvider,observer: BaseMaybeObserver<T>){
     this.autoDisposable(scopeProvider).subscribe(observer)
 }
+fun <T> Flowable<T>.excute(scopeProvider: ScopeProvider){
+    this.autoDisposable(scopeProvider).subscribe()
+}
 
 fun <T> Maybe<T>.handlerThread(schedulers: SchedulerProvider): Maybe<T> {
     return this.subscribeOn(schedulers.io()).observeOn(schedulers.ui());

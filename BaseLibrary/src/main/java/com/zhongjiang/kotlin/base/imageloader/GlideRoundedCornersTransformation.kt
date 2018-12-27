@@ -70,15 +70,14 @@ class GlideRoundedCornersTransformation() : BitmapTransformation() {
     private var borderWidth: Int = 0
     private var borderColor: Int = 0
     private var mBorderPaint = Paint()
+
     /**默认的圆角构造 */
-    constructor(context: Context, radius: Int) : this(context, radius, CornerType.ALL){
+    constructor(context: Context, radius: Int) : this(context, radius, CornerType.ALL) {
 
     }
 
-    constructor(context: Context, radius: Int,cornerType: CornerType):this() {
-        var radius = radius
-        radius = context.dip(radius)
-        mRadius = radius
+    constructor(context: Context, radius: Int, cornerType: CornerType) : this() {
+        mRadius = context.dip(radius)
         mDiameter = mRadius * 2
         mCornerType = cornerType
     }
@@ -87,12 +86,11 @@ class GlideRoundedCornersTransformation() : BitmapTransformation() {
      * 有边框的构造
      */
     constructor(context: Context, radius: Int, hasBorder: Boolean, borderWidth: Int, borderColor: Int,
-                                          cornerType: CornerType):this(context, radius, cornerType) {
-        var borderWidth = borderWidth
+                cornerType: CornerType) : this(context, radius, cornerType) {
 
-        borderWidth = context.dip(borderWidth)
+       var mBorderWidth = context.dip(borderWidth)
         this.hasBorder = hasBorder
-        this.borderWidth = borderWidth
+        this.borderWidth = mBorderWidth
         this.borderColor = borderColor
 
         mBorderPaint.isAntiAlias = true
@@ -101,42 +99,38 @@ class GlideRoundedCornersTransformation() : BitmapTransformation() {
         //设置颜色为黑色
         mBorderPaint.color = borderColor
         //设置笔触宽度为1像素
-        mBorderPaint.strokeWidth = borderWidth.toFloat()
+        mBorderPaint.strokeWidth = mBorderWidth.toFloat()
     }
 
     /**
      * 特殊圆角 意见反馈
      * 没边框、自定义圆角大小的构造
      */
-    constructor(context: Context, mTopLeftRadius: Int, mTopRightRadius: Int, mBottomLeftRadius: Int, mBottomRightRadius: Int):this(context, 0, CornerType.DIFFERENT_SIZE){
-        var mTopLeftRadius = mTopLeftRadius
-        var mTopRightRadius = mTopRightRadius
-        var mBottomLeftRadius = mBottomLeftRadius
-        var mBottomRightRadius = mBottomRightRadius
+    constructor(context: Context, mTopLeftRadius: Int, mTopRightRadius: Int, mBottomLeftRadius: Int, mBottomRightRadius: Int) : this(context, 0, CornerType.DIFFERENT_SIZE) {
 
-        mTopLeftRadius = context.dip(mTopLeftRadius)
-        mTopRightRadius = context.dip(mTopRightRadius)
-        mBottomLeftRadius = context.dip(mBottomLeftRadius)
-        mBottomRightRadius = context.dip(mBottomRightRadius)
+        var topLeftRadius = context.dip(mTopLeftRadius)
+        var topRightRadius = context.dip(mTopRightRadius)
+        var bottomLeftRadius = context.dip(mBottomLeftRadius)
+        var bottomRightRadius = context.dip(mBottomRightRadius)
 
-        this.mTopLeftRadius = mTopLeftRadius
-        this.mTopRightRadius = mTopRightRadius
-        this.mBottomLeftRadius = mBottomLeftRadius
-        this.mBottomRightRadius = mBottomRightRadius
+        this.mTopLeftRadius = topLeftRadius
+        this.mTopRightRadius = topRightRadius
+        this.mBottomLeftRadius = bottomLeftRadius
+        this.mBottomRightRadius = bottomRightRadius
 
     }
 
     override fun transform(pool: BitmapPool, source: Bitmap, outWidth: Int, outHeight: Int): Bitmap {
         val width = source.width
         val height = source.height
-        var bitmap: Bitmap?
+        var bitmap: Bitmap
         try {
             bitmap = pool.get(width, height, Bitmap.Config.ARGB_8888)
-            if (bitmap == null) {
-                bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888)
-            }
+//            if (bitmap == null) {
+//                bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888)
+//            }
 
-            val canvas = Canvas(bitmap!!)
+            val canvas = Canvas(bitmap)
             val paint = Paint()
             paint.isAntiAlias = true
             paint.shader = BitmapShader(source, Shader.TileMode.CLAMP, Shader.TileMode.CLAMP)

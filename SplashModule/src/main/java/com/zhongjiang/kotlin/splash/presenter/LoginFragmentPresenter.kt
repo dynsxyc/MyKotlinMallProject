@@ -5,22 +5,33 @@ import com.zhongjiang.kotlin.base.data.db.UserInfoEntity
 import com.zhongjiang.kotlin.base.ext.excute
 import com.zhongjiang.kotlin.base.presenter.BasePresenter
 import com.zhongjiang.kotlin.base.rx.BaseMaybeObserver
+import com.zhongjiang.kotlin.provider.common.CommonUtils
+import com.zhongjiang.kotlin.provider.router.NavigationUtil
 import com.zhongjiang.kotlin.splash.data.VerificationCodeResuleInfo
 import com.zhongjiang.kotlin.splash.presenter.contract.LoginFragmentContract
 import io.reactivex.functions.Action
 import io.reactivex.functions.Consumer
 import javax.inject.Inject
+import javax.inject.Singleton
 
 class LoginFragmentPresenter @Inject constructor(view: LoginFragmentContract.View, model: LoginFragmentContract.Model) : BasePresenter<LoginFragmentContract.View, LoginFragmentContract.Model>(view, model), LoginFragmentContract.Presenter {
 
+
+    @Inject
+    @Singleton
+    lateinit var commonUtils: CommonUtils
+
+
+    @Inject
+    @Singleton
+    lateinit var navigationUtil: NavigationUtil
+
     override fun requestLogin(code: String, phoneStr: String, verificationCode: String) {
         mView.showLoading()
-        mModel.requestLogin(code, phoneStr, verificationCode).excute(bindLifecycle(),object : BaseMaybeObserver<UserInfoEntity>(mView) {
+        mModel.requestLogin(code, phoneStr, verificationCode).excute(bindLifecycle(), object : BaseMaybeObserver<UserInfoEntity>(mView) {
             override fun onSuccess(t: UserInfoEntity) {
                 super.onSuccess(t)
-                if (t !== null ) {
-                    setUserInfo(t)
-                }
+                commonUtils.setUserInfo(t)
                 mView.loginSuccess()
             }
         })
@@ -32,7 +43,7 @@ class LoginFragmentPresenter @Inject constructor(view: LoginFragmentContract.Vie
             override fun onSuccess(t: VerificationCodeResuleInfo) {
                 super.onSuccess(t)
                 mView.getVerificationCodeSuccess(t)
-                if (t.status == 1){
+                if (t.status == 1) {
                     startVerificationCodeTimer()
                 }
 
@@ -45,6 +56,6 @@ class LoginFragmentPresenter @Inject constructor(view: LoginFragmentContract.Vie
             mView.refreshVerificationCodeView(60.minus(t).toString())
         }, Action {
             mView.timerFinish()
-        }).autoDisposable(bindLifecycle()).subscribe()
+        }).excute(bindLifecycle())
     }
 }

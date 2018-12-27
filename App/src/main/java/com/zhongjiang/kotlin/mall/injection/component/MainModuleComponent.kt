@@ -3,6 +3,8 @@ package com.zhongjiang.kotlin.user.injection.component
 import com.google.gson.Gson
 import com.zhongjiang.kotlin.base.common.BaseApplication
 import com.zhongjiang.kotlin.base.injection.module.*
+import com.zhongjiang.kotlin.user.injection.module.MainModule
+import com.zhongjiang.kotlin.user.injection.module.SplashModule
 import dagger.Component
 import dagger.android.AndroidInjectionModule
 import dagger.android.support.AndroidSupportInjectionModule
@@ -20,7 +22,9 @@ import javax.inject.Singleton
         HttpClientModule::class,
         BaseBoxStoreModule::class,
         GlobalServiceModule::class,
-        CacheModule::class
+        CacheModule::class,
+        SplashModule::class,
+        MainModule::class
         ))
 interface MainModuleComponent {
     fun gson():Gson

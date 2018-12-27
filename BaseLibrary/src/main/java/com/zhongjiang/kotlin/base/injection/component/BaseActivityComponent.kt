@@ -9,7 +9,7 @@ import dagger.android.AndroidInjector
  * Created by dyn on 2018/7/17.
  */
 @Subcomponent(modules = arrayOf(AndroidInjectionModule::class))
-interface BaseActivityComponent :AndroidInjector<BaseInjectActivity>{
+interface BaseActivityComponent : AndroidInjector<BaseInjectActivity> {
     @Subcomponent.Builder
-abstract class Builder : AndroidInjector.Builder<BaseInjectActivity>()
+    abstract class Builder : AndroidInjector.Builder<BaseInjectActivity>()
 }

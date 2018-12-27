@@ -40,7 +40,7 @@ open abstract class BaseInjectActivity : BaseSupportActivity(), HasFragmentInjec
         }
     }
 
-    protected fun injectRouter(): Boolean {
+    open  fun injectRouter(): Boolean {
         return false
     }
 }

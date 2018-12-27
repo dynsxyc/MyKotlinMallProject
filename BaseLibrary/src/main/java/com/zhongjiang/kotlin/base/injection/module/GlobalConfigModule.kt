@@ -26,7 +26,7 @@ class GlobalConfigModule  constructor(var buidler: Buidler) {
 
     @Singleton
     @Provides
-    fun provideBaseUrl(): HttpUrl? {
+    fun provideBaseUrl(): HttpUrl {
         return buidler.apiUrl
     }
 
@@ -43,7 +43,7 @@ class GlobalConfigModule  constructor(var buidler: Buidler) {
     }
 
     class Buidler () {
-        var apiUrl = HttpUrl.parse("https://api.github.com/")
+        lateinit var apiUrl:HttpUrl
         var interceptors = ArrayList<@JvmSuppressWildcards Interceptor>()
         lateinit var handler: HttpRequestHandler
         lateinit var cacheFile: File
@@ -53,7 +53,7 @@ class GlobalConfigModule  constructor(var buidler: Buidler) {
             if (TextUtils.isEmpty(baseurl)) {
                 throw IllegalArgumentException("baseurl can not be empty")
             }
-            this.apiUrl = HttpUrl.parse(baseurl)
+            this.apiUrl = HttpUrl.parse(baseurl)!!
             return this
         }
 

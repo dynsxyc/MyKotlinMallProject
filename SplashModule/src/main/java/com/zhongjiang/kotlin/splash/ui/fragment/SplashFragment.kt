@@ -18,6 +18,7 @@ import com.zhongjiang.kotlin.splash.R
 import com.zhongjiang.kotlin.splash.presenter.SplashFragmentPresenter
 import com.zhongjiang.kotlin.splash.presenter.contract.SplashFragmentContract
 import kotlinx.android.synthetic.main.fragment_splash.*
+import me.yokeyword.fragmentation.ISupportFragment
 import javax.inject.Inject
 
 /**
@@ -86,11 +87,11 @@ class SplashFragment : BaseMvpFragment<SplashFragmentPresenter>(), SplashFragmen
         mSplashFragmentTvTime.text = userInfo
     }
     override fun skipMain() {
-        replaceFragment(LoginFragment.newInstance(),false)
+        start(LoginFragment.newInstance(false),ISupportFragment.SINGLETASK)
     }
 
     override fun skipLogin() {
-        replaceFragment(LoginFragment.newInstance(),false)
+        start(LoginFragment.newInstance(false),ISupportFragment.SINGLETASK)
     }
 
     override fun skipWeb(webUrl:String) {

@@ -98,8 +98,6 @@ class ImageLoaderUtil {
                     options.centerCrop()
                     diskCacheStrategy = DiskCacheStrategy.RESOURCE
                 }
-                else -> {
-                }
             }
             var drawable = getLoadingImageRadiusResourcesId(context, radius)
             if (type == IMAGE_STYLE_TYPE.IMAGE_TYPE_USER_ICON) {
@@ -107,7 +105,7 @@ class ImageLoaderUtil {
             }
             options.placeholder(drawable).error(drawable).diskCacheStrategy(diskCacheStrategy)
             val transformations = getTransformations(context, type)
-            if (transformations != null && transformations.size > 0) {
+            if (transformations.isNotEmpty()) {
                 options.transforms(*transformations)
             }
             return options

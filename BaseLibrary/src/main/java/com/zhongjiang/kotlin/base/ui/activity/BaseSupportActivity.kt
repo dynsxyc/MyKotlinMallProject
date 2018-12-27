@@ -16,14 +16,14 @@ abstract class BaseSupportActivity : AppCompatActivity(), ISupportActivity, ISwi
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         AppManager.instance.addActivity(this)
-        mDelegate?.onCreate(savedInstanceState)
+        mDelegate.onCreate(savedInstanceState)
         mSwipeBackDelegate.onCreate(savedInstanceState)
     }
 
     override fun onDestroy() {
         super.onDestroy()
         AppManager.instance.finishActivity(this)
-        mDelegate?.onDestroy()
+        mDelegate.onDestroy()
     }
 
     val mSwipeBackDelegate by lazy { SwipeBackActivityDelegate(this) }
@@ -73,7 +73,7 @@ abstract class BaseSupportActivity : AppCompatActivity(), ISupportActivity, ISwi
      * 加载多个同级根Fragment,类似Wechat, QQ主页的场景
      */
     fun loadMultipleRootFragment(containerId: Int, showPosition: Int, vararg toFragments: ISupportFragment) {
-        mDelegate?.loadMultipleRootFragment(containerId, showPosition, *toFragments)
+        mDelegate.loadMultipleRootFragment(containerId, showPosition, *toFragments)
     }
     /**
      * 获取设置的全局动画 copy

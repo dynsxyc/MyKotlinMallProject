@@ -9,6 +9,7 @@ import android.graphics.Point
 import android.os.Build
 import android.view.WindowManager
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.Fragment
 import androidx.multidex.MultiDexApplication
 import com.alibaba.android.arouter.launcher.ARouter
 import com.ihsanbal.logging.Level
@@ -39,7 +40,7 @@ abstract class BaseApplication : MultiDexApplication(), HasActivityInjector,
     lateinit var activityInjector: DispatchingAndroidInjector<Activity>
 
     @Inject
-    lateinit var supportFragmentInjector: DispatchingAndroidInjector<androidx.fragment.app.Fragment>
+    lateinit var supportFragmentInjector: DispatchingAndroidInjector<Fragment>
     @Inject
     lateinit var broadcastReceiverInjector: DispatchingAndroidInjector<BroadcastReceiver>
     @Inject

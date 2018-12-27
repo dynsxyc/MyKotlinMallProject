@@ -6,20 +6,20 @@ if (isUserModule.toBoolean()) {
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
-apply plugin: 'io.objectbox'
 
 kapt {
     arguments {
-        arg("moduleName", project.getName())
+        arg("AROUTER_MODULE_NAME", project.getName())
     }
 }
 
 android {
     compileSdkVersion rootProject.ext.android["compileSdkVersion"]
+    buildToolsVersion rootProject.ext.android["buildToolsVersion"]
 
     defaultConfig {
-        minSdkVersion 19
-        targetSdkVersion 26
+        minSdkVersion rootProject.ext.android["minSdkVersion"]
+        targetSdkVersion rootProject.ext.android["targetSdkVersion"]
         versionCode 1
         versionName "1.0"
 
@@ -27,15 +27,6 @@ android {
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
-        javaCompileOptions {
-            annotationProcessorOptions {
-                arguments = [ AROUTER_MODULE_NAME : project.getName(), AROUTER_GENERATE_DOC: "enable"]
-            }
-        }
-        compileOptions {
-            sourceCompatibility 1.8
-            targetCompatibility 1.8
-        }
     }
 
     buildTypes {
@@ -44,6 +35,12 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
     sourceSets {
         main {
             if (isUserModule.toBoolean()) {
@@ -51,6 +48,7 @@ android {
                 //release模式下排除debug文件夹中的所有Java文件
                 java {
                     exclude 'debug/**'
+                    exclude '/java/com/zhongjiang/kotlin/splash/ui/SplashApplication.kt'
                 }
             } else {
                 manifest.srcFile 'src/main/debug/AndroidManifest.xml'
@@ -76,6 +74,8 @@ dependencies {
     kapt rootProject.ext.dependencies["dagger-compiler"]
     kapt rootProject.ext.dependencies["dagger-android-processor"]
     kapt rootProject.ext.dependencies["glide-compiler"]
+    kapt rootProject.ext.dependencies["router-compiler"]
+
     implementation project(':Provider')
 }
 repositories {

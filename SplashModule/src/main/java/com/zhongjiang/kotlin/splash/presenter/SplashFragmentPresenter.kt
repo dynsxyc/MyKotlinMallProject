@@ -8,6 +8,7 @@ import com.uber.autodispose.autoDisposable
 import com.zhongjiang.kotlin.base.data.db.SplashAdEntity
 import com.zhongjiang.kotlin.base.presenter.BasePresenter
 import com.zhongjiang.kotlin.base.rx.BaseMaybeObserver
+import com.zhongjiang.kotlin.provider.common.CommonUtils
 import com.zhongjiang.kotlin.splash.presenter.contract.SplashFragmentContract
 import com.zhongjiang.kotlin.splash.ui.fragment.SplashFragment
 import io.objectbox.Box
@@ -15,6 +16,7 @@ import io.reactivex.disposables.Disposable
 import io.reactivex.functions.Action
 import io.reactivex.functions.Consumer
 import javax.inject.Inject
+import javax.inject.Singleton
 
 /**
  * Created by dyn on 2018/7/25.
@@ -24,6 +26,10 @@ class SplashFragmentPresenter @Inject constructor(view: SplashFragmentContract.V
     lateinit var adInfoBox: Box<SplashAdEntity>
     @Inject
     lateinit var mContent: SplashFragment
+
+    @Inject
+    @Singleton
+    lateinit var commonUtils: CommonUtils
 
     var timerDisposable: Disposable? = null
 
@@ -70,7 +76,7 @@ class SplashFragmentPresenter @Inject constructor(view: SplashFragmentContract.V
     }
 
     override fun checkSkip() {
-        if (isUserLogin()) {
+        if (commonUtils.isUserLogin()) {
             mView.skipMain()
         } else {
             mView.skipLogin()

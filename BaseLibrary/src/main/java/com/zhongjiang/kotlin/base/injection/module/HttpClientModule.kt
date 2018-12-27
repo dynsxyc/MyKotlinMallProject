@@ -25,7 +25,7 @@ class HttpClientModule {
 
     @Singleton
     @Provides
-    fun provideRetrofit(builder: Retrofit.Builder, client: OkHttpClient, httpUrl: HttpUrl?): Retrofit {
+    fun provideRetrofit(builder: Retrofit.Builder, client: OkHttpClient, httpUrl: HttpUrl): Retrofit {
         return builder
                 .baseUrl(httpUrl)
                 .client(client)

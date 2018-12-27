@@ -7,6 +7,7 @@ import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
 import android.view.animation.BounceInterpolator
+import androidx.core.content.ContextCompat
 import com.jakewharton.rxbinding2.view.RxView
 import com.zhongjiang.kotlin.base.ext.editEnable
 import com.zhongjiang.kotlin.base.ext.setVisible
@@ -24,11 +25,14 @@ import org.jetbrains.anko.toast
 
 class LoginFragment : BaseMvpFragment<LoginFragmentPresenter>(), LoginFragmentContract.View {
     /**公共实现部分 start*/
-    var mSingleCode:String = ""
+    var mSingleCode: String = ""
+    var isToLogin: Boolean = false
+
     companion object {
-        fun newInstance(): LoginFragment {
+        fun newInstance(isToLogin: Boolean): LoginFragment {
             val args = Bundle()
             val fragment = LoginFragment()
+            args.putBoolean("isToLogin", isToLogin)
             fragment.arguments = args
             return fragment
         }
@@ -47,6 +51,10 @@ class LoginFragment : BaseMvpFragment<LoginFragmentPresenter>(), LoginFragmentCo
     }
 
     override fun initData() {
+        isToLogin = arguments!!.getBoolean("isToLogin")
+        if (isToLogin) {
+            showLoginView()
+        }
     }
 
     override fun getLayoutRes(): Int {
@@ -68,12 +76,12 @@ class LoginFragment : BaseMvpFragment<LoginFragmentPresenter>(), LoginFragmentCo
     }
 
     override fun onBackPressedSupport(): Boolean {
-        mPresenter.appExit(activity!!)
+        mPresenter.commonUtils.appExit(activity!!)
         return true
     }
 
     fun initSubView() {
-        mLoginFragmentEtPhone.addTextChangedListener(FromatPhoneTextWatcher(mLoginFragmentEtPhone) {checkLoginEnable()})
+        mLoginFragmentEtPhone.addTextChangedListener(FromatPhoneTextWatcher(mLoginFragmentEtPhone) { checkLoginEnable() })
         mLoginFragmentEtPhone.requestFocus()
         mLoginFragmentRoundTvLogin.editEnable(mLoginFragmentEtVerificationCode) { checkLoginEnable() }
 
@@ -88,7 +96,7 @@ class LoginFragment : BaseMvpFragment<LoginFragmentPresenter>(), LoginFragmentCo
         RxView.clicks(mLoginFragmentRoundTvLogin).shieldDoubleClick {
             //登录
             val phoneNumber = mLoginFragmentEtPhone.text.toString().replace(" ", "")
-            mPresenter.requestLogin(mSingleCode,phoneNumber,mLoginFragmentEtVerificationCode.text.toString())
+            mPresenter.requestLogin(mSingleCode, phoneNumber, mLoginFragmentEtVerificationCode.text.toString())
         }
     }
     /**公共实现部分 end*/
@@ -126,7 +134,7 @@ class LoginFragment : BaseMvpFragment<LoginFragmentPresenter>(), LoginFragmentCo
      * 显示登录页动画
      */
     fun startLoginContentAnimate() {
-        StatusBarUtil.setStatusBarVisibility(activity!!,true)
+        StatusBarUtil.setStatusBarVisibility(activity!!, true)
         StatusBarUtil.setStatusBarAlpha(activity!!)
         val phoneAlphaAn = ObjectAnimator.ofFloat(mLoginFragmentLlPhone, "alpha", 0f, 1f)
         val logoAlphaAn = ObjectAnimator.ofFloat(mLoginFragmentImgLogo, "alpha", 0f, 1f)
@@ -164,12 +172,12 @@ class LoginFragment : BaseMvpFragment<LoginFragmentPresenter>(), LoginFragmentCo
     }
 
     fun checkLoginEnable(): Boolean {
-        var phoneStatus = mLoginFragmentEtPhone.text.isNullOrEmpty().not() and mPresenter.isMobileNO(mLoginFragmentEtPhone.text.toString())
+        var phoneStatus = mLoginFragmentEtPhone.text.isNullOrEmpty().not() and mPresenter.commonUtils.isMobile(mLoginFragmentEtPhone.text.toString())
         var codeStatus = mLoginFragmentEtVerificationCode.text.isNullOrEmpty().not()
         var result = phoneStatus and codeStatus
 
         if (result) {
-            mLoginFragmentRoundTvLogin.delegate.backgroundColor = resources.getColor(R.color.common_red)
+            mLoginFragmentRoundTvLogin.delegate.backgroundColor = ContextCompat.getColor(activity!!,R.color.common_red)
         } else {
             mLoginFragmentRoundTvLogin.delegate.backgroundColor = Color.parseColor("#99dc2828")
         }
@@ -184,10 +192,8 @@ class LoginFragment : BaseMvpFragment<LoginFragmentPresenter>(), LoginFragmentCo
     }
 
     override fun loginSuccess() {
-        var userInfo = mPresenter.getUserInfo()
-        if (userInfo != null){
-            context!!.toast(userInfo.nickName)
-        }
+        var userInfo = mPresenter.commonUtils.getUserInfo()
+        context!!.toast(userInfo.nickName)
     }
 
     override fun timerFinish() {

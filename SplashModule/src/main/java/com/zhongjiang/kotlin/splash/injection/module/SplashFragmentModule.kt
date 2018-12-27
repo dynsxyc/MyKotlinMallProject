@@ -7,7 +7,7 @@ import com.zhongjiang.kotlin.splash.ui.fragment.SplashFragment
 import dagger.Module
 import dagger.Provides
 
-@Module()
+@Module
 class SplashFragmentModule {
     @Provides
     @ActivityScope

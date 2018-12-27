@@ -4,6 +4,7 @@ import android.content.Context
 import android.os.Handler
 import android.util.AttributeSet
 import android.widget.Button
+import androidx.core.content.ContextCompat
 
 /*
     获取验证码按钮
@@ -37,8 +38,8 @@ class VerifyButton(mContext: Context, attrs: AttributeSet) : Button(mContext, at
     private val countDown = object : Runnable {
         override fun run() {
             this@VerifyButton.text = mCount.toString() + "s "
-            this@VerifyButton.setBackgroundColor(resources.getColor(R.color.common_disable))
-            this@VerifyButton.setTextColor(resources.getColor(R.color.common_black))
+            this@VerifyButton.setBackgroundColor(ContextCompat.getColor(context,R.color.common_disable))
+            this@VerifyButton.setTextColor(ContextCompat.getColor(context,R.color.common_black))
             this@VerifyButton.isEnabled = false
 
             if (mCount > 0) {
@@ -64,8 +65,8 @@ class VerifyButton(mContext: Context, attrs: AttributeSet) : Button(mContext, at
         } else {
             this.text = "重获验证码"
         }
-        this.setBackgroundColor(resources.getColor(R.color.transparent))
-        this.setTextColor(resources.getColor(R.color.common_blue))
+        this.setBackgroundColor(ContextCompat.getColor(context,R.color.transparent))
+        this.setTextColor(ContextCompat.getColor(context,R.color.common_blue))
         mCount = 60
     }
 
