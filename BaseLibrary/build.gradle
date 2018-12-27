@@ -56,6 +56,7 @@ dependencies {
     //Rx-Kotlin and Rx-Android
     api rootProject.ext.dependencies["rxKotlin"]
     api rootProject.ext.dependencies["rxAndroid"]
+    api rootProject.ext.dependencies["rxRelay"]
     api rootProject.ext.dependencies["rxbinding"]
     api rootProject.ext.dependencies["rxPermissions"]
     api rootProject.ext.dependencies["ktx-autodispose-android-archcomponents"]
