@@ -5,8 +5,10 @@ import androidx.annotation.CallSuper
 import androidx.annotation.LayoutRes
 import androidx.annotation.MainThread
 import androidx.lifecycle.Lifecycle
+import com.uber.autodispose.ScopeProvider
 import com.zhongjiang.kotlin.base.presenter.IPresenter
 import com.zhongjiang.kotlin.base.presenter.IView
+import com.zhongjiang.kotlin.base.utils.RxLifecycleUtils
 import com.zhongjiang.kotlin.base.widgets.ProgressLoading
 import org.jetbrains.anko.toast
 import javax.inject.Inject
@@ -53,6 +55,10 @@ abstract class BaseMvpActivity<P : IPresenter> : BaseInjectActivity(), IView {
     protected fun initLifecycleObserver(lifecycle: Lifecycle) {
         mPresenter.setLifecycleOwner(this)
         lifecycle.addObserver(mPresenter)
+    }
+
+    fun  bindLifecycle(): ScopeProvider {
+        return RxLifecycleUtils.bindLifecycle(this)
     }
 
     /**获取当前页  layoutId资源Id*/

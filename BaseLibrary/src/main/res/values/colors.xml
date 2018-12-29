@@ -22,4 +22,5 @@
     <color name="text_color_33">#333333</color>
     <color name="text_color_66">#666666</color>
     <color name="transparent">#00000000</color>
+    <color name="transparent_10">#1A000000</color>
 </resources>

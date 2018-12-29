@@ -52,6 +52,7 @@ dependencies {
     // Anko
     api rootProject.ext.dependencies["ankoCommons"]
     api rootProject.ext.dependencies["RoundView"]
+    api rootProject.ext.dependencies["googleMaterial"]
 
     //Rx-Kotlin and Rx-Android
     api rootProject.ext.dependencies["rxKotlin"]

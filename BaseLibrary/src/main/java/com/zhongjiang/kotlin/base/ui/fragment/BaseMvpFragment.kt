@@ -16,9 +16,9 @@ import javax.inject.Inject
 /**
  * Created by dyn on 2018/7/13.
  */
-abstract class BaseMvpFragment<P: IPresenter> : BaseInjectFragment() , IFragment {
+abstract class BaseMvpFragment<P : IPresenter> : BaseInjectFragment(), IFragment {
     @Inject
-    protected lateinit var mPresenter : P
+    protected lateinit var mPresenter: P
 
     protected lateinit var rootView: View
 
@@ -27,17 +27,21 @@ abstract class BaseMvpFragment<P: IPresenter> : BaseInjectFragment() , IFragment
         setSwipeBackEnable(true)
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        rootView = LayoutInflater.from(context).inflate(getLayoutRes(), container, false)
-        initLifecycleObserver(lifecycle)
-        return if (getSwipeBackEnable()) rootView else attachToSwipeBack(rootView)
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
         initView()
         initData()
     }
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        rootView = inflater.inflate(getLayoutRes(), container, false)
+        initLifecycleObserver(lifecycle)
+        return if (getSwipeBackEnable()) rootView else {
+            rootView = attachToSwipeBack(rootView)
+            rootView
+        }
+    }
+
 
     protected abstract fun initView()
 
@@ -55,14 +59,17 @@ abstract class BaseMvpFragment<P: IPresenter> : BaseInjectFragment() , IFragment
     val progressLoading by lazy {
         ProgressLoading.create(activity!!)
     }
+
     @MainThread
     override fun showLoading() {
         progressLoading.showLoading()
     }
+
     @MainThread
     override fun onError(text: String) {
         activity!!.toast(text)
     }
+
     @MainThread
     override fun hideLoading() {
         progressLoading.hideLoading()

@@ -22,7 +22,7 @@ class RxBus @Inject constructor() {
         rxBus.accept(event)
     }
 
-    fun <T> register(eventType: Class<T>): Observable<T> {
+    private fun <T> register(eventType: Class<T>): Observable<T> {
         return rxBus.ofType(eventType)
     }
 

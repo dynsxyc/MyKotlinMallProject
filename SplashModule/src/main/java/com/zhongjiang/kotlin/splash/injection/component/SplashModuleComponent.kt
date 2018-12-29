@@ -8,12 +8,11 @@ import dagger.Component
 import dagger.android.AndroidInjectionModule
 import dagger.android.support.AndroidSupportInjectionModule
 import okhttp3.OkHttpClient
-import javax.inject.Singleton
 
 /**
  * Created by dyn on 2018/7/16.
  */
-@Singleton
+@javax.inject.Singleton
 @Component(modules = arrayOf(AndroidInjectionModule ::class,
         AndroidSupportInjectionModule::class,
         GlobalConfigModule::class,

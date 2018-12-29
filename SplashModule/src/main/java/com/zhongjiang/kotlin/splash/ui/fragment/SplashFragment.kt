@@ -3,7 +3,8 @@ package com.zhongjiang.kotlin.splash.ui.fragment
 import android.annotation.SuppressLint
 import android.graphics.drawable.Drawable
 import android.os.Bundle
-import android.view.View
+import android.util.Log
+import android.view.View.VISIBLE
 import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
@@ -27,6 +28,7 @@ import javax.inject.Inject
 class SplashFragment : BaseMvpFragment<SplashFragmentPresenter>(), SplashFragmentContract.View {
     @Inject
     lateinit var screenWidth: WindowScreenInfo
+
     /**公共实现部分 start*/
     override fun initData() {
         mPresenter.requestAdInfo("")
@@ -35,10 +37,12 @@ class SplashFragment : BaseMvpFragment<SplashFragmentPresenter>(), SplashFragmen
     override fun getLayoutRes(): Int {
         return R.layout.fragment_splash
     }
+
     override fun initView() {
         mSplashFragmentImgAd.layoutParams.width = screenWidth.width
         mSplashFragmentImgAd.layoutParams.height = screenWidth.height * 1080 / 1334
     }
+
     companion object {
         fun newInstance(): SplashFragment {
             val args = Bundle()
@@ -52,8 +56,8 @@ class SplashFragment : BaseMvpFragment<SplashFragmentPresenter>(), SplashFragmen
         return false
     }
 
-    override fun onResume() {
-        super.onResume()
+    override fun onSupportVisible() {
+        super.onSupportVisible()
         mPresenter.checkTimerDisposable()
     }
     /**公共实现部分 end*/
@@ -68,13 +72,12 @@ class SplashFragment : BaseMvpFragment<SplashFragmentPresenter>(), SplashFragmen
             }
 
             override fun onResourceReady(resource: Drawable?, model: Any?, target: Target<Drawable>?, dataSource: DataSource?, isFirstResource: Boolean): Boolean {
-                mSplashFragmentLlTimeer.visibility = View.VISIBLE
                 mPresenter.startTime(adBean.showTime.toLong())
-                return false;
+                return false
             }
 
         }, screenWidth.width, screenWidth.height * 1080 / 1334)
-        RxView.clicks(mSplashFragmentImgAd).shieldDoubleClick{
+        RxView.clicks(mSplashFragmentImgAd).shieldDoubleClick {
             //点击广告
             skipWeb(adBean.imgPageUrl)
         }
@@ -84,17 +87,22 @@ class SplashFragment : BaseMvpFragment<SplashFragmentPresenter>(), SplashFragmen
     }
 
     override fun onRefreshTimer(userInfo: String) {
+        Log.i("test1", " onRefreshTimer = ${view == null}")
+        if (mSplashFragmentLlTimeer != null) {
+            mSplashFragmentLlTimeer.visibility = VISIBLE
+        }
         mSplashFragmentTvTime.text = userInfo
     }
+
     override fun skipMain() {
-        start(LoginFragment.newInstance(false),ISupportFragment.SINGLETASK)
+        start(LoginFragment.newInstance(false), ISupportFragment.SINGLETASK)
     }
 
     override fun skipLogin() {
-        start(LoginFragment.newInstance(false),ISupportFragment.SINGLETASK)
+        start(LoginFragment.newInstance(false), ISupportFragment.SINGLETASK)
     }
 
-    override fun skipWeb(webUrl:String) {
+    override fun skipWeb(webUrl: String) {
 
     }
     /**当前业务部分 end*/

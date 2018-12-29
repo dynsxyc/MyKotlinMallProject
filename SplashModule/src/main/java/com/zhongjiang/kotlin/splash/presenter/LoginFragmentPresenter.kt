@@ -5,7 +5,9 @@ import com.zhongjiang.kotlin.base.data.db.UserInfoEntity
 import com.zhongjiang.kotlin.base.ext.excute
 import com.zhongjiang.kotlin.base.presenter.BasePresenter
 import com.zhongjiang.kotlin.base.rx.BaseMaybeObserver
+import com.zhongjiang.kotlin.base.utils.RxBus
 import com.zhongjiang.kotlin.provider.common.CommonUtils
+import com.zhongjiang.kotlin.provider.event.LoginSuccessEvent
 import com.zhongjiang.kotlin.provider.router.NavigationUtil
 import com.zhongjiang.kotlin.splash.data.VerificationCodeResuleInfo
 import com.zhongjiang.kotlin.splash.presenter.contract.LoginFragmentContract
@@ -21,6 +23,9 @@ class LoginFragmentPresenter @Inject constructor(view: LoginFragmentContract.Vie
     @Singleton
     lateinit var commonUtils: CommonUtils
 
+    @Inject
+    @Singleton
+    lateinit var mRxBus: RxBus
 
     @Inject
     @Singleton
@@ -32,6 +37,7 @@ class LoginFragmentPresenter @Inject constructor(view: LoginFragmentContract.Vie
             override fun onSuccess(t: UserInfoEntity) {
                 super.onSuccess(t)
                 commonUtils.setUserInfo(t)
+                mRxBus.post(LoginSuccessEvent())
                 mView.loginSuccess()
             }
         })
