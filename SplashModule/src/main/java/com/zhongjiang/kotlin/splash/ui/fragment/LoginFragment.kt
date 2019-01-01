@@ -15,10 +15,11 @@ import com.zhongjiang.kotlin.base.ext.shieldDoubleClick
 import com.zhongjiang.kotlin.base.ui.fragment.BaseMvpFragment
 import com.zhongjiang.kotlin.base.utils.FromatPhoneTextWatcher
 import com.zhongjiang.kotlin.base.utils.StatusBarUtil
+import com.zhongjiang.kotlin.base.ui.fragment.YXWebShowFragment
 import com.zhongjiang.kotlin.splash.R
 import com.zhongjiang.kotlin.splash.data.VerificationCodeResuleInfo
-import com.zhongjiang.kotlin.splash.presenter.LoginFragmentPresenter
-import com.zhongjiang.kotlin.splash.presenter.contract.LoginFragmentContract
+import com.zhongjiang.kotlin.splash.presenter.loginfragment.LoginFragmentPresenter
+import com.zhongjiang.kotlin.splash.presenter.loginfragment.LoginFragmentContract
 import kotlinx.android.synthetic.main.fragment_login.*
 import kotlinx.android.synthetic.main.viewsub_login_video.*
 import org.jetbrains.anko.toast
@@ -92,6 +93,7 @@ class LoginFragment : BaseMvpFragment<LoginFragmentPresenter>(), LoginFragmentCo
         }
         RxView.clicks(mLoginFragmentTvServerAgreement).shieldDoubleClick {
             //服务协议
+            start(YXWebShowFragment.newInstance("https://www.jd.com"))
         }
         RxView.clicks(mLoginFragmentRoundTvLogin).shieldDoubleClick {
             //登录

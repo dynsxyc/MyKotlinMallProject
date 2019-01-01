@@ -1,13 +1,13 @@
 package com.zhongjiang.kotlin.splash.injection.module
 
 import com.zhongjiang.kotlin.base.injection.scope.ActivityScope
-import com.zhongjiang.kotlin.splash.presenter.contract.LoginFragmentContract
-import com.zhongjiang.kotlin.splash.presenter.model.LoginFragmentModel
+import com.zhongjiang.kotlin.splash.presenter.loginfragment.LoginFragmentContract
+import com.zhongjiang.kotlin.splash.presenter.loginfragment.LoginFragmentModel
 import com.zhongjiang.kotlin.splash.ui.fragment.LoginFragment
 import dagger.Module
 import dagger.Provides
 
-@Module()
+@Module
 class LoginFragmentModule {
     @Provides
     @ActivityScope

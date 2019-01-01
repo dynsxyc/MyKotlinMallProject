@@ -18,7 +18,9 @@
         android:layout_alignParentRight="true"
         android:layout_marginTop="30dp"
         android:layout_marginRight="40dp"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:visibility="gone"
+        >
 
         <com.flyco.roundview.RoundTextView
             android:id="@+id/mSplashFragmentTvTime"

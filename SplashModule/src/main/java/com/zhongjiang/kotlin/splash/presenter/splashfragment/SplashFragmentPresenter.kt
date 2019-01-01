@@ -1,4 +1,4 @@
-package com.zhongjiang.kotlin.splash.presenter
+package com.zhongjiang.kotlin.splash.presenter.splashfragment
 
 import android.Manifest
 import android.util.Log
@@ -9,7 +9,6 @@ import com.zhongjiang.kotlin.base.data.db.SplashAdEntity
 import com.zhongjiang.kotlin.base.presenter.BasePresenter
 import com.zhongjiang.kotlin.base.rx.BaseMaybeObserver
 import com.zhongjiang.kotlin.provider.common.CommonUtils
-import com.zhongjiang.kotlin.splash.presenter.contract.SplashFragmentContract
 import com.zhongjiang.kotlin.splash.ui.fragment.SplashFragment
 import io.objectbox.Box
 import io.reactivex.disposables.Disposable
@@ -60,6 +59,8 @@ class SplashFragmentPresenter @Inject constructor(view: SplashFragmentContract.V
             if (adBean.imgPathUrl.isNotEmpty()) {
                 mView.onShowAd(adBean)
             }
+        }else{
+            checkSkip()
         }
         checkPermissions()
 

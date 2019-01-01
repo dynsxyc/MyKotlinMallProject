@@ -1,4 +1,4 @@
-package com.zhongjiang.kotlin.splash.presenter.contract
+package com.zhongjiang.kotlin.splash.presenter.loginfragment
 
 import com.zhongjiang.kotlin.base.data.db.UserInfoEntity
 import com.zhongjiang.kotlin.base.presenter.IModel

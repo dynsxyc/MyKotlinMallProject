@@ -25,6 +25,7 @@ ext {
             fragmentationVersion   : '1.3.6',
             rx_lifecycle_version   : '1.0',
             ktx_autodispose_version: '1.1.0',
+            agentweb_version: '4.0.2',
             room_version           : "2.1.0-alpha03"
     ]
     dependencies = [
@@ -49,6 +50,9 @@ ext {
 
             //java8-support
             "stream"                                : "com.annimon:stream:1.1.8",
+            "agentWeb"                                : "com.just.agentweb:agentweb:${dependVersion.agentweb_version}",
+            "agentWebDownload"                                : "com.just.agentweb:download:${dependVersion.agentweb_version}",
+            "agentWebFilechooser"                                : "com.just.agentweb:filechooser:${dependVersion.agentweb_version}",
 
             //rx
             "rxJava2"                               : "io.reactivex.rxjava2:rxjava:2.1.3",

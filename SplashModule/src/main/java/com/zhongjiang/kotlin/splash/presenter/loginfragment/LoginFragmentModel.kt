@@ -1,11 +1,10 @@
-package com.zhongjiang.kotlin.splash.presenter.model
+package com.zhongjiang.kotlin.splash.presenter.loginfragment
 
 import com.zhongjiang.kotlin.base.data.db.UserInfoEntity
 import com.zhongjiang.kotlin.base.ext.convert
 import com.zhongjiang.kotlin.base.ext.handlerThread
 import com.zhongjiang.kotlin.base.presenter.BaseModel
 import com.zhongjiang.kotlin.splash.data.VerificationCodeResuleInfo
-import com.zhongjiang.kotlin.splash.presenter.contract.LoginFragmentContract
 import com.zhongjiang.kotlin.splash.service.SplashServiceManager
 import io.reactivex.Maybe
 import javax.inject.Inject

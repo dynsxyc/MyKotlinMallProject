@@ -16,8 +16,8 @@ import com.zhongjiang.kotlin.base.imageloader.ImageLoaderUtil
 import com.zhongjiang.kotlin.base.injection.WindowScreenInfo
 import com.zhongjiang.kotlin.base.ui.fragment.BaseMvpFragment
 import com.zhongjiang.kotlin.splash.R
-import com.zhongjiang.kotlin.splash.presenter.SplashFragmentPresenter
-import com.zhongjiang.kotlin.splash.presenter.contract.SplashFragmentContract
+import com.zhongjiang.kotlin.splash.presenter.splashfragment.SplashFragmentPresenter
+import com.zhongjiang.kotlin.splash.presenter.splashfragment.SplashFragmentContract
 import kotlinx.android.synthetic.main.fragment_splash.*
 import me.yokeyword.fragmentation.ISupportFragment
 import javax.inject.Inject

@@ -16,18 +16,18 @@ import dagger.android.ContributesAndroidInjector
 /**
  * Created by dyn on 2018/7/16.
  */
-@Module(subcomponents = arrayOf(BaseFragmentComponent::class,BaseActivityComponent::class),includes = arrayOf(SplashServiceModule::class))
+@Module(subcomponents = [BaseFragmentComponent::class, BaseActivityComponent::class],includes = [SplashServiceModule::class])
 abstract class SplashModule {
     @ActivityScope
-    @ContributesAndroidInjector(modules = arrayOf(SplashFragmentModule::class))
+    @ContributesAndroidInjector(modules = [SplashFragmentModule::class])
     abstract fun contributeSplashFragmentInjector():SplashFragment
 
     @ActivityScope
-    @ContributesAndroidInjector(modules = arrayOf(LoginFragmentModule::class))
+    @ContributesAndroidInjector(modules = [LoginFragmentModule::class])
     abstract fun contributeLoginFragmentInjector():LoginFragment
 
     @ActivityScope
-    @ContributesAndroidInjector(modules = arrayOf(SplashActivityModule::class))
+    @ContributesAndroidInjector(modules = [SplashActivityModule::class])
     abstract fun contributeSplashActivityInjector():SplashActivity
 
 }

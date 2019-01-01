@@ -1,4 +1,4 @@
-package com.zhongjiang.kotlin.splash.presenter
+package com.zhongjiang.kotlin.splash.presenter.loginfragment
 
 import com.uber.autodispose.autoDisposable
 import com.zhongjiang.kotlin.base.data.db.UserInfoEntity
@@ -10,7 +10,6 @@ import com.zhongjiang.kotlin.provider.common.CommonUtils
 import com.zhongjiang.kotlin.provider.event.LoginSuccessEvent
 import com.zhongjiang.kotlin.provider.router.NavigationUtil
 import com.zhongjiang.kotlin.splash.data.VerificationCodeResuleInfo
-import com.zhongjiang.kotlin.splash.presenter.contract.LoginFragmentContract
 import io.reactivex.functions.Action
 import io.reactivex.functions.Consumer
 import javax.inject.Inject

@@ -1,6 +1,7 @@
 package com.zhongjiang.kotlin.base.ui.fragment
 
 import android.app.Activity
+import android.content.Context
 import com.alibaba.android.arouter.launcher.ARouter
 import com.zhongjiang.kotlin.base.ui.activity.BaseSupperFragment
 import dagger.android.support.AndroidSupportInjection
@@ -16,7 +17,7 @@ abstract class BaseInjectFragment : BaseSupperFragment(){
         return false
     }
 
-    override fun onAttach(activity: Activity) {
+    override fun onAttach(activity: Context) {
         inject()
         super.onAttach(activity)
     }

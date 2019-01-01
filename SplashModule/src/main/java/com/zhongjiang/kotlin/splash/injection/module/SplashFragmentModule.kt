@@ -1,8 +1,8 @@
 package com.zhongjiang.kotlin.splash.injection.module
 
 import com.zhongjiang.kotlin.base.injection.scope.ActivityScope
-import com.zhongjiang.kotlin.splash.presenter.contract.SplashFragmentContract
-import com.zhongjiang.kotlin.splash.presenter.model.SplashFragmentModel
+import com.zhongjiang.kotlin.splash.presenter.splashfragment.SplashFragmentContract
+import com.zhongjiang.kotlin.splash.presenter.splashfragment.SplashFragmentModel
 import com.zhongjiang.kotlin.splash.ui.fragment.SplashFragment
 import dagger.Module
 import dagger.Provides

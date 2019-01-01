@@ -1,6 +1,7 @@
 package com.zhongjiang.kotlin.base.ui.activity
 
 import android.app.Activity
+import android.content.Context
 import android.os.Bundle
 import android.view.View
 import android.view.animation.Animation
@@ -32,9 +33,11 @@ abstract class BaseSupperFragment : Fragment(), ISupportFragment, ISwipeBackFrag
         return mDelegate.extraTransaction();
     }
 
-    override fun onAttach(activity: Activity) {
+    override fun onAttach(activity: Context) {
         super.onAttach(activity);
-        mDelegate.onAttach(activity);
+        if (activity is Activity) {
+            mDelegate.onAttach(activity)
+        }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

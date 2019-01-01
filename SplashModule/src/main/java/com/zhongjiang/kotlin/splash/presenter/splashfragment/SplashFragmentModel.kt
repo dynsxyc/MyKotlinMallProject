@@ -1,10 +1,9 @@
-package com.zhongjiang.kotlin.splash.presenter.model
+package com.zhongjiang.kotlin.splash.presenter.splashfragment
 
 import com.zhongjiang.kotlin.base.data.db.SplashAdEntity
 import com.zhongjiang.kotlin.base.ext.convertList
 import com.zhongjiang.kotlin.base.ext.handlerThread
 import com.zhongjiang.kotlin.base.presenter.BaseModel
-import com.zhongjiang.kotlin.splash.presenter.contract.SplashFragmentContract
 import com.zhongjiang.kotlin.splash.service.SplashServiceManager
 import com.zhongjiang.kotlin.user.data.protocol.SplashAdReq
 import io.reactivex.Maybe
