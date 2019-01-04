@@ -1,10 +1,9 @@
 package com.zhongjiang.kotlin.base.common.webclient
 
-import android.util.Log
 import android.webkit.WebResourceRequest
 import android.webkit.WebView
-
 import com.just.agentweb.MiddlewareWebClientBase
+import javax.inject.Inject
 
 /**
  * Created by cenxiaozhong on 2017/12/16.
@@ -31,7 +30,7 @@ import com.just.agentweb.MiddlewareWebClientBase
  *
  */
 
-open class MiddlewareWebViewClient : MiddlewareWebClientBase() {
+open class MiddlewareWebViewClient @Inject constructor(): MiddlewareWebClientBase() {
 
     override fun shouldOverrideUrlLoading(view: WebView, request: WebResourceRequest): Boolean {
         return super.shouldOverrideUrlLoading(view, request)

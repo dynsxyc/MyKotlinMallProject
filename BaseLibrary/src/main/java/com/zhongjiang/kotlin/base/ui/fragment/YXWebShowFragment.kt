@@ -1,6 +1,5 @@
 package com.zhongjiang.kotlin.base.ui.fragment
 
-import android.app.Activity
 import android.graphics.Bitmap
 import android.os.Bundle
 import android.text.TextUtils
@@ -13,20 +12,19 @@ import android.webkit.*
 import com.google.gson.Gson
 import com.jakewharton.rxbinding2.view.RxView
 import com.just.agentweb.*
-import com.just.agentweb.download.AgentWebDownloader
-import com.just.agentweb.download.DefaultDownloadImpl
-import com.just.agentweb.download.DownloadListenerAdapter
-import com.just.agentweb.download.DownloadingService
 import com.zhongjiang.kotlin.base.BuildConfig
+import com.zhongjiang.kotlin.base.R
+import com.zhongjiang.kotlin.base.common.UIController
+import com.zhongjiang.kotlin.base.common.webclient.AgentWebSettings
 import com.zhongjiang.kotlin.base.common.webclient.MiddlewareChromeClient
 import com.zhongjiang.kotlin.base.common.webclient.MiddlewareWebViewClient
 import com.zhongjiang.kotlin.base.ext.shieldDoubleClick
-import com.zhongjiang.kotlin.base.common.UIController
-import kotlinx.android.synthetic.main.fragment_webshow.*
+import com.zhongjiang.kotlin.base.utils.StatusBarUtil
+import kotlinx.android.synthetic.main.activity_webshow.*
 import kotlinx.android.synthetic.main.toolbar_main.*
-import com.zhongjiang.kotlin.base.R
-import com.zhongjiang.kotlin.base.common.YXAgentWebSettings
-import java.util.HashMap
+import me.yokeyword.fragmentation.SwipeBackLayout
+import me.yokeyword.fragmentation.SwipeBackLayout.*
+import java.util.*
 
 class YXWebShowFragment : BaseInjectFragment() {
     companion object {
@@ -57,24 +55,10 @@ class YXWebShowFragment : BaseInjectFragment() {
 
     }
 
-    var mWebViewClient = object :
-
-            WebViewClient() {
+    private var mWebViewClient = object : WebViewClient() {
 
         private val timer = HashMap<String, Long>()
-
-        override fun onReceivedError(view: WebView, request: WebResourceRequest, error: WebResourceError) {
-            super.onReceivedError(view, request, error)
-        }
-
-        override fun shouldOverrideUrlLoading(view: WebView, request: WebResourceRequest): Boolean {
-                return super.shouldOverrideUrlLoading(view, request)
-        }
-
-
-        //
-
-        override fun onPageStarted(view: WebView, url: String, favicon: Bitmap) {
+        override fun onPageStarted(view: WebView, url: String, favicon: Bitmap?) {
             super.onPageStarted(view, url, favicon)
             Log.i(TAG, "mUrl:" + url + " onPageStarted  target:" + getUrl())
             timer[url] = System.currentTimeMillis()
@@ -131,23 +115,23 @@ class YXWebShowFragment : BaseInjectFragment() {
             }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return attachToSwipeBack(inflater.inflate(R.layout.fragment_webshow, container, false))
+        return attachToSwipeBack(inflater.inflate(R.layout.activity_webshow, container, false))
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         mAgentWeb = AgentWeb.with(this)
-                .setAgentWebParent(mFragmentWebShow, -1, ViewGroup.LayoutParams(MATCH_PARENT, MATCH_PARENT))
+                .setAgentWebParent(mWebShowActivityContent, -1, ViewGroup.LayoutParams(MATCH_PARENT, MATCH_PARENT))
                 .useDefaultIndicator()//设置进度条颜色与高度，-1为默认值，高度为2，单位为dp。
                 .setAgentWebWebSettings(getSettings())//设置 IAgentWebSettings。
-//                .setWebViewClient(mWebViewClient)//WebViewClient ， 与 WebView 使用一致 ，但是请勿获取WebView调用setWebViewClient(xx)方法了,会覆盖AgentWeb DefaultWebClient,同时相应的中间件也会失效。
+                .setWebViewClient(mWebViewClient)//WebViewClient ， 与 WebView 使用一致 ，但是请勿获取WebView调用setWebViewClient(xx)方法了,会覆盖AgentWeb DefaultWebClient,同时相应的中间件也会失效。
                 .setWebChromeClient(mWebChromeClient) //WebChromeClient
                 .setPermissionInterceptor(mPermissionInterceptor) //权限拦截 2.0.0 加入。
                 .setSecurityType(AgentWeb.SecurityType.STRICT_CHECK) //严格模式 Android 4.2.2 以下会放弃注入对象 ，使用AgentWebView没影响。
                 .setAgentWebUIController(UIController(_mActivity)) //自定义UI  AgentWeb3.0.0 加入。
                 .setMainFrameErrorView(R.layout.agentweb_error_page, -1) //参数1是错误显示的布局，参数2点击刷新控件ID -1表示点击整个布局都刷新， AgentWeb 3.0.0 加入。
                 .useMiddlewareWebChrome(getMiddlewareWebChrome()) //设置WebChromeClient中间件，支持多个WebChromeClient，AgentWeb 3.0.0 加入。
-//                .useMiddlewareWebClient(getMiddlewareWebClient()) //设置WebViewClient中间件，支持多个WebViewClient， AgentWeb 3.0.0 加入。
+                .useMiddlewareWebClient(getMiddlewareWebClient()) //设置WebViewClient中间件，支持多个WebViewClient， AgentWeb 3.0.0 加入。
 //                .setDownloadListener(mDownloadListener) 4.0.0 删除该API//下载回调
 //                .openParallelDownload()// 4.0.0删除该API 打开并行下载 , 默认串行下载。 请通过AgentWebDownloader#Extra实现并行下载
 //                .setNotifyIcon(R.drawable.ic_file_download_black_24dp) 4.0.0删除该api //下载通知图标。4.0.0后的版本请通过AgentWebDownloader#Extra修改icon
@@ -168,30 +152,58 @@ class YXWebShowFragment : BaseInjectFragment() {
         //mAgentWeb.getWebCreator().getWebView()  获取WebView .
 
 
-//		mAgentWeb.getWebCreator().getWebView().setOnLongClickListener();
-
     }
 
     protected fun initView() {
+        StatusBarUtil.setMargin(mMainToolbarRl.context, mMainToolbarRl)
         RxView.clicks(mMainToolbarImgBack).shieldDoubleClick {
-        onBackPressedSupport()
+            onBackPressedSupport()
         }
-        RxView . clicks (mMainToolbarImgFinish).shieldDoubleClick {
-            _mActivity.finish()
+        RxView.clicks(mMainToolbarImgFinish).shieldDoubleClick {
+            pop()
         }
-        RxView . clicks (mMainToolbarImgMore).shieldDoubleClick {
+        RxView.clicks(mMainToolbarImgMore).shieldDoubleClick {
 
         }
         pageNavigator(View.GONE)
+
+        swipeBackLayout.addSwipeListener(object : SwipeBackLayout.OnSwipeListener{
+            override fun onEdgeTouch(oritentationEdgeFlag: Int) {
+
+            }
+
+            override fun onDragScrolled(scrollPercent: Float) {
+                Log.i("test1","百分比 $scrollPercent")
+            }
+
+            override fun onDragStateChange(state: Int) {
+                /** @see #STATE_IDLE
+                * @see #STATE_DRAGGING
+                * @see #STATE_SETTLING
+                * @see #STATE_FINISHED*/
+                when(state){
+                    STATE_IDLE -> Log.i("test1","STATE_IDLE")
+                    STATE_DRAGGING -> Log.i("test1","STATE_DRAGGING")
+                    STATE_SETTLING -> Log.i("test1","STATE_SETTLING")
+                    STATE_FINISHED -> Log.i("test1","STATE_FINISHED")
+                }
+            }
+
+        })
     }
 
     override fun onBackPressedSupport(): Boolean {
-        return mAgentWeb.back()
+        // true表示AgentWeb处理了该事件
+        if (!mAgentWeb.back()) {
+            pop()
+        }
+        return true
     }
 
     fun pageNavigator(tag: Int) {
-        mMainToolbarImgBack.setVisibility(tag)
-        mMainToolbarViewLine.setVisibility(tag)
+        mMainToolbarImgBack.visibility = tag
+        mMainToolbarViewLine.visibility = tag
+        mMainToolbarImgFinish.visibility = View.VISIBLE
     }
 
     override fun onResume() {
@@ -248,8 +260,12 @@ class YXWebShowFragment : BaseInjectFragment() {
     /**
      * @return IAgentWebSettings
      */
-    fun  getSettings(): IAgentWebSettings<WebSettings> {
-        return YXAgentWebSettings()
+    fun getSettings(): IAgentWebSettings<WebSettings> {
+        return AgentWebSettings()
+    }
+
+    override fun getSwipeBackEnable(): Boolean {
+        return false
     }
 
 }

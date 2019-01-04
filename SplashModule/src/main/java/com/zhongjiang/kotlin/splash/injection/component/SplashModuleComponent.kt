@@ -20,7 +20,7 @@ import okhttp3.OkHttpClient
         HttpClientModule::class,
         BaseBoxStoreModule::class,
         GlobalServiceModule::class,
-        ProviderModule::class,
+        BaseModule::class,
         CacheModule::class,
         SplashModule::class
         ))

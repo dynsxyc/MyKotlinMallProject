@@ -182,7 +182,7 @@ class StatusBarUtil {
         fun darkModeForMIUI6(window: Window, darkmode: Boolean): Boolean {
             val clazz = window.javaClass
             try {
-                var darkModeFlag = 0
+                var darkModeFlag: Int
                 val layoutParams = Class.forName("android.view.MiuiWindowManager\$LayoutParams")
                 val field = layoutParams.getField("EXTRA_FLAG_STATUS_BAR_DARK_MODE")
                 darkModeFlag = field.getInt(layoutParams)
@@ -200,50 +200,40 @@ class StatusBarUtil {
 
         /** 增加View的paddingTop,增加的值为状态栏高度  */
         fun setPadding(context: Context, view: View) {
-            if (Build.VERSION.SDK_INT >= MIN_API) {
                 view.setPadding(view.paddingLeft, view.paddingTop + getStatusBarHeight(context),
                         view.paddingRight, view.paddingBottom)
-            }
         }
 
         /** 增加View的paddingTop,增加的值为状态栏高度  */
         fun setMarginTop(context: Context, view: View) {
-            if (Build.VERSION.SDK_INT >= MIN_API) {
                 (view.layoutParams as ViewGroup.MarginLayoutParams).topMargin = getStatusBarHeight(context)
-            }
         }
 
         /** 增加View的paddingTop,增加的值为状态栏高度 (智能判断，并设置高度) */
         fun setPaddingSmart(context: Context, view: View) {
-            if (Build.VERSION.SDK_INT >= MIN_API) {
                 val lp = view.layoutParams
                 if (lp != null && lp.height > 0) {
                     lp.height += getStatusBarHeight(context)//增高
                 }
                 view.setPadding(view.paddingLeft, view.paddingTop + getStatusBarHeight(context),
                         view.paddingRight, view.paddingBottom)
-            }
         }
 
         /** 增加View的高度以及paddingTop,增加的值为状态栏高度.一般是在沉浸式全屏给ToolBar用的  */
         fun setHeightAndPadding(context: Context, view: View) {
-            if (Build.VERSION.SDK_INT >= MIN_API) {
                 val lp = view.layoutParams
                 lp.height += getStatusBarHeight(context)//增高
                 view.setPadding(view.paddingLeft, view.paddingTop + getStatusBarHeight(context),
                         view.paddingRight, view.paddingBottom)
-            }
         }
 
         /** 增加View上边距（MarginTop）一般是给高度为 WARP_CONTENT 的小控件用的 */
         fun setMargin(context: Context, view: View) {
-            if (Build.VERSION.SDK_INT >= MIN_API) {
                 val lp = view.layoutParams
                 if (lp is ViewGroup.MarginLayoutParams) {
                     lp.topMargin += getStatusBarHeight(context)//增高
                 }
                 view.layoutParams = lp
-            }
         }
 
         /**
@@ -363,7 +353,6 @@ class StatusBarUtil {
          */
         fun setStatusBarLightMode(@NonNull window: Window,
                                   isLightMode: Boolean) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 val decorView = window.decorView
                 if (decorView != null) {
                     var vis = decorView.systemUiVisibility
@@ -375,7 +364,6 @@ class StatusBarUtil {
                     }
                     decorView.systemUiVisibility = vis
                 }
-            }
         }
 
         /**

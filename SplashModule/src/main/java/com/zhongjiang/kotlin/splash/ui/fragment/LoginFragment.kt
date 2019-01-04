@@ -13,15 +13,16 @@ import com.zhongjiang.kotlin.base.ext.editEnable
 import com.zhongjiang.kotlin.base.ext.setVisible
 import com.zhongjiang.kotlin.base.ext.shieldDoubleClick
 import com.zhongjiang.kotlin.base.ui.fragment.BaseMvpFragment
+import com.zhongjiang.kotlin.base.ui.fragment.YXWebShowFragment
 import com.zhongjiang.kotlin.base.utils.FromatPhoneTextWatcher
 import com.zhongjiang.kotlin.base.utils.StatusBarUtil
-import com.zhongjiang.kotlin.base.ui.fragment.YXWebShowFragment
 import com.zhongjiang.kotlin.splash.R
 import com.zhongjiang.kotlin.splash.data.VerificationCodeResuleInfo
-import com.zhongjiang.kotlin.splash.presenter.loginfragment.LoginFragmentPresenter
 import com.zhongjiang.kotlin.splash.presenter.loginfragment.LoginFragmentContract
+import com.zhongjiang.kotlin.splash.presenter.loginfragment.LoginFragmentPresenter
 import kotlinx.android.synthetic.main.fragment_login.*
 import kotlinx.android.synthetic.main.viewsub_login_video.*
+import me.yokeyword.fragmentation.ISupportFragment
 import org.jetbrains.anko.toast
 
 class LoginFragment : BaseMvpFragment<LoginFragmentPresenter>(), LoginFragmentContract.View {
@@ -93,7 +94,8 @@ class LoginFragment : BaseMvpFragment<LoginFragmentPresenter>(), LoginFragmentCo
         }
         RxView.clicks(mLoginFragmentTvServerAgreement).shieldDoubleClick {
             //服务协议
-            start(YXWebShowFragment.newInstance("https://www.jd.com"))
+            start(YXWebShowFragment.newInstance("http://www.jd.com"),ISupportFragment.SINGLETASK)
+
         }
         RxView.clicks(mLoginFragmentRoundTvLogin).shieldDoubleClick {
             //登录

@@ -11,4 +11,9 @@ object RouterPath {
             const val PATH_MAIN = "/main/home"
         }
     }
+    class BaseUI{
+        companion object {
+            const val PATH_WEBSHOW = "/baseui/webshow"
+        }
+    }
 }

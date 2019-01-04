@@ -15,7 +15,7 @@ android {
 
         multiDexEnabled true
 
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
         release {
@@ -45,7 +45,9 @@ dependencies {
     androidTestImplementation rootProject.ext.dependencies["espresso-core"]
 
     //android-support
-    api rootProject.ext.dependencies["recyclerview-v7"]
+    api rootProject.ext.dependencies["recyclerview"]
+    api rootProject.ext.dependencies["androidx-v4"]
+    api rootProject.ext.dependencies["androidx-appcompat"]
 
     api rootProject.ext.dependencies["kotlin-android"]
 

@@ -1,10 +1,12 @@
 package com.zhongjiang.kotlin.splash.ui.fragment
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.util.Log
 import android.view.View.VISIBLE
+import android.widget.Toast
 import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
@@ -15,9 +17,10 @@ import com.zhongjiang.kotlin.base.ext.shieldDoubleClick
 import com.zhongjiang.kotlin.base.imageloader.ImageLoaderUtil
 import com.zhongjiang.kotlin.base.injection.WindowScreenInfo
 import com.zhongjiang.kotlin.base.ui.fragment.BaseMvpFragment
+import com.zhongjiang.kotlin.provider.router.NavigationUtil
 import com.zhongjiang.kotlin.splash.R
-import com.zhongjiang.kotlin.splash.presenter.splashfragment.SplashFragmentPresenter
 import com.zhongjiang.kotlin.splash.presenter.splashfragment.SplashFragmentContract
+import com.zhongjiang.kotlin.splash.presenter.splashfragment.SplashFragmentPresenter
 import kotlinx.android.synthetic.main.fragment_splash.*
 import me.yokeyword.fragmentation.ISupportFragment
 import javax.inject.Inject
@@ -103,7 +106,21 @@ class SplashFragment : BaseMvpFragment<SplashFragmentPresenter>(), SplashFragmen
     }
 
     override fun skipWeb(webUrl: String) {
+        mPresenter.stopTimer()
+        NavigationUtil.navigationToWebShow(_mActivity,11,true,"http://www.baidu.com")
+    }
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        when(requestCode){
+            11 -> {
+                Toast.makeText(context,"网页返回",Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
+    override fun injectRouter(): Boolean {
+        return true
     }
     /**当前业务部分 end*/
 

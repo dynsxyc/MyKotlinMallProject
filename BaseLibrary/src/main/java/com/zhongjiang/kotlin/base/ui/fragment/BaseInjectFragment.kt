@@ -1,9 +1,7 @@
 package com.zhongjiang.kotlin.base.ui.fragment
 
-import android.app.Activity
 import android.content.Context
 import com.alibaba.android.arouter.launcher.ARouter
-import com.zhongjiang.kotlin.base.ui.activity.BaseSupperFragment
 import dagger.android.support.AndroidSupportInjection
 /**注入类型*/
 abstract class BaseInjectFragment : BaseSupperFragment(){
@@ -13,7 +11,7 @@ abstract class BaseInjectFragment : BaseSupperFragment(){
             ARouter.getInstance().inject(this)
     }
 
-    protected fun injectRouter(): Boolean {
+    open fun injectRouter(): Boolean {
         return false
     }
 

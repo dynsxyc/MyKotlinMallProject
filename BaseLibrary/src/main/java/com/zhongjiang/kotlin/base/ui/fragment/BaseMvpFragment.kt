@@ -20,13 +20,6 @@ abstract class BaseMvpFragment<P : IPresenter> : BaseInjectFragment(), IFragment
     @Inject
     protected lateinit var mPresenter: P
 
-    protected lateinit var rootView: View
-
-    override fun onStart() {
-        super.onStart()
-        setSwipeBackEnable(true)
-    }
-
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         initView()
@@ -34,12 +27,9 @@ abstract class BaseMvpFragment<P : IPresenter> : BaseInjectFragment(), IFragment
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        rootView = inflater.inflate(getLayoutRes(), container, false)
+        var rootView = inflater.inflate(getLayoutRes(), container, false)
         initLifecycleObserver(lifecycle)
-        return if (getSwipeBackEnable()) rootView else {
-            rootView = attachToSwipeBack(rootView)
-            rootView
-        }
+        return attachToSwipeBack(rootView)
     }
 
 

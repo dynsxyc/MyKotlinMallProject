@@ -25,7 +25,7 @@ ext {
             fragmentationVersion   : '1.3.6',
             rx_lifecycle_version   : '1.0',
             ktx_autodispose_version: '1.1.0',
-            agentweb_version: '4.0.2',
+            agentweb_version       : '4.0.2',
             room_version           : "2.1.0-alpha03"
     ]
     dependencies = [
@@ -33,7 +33,9 @@ ext {
             "support-v4"                            : "com.android.support:support-v4:${dependVersion.support_version}",
             "appcompat-v7"                          : "com.android.support:appcompat-v7:${dependVersion.support_version}",
             "design"                                : "com.android.support:design:${dependVersion.support_version}",
-            "recyclerview-v7"                       : "com.android.support:recyclerview-v7:${dependVersion.support_version}",
+            "recyclerview"                          : "androidx.recyclerview:recyclerview:1.0.0",
+            "androidx-appcompat"                          : "androidx.appcompat:appcompat:1.0.0",
+            "androidx-v4"                          : "androidx.legacy:legacy-support-v4:1.0.0",
             "cardview-v7"                           : "com.android.support:cardview-v7:${dependVersion.support_version}",
             "support-annotations"                   : "com.android.support:support-annotations:${dependVersion.support_version}",
             "constraint-layout"                     : "com.android.support.constraint:constraint-layout:1.0.2",
@@ -50,9 +52,9 @@ ext {
 
             //java8-support
             "stream"                                : "com.annimon:stream:1.1.8",
-            "agentWeb"                                : "com.just.agentweb:agentweb:${dependVersion.agentweb_version}",
-            "agentWebDownload"                                : "com.just.agentweb:download:${dependVersion.agentweb_version}",
-            "agentWebFilechooser"                                : "com.just.agentweb:filechooser:${dependVersion.agentweb_version}",
+            "agentWeb"                              : "com.just.agentweb:agentweb:${dependVersion.agentweb_version}",
+            "agentWebDownload"                      : "com.just.agentweb:download:${dependVersion.agentweb_version}",
+            "agentWebFilechooser"                   : "com.just.agentweb:filechooser:${dependVersion.agentweb_version}",
 
             //rx
             "rxJava2"                               : "io.reactivex.rxjava2:rxjava:2.1.3",

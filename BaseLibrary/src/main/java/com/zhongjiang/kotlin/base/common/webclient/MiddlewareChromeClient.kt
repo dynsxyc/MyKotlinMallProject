@@ -5,12 +5,13 @@ import android.webkit.JsResult
 import android.webkit.WebView
 
 import com.just.agentweb.MiddlewareWebChromeBase
+import javax.inject.Inject
 
 /**
  * Created by cenxiaozhong on 2017/12/16.
  * After agentweb 3.0.0  ， allow dev to custom self WebChromeClient's MiddleWare  .
  */
-open class MiddlewareChromeClient : MiddlewareWebChromeBase() {
+open class MiddlewareChromeClient @Inject constructor(): MiddlewareWebChromeBase() {
     override fun onJsAlert(view: WebView, url: String, message: String, result: JsResult): Boolean {
         Log.i("Info", "onJsAlert:$url")
         return super.onJsAlert(view, url, message, result)

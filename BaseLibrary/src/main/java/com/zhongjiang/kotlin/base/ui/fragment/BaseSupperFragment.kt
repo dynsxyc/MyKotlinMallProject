@@ -1,4 +1,4 @@
-package com.zhongjiang.kotlin.base.ui.activity
+package com.zhongjiang.kotlin.base.ui.fragment
 
 import android.app.Activity
 import android.content.Context
@@ -22,7 +22,7 @@ abstract class BaseSupperFragment : Fragment(), ISupportFragment, ISwipeBackFrag
     }
 
     override fun getSupportDelegate(): SupportFragmentDelegate {
-        return mDelegate;
+        return mDelegate
     }
 
     /**
@@ -30,11 +30,11 @@ abstract class BaseSupperFragment : Fragment(), ISupportFragment, ISwipeBackFrag
      * 额外的事务：自定义Tag，添加SharedElement动画，操作非回退栈Fragment
      */
     override fun extraTransaction(): ExtraTransaction {
-        return mDelegate.extraTransaction();
+        return mDelegate.extraTransaction()
     }
 
     override fun onAttach(activity: Context) {
-        super.onAttach(activity);
+        super.onAttach(activity)
         if (activity is Activity) {
             mDelegate.onAttach(activity)
         }
@@ -44,6 +44,7 @@ abstract class BaseSupperFragment : Fragment(), ISupportFragment, ISwipeBackFrag
         super.onCreate(savedInstanceState)
         mDelegate.onCreate(savedInstanceState)
         mSwipeBackDelegate.onCreate(savedInstanceState)
+        setSwipeBackEnable(true)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -174,14 +175,14 @@ abstract class BaseSupperFragment : Fragment(), ISupportFragment, ISwipeBackFrag
      */
 
     protected fun hideSoftInput() {
-        mDelegate.hideSoftInput();
+        mDelegate.hideSoftInput()
     }
 
     /**
      * 显示软键盘,调用该方法后,会在onPause时自动隐藏软键盘
      */
     protected fun showSoftInput(view: View) {
-        mDelegate.showSoftInput(view);
+        mDelegate.showSoftInput(view)
     }
 
     /**
@@ -191,11 +192,11 @@ abstract class BaseSupperFragment : Fragment(), ISupportFragment, ISwipeBackFrag
      * @param toFragment  目标Fragment
      */
     fun loadRootFragment(containerId: Int, toFragment: ISupportFragment) {
-        mDelegate.loadRootFragment(containerId, toFragment);
+        mDelegate.loadRootFragment(containerId, toFragment)
     }
 
     fun loadRootFragment(containerId: Int, toFragment: ISupportFragment, addToBackStack: Boolean, allowAnim: Boolean) {
-        mDelegate.loadRootFragment(containerId, toFragment, addToBackStack, allowAnim);
+        mDelegate.loadRootFragment(containerId, toFragment, addToBackStack, allowAnim)
     }
 
     fun start(toFragment: ISupportFragment) {
@@ -213,14 +214,14 @@ abstract class BaseSupperFragment : Fragment(), ISupportFragment, ISwipeBackFrag
      * Launch an fragment for which you would like a result when it poped.
      */
     fun startForResult(toFragment: ISupportFragment, requestCode: Int) {
-        mDelegate.startForResult(toFragment, requestCode);
+        mDelegate.startForResult(toFragment, requestCode)
     }
 
     /**
      * Start the target Fragment and pop itself
      */
     fun startWithPop(toFragment: ISupportFragment) {
-        mDelegate.startWithPop(toFragment);
+        mDelegate.startWithPop(toFragment)
     }
 
     /**
@@ -229,15 +230,15 @@ abstract class BaseSupperFragment : Fragment(), ISupportFragment, ISwipeBackFrag
      * @see #start(ISupportFragment)
      */
     fun startWithPopTo(toFragment: ISupportFragment, targetFragmentClass: Class<*>, includeTargetFragment: Boolean) {
-        mDelegate.startWithPopTo(toFragment, targetFragmentClass, includeTargetFragment);
+        mDelegate.startWithPopTo(toFragment, targetFragmentClass, includeTargetFragment)
     }
 
     fun replaceFragment(toFragment: ISupportFragment, addToBackStack: Boolean) {
-        mDelegate.replaceFragment(toFragment, addToBackStack);
+        mDelegate.replaceFragment(toFragment, addToBackStack)
     }
 
     fun pop() {
-        mDelegate.pop();
+        mDelegate.pop()
     }
 
     /**
@@ -250,14 +251,14 @@ abstract class BaseSupperFragment : Fragment(), ISupportFragment, ISwipeBackFrag
      * @param includeTargetFragment 是否包含该fragment
      */
     fun popTo(targetFragmentClass: Class<*>, includeTargetFragment: Boolean) {
-        mDelegate.popTo(targetFragmentClass, includeTargetFragment);
+        mDelegate.popTo(targetFragmentClass, includeTargetFragment)
     }
 
     /**
      * 获取栈内的fragment对象
      */
     fun <T : ISupportFragment> findChildFragment(fragmentClass: Class<T>): T {
-        return SupportHelper.findFragment(getChildFragmentManager(), fragmentClass);
+        return SupportHelper.findFragment(getChildFragmentManager(), fragmentClass)
     }
 
     /*********************** SwipeBack  start ********************************/
@@ -265,11 +266,11 @@ abstract class BaseSupperFragment : Fragment(), ISupportFragment, ISwipeBackFrag
         return mSwipeBackDelegate.swipeBackLayout
     }
 
-    override fun attachToSwipeBack(view: View?): View {
+    override fun attachToSwipeBack(view: View): View {
         return mSwipeBackDelegate.attachToSwipeBack(view)
     }
 
-    override fun setEdgeLevel(edgeLevel: SwipeBackLayout.EdgeLevel?) {
+    override fun setEdgeLevel(edgeLevel: SwipeBackLayout.EdgeLevel) {
         mSwipeBackDelegate.setEdgeLevel(edgeLevel)
     }
 

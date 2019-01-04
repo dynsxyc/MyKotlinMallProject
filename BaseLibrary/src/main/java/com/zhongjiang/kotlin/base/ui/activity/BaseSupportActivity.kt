@@ -18,6 +18,7 @@ abstract class BaseSupportActivity : AppCompatActivity(), ISupportActivity, ISwi
         AppManager.instance.addActivity(this)
         mDelegate.onCreate(savedInstanceState)
         mSwipeBackDelegate.onCreate(savedInstanceState)
+        setSwipeBackEnable(true)
     }
 
     override fun onDestroy() {
@@ -103,7 +104,7 @@ abstract class BaseSupportActivity : AppCompatActivity(), ISupportActivity, ISwi
      * @return FragmentAnimator对象
      */
     override fun onCreateFragmentAnimator(): FragmentAnimator {
-        return supportDelegate.onCreateFragmentAnimator()
+        return mDelegate.onCreateFragmentAnimator()
     }
 
     /**
@@ -116,7 +117,7 @@ abstract class BaseSupportActivity : AppCompatActivity(), ISupportActivity, ISwi
      * 前面的事务全部执行后 执行该Action
      */
     override fun post(runnable: Runnable) {
-        supportDelegate.post(runnable)
+        mDelegate.post(runnable)
     }
 
     /****************************************以下为可选方法(Optional methods) */
@@ -124,18 +125,18 @@ abstract class BaseSupportActivity : AppCompatActivity(), ISupportActivity, ISwi
     // 选择性拓展其他方法
 
     fun loadRootFragment(containerId: Int, toFragment: ISupportFragment) {
-        supportDelegate.loadRootFragment(containerId, toFragment)
+        mDelegate.loadRootFragment(containerId, toFragment)
     }
 
     fun start(toFragment: ISupportFragment) {
-        supportDelegate.start(toFragment)
+        mDelegate.start(toFragment)
     }
 
     /**
      * @param launchMode Same as Activity's LaunchMode.
      */
     fun start(toFragment: ISupportFragment, @ISupportFragment.LaunchMode launchMode: Int) {
-        supportDelegate.start(toFragment, launchMode)
+        mDelegate.start(toFragment, launchMode)
     }
 
     /**
@@ -145,14 +146,14 @@ abstract class BaseSupportActivity : AppCompatActivity(), ISupportActivity, ISwi
      * @see .start
      */
     fun startWithPopTo(toFragment: ISupportFragment, targetFragmentClass: Class<*>, includeTargetFragment: Boolean) {
-        supportDelegate.startWithPopTo(toFragment, targetFragmentClass, includeTargetFragment)
+        mDelegate.startWithPopTo(toFragment, targetFragmentClass, includeTargetFragment)
     }
 
     /**
      * Pop the fragment.
      */
     fun pop() {
-        supportDelegate.pop()
+        mDelegate.pop()
     }
 
     /**
@@ -160,7 +161,7 @@ abstract class BaseSupportActivity : AppCompatActivity(), ISupportActivity, ISwi
      * back stack.
      */
     fun popTo(targetFragmentClass: Class<*>, includeTargetFragment: Boolean) {
-        supportDelegate.popTo(targetFragmentClass, includeTargetFragment)
+        mDelegate.popTo(targetFragmentClass, includeTargetFragment)
     }
 
     /**
@@ -168,11 +169,11 @@ abstract class BaseSupportActivity : AppCompatActivity(), ISupportActivity, ISwi
      * 如果你想在出栈后, 立刻进行FragmentTransaction操作，请使用该方法
      */
     fun popTo(targetFragmentClass: Class<*>, includeTargetFragment: Boolean, afterPopTransactionRunnable: Runnable) {
-        supportDelegate.popTo(targetFragmentClass, includeTargetFragment, afterPopTransactionRunnable)
+        mDelegate.popTo(targetFragmentClass, includeTargetFragment, afterPopTransactionRunnable)
     }
 
     fun popTo(targetFragmentClass: Class<*>, includeTargetFragment: Boolean, afterPopTransactionRunnable: Runnable, popAnim: Int) {
-        supportDelegate.popTo(targetFragmentClass, includeTargetFragment, afterPopTransactionRunnable, popAnim)
+        mDelegate.popTo(targetFragmentClass, includeTargetFragment, afterPopTransactionRunnable, popAnim)
     }
 
     /**

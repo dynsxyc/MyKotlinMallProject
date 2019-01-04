@@ -4,10 +4,11 @@
     <style name="AppTheme" parent="@style/Theme.AppCompat.Light.DarkActionBar">
         <item name="android:windowContentOverlay">@null</item>
         <item name="android:textSize">@dimen/text_size_15</item>
+        <item name="android:textColor">@color/text_color_33</item>
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
-        <item name="colorPrimary">@color/common_black</item>
-        <item name="colorPrimaryDark">@color/common_black</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:windowBackground">@color/transparent_10</item>
         <item name="android:screenOrientation">portrait</item>
