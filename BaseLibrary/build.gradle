@@ -4,6 +4,13 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'io.objectbox'
 
+
+kapt {
+    arguments {
+        arg("AROUTER_MODULE_NAME", project.getName())
+    }
+}
+
 android {
     compileSdkVersion rootProject.ext.android["compileSdkVersion"]
     buildToolsVersion rootProject.ext.android["buildToolsVersion"]
@@ -100,6 +107,7 @@ dependencies {
 
     //Arouter
     api rootProject.ext.dependencies["router"]
+    kapt rootProject.ext.dependencies["router-compiler"]
 
     //fragmentTation start  如果不想继承SupportActivity/Fragment，自己定制Support，可仅依赖:
     api rootProject.ext.dependencies["fragmentationCore"]

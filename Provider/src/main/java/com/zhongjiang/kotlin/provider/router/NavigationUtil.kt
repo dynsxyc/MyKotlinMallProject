@@ -18,7 +18,7 @@ class NavigationUtil @Inject constructor() {
         }
 
         fun navigationToWebShow(context: Activity,requestCode:Int,isSplash: Boolean, webUrl: String) {
-            ARouter.getInstance().build(RouterPath.SplashCenter.PATH_SPLASH_LOGIN).withBoolean(NAVIGATION_DATA_BOOLEAN, isSplash).withString(NAVIGATION_DATA_WEBURL, webUrl).navigation(context,requestCode)
+            ARouter.getInstance().build(RouterPath.BaseUI.PATH_WEBSHOW).withBoolean(NAVIGATION_DATA_BOOLEAN, isSplash).withString(NAVIGATION_DATA_WEBURL, webUrl).navigation(context,requestCode)
         }
     }
 }
