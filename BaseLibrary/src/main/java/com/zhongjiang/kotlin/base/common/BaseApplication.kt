@@ -14,6 +14,8 @@ import androidx.multidex.MultiDexApplication
 import com.alibaba.android.arouter.launcher.ARouter
 import com.ihsanbal.logging.Level
 import com.ihsanbal.logging.LoggingInterceptor
+import com.orhanobut.logger.AndroidLogAdapter
+import com.orhanobut.logger.Logger
 import com.zhongjiang.kotlin.base.BuildConfig
 import com.zhongjiang.kotlin.base.common.YouXuanNetInterfaceConstant.Companion.BASE_URL_DEVELOP_TEST
 import com.zhongjiang.kotlin.base.data.net.interceptor.HttpRequestHandler
@@ -92,6 +94,11 @@ abstract class BaseApplication : MultiDexApplication(), HasActivityInjector,
             ARouter.openDebug()
         }
         ARouter.init(this)
+        Logger.addLogAdapter(object : AndroidLogAdapter(){
+            override fun isLoggable(priority: Int, tag: String?): Boolean {
+                return BuildConfig.DEBUG
+            }
+        })
     }
 
     /**

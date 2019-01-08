@@ -25,20 +25,19 @@ import java.util.regex.Pattern
 
 class StatusBarUtil {
     companion object {
-
-        var DEFAULT_COLOR = 0
-        var DEFAULT_ALPHA = 0f
+        private var DEFAULT_COLOR = 0xffffff
+        private var DEFAULT_ALPHA = 0.8f
         //Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP ? 0.2f : 0.3f;
-        val MIN_API = 19
+        private const val MIN_API = 19
 
         /** 判断是否Flyme4以上  */
-        val isFlyme4Later: Boolean
+        private val isFlyme4Later: Boolean
             get() = (Build.FINGERPRINT.contains("Flyme_OS_4")
                     || Build.VERSION.INCREMENTAL.contains("Flyme_OS_4")
                     || Pattern.compile("Flyme OS [4|5]", Pattern.CASE_INSENSITIVE).matcher(Build.DISPLAY).find())
 
         /** 判断是否为MIUI6以上  */
-        val isMIUI6Later: Boolean
+        private val isMIUI6Later: Boolean
             get() {
                 try {
                     val clz = Class.forName("android.os.SystemProperties")
@@ -113,18 +112,18 @@ class StatusBarUtil {
         fun darkMode(window: Window, color: Int, @FloatRange(from = 0.0, to = 1.0) alpha: Float) {
             if (isFlyme4Later) {
                 darkModeForFlyme4(window, true)
-                immersive(window, color, alpha)
+                immersive(window, color, 1f)
             } else if (isMIUI6Later) {
                 darkModeForMIUI6(window, true)
-                immersive(window, color, alpha)
+                immersive(window, color, 1f)
             } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 darkModeForM(window, true)
-                immersive(window, color, alpha)
+                immersive(window, color, 1f)
             } else if (Build.VERSION.SDK_INT >= 19) {
                 window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
                 setTranslucentView(window.decorView as ViewGroup, color, alpha)
             } else {
-                immersive(window, color, alpha)
+                immersive(window, color, 1f)
             }
         }
 

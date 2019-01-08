@@ -29,4 +29,5 @@ interface IPresenter : LifecycleObserver {
 
     @OnLifecycleEvent(Lifecycle.Event.ON_ANY)
     fun onLifecycleChanged(@NotNull owner: LifecycleOwner)
+
 }

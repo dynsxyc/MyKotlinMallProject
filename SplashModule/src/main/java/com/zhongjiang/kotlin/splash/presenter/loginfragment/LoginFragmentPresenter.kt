@@ -5,10 +5,8 @@ import com.zhongjiang.kotlin.base.data.db.UserInfoEntity
 import com.zhongjiang.kotlin.base.ext.excute
 import com.zhongjiang.kotlin.base.presenter.BasePresenter
 import com.zhongjiang.kotlin.base.rx.BaseMaybeObserver
-import com.zhongjiang.kotlin.base.utils.RxBus
 import com.zhongjiang.kotlin.provider.common.CommonUtils
 import com.zhongjiang.kotlin.provider.event.LoginSuccessEvent
-import com.zhongjiang.kotlin.provider.router.NavigationUtil
 import com.zhongjiang.kotlin.splash.data.VerificationCodeResuleInfo
 import io.reactivex.functions.Action
 import io.reactivex.functions.Consumer
@@ -21,14 +19,6 @@ class LoginFragmentPresenter @Inject constructor(view: LoginFragmentContract.Vie
     @Inject
     @Singleton
     lateinit var commonUtils: CommonUtils
-
-    @Inject
-    @Singleton
-    lateinit var mRxBus: RxBus
-
-    @Inject
-    @Singleton
-    lateinit var navigationUtil: NavigationUtil
 
     override fun requestLogin(code: String, phoneStr: String, verificationCode: String) {
         mView.showLoading()

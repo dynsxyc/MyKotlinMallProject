@@ -1,44 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <!-- 主题样式 -->
-    <style name="AppTheme" parent="@style/Theme.AppCompat.Light.DarkActionBar">
-        <item name="android:windowContentOverlay">@null</item>
-        <item name="android:textSize">@dimen/text_size_15</item>
-        <item name="android:textColor">@color/text_color_33</item>
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
+    <style name="BaseTheme" parent="@style/Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-        <item name="android:windowBackground">@color/transparent_10</item>
-        <item name="android:screenOrientation">portrait</item>
+        <item name="android:statusBarColor" tools:targetApi="lollipop">@color/white</item>
     </style>
-    <style name="AppSplashTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="AppTheme" parent="BaseTheme">
+        <item name="android:textSize">@dimen/text_size_15</item>
+        <item name="android:textColor">@color/text_color_33</item>
+        <item name="android:windowBackground">@color/transparent</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:screenOrientation">behind</item>
+    </style>
+    <style name="AppSplashTheme" parent="BaseTheme">
         <!--android 8.0 windowIsTranslucent 全屏透明报 Only fullscreen opaque activities can request orientation-->
         <item name="android:windowIsTranslucent">false</item>
         <item name="android:windowBackground">@drawable/loading</item>
-        <item name="android:windowNoTitle">true</item>
-        <item name="android:windowDisablePreview">true</item>
         <item name="android:windowFullscreen">true</item>
-        <item name="android:orientation">vertical</item>
+        <item name="android:screenOrientation">portrait</item>
         <!--<item name="colorPrimaryDark">@color/white</item>-->
     </style>
 
     <!-- Window黑色背景主题 -->
-    <style name="AppTheme.Black" parent="@style/AppTheme">
+    <style name="BaseTheme.Black" parent="@style/BaseTheme">
         <item name="android:windowBackground">@color/common_black</item>
     </style>
-
-    <!-- 多状态视图样式-->
-  <!--  <style name="MultiStateStyle">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">match_parent</item>
-        <item name="msv_loadingView">@layout/layout_state_loading</item>
-        <item name="msv_emptyView">@layout/layout_state_empty</item>
-        <item name="msv_errorView">@layout/layout_state_error</item>
-        <item name="msv_viewState">loading</item>
-
-    </style>-->
 
     <!-- 加载弹框样式 -->
     <style name="LightDialog" parent="@android:style/Theme.Dialog">

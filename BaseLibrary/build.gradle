@@ -117,6 +117,7 @@ dependencies {
     //RxCache
     api(rootProject.ext.dependencies["rxCache"])
     api rootProject.ext.dependencies["rxCache-Jolyglot"]
+    api rootProject.ext.dependencies["logger"]
 
 
 }

@@ -1,17 +1,17 @@
 package com.zhongjiang.kotlin.splash.ui.fragment
 
 import android.annotation.SuppressLint
-import android.content.Intent
 import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.util.Log
 import android.view.View.VISIBLE
-import android.widget.Toast
 import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
 import com.jakewharton.rxbinding2.view.RxView
+import com.orhanobut.logger.Logger
+import com.zhongjiang.kotlin.base.busevent.ActivityResultEvent
 import com.zhongjiang.kotlin.base.data.db.SplashAdEntity
 import com.zhongjiang.kotlin.base.ext.shieldDoubleClick
 import com.zhongjiang.kotlin.base.imageloader.ImageLoaderUtil
@@ -23,6 +23,7 @@ import com.zhongjiang.kotlin.splash.presenter.splashfragment.SplashFragmentContr
 import com.zhongjiang.kotlin.splash.presenter.splashfragment.SplashFragmentPresenter
 import kotlinx.android.synthetic.main.fragment_splash.*
 import me.yokeyword.fragmentation.ISupportFragment
+import org.jetbrains.anko.toast
 import javax.inject.Inject
 
 /**
@@ -31,10 +32,19 @@ import javax.inject.Inject
 class SplashFragment : BaseMvpFragment<SplashFragmentPresenter>(), SplashFragmentContract.View {
     @Inject
     lateinit var screenWidth: WindowScreenInfo
-
     /**公共实现部分 start*/
     override fun initData() {
         mPresenter.requestAdInfo("")
+        mPresenter.registerActivityResultEvent {
+            Logger.i("registerActivityResultEvent ${it.requestCoder}")
+            when(it.requestCoder){
+                ActivityResultEvent.Companion.ActivityRequestCode.REQUEST_WEBSHOW_CODE.requestCode -> {
+                    context?.toast("页面返回")
+                    mPresenter.checkSkip()
+                }
+            }
+        }
+
     }
 
     override fun getLayoutRes(): Int {
@@ -106,21 +116,7 @@ class SplashFragment : BaseMvpFragment<SplashFragmentPresenter>(), SplashFragmen
     }
 
     override fun skipWeb(webUrl: String) {
-        mPresenter.stopTimer()
-        NavigationUtil.navigationToWebShow(_mActivity,11,true,"http://www.baidu.com")
-    }
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        when(requestCode){
-            11 -> {
-                Toast.makeText(context,"网页返回",Toast.LENGTH_SHORT).show()
-            }
-        }
-    }
-
-    override fun injectRouter(): Boolean {
-        return true
+        NavigationUtil.navigationToWebShowResult(activity!!,"http://youx7.youx.mobi/activity/qualitylife?appAreaCode=441723&appUserMobile=15868490449")
     }
     /**当前业务部分 end*/
 
