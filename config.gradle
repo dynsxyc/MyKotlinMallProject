@@ -49,6 +49,7 @@ ext {
             "ankoV4"                                : "org.jetbrains.anko:anko-support-v4-commons:${dependVersion.anko_version}",
             "ankoCommons"                           : "org.jetbrains.anko:anko-commons:${dependVersion.anko_version}",
             "RoundView"                             : "com.flyco.roundview:FlycoRoundView_Lib:1.1.4@aar",
+            "PhotoView"                             : "com.github.chrisbanes:PhotoView:latest.release.here",
 
             //java8-support
             "stream"                                : "com.annimon:stream:1.1.8",
