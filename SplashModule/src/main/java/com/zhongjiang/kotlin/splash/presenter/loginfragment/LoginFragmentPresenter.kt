@@ -6,7 +6,6 @@ import com.zhongjiang.kotlin.base.ext.excute
 import com.zhongjiang.kotlin.base.presenter.BasePresenter
 import com.zhongjiang.kotlin.base.rx.BaseMaybeObserver
 import com.zhongjiang.kotlin.provider.common.CommonUtils
-import com.zhongjiang.kotlin.provider.event.LoginSuccessEvent
 import com.zhongjiang.kotlin.splash.data.VerificationCodeResuleInfo
 import io.reactivex.functions.Action
 import io.reactivex.functions.Consumer
@@ -26,8 +25,8 @@ class LoginFragmentPresenter @Inject constructor(view: LoginFragmentContract.Vie
             override fun onSuccess(t: UserInfoEntity) {
                 super.onSuccess(t)
                 commonUtils.setUserInfo(t)
-                mRxBus.post(LoginSuccessEvent())
-                mView.loginSuccess()
+                onLoginSuccess()
+                mView.onLoginSuccess();
             }
         })
     }
@@ -51,6 +50,6 @@ class LoginFragmentPresenter @Inject constructor(view: LoginFragmentContract.Vie
             mView.refreshVerificationCodeView(60.minus(t).toString())
         }, Action {
             mView.timerFinish()
-        }).excute(bindLifecycle())
+        }).excute(bindBusLifecycle())
     }
 }

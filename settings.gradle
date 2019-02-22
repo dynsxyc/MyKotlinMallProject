@@ -1,1 +1,1 @@
-include ':BaseLibrary', ':Provider', ':SplashModule',':testapp'
+include ':BaseLibrary', ':Provider', ':SplashModule',':testapp',':App'

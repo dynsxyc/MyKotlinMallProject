@@ -17,10 +17,15 @@ class NavigationUtil @Inject constructor() {
         fun navigationToLogin(isToLogin: Boolean) {
             ARouter.getInstance().build(RouterPath.SplashCenter.PATH_SPLASH_LOGIN).withBoolean(NAVIGATION_DATA_BOOLEAN, isToLogin).navigation()
         }
-
+        /**
+         * 跳转到web 有返回结果
+         * */
         fun navigationToWebShowResult(context: Activity, webUrl: String) {
             ARouter.getInstance().build(RouterPath.BaseUI.PATH_WEBSHOW).withString(NAVIGATION_DATA_WEBURL, webUrl).navigation(context, ActivityResultEvent.Companion.ActivityRequestCode.REQUEST_WEBSHOW_CODE.requestCode)
         }
+        /**
+         * 跳转到web 没有返回结果
+         * */
         fun navigationToWebShow(webUrl: String) {
             ARouter.getInstance().build(RouterPath.BaseUI.PATH_WEBSHOW).withString(NAVIGATION_DATA_WEBURL,webUrl).navigation()
         }

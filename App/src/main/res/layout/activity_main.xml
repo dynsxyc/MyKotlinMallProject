@@ -6,11 +6,19 @@
     android:layout_height="match_parent"
     tools:context="com.zhongjiang.kotlin.mall.ui.activity.MainActivity">
     <TextView
-        android:id="@+id/testTv"
+        android:id="@+id/testLogout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:text="hello world"
+        android:text="退出登录"
         />
-
+    <TextView
+        android:id="@+id/testLogin"
+        android:layout_below="@+id/testLogout"
+        android:layout_marginTop="30dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="去登录"
+        />
 </RelativeLayout>

@@ -22,7 +22,7 @@ class LoginFragmentContract {
 
     interface View : IView {
         fun refreshVerificationCodeView(long:String)
-        fun loginSuccess()
+        fun onLoginSuccess()
         fun timerFinish()
         fun getVerificationCodeSuccess(t:VerificationCodeResuleInfo)
     }

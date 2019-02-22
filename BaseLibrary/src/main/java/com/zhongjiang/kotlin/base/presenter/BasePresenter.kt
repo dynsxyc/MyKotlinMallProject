@@ -7,11 +7,14 @@ import com.orhanobut.logger.Logger
 import com.uber.autodispose.ScopeProvider
 import com.zhongjiang.kotlin.base.NetWorkUtils
 import com.zhongjiang.kotlin.base.busevent.ActivityResultEvent
+import com.zhongjiang.kotlin.base.busevent.LoginSuccessEvent
 import com.zhongjiang.kotlin.base.common.BaseApplication
 import com.zhongjiang.kotlin.base.data.db.UserInfoEntity
+import com.zhongjiang.kotlin.base.ext.excute
 import com.zhongjiang.kotlin.base.utils.RxBus
 import com.zhongjiang.kotlin.base.utils.RxLifecycleUtils
 import io.objectbox.Box
+import io.reactivex.disposables.Disposable
 import io.reactivex.functions.Action
 import io.reactivex.functions.Consumer
 import javax.inject.Inject
@@ -33,6 +36,8 @@ open class BasePresenter<V : IView, M : IModel> constructor(view: V, model: M) :
     @Inject
     @Singleton
     lateinit var mRxBus: RxBus
+
+    lateinit var timerDisposable: Disposable
 
     @Inject
     lateinit var mUserInfoEntity: Box<UserInfoEntity>
@@ -115,5 +120,19 @@ open class BasePresenter<V : IView, M : IModel> constructor(view: V, model: M) :
             Logger.i("registerActivityResultEvent  isDisposed =  ${it.isDisposed}")
         }, bindBusLifecycle())
     }
-
+    /**开启一个定时器 1秒*/
+    fun startTimmer(number:Long,onNext: Consumer<Long>, onComplete: Action):Disposable{
+        timerDisposable = mModel.startTimer(number,onNext,onComplete).excute(bindBusLifecycle())
+        return timerDisposable
+    }
+    /**关闭定时器*/
+    fun stopTimeer(){
+        timerDisposable?.let {
+            if (it.isDisposed.not())
+                it.dispose()
+        }
+    }
+    fun onLoginSuccess(){
+        mRxBus.post(LoginSuccessEvent())
+    }
 }

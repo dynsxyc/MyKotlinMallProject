@@ -108,6 +108,7 @@ dependencies {
     //Arouter
     api rootProject.ext.dependencies["router"]
     kapt rootProject.ext.dependencies["router-compiler"]
+    api rootProject.ext.dependencies["aliyun-oss"]
 
     //fragmentTation start  如果不想继承SupportActivity/Fragment，自己定制Support，可仅依赖:
     api rootProject.ext.dependencies["fragmentationCore"]

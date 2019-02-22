@@ -3,7 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical" android:layout_width="match_parent"
     android:id="@+id/mWebShowActivityContent"
-    android:layout_height="match_parent"
-    tools:ignore="MissingDefaultResource">
+    android:layout_height="match_parent">
     <include layout="@layout/toolbar_main"/>
 </LinearLayout>

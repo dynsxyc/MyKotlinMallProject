@@ -22,6 +22,7 @@ import javax.inject.Singleton
         HttpClientModule::class,
         BaseBoxStoreModule::class,
         GlobalServiceModule::class,
+        BaseModule::class,
         CacheModule::class,
         SplashModule::class,
         MainModule::class

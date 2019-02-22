@@ -25,6 +25,10 @@ import kotlinx.android.synthetic.main.viewsub_login_video.*
 import org.jetbrains.anko.toast
 
 class LoginFragment : BaseMvpFragment<LoginFragmentPresenter>(), LoginFragmentContract.View {
+    override fun onLoginSuccess() {
+        _mActivity.finish()
+    }
+
     /**公共实现部分 start*/
     var mSingleCode: String = ""
     var isToLogin: Boolean = false
@@ -40,7 +44,7 @@ class LoginFragment : BaseMvpFragment<LoginFragmentPresenter>(), LoginFragmentCo
     }
 
     override fun initView() {
-        mLoginFragmentVideoView.setVideoURI(Uri.parse("android.resource://" + activity?.getPackageName() + "/" + R.raw.splash_video))
+        mLoginFragmentVideoView.setVideoURI(Uri.parse("android.resource://" + _mActivity.getPackageName() + "/" + R.raw.splash_video))
         mLoginFragmentVideoView.setOnCompletionListener { mLoginFragmentVideoView.start() }
         mLoginFragmentVideoView.setOnPreparedListener { mp ->
             mp.setVolume(0f, 0f)
@@ -77,7 +81,7 @@ class LoginFragment : BaseMvpFragment<LoginFragmentPresenter>(), LoginFragmentCo
     }
 
     override fun onBackPressedSupport(): Boolean {
-        mPresenter.commonUtils.appExit(activity!!)
+        mPresenter.commonUtils.appExit(_mActivity)
         return true
     }
 
@@ -100,6 +104,8 @@ class LoginFragment : BaseMvpFragment<LoginFragmentPresenter>(), LoginFragmentCo
             val phoneNumber = mLoginFragmentEtPhone.text.toString().replace(" ", "")
             mPresenter.requestLogin(mSingleCode, phoneNumber, mLoginFragmentEtVerificationCode.text.toString())
         }
+
+
     }
     /**公共实现部分 end*/
 
@@ -136,8 +142,8 @@ class LoginFragment : BaseMvpFragment<LoginFragmentPresenter>(), LoginFragmentCo
      * 显示登录页动画
      */
     fun startLoginContentAnimate() {
-        StatusBarUtil.setStatusBarVisibility(activity!!, true)
-        StatusBarUtil.setStatusBarAlpha(activity!!)
+        StatusBarUtil.setStatusBarVisibility(_mActivity, true)
+        StatusBarUtil.setStatusBarAlpha(_mActivity)
         val phoneAlphaAn = ObjectAnimator.ofFloat(mLoginFragmentLlPhone, "alpha", 0f, 1f)
         val logoAlphaAn = ObjectAnimator.ofFloat(mLoginFragmentImgLogo, "alpha", 0f, 1f)
         val codeAlphaAn = ObjectAnimator.ofFloat(mLoginFragmentLlCode, "alpha", 0f, 1f)
@@ -179,7 +185,7 @@ class LoginFragment : BaseMvpFragment<LoginFragmentPresenter>(), LoginFragmentCo
         var result = phoneStatus and codeStatus
 
         if (result) {
-            mLoginFragmentRoundTvLogin.delegate.backgroundColor = ContextCompat.getColor(activity!!,R.color.common_red)
+            mLoginFragmentRoundTvLogin.delegate.backgroundColor = ContextCompat.getColor(_mActivity,R.color.common_red)
         } else {
             mLoginFragmentRoundTvLogin.delegate.backgroundColor = Color.parseColor("#99dc2828")
         }
@@ -191,11 +197,6 @@ class LoginFragment : BaseMvpFragment<LoginFragmentPresenter>(), LoginFragmentCo
         mLoginFragmentRoundTvGetVerificationCode.text = "$long 秒后重发"
         mLoginFragmentRoundTvGetVerificationCode.isClickable = false
         mLoginFragmentEtPhone.isEnabled = false
-    }
-
-    override fun loginSuccess() {
-        var userInfo = mPresenter.commonUtils.getUserInfo()
-        context!!.toast(userInfo.nickName)
     }
 
     override fun timerFinish() {

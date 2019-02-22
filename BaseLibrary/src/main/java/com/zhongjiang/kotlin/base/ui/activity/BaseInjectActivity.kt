@@ -35,6 +35,7 @@ open abstract class BaseInjectActivity : BaseSupportActivity(), HasFragmentInjec
         return fragmentInjector
     }
     override fun onCreate(savedInstanceState: Bundle?) {
+        StatusBarUtil.darkMode(this)
         inject()
         if (isDarkModeStatus())
             darkModeStatus()

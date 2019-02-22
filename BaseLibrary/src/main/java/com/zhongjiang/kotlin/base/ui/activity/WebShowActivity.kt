@@ -24,7 +24,6 @@ import com.zhongjiang.kotlin.base.common.webclient.MiddlewareWebViewClient
 import com.zhongjiang.kotlin.base.ext.shieldDoubleClick
 import com.zhongjiang.kotlin.base.presenter.WebShowActivityPresenter
 import com.zhongjiang.kotlin.base.presenter.webshowactivity.WebShowActivityContract
-import com.zhongjiang.kotlin.base.utils.StatusBarUtil
 import kotlinx.android.synthetic.main.activity_webshow.*
 import kotlinx.android.synthetic.main.toolbar_main.*
 import me.yokeyword.fragmentation.SwipeBackLayout
@@ -102,18 +101,17 @@ class WebShowActivity : BaseMvpActivity<WebShowActivityPresenter>(), WebShowActi
         mAgentWeb.webCreator.webView.overScrollMode = WebView.OVER_SCROLL_NEVER
         //mAgentWeb.getWebCreator().getWebView()  获取WebView .
     }
-
     override fun injectRouter(): Boolean {
         return true
     }
 
     private fun initThisView() {
-        StatusBarUtil.setMargin(mMainToolbarRl.context, mMainToolbarRl)
+
         RxView.clicks(mMainToolbarImgBack).shieldDoubleClick {
             onBackPressedSupport()
         }
         RxView.clicks(mMainToolbarImgFinish).shieldDoubleClick {
-            pop()
+            finish()
         }
         RxView.clicks(mMainToolbarImgMore).shieldDoubleClick {
 

@@ -1,6 +1,6 @@
 package com.zhongjiang.kotlin.base.utils
 
-import com.jakewharton.rxrelay2.BehaviorRelay
+import com.jakewharton.rxrelay2.PublishRelay
 import com.jakewharton.rxrelay2.Relay
 import com.uber.autodispose.ScopeProvider
 import com.uber.autodispose.autoDisposable
@@ -15,7 +15,33 @@ import javax.inject.Inject
 
 class RxBus @Inject constructor() {
     companion object {
-        private var rxBus: Relay<Any> = BehaviorRelay.create()
+        /**
+         * 有以下三种relay 类型
+         * I   BehaviorRelay 实例：
+         *      relay 接收全部事件
+         *     relay.subscribe(observer);
+               relay.accept("one");
+                relay.accept("two");
+                relay.accept("three");
+                relay 接收到订阅前的最后一个事件 和订阅后的所有事件
+                relay.accept("zero");
+                relay.accept("one");
+                relay.subscribe(observer);
+                relay.accept("two");
+                relay.accept("three");
+         II   PublishRelay 实例：
+                // 接收到订阅后的所有事件，接收不到订阅前的事件
+                relay.subscribe(observer1);
+                relay.accept("one");
+                relay.accept("two");
+                // observer2 will only receive "three"
+                relay.subscribe(observer2);
+                relay.accept("three");
+         III  ReplayRelay实例
+              不论是先订阅还是后订阅 ，都能接收到所有的事件
+
+         * */
+        private var rxBus: Relay<Any> = PublishRelay.create()
     }
 
     fun post(event: Any) {

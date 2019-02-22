@@ -11,7 +11,6 @@ class SplashFragmentContract {
         fun requestAdInfo(name: String)
         fun checkPermissions():Boolean
         fun checkSkip()
-        fun checkTimerDisposable()
     }
 
     interface Model : IModel {
@@ -21,7 +20,7 @@ class SplashFragmentContract {
     interface View : IView {
         fun onShowAd(adBean: SplashAdEntity)
         fun onRefreshTimer(userInfo: String)
-        fun skipMain()
+        fun onLoginSuccess()
         fun skipLogin()
         fun skipWeb(webUrl:String)
     }

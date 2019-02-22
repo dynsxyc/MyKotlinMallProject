@@ -68,11 +68,6 @@ class SplashFragment : BaseMvpFragment<SplashFragmentPresenter>(), SplashFragmen
     override fun getSwipeBackEnable(): Boolean {
         return false
     }
-
-    override fun onSupportVisible() {
-        super.onSupportVisible()
-        mPresenter.checkTimerDisposable()
-    }
     /**公共实现部分 end*/
 
     /**当前业务部分 start*/
@@ -92,6 +87,7 @@ class SplashFragment : BaseMvpFragment<SplashFragmentPresenter>(), SplashFragmen
         }, screenWidth.width, screenWidth.height * 1080 / 1334)
         RxView.clicks(mSplashFragmentImgAd).shieldDoubleClick {
             //点击广告
+            mPresenter.stopTimeer()
             skipWeb(adBean.imgPageUrl)
         }
         RxView.clicks(mSplashFragmentTvSkip).shieldDoubleClick {
@@ -99,16 +95,16 @@ class SplashFragment : BaseMvpFragment<SplashFragmentPresenter>(), SplashFragmen
         }
     }
 
-    override fun onRefreshTimer(userInfo: String) {
+    override fun onRefreshTimer(time: String) {
         Log.i("test1", " onRefreshTimer = ${view == null}")
         if (mSplashFragmentLlTimeer != null) {
             mSplashFragmentLlTimeer.visibility = VISIBLE
         }
-        mSplashFragmentTvTime.text = userInfo
+        mSplashFragmentTvTime.text = time
     }
 
-    override fun skipMain() {
-        start(LoginFragment.newInstance(false), ISupportFragment.SINGLETASK)
+    override fun onLoginSuccess() {
+        _mActivity.finish()
     }
 
     override fun skipLogin() {
@@ -116,7 +112,7 @@ class SplashFragment : BaseMvpFragment<SplashFragmentPresenter>(), SplashFragmen
     }
 
     override fun skipWeb(webUrl: String) {
-        NavigationUtil.navigationToWebShowResult(activity!!,"http://youx7.youx.mobi/activity/qualitylife?appAreaCode=441723&appUserMobile=15868490449")
+        NavigationUtil.navigationToWebShowResult(_mActivity,"http://youx7.youx.mobi/activity/qualitylife?appAreaCode=441723&appUserMobile=15868490449")
     }
     /**当前业务部分 end*/
 

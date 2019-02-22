@@ -1,7 +1,6 @@
 package com.zhongjiang.kotlin.splash.presenter.splashfragment
 
 import android.util.Log
-import androidx.lifecycle.LifecycleOwner
 import com.uber.autodispose.autoDisposable
 import com.zhongjiang.kotlin.base.data.db.SplashAdEntity
 import com.zhongjiang.kotlin.base.presenter.BasePresenter
@@ -9,7 +8,6 @@ import com.zhongjiang.kotlin.base.rx.BaseMaybeObserver
 import com.zhongjiang.kotlin.provider.common.CommonUtils
 import com.zhongjiang.kotlin.splash.ui.fragment.SplashFragment
 import io.objectbox.Box
-import io.reactivex.disposables.Disposable
 import io.reactivex.functions.Action
 import io.reactivex.functions.Consumer
 import javax.inject.Inject
@@ -27,8 +25,6 @@ class SplashFragmentPresenter @Inject constructor(view: SplashFragmentContract.V
     @Inject
     @Singleton
     lateinit var commonUtils: CommonUtils
-
-    var timerDisposable: Disposable? = null
 
     override fun requestAdInfo(name: String) {
         mModel.requestAdInfo(name).autoDisposable(bindLifecycle()).subscribe(object : BaseMaybeObserver<SplashAdEntity>(mView) {
@@ -61,18 +57,20 @@ class SplashFragmentPresenter @Inject constructor(view: SplashFragmentContract.V
     }
 
     fun startTime(long: Long) {
-        timerDisposable = mModel.startTimer(long.plus(1), Consumer { t ->
+        startTimmer(long.plus(1),Consumer { t ->
             mView.onRefreshTimer(long.minus(t).toString())
             Log.i("test1", "onTimer ${long.minus(t)}")
         }, Action {
             checkSkip()
             Log.i("test1", "onTimer 结束")
-        }).autoDisposable(bindLifecycle()).subscribe()
+        })
     }
+
 
     override fun checkSkip() {
         if (commonUtils.isUserLogin()) {
-            mView.skipMain()
+            onLoginSuccess()
+            mView.onLoginSuccess()
         } else {
             mView.skipLogin()
         }
@@ -92,22 +90,6 @@ class SplashFragmentPresenter @Inject constructor(view: SplashFragmentContract.V
         return false
     }
 
-    override fun checkTimerDisposable() {
-        timerDisposable?.let {
-            if (it.isDisposed)
-                startTime(3)
-        }
-    }
 
-    fun stopTimer() {
-        timerDisposable?.let {
-            if (it.isDisposed.not())
-                it.dispose()
-        }
-    }
 
-    override fun onPause(owner: LifecycleOwner) {
-        super.onPause(owner)
-        timerDisposable?.dispose()
-    }
 }

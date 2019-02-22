@@ -19,6 +19,7 @@ import com.zhongjiang.kotlin.base.rx.BaseMaybeObserver
 import io.reactivex.Flowable
 import io.reactivex.Maybe
 import io.reactivex.Observable
+import io.reactivex.disposables.Disposable
 import java.util.concurrent.TimeUnit
 
 /**
@@ -28,8 +29,8 @@ import java.util.concurrent.TimeUnit
 fun <T> Maybe<T>.excute(scopeProvider: ScopeProvider,observer: BaseMaybeObserver<T>){
     this.autoDisposable(scopeProvider).subscribe(observer)
 }
-fun <T> Flowable<T>.excute(scopeProvider: ScopeProvider){
-    this.autoDisposable(scopeProvider).subscribe()
+fun <T> Flowable<T>.excute(scopeProvider: ScopeProvider):Disposable{
+    return this.autoDisposable(scopeProvider).subscribe()
 }
 
 fun <T> Maybe<T>.handlerThread(schedulers: SchedulerProvider): Maybe<T> {

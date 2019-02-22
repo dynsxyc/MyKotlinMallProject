@@ -87,6 +87,7 @@ ext {
             //router
             "router"                                : "com.alibaba:arouter-api:${dependVersion.routerVersion}",
             "router-compiler"                       : "com.alibaba:arouter-compiler:${dependVersion.routerCompilerVersion}",
+            "aliyun-oss"                       : "com.aliyun.dpa:oss-android-sdk:+",
 
             //okHttp3
             "okhttp3"                               : "com.squareup.okhttp3:okhttp:${dependVersion.okhttp_version}",
