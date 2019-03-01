@@ -66,6 +66,22 @@
         <item name="android:textColor">@color/text_color_99</item>
     </style>
 
+    <style name="WrapMatchTextSize13" parent="WrapMatch">
+        <item name="android:textSize">@dimen/text_size_13</item>
+    </style>
+    <style name="WrapMatchTextSize13.ff">
+        <item name="android:textColor">@color/common_white</item>
+    </style>
+    <style name="WrapMatchTextSize13.33">
+        <item name="android:textColor">@color/text_color_33</item>
+    </style>
+    <style name="WrapMatchTextSize13.66">
+        <item name="android:textColor">@color/text_color_66</item>
+    </style>
+    <style name="WrapMatchTextSize13.99">
+        <item name="android:textColor">@color/text_color_99</item>
+    </style>
+
     <!-- 文字大小  12sp-->
     <style name="WrapWrapTextSize12" parent="WrapWrap">
         <item name="android:textSize">@dimen/text_size_12</item>

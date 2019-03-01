@@ -26,7 +26,7 @@ import java.util.regex.Pattern
 class StatusBarUtil {
     companion object {
         private var DEFAULT_COLOR = 0xffffff
-        private var DEFAULT_ALPHA = 0.8f
+        private var DEFAULT_ALPHA = 0f
         //Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP ? 0.2f : 0.3f;
         private const val MIN_API = 19
 
@@ -80,7 +80,7 @@ class StatusBarUtil {
                 window.decorView.systemUiVisibility = systemUiVisibility
             } else if (Build.VERSION.SDK_INT >= 19) {
                 window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
-                setTranslucentView(window.decorView as ViewGroup, color, alpha)
+                setTranslucentView(window.decorView as ViewGroup, color,alpha)
             } else if (Build.VERSION.SDK_INT >= MIN_API && Build.VERSION.SDK_INT > 16) {
                 var systemUiVisibility = window.decorView.systemUiVisibility
                 systemUiVisibility = systemUiVisibility or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
@@ -112,18 +112,18 @@ class StatusBarUtil {
         fun darkMode(window: Window, color: Int, @FloatRange(from = 0.0, to = 1.0) alpha: Float) {
             if (isFlyme4Later) {
                 darkModeForFlyme4(window, true)
-                immersive(window, color, 1f)
+                immersive(window, color, DEFAULT_ALPHA)
             } else if (isMIUI6Later) {
                 darkModeForMIUI6(window, true)
-                immersive(window, color, 1f)
+                immersive(window, color, DEFAULT_ALPHA)
             } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 darkModeForM(window, true)
-                immersive(window, color, 1f)
+                immersive(window, color, DEFAULT_ALPHA)
             } else if (Build.VERSION.SDK_INT >= 19) {
                 window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
-                setTranslucentView(window.decorView as ViewGroup, color, alpha)
+                setTranslucentView(window.decorView as ViewGroup,  color,alpha)
             } else {
-                immersive(window, color, 1f)
+                immersive(window, color, DEFAULT_ALPHA)
             }
         }
 
@@ -253,7 +253,7 @@ class StatusBarUtil {
             }
         }
 
-        fun mixtureColor(color: Int, @FloatRange(from = 0.0, to = 1.0) alpha: Float): Int {
+        private fun mixtureColor(color: Int, @FloatRange(from = 0.0, to = 1.0) alpha: Float): Int {
             val a = if (color and -0x1000000 == 0) 0xff else color.ushr(24)
             return color and 0x00ffffff or ((a * alpha).toInt() shl 24)
         }
@@ -492,6 +492,14 @@ class StatusBarUtil {
          */
         fun setStatusBarAlpha(@NonNull activity: Activity) {
             setStatusBarAlpha(activity, DEFAULT_ALPHA_M, false)
+        }
+        /**
+         * Set the status bar's alpha.
+         *
+         * @param activity The activity.
+         */
+        fun setStatusBarAlpha(@NonNull activity: Activity,isDecor: Boolean) {
+            setStatusBarAlpha(activity, DEFAULT_ALPHA_M, isDecor)
         }
 
         /**

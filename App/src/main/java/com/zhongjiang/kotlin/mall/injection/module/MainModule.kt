@@ -1,10 +1,11 @@
-package com.zhongjiang.kotlin.user.injection.module
+package com.zhongjiang.kotlin.mall.injection.module
 
 import com.zhongjiang.kotlin.base.injection.component.BaseActivityComponent
 import com.zhongjiang.kotlin.base.injection.component.BaseFragmentComponent
 import com.zhongjiang.kotlin.base.injection.scope.ActivityScope
 import com.zhongjiang.kotlin.mall.ui.activity.MainActivity
-import com.zhongjiang.kotlin.splash.injection.module.*
+import com.zhongjiang.kotlin.mall.ui.activity.TestStatusBarActivity
+import com.zhongjiang.kotlin.mall.ui.fragment.MainFragment
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
@@ -15,6 +16,13 @@ import dagger.android.ContributesAndroidInjector
 abstract class MainModule {
     @ActivityScope
     @ContributesAndroidInjector(modules = arrayOf(MainActivityModule::class))
-    abstract fun contributeSplashActivityInjector():MainActivity
+    abstract fun contributeMainActivityInjector():MainActivity
+    @ActivityScope
+    @ContributesAndroidInjector(modules = arrayOf(MainActivityModule::class))
+    abstract fun contributeTestStatusBarActivityInjector():TestStatusBarActivity
+
+    @ActivityScope
+    @ContributesAndroidInjector(modules = arrayOf(MainFragmentModule::class))
+    abstract fun contributeMainFragmentInjector():MainFragment
 
 }

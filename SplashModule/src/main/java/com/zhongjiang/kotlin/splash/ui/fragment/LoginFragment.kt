@@ -74,7 +74,8 @@ class LoginFragment : BaseMvpFragment<LoginFragmentPresenter>(), LoginFragmentCo
         super.onResume()
         mLoginFragmentVideoView.resume()
     }
-
+    override fun initStatusBar() {
+    }
     override fun onPause() {
         super.onPause()
         mLoginFragmentVideoView.pause()

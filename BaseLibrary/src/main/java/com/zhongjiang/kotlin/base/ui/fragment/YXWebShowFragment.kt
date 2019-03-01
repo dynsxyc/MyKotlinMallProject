@@ -19,9 +19,7 @@ import com.zhongjiang.kotlin.base.common.webclient.AgentWebSettings
 import com.zhongjiang.kotlin.base.common.webclient.MiddlewareChromeClient
 import com.zhongjiang.kotlin.base.common.webclient.MiddlewareWebViewClient
 import com.zhongjiang.kotlin.base.ext.shieldDoubleClick
-import com.zhongjiang.kotlin.base.utils.StatusBarUtil
 import kotlinx.android.synthetic.main.activity_webshow.*
-import kotlinx.android.synthetic.main.toolbar_main.*
 import me.yokeyword.fragmentation.SwipeBackLayout
 import me.yokeyword.fragmentation.SwipeBackLayout.*
 import java.util.*
@@ -110,7 +108,7 @@ class YXWebShowFragment : BaseInjectFragment() {
                             titleStr = titleStr.substring(0, 10) + "..."
                         }
                     }
-                    mMainToolbarTvTitle.text = titleStr
+                    mMainToolbarTvTitle?.text = titleStr
                 }
             }
 
@@ -155,15 +153,21 @@ class YXWebShowFragment : BaseInjectFragment() {
     }
 
     protected fun initView() {
-        StatusBarUtil.setMargin(mMainToolbarRl.context, mMainToolbarRl)
-        RxView.clicks(mMainToolbarImgBack).shieldDoubleClick {
+        view?.let { getTopView(it) }
+        mMainToolbarRvTvBack?.let {
+            RxView.clicks(it).shieldDoubleClick {
             onBackPressedSupport()
         }
-        RxView.clicks(mMainToolbarImgFinish).shieldDoubleClick {
+        }
+        mMainToolbarRvTvFinish?.let {
+            RxView.clicks(it).shieldDoubleClick {
             pop()
         }
-        RxView.clicks(mMainToolbarImgMore).shieldDoubleClick {
+        }
+        mMainToolbarRvTvLastRight?.let {
+            RxView.clicks(it).shieldDoubleClick {
 
+        }
         }
         pageNavigator(View.GONE)
 
@@ -201,9 +205,9 @@ class YXWebShowFragment : BaseInjectFragment() {
     }
 
     fun pageNavigator(tag: Int) {
-        mMainToolbarImgBack.visibility = tag
-        mMainToolbarViewLine.visibility = tag
-        mMainToolbarImgFinish.visibility = View.VISIBLE
+        mMainToolbarRvTvBack?.visibility = tag
+        mMainToolbarViewLine?.visibility = tag
+        mMainToolbarRvTvFinish?.visibility = View.VISIBLE
     }
 
     override fun onResume() {

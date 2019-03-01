@@ -3,7 +3,7 @@ package com.zhongjiang.kotlin.user.injection.component
 import com.google.gson.Gson
 import com.zhongjiang.kotlin.base.common.BaseApplication
 import com.zhongjiang.kotlin.base.injection.module.*
-import com.zhongjiang.kotlin.user.injection.module.MainModule
+import com.zhongjiang.kotlin.mall.injection.module.MainModule
 import com.zhongjiang.kotlin.user.injection.module.SplashModule
 import dagger.Component
 import dagger.android.AndroidInjectionModule

@@ -25,8 +25,6 @@ import com.zhongjiang.kotlin.base.ext.shieldDoubleClick
 import com.zhongjiang.kotlin.base.presenter.WebShowActivityPresenter
 import com.zhongjiang.kotlin.base.presenter.webshowactivity.WebShowActivityContract
 import kotlinx.android.synthetic.main.activity_webshow.*
-import kotlinx.android.synthetic.main.toolbar_main.*
-import me.yokeyword.fragmentation.SwipeBackLayout
 import java.util.*
 import javax.inject.Inject
 
@@ -106,41 +104,19 @@ class WebShowActivity : BaseMvpActivity<WebShowActivityPresenter>(), WebShowActi
     }
 
     private fun initThisView() {
-
-        RxView.clicks(mMainToolbarImgBack).shieldDoubleClick {
-            onBackPressedSupport()
+        getTopView()
+        mMainToolbarRvTvBack?.let {
+            RxView.clicks(it).shieldDoubleClick {
+                onBackPressedSupport()
+            }
         }
-        RxView.clicks(mMainToolbarImgFinish).shieldDoubleClick {
-            finish()
-        }
-        RxView.clicks(mMainToolbarImgMore).shieldDoubleClick {
-
+        mMainToolbarRvTvFinish?.let {
+            RxView.clicks(it).shieldDoubleClick {
+                finish()
+            }
         }
         pageNavigator(View.GONE)
 
-        swipeBackLayout.addSwipeListener(object : SwipeBackLayout.OnSwipeListener {
-            override fun onEdgeTouch(oritentationEdgeFlag: Int) {
-
-            }
-
-            override fun onDragScrolled(scrollPercent: Float) {
-                Logger.i("百分比 $scrollPercent")
-            }
-
-            override fun onDragStateChange(state: Int) {
-                /** @see #STATE_IDLE
-                 * @see #STATE_DRAGGING
-                 * @see #STATE_SETTLING
-                 * @see #STATE_FINISHED*/
-                when (state) {
-                    SwipeBackLayout.STATE_IDLE -> Logger.i("test1", "STATE_IDLE")
-                    SwipeBackLayout.STATE_DRAGGING -> Logger.i("test1", "STATE_DRAGGING")
-                    SwipeBackLayout.STATE_SETTLING -> Logger.i("test1", "STATE_SETTLING")
-                    SwipeBackLayout.STATE_FINISHED -> Logger.i("test1", "STATE_FINISHED")
-                }
-            }
-
-        })
     }
 
 
@@ -199,13 +175,13 @@ class WebShowActivity : BaseMvpActivity<WebShowActivityPresenter>(), WebShowActi
                             titleStr = titleStr.substring(0, 10) + "..."
                         }
                     }
-                    mMainToolbarTvTitle.text = titleStr
+                    mMainToolbarTvTitle?.text = titleStr
                 }
             }
 
     fun pageNavigator(tag: Int) {
-        mMainToolbarImgBack.visibility = tag
-        mMainToolbarViewLine.visibility = tag
-        mMainToolbarImgFinish.visibility = View.VISIBLE
+        mMainToolbarRvTvBack?.visibility = tag
+        mMainToolbarViewLine?.visibility = tag
+        mMainToolbarRvTvFinish?.visibility = View.VISIBLE
     }
 }

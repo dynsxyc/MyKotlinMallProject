@@ -17,7 +17,7 @@
         <activity
             android:name=".ui.activity.SplashActivity"
             android:configChanges="orientation|screenSize"
-            android:screenOrientation="portrait"
+            android:screenOrientation="behind"
             android:theme="@style/AppSplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

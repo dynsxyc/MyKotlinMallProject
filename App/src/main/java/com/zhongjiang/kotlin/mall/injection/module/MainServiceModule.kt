@@ -1,4 +1,4 @@
-package com.zhongjiang.kotlin.splash.injection.module
+package com.zhongjiang.kotlin.mall.injection.module
 
 import com.zhongjiang.kotlin.user.data.api.MainService
 import dagger.Module
@@ -10,7 +10,7 @@ import javax.inject.Singleton
 class MainServiceModule {
     @Provides
     @Singleton
-    fun provideSplashService(retrofit: Retrofit): MainService {
+    fun provideMainService(retrofit: Retrofit): MainService {
         return retrofit.create(MainService::class.java)
     }
 

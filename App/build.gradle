@@ -37,6 +37,8 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     //dagger2
+    implementation 'androidx.appcompat:appcompat:1.0.0-alpha1'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.2'
     kapt rootProject.ext.dependencies["dagger-compiler"]
     kapt rootProject.ext.dependencies["dagger-android-processor"]
     kapt rootProject.ext.dependencies["glide-compiler"]
@@ -44,7 +46,7 @@ dependencies {
 
     api project(':Provider')
 
-    if (isUserModule.toBoolean()){
+    if (isUserModule.toBoolean()) {
         api project(':SplashModule')
     }
 

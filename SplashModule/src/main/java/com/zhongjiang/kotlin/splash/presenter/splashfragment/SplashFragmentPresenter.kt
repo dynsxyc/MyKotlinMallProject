@@ -50,7 +50,10 @@ class SplashFragmentPresenter @Inject constructor(view: SplashFragmentContract.V
                 mView.onShowAd(adBean)
             }
         } else {
-            checkSkip()
+            startTimmer(2,Consumer { t ->
+            }, Action {
+                checkSkip()
+            })
         }
         checkPermissions()
 

@@ -10,9 +10,11 @@
     <style name="AppTheme" parent="BaseTheme">
         <item name="android:textSize">@dimen/text_size_15</item>
         <item name="android:textColor">@color/text_color_33</item>
-        <item name="android:windowBackground">@color/common_bg</item>
-        <item name="android:windowIsTranslucent">false</item>
-        <item name="android:screenOrientation">portrait</item>
+        <item name="android:windowAnimationStyle">@style/AnimationActivity</item>
+        <item name="android:windowBackground">@color/transparent</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:screenOrientation">behind</item>
+        <item name="android:windowFullscreen">false</item>
     </style>
     <style name="AppSplashTheme" parent="BaseTheme">
         <!--android 8.0 windowIsTranslucent 全屏透明报 Only fullscreen opaque activities can request orientation-->
@@ -22,7 +24,17 @@
         <item name="android:screenOrientation">portrait</item>
         <!--<item name="colorPrimaryDark">@color/white</item>-->
     </style>
-
+    <!--activity左右滑动进入动画-->
+    <style name="AnimationActivity" parent="@android:style/Animation.Activity">
+        <item name="android:activityOpenEnterAnimation">@anim/in_from_right</item>
+        //当打开一个新的活动时，这是在下一个活动（正在进入屏幕）中运行的动画。
+        <item name="android:activityOpenExitAnimation">@anim/out_to_left</item>
+        //当打开一个新的活动时，这是在上一个活动（正在退出屏幕）上运行的动画。
+        <item name="android:activityCloseEnterAnimation">@anim/in_from_left</item>
+        //当关闭当前活动时，这是在下一个活动（正在进入屏幕）中运行的动画。
+        <item name="android:activityCloseExitAnimation">@anim/out_to_right</item>
+        //当关闭当前活动时，这是在当前活动（正在退出屏幕）上运行的动画。
+    </style>
     <!-- Window黑色背景主题 -->
     <style name="BaseTheme.Black" parent="@style/BaseTheme">
         <item name="android:windowBackground">@color/common_black</item>

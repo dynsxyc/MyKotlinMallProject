@@ -76,7 +76,7 @@ class SplashFragment : BaseMvpFragment<SplashFragmentPresenter>(), SplashFragmen
         ImageLoaderUtil.displayImage(adBean.imgPathUrl, mSplashFragmentImgAd, ImageLoaderUtil.IMAGE_STYLE_TYPE.IMAGE_TYPE_RESOURCE, object : RequestListener<Drawable> {
             override fun onLoadFailed(e: GlideException?, model: Any?, target: Target<Drawable>?, isFirstResource: Boolean): Boolean {
                 mPresenter.checkSkip()
-                return false;
+                return false
             }
 
             override fun onResourceReady(resource: Drawable?, model: Any?, target: Target<Drawable>?, dataSource: DataSource?, isFirstResource: Boolean): Boolean {
@@ -113,6 +113,9 @@ class SplashFragment : BaseMvpFragment<SplashFragmentPresenter>(), SplashFragmen
 
     override fun skipWeb(webUrl: String) {
         NavigationUtil.navigationToWebShowResult(_mActivity,"http://youx7.youx.mobi/activity/qualitylife?appAreaCode=441723&appUserMobile=15868490449")
+    }
+
+    override fun initStatusBar() {
     }
     /**当前业务部分 end*/
 

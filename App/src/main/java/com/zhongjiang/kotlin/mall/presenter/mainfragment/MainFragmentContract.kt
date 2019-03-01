@@ -1,10 +1,10 @@
-package com.zhongjiang.kotlin.mall.presenter.contract
+package com.zhongjiang.kotlin.mall.presenter.mainfragment
 
 import com.zhongjiang.kotlin.base.presenter.IModel
 import com.zhongjiang.kotlin.base.presenter.IPresenter
 import com.zhongjiang.kotlin.base.presenter.IView
 
-class MainActivityContract {
+class MainFragmentContract {
     interface Presenter : IPresenter {
     }
 

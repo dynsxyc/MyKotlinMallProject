@@ -6,7 +6,7 @@ package com.zhongjiang.kotlin.base.common
 interface YouXuanNetInterfaceConstant {
     companion object {
 
-        val BASE_URL_DEVELOP_TEST = "http://testapi.you-x.cn/"
+        val BASE_URL_DEVELOP_TEST = "http://devapi.you-x.cn/"
 
         /**
          * APP打开次数

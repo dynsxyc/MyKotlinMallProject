@@ -71,7 +71,7 @@ fun Button.editEmptyEnable(et: EditText, method: () -> Boolean) {
 }
 
 fun Observable<Any>.shieldDoubleClick(method: () -> Unit) {
-    this.throttleFirst(800, TimeUnit.MILLISECONDS)
+    this.throttleFirst(1000, TimeUnit.MILLISECONDS)
             .subscribe {
                 method()
             }
