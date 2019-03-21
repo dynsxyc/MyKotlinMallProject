@@ -28,7 +28,7 @@ abstract class BaseMvpActivity<P : IPresenter> : BaseInjectActivity(), IView {
         progressLoading.showLoading()
     }
     @MainThread
-    override fun onError(text: String) {
+    override fun onError(status:Int,text: String) {
         toast(text)
     }
     @MainThread

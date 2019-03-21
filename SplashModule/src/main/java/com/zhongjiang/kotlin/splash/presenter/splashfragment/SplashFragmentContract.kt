@@ -5,6 +5,7 @@ import com.zhongjiang.kotlin.base.presenter.IModel
 import com.zhongjiang.kotlin.base.presenter.IPresenter
 import com.zhongjiang.kotlin.base.presenter.IView
 import io.reactivex.Maybe
+import io.rx_cache2.Reply
 
 class SplashFragmentContract {
     interface Presenter : IPresenter {
@@ -14,7 +15,7 @@ class SplashFragmentContract {
     }
 
     interface Model : IModel {
-        fun requestAdInfo(name: String): Maybe<SplashAdEntity>
+        fun requestAdInfo(name: String,update: Boolean): Maybe<Reply<List<SplashAdEntity>>>
     }
 
     interface View : IView {

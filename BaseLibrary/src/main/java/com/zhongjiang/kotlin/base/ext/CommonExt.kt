@@ -9,12 +9,10 @@ import com.flyco.roundview.RoundTextView
 import com.kotlin.base.widgets.DefaultTextWatcher
 import com.uber.autodispose.ScopeProvider
 import com.uber.autodispose.autoDisposable
-import com.zhongjiang.kotlin.base.data.protocol.BaseListResp
+import com.zhongjiang.kotlin.base.data.protocol.BaseList
 import com.zhongjiang.kotlin.base.data.protocol.BaseResp
 import com.zhongjiang.kotlin.base.injection.module.sheduler.SchedulerProvider
 import com.zhongjiang.kotlin.base.rx.BaseFunc
-import com.zhongjiang.kotlin.base.rx.BaseFuncBoolean
-import com.zhongjiang.kotlin.base.rx.BaseFuncList
 import com.zhongjiang.kotlin.base.rx.BaseMaybeObserver
 import io.reactivex.Flowable
 import io.reactivex.Maybe
@@ -45,12 +43,14 @@ fun <T> Maybe<BaseResp<T>>.convert(): Maybe<T> {
     return this.flatMap(BaseFunc())
 }
 
-fun <T> Maybe<BaseListResp<T>>.convertList(): Maybe<T> {
-    return this.flatMap(BaseFuncList())
+fun <T> Maybe<BaseResp<BaseList<T>>>.convertList(): Maybe<T> {
+    return this.flatMap(BaseFunc()).flatMap {
+        Maybe.just(it.dataList)
+    }
 }
 
-fun <T> Maybe<BaseResp<T>>.convertBoolean(): Maybe<Boolean> {
-    return this.flatMap(BaseFuncBoolean())
+fun  Maybe<BaseResp<Boolean>>.convertBoolean(): Maybe<Boolean> {
+    return this.flatMap(BaseFunc())
 }
 
 fun View.OnClick(listener: View.OnClickListener) {

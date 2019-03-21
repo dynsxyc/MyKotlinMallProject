@@ -21,6 +21,7 @@
     <string name="cell_phone_number">手机号</string>
     <string name="verification_code">验证码</string>
     <string name="get_verification_code">获取验证码</string>
+    <string name="loadding">加载中...</string>
 
     <string-array name="default_img_colors">
         <item>"#cfddd6"</item>

@@ -2,10 +2,13 @@ package com.zhongjiang.kotlin.base.ui.fragment
 
 import android.app.Activity
 import android.content.Context
+import android.content.res.Configuration
 import android.os.Bundle
 import android.view.View
 import android.view.animation.Animation
 import androidx.fragment.app.Fragment
+import com.gyf.barlibrary.SimpleImmersionOwner
+import com.gyf.barlibrary.SimpleImmersionProxy
 import me.yokeyword.fragmentation.*
 import me.yokeyword.fragmentation.anim.FragmentAnimator
 import me.yokeyword.fragmentation_swipeback.core.ISwipeBackFragment
@@ -14,11 +17,28 @@ import me.yokeyword.fragmentation_swipeback.core.SwipeBackFragmentDelegate
 /**
  * Created by dyn on 2018/7/13.
  */
-abstract class BaseSupperFragment : Fragment(), ISupportFragment, ISwipeBackFragment {
+abstract class BaseSupperFragment : Fragment(), ISupportFragment, ISwipeBackFragment, SimpleImmersionOwner {
     val mDelegate by lazy { SupportFragmentDelegate(this) }
     val mSwipeBackDelegate by lazy { SwipeBackFragmentDelegate(this) }
     val _mActivity by lazy {
         mDelegate.activity
+    }
+    /**
+     * ImmersionBar代理类
+     */
+    private val mSimpleImmersionProxy = SimpleImmersionProxy(this)
+    override fun onConfigurationChanged(newConfig: Configuration) {
+        super.onConfigurationChanged(newConfig)
+        mSimpleImmersionProxy.onConfigurationChanged(newConfig)
+    }
+    /**
+     * 是否可以实现沉浸式，当为true的时候才可以执行initImmersionBar方法
+     * Immersion bar enabled boolean.
+     *
+     * @return the boolean
+     */
+    override fun immersionBarEnabled(): Boolean {
+        return true
     }
 
     override fun getSupportDelegate(): SupportFragmentDelegate {
@@ -59,6 +79,7 @@ abstract class BaseSupperFragment : Fragment(), ISupportFragment, ISwipeBackFrag
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         mDelegate.onActivityCreated(savedInstanceState)
+        mSimpleImmersionProxy.onActivityCreated(savedInstanceState)
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
@@ -85,6 +106,7 @@ abstract class BaseSupperFragment : Fragment(), ISupportFragment, ISwipeBackFrag
 
     override fun onDestroy() {
         mDelegate.onDestroy()
+        mSimpleImmersionProxy.onDestroy()
         super.onDestroy()
     }
 
@@ -92,11 +114,13 @@ abstract class BaseSupperFragment : Fragment(), ISupportFragment, ISwipeBackFrag
         super.onHiddenChanged(hidden)
         mDelegate.onHiddenChanged(hidden)
         mSwipeBackDelegate.onHiddenChanged(hidden)
+        mSimpleImmersionProxy.onHiddenChanged(hidden)
     }
 
     override fun setUserVisibleHint(isVisibleToUser: Boolean) {
         super.setUserVisibleHint(isVisibleToUser)
         mDelegate.setUserVisibleHint(isVisibleToUser)
+        mSimpleImmersionProxy.isUserVisibleHint = isVisibleToUser
     }
 
     override fun enqueueAction(runnable: Runnable?) {

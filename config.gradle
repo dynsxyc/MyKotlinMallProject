@@ -83,6 +83,7 @@ ext {
             "dagger-android-processor"              : "com.google.dagger:dagger-android-processor:${dependVersion.dagger_version}",
 
             "circleImageview"                       : "de.hdodenhof:circleimageview:${dependVersion.circleImageview_version}",
+            "immersionBar"                       : "com.gyf.immersionbar:immersionbar:2.3.3",
 
             //router
             "router"                                : "com.alibaba:arouter-api:${dependVersion.routerVersion}",

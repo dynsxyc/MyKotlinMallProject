@@ -1,8 +1,8 @@
 package com.zhongjiang.kotlin.splash.presenter.splashfragment
 
 import android.util.Log
-import com.uber.autodispose.autoDisposable
 import com.zhongjiang.kotlin.base.data.db.SplashAdEntity
+import com.zhongjiang.kotlin.base.ext.excute
 import com.zhongjiang.kotlin.base.presenter.BasePresenter
 import com.zhongjiang.kotlin.base.rx.BaseMaybeObserver
 import com.zhongjiang.kotlin.provider.common.CommonUtils
@@ -10,6 +10,7 @@ import com.zhongjiang.kotlin.splash.ui.fragment.SplashFragment
 import io.objectbox.Box
 import io.reactivex.functions.Action
 import io.reactivex.functions.Consumer
+import io.rx_cache2.Reply
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -27,22 +28,43 @@ class SplashFragmentPresenter @Inject constructor(view: SplashFragmentContract.V
     lateinit var commonUtils: CommonUtils
 
     override fun requestAdInfo(name: String) {
-        mModel.requestAdInfo(name).autoDisposable(bindLifecycle()).subscribe(object : BaseMaybeObserver<SplashAdEntity>(mView) {
-            override fun onSuccess(t: SplashAdEntity) {
-                if (adInfoBox.count() <= 0) {
-                    adInfoBox.put(t)
-                } else {
-                    var adBean = adInfoBox.all[0]
-                    adBean.clone(t)
-                    adInfoBox.put(adBean)
-                }
+        mModel.requestAdInfo(name,true).excute(bindLifecycle(),object : BaseMaybeObserver<Reply<List<SplashAdEntity>>>(mView) {
+            override fun onSuccess(t: Reply<List<SplashAdEntity>>) {
+                super.onSuccess(t)
+                System.out.print(t)
+                if (t.data.isEmpty()) {
+                    adInfoBox.removeAll()
+                } else
+                    if (adInfoBox.count() <= 0) {
+                        adInfoBox.put(t.data)
+                    } else {
+                        var adBean = adInfoBox.all[0]
+                        adBean.clone(t.data.get(0))
+                        adInfoBox.put(adBean)
+                    }
             }
 
             override fun onError(e: Throwable) {
-                super.onError(e)
                 adInfoBox.removeAll()
             }
+
         })
+//                .subscribe(object : BaseMaybeObserver<SplashAdEntity>(mView) {
+//            override fun onSuccess(t: SplashAdEntity) {
+//                if (adInfoBox.count() <= 0) {
+//                    adInfoBox.put(t)
+//                } else {
+//                    var adBean = adInfoBox.all[0]
+//                    adBean.clone(t)
+//                    adInfoBox.put(adBean)
+//                }
+//            }
+//
+//            override fun onError(e: Throwable) {
+//                super.onError(e)
+//                adInfoBox.removeAll()
+//            }
+//        })
 
         if (adInfoBox.count() > 0) {
             var adBean = adInfoBox.all[0]
@@ -50,7 +72,7 @@ class SplashFragmentPresenter @Inject constructor(view: SplashFragmentContract.V
                 mView.onShowAd(adBean)
             }
         } else {
-            startTimmer(2,Consumer { t ->
+            startTimmer(2, Consumer { t ->
             }, Action {
                 checkSkip()
             })
@@ -59,8 +81,8 @@ class SplashFragmentPresenter @Inject constructor(view: SplashFragmentContract.V
 
     }
 
-    fun startTime(long: Long) {
-        startTimmer(long.plus(1),Consumer { t ->
+    fun startAdTime(long: Long) {
+        startTimmer(long.plus(1), Consumer { t ->
             mView.onRefreshTimer(long.minus(t).toString())
             Log.i("test1", "onTimer ${long.minus(t)}")
         }, Action {
@@ -92,7 +114,6 @@ class SplashFragmentPresenter @Inject constructor(view: SplashFragmentContract.V
 //        }
         return false
     }
-
 
 
 }

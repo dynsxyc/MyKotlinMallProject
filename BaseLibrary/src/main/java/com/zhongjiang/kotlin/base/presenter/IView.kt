@@ -6,5 +6,5 @@ package com.zhongjiang.kotlin.base.presenter
 interface IView {
     fun showLoading()
     fun hideLoading()
-    fun onError(text:String)
+    fun onError(status:Int,text:String)
 }

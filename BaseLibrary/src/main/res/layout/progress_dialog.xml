@@ -1,13 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              style="@style/WrapWrap.Vertical"
-              android:background="@drawable/progress_dialog_bg"
-              android:gravity="center_horizontal"
-              android:padding="40dp">
-    <ImageView
-            android:id="@+id/iv_loading"
-            style="@style/WrapWrap"
-            android:layout_gravity="center"
-            android:background="@drawable/progress_dialog_anim"/>
+    style="@style/WrapWrap.Vertical"
+    android:background="@drawable/progress_dialog_bg"
+    android:gravity="center_horizontal"
+    android:padding="@dimen/common_padding">
 
+    <ImageView
+        android:id="@+id/iv_loading"
+        style="@style/WrapWrap"
+        android:layout_gravity="center"
+        android:background="@drawable/progress_dialog_anim" />
+
+    <TextView
+        style="@style/WrapWrapTextSize10.ff"
+        android:layout_marginTop="@dimen/common_margin_small"
+        android:text="@string/loadding" />
 </LinearLayout>

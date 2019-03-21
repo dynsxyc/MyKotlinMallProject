@@ -5,7 +5,6 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-        <item name="android:statusBarColor" tools:targetApi="lollipop">@color/white</item>
     </style>
     <style name="AppTheme" parent="BaseTheme">
         <item name="android:textSize">@dimen/text_size_15</item>
@@ -20,8 +19,8 @@
         <!--android 8.0 windowIsTranslucent 全屏透明报 Only fullscreen opaque activities can request orientation-->
         <item name="android:windowIsTranslucent">false</item>
         <item name="android:windowBackground">@drawable/loading</item>
-        <item name="android:windowFullscreen">true</item>
         <item name="android:screenOrientation">portrait</item>
+        <item name="android:windowFullscreen">true</item>
         <!--<item name="colorPrimaryDark">@color/white</item>-->
     </style>
     <!--activity左右滑动进入动画-->
@@ -158,4 +157,36 @@
         <item name="android:layout_margin">@dimen/common_margin</item>
         <item name="android:enabled">false</item>
     </style>
+    <!--自定义Dialog样式-->
+    <style name="MyDialog" parent="AlertDialog.AppCompat">
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowIsFloating">false</item>
+    </style>
+    <!--顶部弹出Dialog动画-->
+    <style name="TopDialog" parent="android:Animation">
+        <item name="@android:windowEnterAnimation">@anim/dialog_top_in</item>
+        <item name="@android:windowExitAnimation">@anim/dialog_top_out</item>
+    </style>
+
+    <!--底部弹出Dialog动画-->
+    <style name="BottomDialog" parent="android:Animation">
+        <item name="@android:windowEnterAnimation">@anim/dialog_bottom_in</item>
+        <item name="@android:windowExitAnimation">@anim/dialog_bottom_out</item>
+    </style>
+
+    <!--左边弹出Dialog动画-->
+    <style name="LeftDialog" parent="android:Animation">
+        <item name="@android:windowEnterAnimation">@anim/dialog_left_in</item>
+        <item name="@android:windowExitAnimation">@anim/dialog_left_out</item>
+    </style>
+
+    <!--右边弹出Dialog动画-->
+    <style name="RightDialog" parent="android:Animation">
+        <item name="@android:windowEnterAnimation">@anim/dialog_right_in</item>
+        <item name="@android:windowExitAnimation">@anim/dialog_right_out</item>
+    </style>
+
 </resources>

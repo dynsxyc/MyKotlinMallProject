@@ -3,6 +3,8 @@ package com.zhongjiang.kotlin.splash.ui.activity
 import android.os.Bundle
 import com.alibaba.android.arouter.facade.annotation.Autowired
 import com.alibaba.android.arouter.facade.annotation.Route
+import com.gyf.barlibrary.BarHide
+import com.gyf.barlibrary.ImmersionBar
 import com.zhongjiang.kotlin.base.ui.activity.BaseInjectActivity
 import com.zhongjiang.kotlin.provider.router.NavigationConstant
 import com.zhongjiang.kotlin.provider.router.RouterPath
@@ -36,4 +38,7 @@ class SplashActivity : BaseInjectActivity() {
         return false
     }
 
+    override fun initImmersionBar() {
+        ImmersionBar.with(this).hideBar(BarHide.FLAG_HIDE_STATUS_BAR).init()
+    }
 }

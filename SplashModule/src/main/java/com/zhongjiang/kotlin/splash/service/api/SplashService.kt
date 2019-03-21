@@ -9,7 +9,7 @@ import com.zhongjiang.kotlin.base.common.YouXuanNetInterfaceConstant.Companion.A
 import com.zhongjiang.kotlin.base.common.YouXuanNetInterfaceConstant.Companion.API_METHOD_LOGIN_REGCODE
 import com.zhongjiang.kotlin.base.data.db.SplashAdEntity
 import com.zhongjiang.kotlin.base.data.db.UserInfoEntity
-import com.zhongjiang.kotlin.base.data.protocol.BaseListResp
+import com.zhongjiang.kotlin.base.data.protocol.BaseList
 import com.zhongjiang.kotlin.base.data.protocol.BaseResp
 import com.zhongjiang.kotlin.splash.data.VerificationCodeResuleInfo
 import com.zhongjiang.kotlin.splash.service.protocol.AppStartStatisticsReq
@@ -25,7 +25,7 @@ import retrofit2.http.Query
 interface SplashService  {
     /**启动页广告*/
     @POST(API_METHOD_APP_APLASH_AD)
-    fun LoadAd(@Body splashAdReq: SplashAdReq): Maybe<BaseListResp<List<SplashAdEntity>>>
+    fun LoadAd(@Body splashAdReq: SplashAdReq): Maybe<BaseResp<BaseList<List<SplashAdEntity>>>>
 
     /**APP打开次数*/
     @POST(API_METHOD_APP_INSERT_OPEN_NUMBER)

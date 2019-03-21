@@ -37,7 +37,7 @@ object AppPrefsUtils {
      */
     fun putString(key: String, value: String) {
         ed.putString(key, value)
-        ed.commit()
+        ed.apply()
     }
 
     /*

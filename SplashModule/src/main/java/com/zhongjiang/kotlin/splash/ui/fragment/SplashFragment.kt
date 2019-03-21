@@ -9,6 +9,8 @@ import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
+import com.gyf.barlibrary.BarHide
+import com.gyf.barlibrary.ImmersionBar
 import com.jakewharton.rxbinding2.view.RxView
 import com.orhanobut.logger.Logger
 import com.zhongjiang.kotlin.base.busevent.ActivityResultEvent
@@ -80,7 +82,7 @@ class SplashFragment : BaseMvpFragment<SplashFragmentPresenter>(), SplashFragmen
             }
 
             override fun onResourceReady(resource: Drawable?, model: Any?, target: Target<Drawable>?, dataSource: DataSource?, isFirstResource: Boolean): Boolean {
-                mPresenter.startTime(adBean.showTime.toLong())
+                mPresenter.startAdTime(adBean.showTime.toLong())
                 return false
             }
 
@@ -105,6 +107,7 @@ class SplashFragment : BaseMvpFragment<SplashFragmentPresenter>(), SplashFragmen
 
     override fun onLoginSuccess() {
         _mActivity.finish()
+        NavigationUtil.navigationToMain()
     }
 
     override fun skipLogin() {
@@ -115,8 +118,10 @@ class SplashFragment : BaseMvpFragment<SplashFragmentPresenter>(), SplashFragmen
         NavigationUtil.navigationToWebShowResult(_mActivity,"http://youx7.youx.mobi/activity/qualitylife?appAreaCode=441723&appUserMobile=15868490449")
     }
 
-    override fun initStatusBar() {
+    override fun initImmersionBar() {
+        ImmersionBar.with(this).hideBar(BarHide.FLAG_HIDE_STATUS_BAR).fitsSystemWindows(false).init()
     }
+
     /**当前业务部分 end*/
 
 }

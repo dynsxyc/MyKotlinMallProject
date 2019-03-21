@@ -56,7 +56,7 @@ abstract class BaseMvpFragment<P : IPresenter> : BaseInjectFragment(), IFragment
     }
 
     @MainThread
-    override fun onError(text: String) {
+    override fun onError(status:Int,text: String) {
         activity!!.toast(text)
     }
 

@@ -46,7 +46,6 @@ open class BasePresenter<V : IView, M : IModel> constructor(view: V, model: M) :
         if (NetWorkUtils.isNetWorkAvailable(context)) {
             return true
         }
-        mView.onError("网络不可用")
         return false
     }
 

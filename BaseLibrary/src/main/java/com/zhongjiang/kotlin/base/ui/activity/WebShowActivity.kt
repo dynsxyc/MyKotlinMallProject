@@ -9,6 +9,7 @@ import android.webkit.*
 import com.alibaba.android.arouter.facade.annotation.Autowired
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.google.gson.Gson
+import com.gyf.barlibrary.ImmersionBar
 import com.jakewharton.rxbinding2.view.RxView
 import com.just.agentweb.AgentWeb
 import com.just.agentweb.AgentWebConfig
@@ -183,5 +184,10 @@ class WebShowActivity : BaseMvpActivity<WebShowActivityPresenter>(), WebShowActi
         mMainToolbarRvTvBack?.visibility = tag
         mMainToolbarViewLine?.visibility = tag
         mMainToolbarRvTvFinish?.visibility = View.VISIBLE
+    }
+
+    override fun initImmersionBar() {
+        super.initImmersionBar()
+        ImmersionBar.with(this).fitsSystemWindows(true).init()
     }
 }

@@ -11,7 +11,6 @@ import android.os.Build
 import android.util.Log
 import android.util.TypedValue
 import android.view.*
-import android.view.ViewGroup.MarginLayoutParams
 import android.widget.LinearLayout
 import androidx.annotation.*
 import androidx.drawerlayout.widget.DrawerLayout
@@ -375,7 +374,7 @@ class StatusBarUtil {
             view.tag = TAG_OFFSET
             val haveSetOffset = view.getTag(KEY_OFFSET)
             if (haveSetOffset != null && haveSetOffset as Boolean) return
-            val layoutParams = view.layoutParams as MarginLayoutParams
+            val layoutParams = view.layoutParams as ViewGroup.MarginLayoutParams
             layoutParams.setMargins(layoutParams.leftMargin,
                     layoutParams.topMargin + getStatusBarHeight(),
                     layoutParams.rightMargin,
@@ -392,7 +391,7 @@ class StatusBarUtil {
             if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) return
             val haveSetOffset = view.getTag(KEY_OFFSET)
             if (haveSetOffset == null || !(haveSetOffset as Boolean)) return
-            val layoutParams = view.layoutParams as MarginLayoutParams
+            val layoutParams = view.layoutParams as ViewGroup.MarginLayoutParams
             layoutParams.setMargins(layoutParams.leftMargin,
                     layoutParams.topMargin - getStatusBarHeight(),
                     layoutParams.rightMargin,

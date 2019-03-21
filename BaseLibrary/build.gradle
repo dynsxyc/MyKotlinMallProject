@@ -104,6 +104,7 @@ dependencies {
 //    api "com.bigkoo:alertview:${alert_view_version}"
     //底部导航
     api rootProject.ext.dependencies["navigationBar"]
+    api rootProject.ext.dependencies["immersionBar"]
 
     //Arouter
     api rootProject.ext.dependencies["router"]

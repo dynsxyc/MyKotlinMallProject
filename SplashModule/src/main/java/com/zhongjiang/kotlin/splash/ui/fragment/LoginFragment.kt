@@ -6,15 +6,17 @@ import android.animation.ObjectAnimator
 import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
+import android.view.WindowManager
 import android.view.animation.BounceInterpolator
 import androidx.core.content.ContextCompat
+import com.gyf.barlibrary.BarHide
+import com.gyf.barlibrary.ImmersionBar
 import com.jakewharton.rxbinding2.view.RxView
 import com.zhongjiang.kotlin.base.ext.editEnable
 import com.zhongjiang.kotlin.base.ext.setVisible
 import com.zhongjiang.kotlin.base.ext.shieldDoubleClick
 import com.zhongjiang.kotlin.base.ui.fragment.BaseMvpFragment
 import com.zhongjiang.kotlin.base.utils.FromatPhoneTextWatcher
-import com.zhongjiang.kotlin.base.utils.StatusBarUtil
 import com.zhongjiang.kotlin.provider.router.NavigationUtil
 import com.zhongjiang.kotlin.splash.R
 import com.zhongjiang.kotlin.splash.data.VerificationCodeResuleInfo
@@ -27,6 +29,7 @@ import org.jetbrains.anko.toast
 class LoginFragment : BaseMvpFragment<LoginFragmentPresenter>(), LoginFragmentContract.View {
     override fun onLoginSuccess() {
         _mActivity.finish()
+        NavigationUtil.navigationToMain()
     }
 
     /**公共实现部分 start*/
@@ -74,8 +77,6 @@ class LoginFragment : BaseMvpFragment<LoginFragmentPresenter>(), LoginFragmentCo
         super.onResume()
         mLoginFragmentVideoView.resume()
     }
-    override fun initStatusBar() {
-    }
     override fun onPause() {
         super.onPause()
         mLoginFragmentVideoView.pause()
@@ -105,8 +106,6 @@ class LoginFragment : BaseMvpFragment<LoginFragmentPresenter>(), LoginFragmentCo
             val phoneNumber = mLoginFragmentEtPhone.text.toString().replace(" ", "")
             mPresenter.requestLogin(mSingleCode, phoneNumber, mLoginFragmentEtVerificationCode.text.toString())
         }
-
-
     }
     /**公共实现部分 end*/
 
@@ -115,6 +114,8 @@ class LoginFragment : BaseMvpFragment<LoginFragmentPresenter>(), LoginFragmentCo
      * 显示登录内容
      */
     fun showLoginView() {
+        _mActivity.window.clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
+        ImmersionBar.with(this).hideBar(BarHide.FLAG_SHOW_BAR).keyboardEnable(true).autoDarkModeEnable(false).statusBarColorTransform(R.color.black).statusBarAlpha(0.2f).init()
         mLoginFragmentViewSub.inflate()
         initSubView()
         mLoginFragmentRoundTvSkip.animate().alpha(0f).translationY(500f).setDuration(500).start()
@@ -143,8 +144,6 @@ class LoginFragment : BaseMvpFragment<LoginFragmentPresenter>(), LoginFragmentCo
      * 显示登录页动画
      */
     fun startLoginContentAnimate() {
-        StatusBarUtil.setStatusBarVisibility(_mActivity, true)
-        StatusBarUtil.setStatusBarAlpha(_mActivity)
         val phoneAlphaAn = ObjectAnimator.ofFloat(mLoginFragmentLlPhone, "alpha", 0f, 1f)
         val logoAlphaAn = ObjectAnimator.ofFloat(mLoginFragmentImgLogo, "alpha", 0f, 1f)
         val codeAlphaAn = ObjectAnimator.ofFloat(mLoginFragmentLlCode, "alpha", 0f, 1f)
@@ -209,6 +208,10 @@ class LoginFragment : BaseMvpFragment<LoginFragmentPresenter>(), LoginFragmentCo
     override fun getVerificationCodeSuccess(t: VerificationCodeResuleInfo) {
         mSingleCode = t.code
         context!!.toast(t.showMessage)
+    }
+
+    override fun initImmersionBar() {
+        ImmersionBar.with(this).hideBar(BarHide.FLAG_HIDE_STATUS_BAR).init()
     }
 
 }

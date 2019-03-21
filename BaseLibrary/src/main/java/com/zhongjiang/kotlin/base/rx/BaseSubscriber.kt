@@ -13,19 +13,18 @@ open class BaseMaybeObserver<T>(val iView: IView) : MaybeObserver<T> {
     override fun onError(e: Throwable) {
         e.printStackTrace()
         iView.hideLoading()
-        if (e is BaseException){
-            iView.onError(e.msg)
-        }
-        Log.i("test1","onError")
+        var responeThrowable = ExceptionHandle.handleException(e)
+        iView.onError(responeThrowable.status, responeThrowable.msg)
+        Log.i("test1", "onError")
     }
 
     override fun onSuccess(t: T) {
         iView.hideLoading()
-        Log.i("test1","onSuccess")
+        Log.i("test1", "onSuccess")
     }
 
     override fun onComplete() {
-        Log.i("test1","onComplete")
+        Log.i("test1", "onComplete")
         iView.hideLoading()
     }
 
