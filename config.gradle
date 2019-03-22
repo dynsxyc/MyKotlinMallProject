@@ -146,7 +146,14 @@ ext {
 
             // Test helpers
             "roomTesting"                           : "androidx.room:room-testing:${dependVersion.room_version}",
-            "logger"                                : "com.orhanobut:logger:2.2.0"
+            "logger"                                : "com.orhanobut:logger:2.2.0",
+
+            //友盟分享
+            "umengCommon"                                : "com.umeng.umsdk:common:latest.integration",
+            "umengUtdid"                                : "com.umeng.umsdk:utdid:1.1.5.3",
+            "wechatSdk"                                : "com.tencent.mm.opensdk:wechat-sdk-android-with-mta:+",
+            "sinaWeiboSdk"                                : "com.sina.weibo.sdk:core:4.3.7:openDefaultRelease@aar"
+
     ]
 
 }

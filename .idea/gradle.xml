@@ -10,11 +10,12 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
-            <option value="$PROJECT_DIR$/App" />
             <option value="$PROJECT_DIR$/BaseLibrary" />
             <option value="$PROJECT_DIR$/Provider" />
             <option value="$PROJECT_DIR$/SplashModule" />
+            <option value="$PROJECT_DIR$/alipaySdk" />
             <option value="$PROJECT_DIR$/testapp" />
+            <option value="$PROJECT_DIR$/umengmodule" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

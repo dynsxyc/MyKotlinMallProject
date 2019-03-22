@@ -66,37 +66,31 @@ open class BasePresenter<V : IView, M : IModel> constructor(view: V, model: M) :
     @MainThread
     @CallSuper
     override fun onCreate(owner: LifecycleOwner) {
-        Logger.d("onCreate")
     }
 
     @MainThread
     @CallSuper
     override fun onStart(owner: LifecycleOwner) {
-        Logger.d("onStart")
     }
 
     @MainThread
     @CallSuper
     override fun onResume(owner: LifecycleOwner) {
-        Logger.d("onResume")
     }
 
     @MainThread
     @CallSuper
     override fun onPause(owner: LifecycleOwner) {
-        Logger.d("onPause")
     }
 
     @MainThread
     @CallSuper
     override fun onStop(owner: LifecycleOwner) {
-        Logger.d("onStop")
     }
 
     @CallSuper
     @MainThread
     override fun onDestroy(owner: LifecycleOwner) {
-        Logger.d("onDestroy")
         mModel.onDestroy()
     }
 

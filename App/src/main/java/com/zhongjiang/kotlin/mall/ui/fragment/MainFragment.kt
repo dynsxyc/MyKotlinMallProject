@@ -31,6 +31,7 @@ class MainFragment : BaseMainFragment<MainFragmentContract.Presenter>(),MainFrag
             }
             R.id.navigation_notifications -> {
                 mainFragmentMessage.setText(R.string.title_notifications)
+                showCancelableLoading()
                 return@OnNavigationItemSelectedListener true
             }
         }

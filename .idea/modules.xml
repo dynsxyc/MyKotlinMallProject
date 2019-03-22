@@ -2,12 +2,13 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/App/App.iml" filepath="$PROJECT_DIR$/App/App.iml" />
       <module fileurl="file://$PROJECT_DIR$/BaseLibrary/BaseLibrary.iml" filepath="$PROJECT_DIR$/BaseLibrary/BaseLibrary.iml" />
       <module fileurl="file://$PROJECT_DIR$/MyKotlinMallProject.iml" filepath="$PROJECT_DIR$/MyKotlinMallProject.iml" />
       <module fileurl="file://$PROJECT_DIR$/Provider/Provider.iml" filepath="$PROJECT_DIR$/Provider/Provider.iml" />
       <module fileurl="file://$PROJECT_DIR$/SplashModule/SplashModule.iml" filepath="$PROJECT_DIR$/SplashModule/SplashModule.iml" />
+      <module fileurl="file://$PROJECT_DIR$/alipaySdk/alipaySdk.iml" filepath="$PROJECT_DIR$/alipaySdk/alipaySdk.iml" />
       <module fileurl="file://$PROJECT_DIR$/testapp/testapp.iml" filepath="$PROJECT_DIR$/testapp/testapp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/umengmodule/umengmodule.iml" filepath="$PROJECT_DIR$/umengmodule/umengmodule.iml" />
     </modules>
   </component>
 </project>

@@ -43,10 +43,6 @@ dependencies {
     implementation project(':Provider')
     //dagger2
     kapt rootProject.ext.dependencies["dagger-compiler"]
-
-
     api rootProject.ext.dependencies["constraint-layout"]
 }
-repositories {
-    mavenCentral()
-}
+

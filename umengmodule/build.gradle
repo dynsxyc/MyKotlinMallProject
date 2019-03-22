@@ -1,0 +1,57 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+
+android {
+    compileSdkVersion rootProject.ext.android["compileSdkVersion"]
+    defaultConfig {
+        minSdkVersion rootProject.ext.android["minSdkVersion"]
+        targetSdkVersion rootProject.ext.android["targetSdkVersion"]
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        debug {
+        }
+    }
+
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+//            if (isUserModule.toBoolean()) {
+                manifest.srcFile 'src/main/release/AndroidManifest.xml'
+//                //release模式下排除debug文件夹中的所有Java文件
+//                java {
+//                    exclude 'debug/**'
+//                }
+//            } else {
+////                java.srcDirs = ['src','debug']
+//                manifest.srcFile 'src/main/debug/AndroidManifest.xml'
+//            }
+        }
+    }
+
+}
+
+dependencies {
+    api fileTree(dir: 'libs', include: ['*.jar'])
+
+    testImplementation 'junit:junit:4.12'
+
+    api rootProject.ext.dependencies["umengCommon"]
+    api rootProject.ext.dependencies["umengUtdid"]
+    api rootProject.ext.dependencies["wechatSdk"]
+
+
+    api 'androidx.appcompat:appcompat:1.0.0-alpha1'
+    api 'androidx.constraintlayout:constraintlayout:1.1.2'
+    api "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+}

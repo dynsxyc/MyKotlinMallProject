@@ -17,7 +17,7 @@
         <activity
             android:name=".ui.activity.SplashActivity"
             android:configChanges="orientation|screenSize"
-            android:screenOrientation="behind"
+            android:screenOrientation="portrait"
             android:theme="@style/AppSplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -26,6 +26,10 @@
             </intent-filter>
         </activity>
         <activity android:name="com.zhongjiang.kotlin.base.ui.activity.WebShowActivity" />
+        <activity
+            android:name="tsou.uxuan.user.wxapi.WXPayEntryActivity"
+            android:exported="true"
+            android:launchMode="singleTop" />
     </application>
 
 </manifest>

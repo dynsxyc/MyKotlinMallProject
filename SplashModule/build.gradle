@@ -20,6 +20,7 @@ android {
     defaultConfig {
         minSdkVersion rootProject.ext.android["minSdkVersion"]
         targetSdkVersion rootProject.ext.android["targetSdkVersion"]
+        applicationId "tsou.uxuan.user"
         versionCode 1
         versionName "1.0"
 
@@ -30,11 +31,22 @@ android {
         vectorDrawables.useSupportLibrary = true
 
     }
-
+    signingConfigs {
+        release {
+            storeFile file("tsou.keystore")
+            storePassword "tsou123"
+            keyAlias "tsou.keystore"
+            keyPassword "tsou123"
+        }
+    }
     buildTypes {
         release {
+            signingConfig signingConfigs.release
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            signingConfig signingConfigs.release
         }
     }
 

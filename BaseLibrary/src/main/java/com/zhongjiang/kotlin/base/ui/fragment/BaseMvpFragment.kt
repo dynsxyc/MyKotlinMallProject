@@ -47,17 +47,23 @@ abstract class BaseMvpFragment<P : IPresenter> : BaseInjectFragment(), IFragment
     }
 
     val progressLoading by lazy {
-        ProgressLoading.create(activity!!)
+        ProgressLoading.create(_mActivity)
+    }
+    val progressCancelableLoading by lazy {
+        ProgressLoading.create(_mActivity,true)
     }
 
     @MainThread
     override fun showLoading() {
         progressLoading.showLoading()
     }
+    protected fun showCancelableLoading(){
+        progressCancelableLoading.showLoading()
+    }
 
     @MainThread
     override fun onError(status:Int,text: String) {
-        activity!!.toast(text)
+        _mActivity.toast(text)
     }
 
     @MainThread
