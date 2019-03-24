@@ -47,7 +47,6 @@ dependencies {
     testImplementation 'junit:junit:4.12'
 
     api rootProject.ext.dependencies["umengCommon"]
-    api rootProject.ext.dependencies["umengUtdid"]
     api rootProject.ext.dependencies["wechatSdk"]
 
 

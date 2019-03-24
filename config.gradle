@@ -40,6 +40,7 @@ ext {
             "support-annotations"                   : "com.android.support:support-annotations:${dependVersion.support_version}",
             "constraint-layout"                     : "com.android.support.constraint:constraint-layout:1.0.2",
             "googleMaterial"                        : "com.google.android.material:material:1.0.0-rc01",
+            "android-multidex"                        : "com.android.support:multidex:1.0.3",
 
             //kotlin
             "kotlin-android"                        : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${dependVersion.kotlin_version}",
@@ -83,12 +84,17 @@ ext {
             "dagger-android-processor"              : "com.google.dagger:dagger-android-processor:${dependVersion.dagger_version}",
 
             "circleImageview"                       : "de.hdodenhof:circleimageview:${dependVersion.circleImageview_version}",
-            "immersionBar"                       : "com.gyf.immersionbar:immersionbar:2.3.3",
+            "immersionBar"                          : "com.gyf.immersionbar:immersionbar:2.3.3",
 
-            //router
+            //阿里云产品 router
             "router"                                : "com.alibaba:arouter-api:${dependVersion.routerVersion}",
             "router-compiler"                       : "com.alibaba:arouter-compiler:${dependVersion.routerCompilerVersion}",
-            "aliyun-oss"                       : "com.aliyun.dpa:oss-android-sdk:+",
+            "aliyun-oss"                            : "com.aliyun.dpa:oss-android-sdk:+",
+            "aliyun-push-core"                      : "com.aliyun.ams:alicloud-android-push:3.1.4@aar",
+            "aliyun-push-utils"                     : "com.aliyun.ams:alicloud-android-utils:1.1.3",
+            "aliyun-push-beacon"                    : "com.aliyun.ams:alicloud-android-beacon:1.0.1",
+            "aliyun-push-utdid"                     : "com.aliyun.ams:alicloud-android-ut:5.4.0",
+            "aliyun-hotfix"                         : "com.aliyun.ams:alicloud-android-hotfix:3.2.3",
 
             //okHttp3
             "okhttp3"                               : "com.squareup.okhttp3:okhttp:${dependVersion.okhttp_version}",
@@ -149,10 +155,10 @@ ext {
             "logger"                                : "com.orhanobut:logger:2.2.0",
 
             //友盟分享
-            "umengCommon"                                : "com.umeng.umsdk:common:latest.integration",
-            "umengUtdid"                                : "com.umeng.umsdk:utdid:1.1.5.3",
-            "wechatSdk"                                : "com.tencent.mm.opensdk:wechat-sdk-android-with-mta:+",
-            "sinaWeiboSdk"                                : "com.sina.weibo.sdk:core:4.3.7:openDefaultRelease@aar"
+            "umengCommon"                           : "com.umeng.umsdk:common:latest.integration",
+            "umengUtdid"                            : "com.umeng.umsdk:utdid:1.1.5.3",
+            "wechatSdk"                             : "com.tencent.mm.opensdk:wechat-sdk-android-with-mta:+",
+            "sinaWeiboSdk"                          : "com.sina.weibo.sdk:core:4.3.7:openDefaultRelease@aar"
 
     ]
 

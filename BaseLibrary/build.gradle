@@ -22,6 +22,10 @@ android {
 
         multiDexEnabled true
 
+        ndk {
+            //选择要添加的对应cpu类型的.so库。
+            abiFilters 'armeabi', 'x86', 'arm64-v8a', 'armeabi-v7a', 'mips', 'mips64', 'x86_64'
+        }
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -53,6 +57,7 @@ dependencies {
     //android-support
     api rootProject.ext.dependencies["recyclerview"]
     api rootProject.ext.dependencies["androidx-v4"]
+    api rootProject.ext.dependencies["android-multidex"]
     api rootProject.ext.dependencies["androidx-appcompat"]
 
     api rootProject.ext.dependencies["kotlin-android"]
@@ -108,7 +113,9 @@ dependencies {
     //Arouter
     api rootProject.ext.dependencies["router"]
     kapt rootProject.ext.dependencies["router-compiler"]
-    api rootProject.ext.dependencies["aliyun-oss"]
+    api (rootProject.ext.dependencies["aliyun-oss"]){
+        exclude(module:"alicloud-android-ut")
+    }
 
     //fragmentTation start  如果不想继承SupportActivity/Fragment，自己定制Support，可仅依赖:
     api rootProject.ext.dependencies["fragmentationCore"]
@@ -119,6 +126,10 @@ dependencies {
     api rootProject.ext.dependencies["rxCache"]
     api rootProject.ext.dependencies["rxCache-Jolyglot"]
     api rootProject.ext.dependencies["logger"]
+    api rootProject.ext.dependencies["aliyun-push-core"]
+    api rootProject.ext.dependencies["aliyun-push-utils"]
+    api rootProject.ext.dependencies["aliyun-push-beacon"]
+    api rootProject.ext.dependencies["aliyun-push-utdid"]
     api project(':alipaySdk')
     api project(':umengmodule')
 }

@@ -10,8 +10,11 @@ import android.os.Build
 import android.view.WindowManager
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.multidex.MultiDex
 import androidx.multidex.MultiDexApplication
 import com.alibaba.android.arouter.launcher.ARouter
+import com.alibaba.sdk.android.push.CommonCallback
+import com.alibaba.sdk.android.push.noonesdk.PushServiceFactory
 import com.ihsanbal.logging.Level
 import com.ihsanbal.logging.LoggingInterceptor
 import com.orhanobut.logger.AndroidLogAdapter
@@ -75,6 +78,7 @@ abstract class BaseApplication : MultiDexApplication(), HasActivityInjector,
         super.onCreate()
         initRouter()
         initDi()
+        initAliService(this)
     }
 
     private fun initDi() {
@@ -162,5 +166,30 @@ abstract class BaseApplication : MultiDexApplication(), HasActivityInjector,
             wm.defaultDisplay.getSize(point)
         }
         return WindowScreenInfo(point.x, point.y)
+    }
+
+    private fun initAliService(application: Context) {
+        initPushService(application)
+    }
+
+
+    /**
+     * 初始化云推送通道
+     * @param application
+     */
+    private fun initPushService(application: Context) {
+        PushServiceFactory.init(application)
+        var pushService = PushServiceFactory.getCloudPushService();
+        pushService.register(application, object : CommonCallback {
+            override fun onSuccess(p0: String?) {
+                Logger.i("init cloudchannel success $p0")
+            }
+
+            override fun onFailed(errorCode: String?, errorMessage: String?) {
+                Logger.i("init cloudchannel failed -- errorcode:$errorCode errorMessage: $errorMessage")
+            }
+
+        })
+        Logger.i("deviceId = ${pushService.deviceId}")
     }
 }
