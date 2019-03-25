@@ -8,13 +8,25 @@ import com.alibaba.sdk.android.oss.callback.OSSProgressCallback
 import com.alibaba.sdk.android.oss.common.OSSLog
 import com.alibaba.sdk.android.oss.common.auth.OSSCustomSignerCredentialProvider
 import com.alibaba.sdk.android.oss.common.auth.OSSPlainTextAKSKCredentialProvider
+import com.alibaba.sdk.android.oss.common.utils.CRC64
+import com.alibaba.sdk.android.oss.internal.OSSAsyncTask
 import com.alibaba.sdk.android.oss.model.*
+import com.uber.autodispose.ScopeProvider
+import com.uber.autodispose.autoDisposable
 import com.zhongjiang.kotlin.base.common.YouXuanNetInterfaceConstant.Companion.BASE_URL_DEVELOP_TEST
+import com.zhongjiang.kotlin.base.ext.handlerThread
 import com.zhongjiang.kotlin.base.injection.module.sheduler.SchedulerProvider
+import io.reactivex.Flowable
 import io.reactivex.Maybe
+import io.reactivex.Observable
+import io.reactivex.functions.Consumer
+import io.reactivex.functions.Function
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.Response
+import org.intellij.lang.annotations.Flow
+import org.jetbrains.anko.doAsync
+import org.reactivestreams.Publisher
 import java.io.File
 import java.io.IOException
 import javax.inject.Inject
@@ -24,7 +36,7 @@ import javax.inject.Inject
  * Created by mOss on 2015/12/7 0007.
  * 支持普通上传，普通下载
  */
-class OssService @Inject constructor(var context: Context,schedulerProvider: SchedulerProvider,mBucketType: BucketType) {
+class OssService @Inject constructor(var context: Context, var schedulerProvider: SchedulerProvider, mBucketType: BucketType) {
 
     companion object {
         private const val GET_TOKEN_URL = "file/sts"
@@ -43,7 +55,7 @@ class OssService @Inject constructor(var context: Context,schedulerProvider: Sch
             mOss = getDefaultOss(mBucketType.endpoint)
         }.subscribe({
 
-        },{
+        }, {
             it.printStackTrace()
         })
     }
@@ -116,7 +128,107 @@ class OssService @Inject constructor(var context: Context,schedulerProvider: Sch
     }
 
 
-    fun asyncPutFile(fileName:String,localFile:String, mDisplayer: UIDisplayer) {
+    fun asyncPutFile(array: ArrayList<UpFileBean>, scopeProvider: ScopeProvider, onProgress: (upfilebean: UpFileBean) -> Unit, onSuccess: (upfilebean: UpFileBean) -> Unit, onFail: (upfilebean: UpFileBean) -> Unit) :Flowable<OSSAsyncTask<PutObjectResult>>{
+        return Flowable.just(array).flatMap {
+            Flowable.fromIterable(it)
+
+        }.filter {
+            it.filePath.isNotEmpty()
+        }.flatMap {
+            val put = PutObjectRequest(mBucket, it.fileName, it.filePath)
+            put.crC64 = OSSRequest.CRC64Config.YES
+            put.progressCallback = OSSProgressCallback { request, currentSize, totalSize ->
+                it.progress = (100 * currentSize / totalSize).toInt()
+                Flowable
+                        .just(it).handlerThread(schedulerProvider).autoDisposable(scopeProvider).subscribe { it ->
+                            onProgress(it)
+                        }
+            }
+                    var result = mOss.asyncPutObject(put,object :OSSCompletedCallback<PutObjectRequest,PutObjectResult>{
+                        override fun onSuccess(request: PutObjectRequest?, result: PutObjectResult?) {
+                            Flowable
+                                    .just(it).handlerThread(schedulerProvider).autoDisposable(scopeProvider).subscribe {
+                                        onSuccess(it)
+                                    }
+                        }
+
+                        override fun onFailure(request: PutObjectRequest?, clientException: ClientException?, serviceException: ServiceException?) {
+                            Flowable
+                                    .just(it).handlerThread(schedulerProvider).autoDisposable(scopeProvider).subscribe {
+                                        onFail(it)
+                                    }
+                        }
+
+                    })
+            Flowable.just(result)
+
+
+        }
+
+
+//        val upload_start = System.currentTimeMillis()
+//        OSSLog.logDebug("upload start")
+//        val file = File(localFile)
+//        if (!file.exists()) {
+//            Log.w("AsyncPutImage", "FileNotExist")
+//            Log.w("LocalFile", localFile)
+//            mDisplayer.uploadFail("文件不存在")
+//            return
+//        }
+//        // 构造上传请求
+//        OSSLog.logDebug("create PutObjectRequest ")
+//        val put = PutObjectRequest(mBucket, fileName, localFile)
+//        put.crC64 = OSSRequest.CRC64Config.YES
+//
+//        // 异步上传时可以设置进度回调
+//        put.progressCallback = OSSProgressCallback { request, currentSize, totalSize ->
+//            Log.d("PutObject", "currentSize: $currentSize totalSize: $totalSize")
+//            val progress = (100 * currentSize / totalSize).toInt()
+//            mDisplayer.updateProgress(progress)
+//            mDisplayer.displayInfo("上传进度: $progress%")
+//        }
+//        OSSLog.logDebug(" asyncPutObject ")
+//        mOss.asyncPutObject(put, object : OSSCompletedCallback<PutObjectRequest, PutObjectResult> {
+//            override fun onSuccess(request: PutObjectRequest, result: PutObjectResult) {
+//                Log.d("PutObject", "UploadSuccess")
+//
+//                Log.d("ETag", result.eTag)
+//                Log.d("RequestId", result.requestId)
+//
+//                val upload_end = System.currentTimeMillis()
+//                OSSLog.logDebug("upload cost: " + (upload_end - upload_start) / 1000f)
+//                mDisplayer.uploadComplete()
+//                mDisplayer.displayInfo("Bucket: " + mBucket
+//                        + "\nObject: " + request.objectKey
+//                        + "\nETag: " + result.eTag
+//                        + "\nRequestId: " + result.requestId
+//                        + "\nCallback: " + result.serverCallbackReturnBody)
+//            }
+//
+//            override fun onFailure(request: PutObjectRequest, clientExcepion: ClientException?, serviceException: ServiceException?) {
+//                var info = ""
+//                // 请求异常
+//                if (clientExcepion != null) {
+//                    // 本地异常如网络异常等
+//                    clientExcepion.printStackTrace()
+//                    info = clientExcepion.toString()
+//                }
+//                if (serviceException != null) {
+//                    // 服务异常
+//                    Log.e("ErrorCode", serviceException.errorCode)
+//                    Log.e("RequestId", serviceException.requestId)
+//                    Log.e("HostId", serviceException.hostId)
+//                    Log.e("RawMessage", serviceException.rawMessage)
+//                    info = serviceException.toString()
+//                }
+//                mDisplayer.uploadFail(info)
+//                mDisplayer.displayInfo(info)
+//            }
+//        })
+    }
+
+
+    fun asyncPutFile(fileName: String, localFile: String, mDisplayer: UIDisplayer) {
         val upload_start = System.currentTimeMillis()
         OSSLog.logDebug("upload start")
         val file = File(localFile)

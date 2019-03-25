@@ -18,6 +18,7 @@ import com.zhongjiang.kotlin.base.ext.shieldDoubleClick
 import com.zhongjiang.kotlin.base.injection.module.sheduler.SchedulerProvider
 import com.zhongjiang.kotlin.base.oss.OssService
 import com.zhongjiang.kotlin.base.oss.UIDisplayer
+import com.zhongjiang.kotlin.base.oss.UpFileBean
 import com.zhongjiang.kotlin.base.ui.fragment.BaseMvpFragment
 import com.zhongjiang.kotlin.base.utils.FromatPhoneTextWatcher
 import com.zhongjiang.kotlin.provider.router.NavigationUtil
@@ -117,13 +118,13 @@ class LoginFragment : BaseMvpFragment<LoginFragmentPresenter>(), LoginFragmentCo
 //            ) { isOk, s ->
 //                _mActivity.toast(s)
 //            }
-            publicOssService.asyncPutFile("Android test.png","storage/emulated/0/1.jpg",object :UIDisplayer{
-                override fun displayInfo(s: String) {
-                    super.displayInfo(s)
-                    com.orhanobut.logger.Logger.i(s)
-                }
-
-            })
+//            publicOssService.asyncPutFile("Android test.png","storage/emulated/0/1.jpg",object :UIDisplayer{
+//                override fun displayInfo(s: String) {
+//                    super.displayInfo(s)
+//                    com.orhanobut.logger.Logger.i(s)
+//                }
+//
+//            })
         }
         RxView.clicks(mLoginFragmentRoundTvLogin).shieldDoubleClick {
             //登录
