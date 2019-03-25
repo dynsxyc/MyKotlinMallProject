@@ -40,7 +40,7 @@ ext {
             "support-annotations"                   : "com.android.support:support-annotations:${dependVersion.support_version}",
             "constraint-layout"                     : "com.android.support.constraint:constraint-layout:1.0.2",
             "googleMaterial"                        : "com.google.android.material:material:1.0.0-rc01",
-            "android-multidex"                        : "com.android.support:multidex:1.0.3",
+            "android-multidex"                      : "com.android.support:multidex:1.0.3",
 
             //kotlin
             "kotlin-android"                        : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${dependVersion.kotlin_version}",

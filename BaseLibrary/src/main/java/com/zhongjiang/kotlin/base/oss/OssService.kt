@@ -1,48 +1,22 @@
 package com.zhongjiang.kotlin.base.oss
 
 import android.content.Context
-import android.text.TextUtils
 import android.util.Log
-import android.widget.EditText
 import com.alibaba.sdk.android.oss.*
-
 import com.alibaba.sdk.android.oss.callback.OSSCompletedCallback
 import com.alibaba.sdk.android.oss.callback.OSSProgressCallback
 import com.alibaba.sdk.android.oss.common.OSSLog
-import com.alibaba.sdk.android.oss.common.auth.OSSAuthCredentialsProvider
-import com.alibaba.sdk.android.oss.common.auth.OSSCredentialProvider
 import com.alibaba.sdk.android.oss.common.auth.OSSCustomSignerCredentialProvider
 import com.alibaba.sdk.android.oss.common.auth.OSSPlainTextAKSKCredentialProvider
-import com.alibaba.sdk.android.oss.model.CompleteMultipartUploadResult
-import com.alibaba.sdk.android.oss.model.CreateBucketRequest
-import com.alibaba.sdk.android.oss.model.DeleteBucketRequest
-import com.alibaba.sdk.android.oss.model.DeleteBucketResult
-import com.alibaba.sdk.android.oss.model.DeleteObjectRequest
-import com.alibaba.sdk.android.oss.model.GetObjectRequest
-import com.alibaba.sdk.android.oss.model.GetObjectResult
-import com.alibaba.sdk.android.oss.model.HeadObjectRequest
-import com.alibaba.sdk.android.oss.model.HeadObjectResult
-import com.alibaba.sdk.android.oss.model.ImagePersistRequest
-import com.alibaba.sdk.android.oss.model.ImagePersistResult
-import com.alibaba.sdk.android.oss.model.ListObjectsRequest
-import com.alibaba.sdk.android.oss.model.ListObjectsResult
-import com.alibaba.sdk.android.oss.model.MultipartUploadRequest
-import com.alibaba.sdk.android.oss.model.OSSRequest
-import com.alibaba.sdk.android.oss.model.PutObjectRequest
-import com.alibaba.sdk.android.oss.model.PutObjectResult
-import com.alibaba.sdk.android.oss.model.ResumableUploadRequest
-import com.alibaba.sdk.android.oss.model.ResumableUploadResult
-import com.alibaba.sdk.android.oss.model.TriggerCallbackRequest
-import com.alibaba.sdk.android.oss.model.TriggerCallbackResult
-import com.zhongjiang.kotlin.base.common.BaseApplication
-import dagger.internal.DoubleCheck.lazy
-
-import java.io.File
-import java.io.IOException
-
+import com.alibaba.sdk.android.oss.model.*
+import com.zhongjiang.kotlin.base.common.YouXuanNetInterfaceConstant.Companion.BASE_URL_DEVELOP_TEST
+import com.zhongjiang.kotlin.base.injection.module.sheduler.SchedulerProvider
+import io.reactivex.Maybe
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.Response
+import java.io.File
+import java.io.IOException
 import javax.inject.Inject
 
 
@@ -50,45 +24,44 @@ import javax.inject.Inject
  * Created by mOss on 2015/12/7 0007.
  * 支持普通上传，普通下载
  */
-class OssService(private var mBucket: String, private val mDisplayer: UIDisplayer) {
-    @Inject
-    lateinit var context:BaseApplication
+class OssService @Inject constructor(var context: Context,schedulerProvider: SchedulerProvider,mBucketType: BucketType) {
+
     companion object {
+        private const val GET_TOKEN_URL = "file/sts"
 
         private val mResumableObjectKey = "resumableObject"
-        private lateinit var mOss:OSS
-        private lateinit var mCallbackAddress:String
-//        private var mCallbackAddress:String
-    }
-    init {
-        initOss(getDefaultOss())
-    }
-    fun setBucketName(bucket: String) {
-        this.mBucket = bucket
+        private lateinit var mOss: OSS
+        private lateinit var mCallbackAddress: String
+        private lateinit var mBucket: String
     }
 
-    fun initOss(_oss: OSS) {
-        mOss = _oss
+    init {
+        //storage/emulated/0/1.jpg
+        Maybe.fromAction<String> {
+            mBucket = mBucketType.bucketName
+            mCallbackAddress = mBucketType.callbackAddress
+            mOss = getDefaultOss(mBucketType.endpoint)
+        }.subscribe({
+
+        },{
+            it.printStackTrace()
+        })
     }
-    private fun getDefaultOss():OSS{
-        val credentialProvider: OSSCredentialProvider
+
+    private fun getDefaultOss(endpoint: String): OSS {
         //使用自己的获取STSToken的类
-        val stsServer = "獲取sts 的接口"
-            credentialProvider = OSSAuthCredentialsProvider(stsServer)
+        val credentialProvider = MOSSAuthCredentialsProvider(BASE_URL_DEVELOP_TEST.plus(GET_TOKEN_URL))
 
         val conf = ClientConfiguration()
         conf.connectionTimeout = 15 * 1000 // 连接超时，默认15秒
         conf.socketTimeout = 15 * 1000 // socket超时，默认15秒
         conf.maxConcurrentRequest = 5 // 最大并发请求书，默认5个
         conf.maxErrorRetry = 2 // 失败后最大重试次数，默认2次
-        return OSSClient(context, "", credentialProvider, conf)
+        return OSSClient(context, endpoint, credentialProvider, conf)
     }
 
-    fun setCallbackAddress(callbackAddress: String) {
-        mCallbackAddress = callbackAddress
-    }
-
-    fun asyncGetImage(getUrl: String) {
+    /**获取图片*/
+    fun asyncGetImage(getUrl: String, mDisplayer: UIDisplayer) {
         val get_start = System.currentTimeMillis()
         OSSLog.logDebug("get start")
 
@@ -143,36 +116,20 @@ class OssService(private var mBucket: String, private val mDisplayer: UIDisplaye
     }
 
 
-    fun asyncPutImage(`object`: String, localFile: String) {
+    fun asyncPutFile(fileName:String,localFile:String, mDisplayer: UIDisplayer) {
         val upload_start = System.currentTimeMillis()
         OSSLog.logDebug("upload start")
-
-        if (`object` == "") {
-            Log.w("AsyncPutImage", "ObjectNull")
-            return
-        }
-
         val file = File(localFile)
         if (!file.exists()) {
             Log.w("AsyncPutImage", "FileNotExist")
             Log.w("LocalFile", localFile)
+            mDisplayer.uploadFail("文件不存在")
             return
         }
-
         // 构造上传请求
         OSSLog.logDebug("create PutObjectRequest ")
-        val put = PutObjectRequest(mBucket, `object`, localFile)
+        val put = PutObjectRequest(mBucket, fileName, localFile)
         put.crC64 = OSSRequest.CRC64Config.YES
-        if (mCallbackAddress != null) {
-            // 传入对应的上传回调参数，这里默认使用OSS提供的公共测试回调服务器地址
-            put.callbackParam = object : HashMap<String, String>() {
-                init {
-                    put("callbackUrl", mCallbackAddress)
-                    //callbackBody可以自定义传入的信息
-                    put("callbackBody", "filename=\${object}")
-                }
-            }
-        }
 
         // 异步上传时可以设置进度回调
         put.progressCallback = OSSProgressCallback { request, currentSize, totalSize ->
@@ -181,9 +138,8 @@ class OssService(private var mBucket: String, private val mDisplayer: UIDisplaye
             mDisplayer.updateProgress(progress)
             mDisplayer.displayInfo("上传进度: $progress%")
         }
-
         OSSLog.logDebug(" asyncPutObject ")
-        val task = mOss.asyncPutObject(put, object : OSSCompletedCallback<PutObjectRequest, PutObjectResult> {
+        mOss.asyncPutObject(put, object : OSSCompletedCallback<PutObjectRequest, PutObjectResult> {
             override fun onSuccess(request: PutObjectRequest, result: PutObjectResult) {
                 Log.d("PutObject", "UploadSuccess")
 
@@ -223,7 +179,7 @@ class OssService(private var mBucket: String, private val mDisplayer: UIDisplaye
     }
 
     // Downloads the files with specified prefix in the asynchronous way.
-    fun asyncListObjectsWithBucketName() {
+    fun asyncListObjectsWithBucketName(mDisplayer: UIDisplayer) {
         val listObjects = ListObjectsRequest(mBucket)
         // Sets the prefix
         listObjects.prefix = "android"
@@ -237,7 +193,7 @@ class OssService(private var mBucket: String, private val mDisplayer: UIDisplaye
 //                    info += "\n" + String.format("object: %s %s %s", result.objectSummaries[i].key, result.objectSummaries[i].eTag, result.objectSummaries[i].lastModified.toString())
 //                    OSSLog.logDebug("AyncListObjects", info)
 //                }
-                for(it in result.objectSummaries){
+                for (it in result.objectSummaries) {
                     info += "\n" + "${it.key}, ${it.eTag} ,${it.lastModified}"
                     OSSLog.logDebug("AyncListObjects", info)
                 }
@@ -261,7 +217,7 @@ class OssService(private var mBucket: String, private val mDisplayer: UIDisplaye
     }
 
     // Gets file's metadata
-    fun headObject(objectKey: String) {
+    fun headObject(objectKey: String, mDisplayer: UIDisplayer) {
         // Creates a request to get the file's metadata
         val head = HeadObjectRequest(mBucket, objectKey)
 
@@ -289,7 +245,7 @@ class OssService(private var mBucket: String, private val mDisplayer: UIDisplaye
         })
     }
 
-    fun asyncMultipartUpload(uploadKey: String, uploadFilePath: String) {
+    fun asyncMultipartUpload(uploadKey: String, uploadFilePath: String, mDisplayer: UIDisplayer) {
         val request = MMultipartUploadRequest(mBucket, uploadKey,
                 uploadFilePath)
         request.setCRC64(OSSRequest.CRC64Config.YES)
@@ -311,7 +267,7 @@ class OssService(private var mBucket: String, private val mDisplayer: UIDisplaye
         })
     }
 
-    fun asyncResumableUpload(resumableFilePath: String) {
+    fun asyncResumableUpload(resumableFilePath: String, mDisplayer: UIDisplayer) {
         val request = ResumableUploadRequest(mBucket, mResumableObjectKey, resumableFilePath)
         request.progressCallback = OSSProgressCallback<ResumableUploadRequest> { request, currentSize, totalSize ->
             Log.d("GetObject", "currentSize: $currentSize totalSize: $totalSize")
@@ -337,7 +293,7 @@ class OssService(private var mBucket: String, private val mDisplayer: UIDisplaye
 
     // If the bucket is private, the signed URL is required for the access.
     // Expiration time is specified in the signed URL.
-    fun presignURLWithBucketAndKey(objectKey: String?) {
+    fun presignURLWithBucketAndKey(objectKey: String?, mDisplayer: UIDisplayer) {
         if (objectKey == null || objectKey === "") {
             mDisplayer.displayInfo("Please input objectKey!")
             return
@@ -377,7 +333,7 @@ class OssService(private var mBucket: String, private val mDisplayer: UIDisplaye
      * Try to delete the bucket and failure is expected.
      * Then delete file and then delete bucket
      */
-    fun deleteNotEmptyBucket(bucket: String, filePath: String) {
+    fun deleteNotEmptyBucket(bucket: String, filePath: String, mDisplayer: UIDisplayer) {
         val createBucketRequest = CreateBucketRequest(bucket)
         // 创建bucket
         try {
@@ -448,7 +404,7 @@ class OssService(private var mBucket: String, private val mDisplayer: UIDisplaye
         })
     }
 
-    fun customSign(ctx: Context, objectKey: String) {
+    fun customSign(ctx: Context, objectKey: String, mDisplayer: UIDisplayer) {
         val provider = object : OSSCustomSignerCredentialProvider() {
             override fun signContent(content: String): String {
 
@@ -484,21 +440,21 @@ class OssService(private var mBucket: String, private val mDisplayer: UIDisplaye
         })
     }
 
-    fun triggerCallback(ctx: Context, endpoint: String) {
+    fun triggerCallback(ctx: Context, endpoint: String, mDisplayer: UIDisplayer) {
         val provider = OSSPlainTextAKSKCredentialProvider("AK", "SK")
         val tClient = OSSClient(ctx, endpoint, provider)
 
-        val callbackParams = object :HashMap<String, String>(){
+        val callbackParams = object : HashMap<String, String>() {
             init {
-                put("callbackURL","callbackURL")
-                put("callbackBody","callbackBody")
+                put("callbackURL", "callbackURL")
+                put("callbackBody", "callbackBody")
             }
         }
 
-        val callbackVars = object :HashMap<String, String>(){
+        val callbackVars = object : HashMap<String, String>() {
             init {
-                put("key1","key1")
-                put("key2","key2")
+                put("key1", "key1")
+                put("key2", "key2")
             }
         }
 
@@ -520,7 +476,7 @@ class OssService(private var mBucket: String, private val mDisplayer: UIDisplaye
 
     }
 
-    fun imagePersist(fromBucket: String, fromObjectKey: String, toBucket: String, toObjectkey: String, action: String) {
+    fun imagePersist(fromBucket: String, fromObjectKey: String, toBucket: String, toObjectkey: String, action: String, mDisplayer: UIDisplayer) {
 
         val request = ImagePersistRequest(fromBucket, fromObjectKey, toBucket, toObjectkey, action)
 
@@ -539,3 +495,4 @@ class OssService(private var mBucket: String, private val mDisplayer: UIDisplaye
         })
     }
 }
+
