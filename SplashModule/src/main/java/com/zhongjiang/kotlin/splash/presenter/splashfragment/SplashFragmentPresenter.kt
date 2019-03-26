@@ -49,23 +49,6 @@ class SplashFragmentPresenter @Inject constructor(view: SplashFragmentContract.V
             }
 
         })
-//                .subscribe(object : BaseMaybeObserver<SplashAdEntity>(mView) {
-//            override fun onSuccess(t: SplashAdEntity) {
-//                if (adInfoBox.count() <= 0) {
-//                    adInfoBox.put(t)
-//                } else {
-//                    var adBean = adInfoBox.all[0]
-//                    adBean.clone(t)
-//                    adInfoBox.put(adBean)
-//                }
-//            }
-//
-//            override fun onError(e: Throwable) {
-//                super.onError(e)
-//                adInfoBox.removeAll()
-//            }
-//        })
-
         if (adInfoBox.count() > 0) {
             var adBean = adInfoBox.all[0]
             if (adBean.imgPathUrl.isNotEmpty()) {

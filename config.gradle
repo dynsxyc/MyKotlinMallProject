@@ -50,7 +50,7 @@ ext {
             "ankoV4"                                : "org.jetbrains.anko:anko-support-v4-commons:${dependVersion.anko_version}",
             "ankoCommons"                           : "org.jetbrains.anko:anko-commons:${dependVersion.anko_version}",
             "RoundView"                             : "com.flyco.roundview:FlycoRoundView_Lib:1.1.4@aar",
-            "PhotoView"                             : "com.github.chrisbanes:PhotoView:latest.release.here",
+            "PhotoView"                             : "com.github.chrisbanes:PhotoView:2.1.3",
 
             //java8-support
             "stream"                                : "com.annimon:stream:1.1.8",
@@ -158,7 +158,9 @@ ext {
             "umengCommon"                           : "com.umeng.umsdk:common:latest.integration",
             "umengUtdid"                            : "com.umeng.umsdk:utdid:1.1.5.3",
             "wechatSdk"                             : "com.tencent.mm.opensdk:wechat-sdk-android-with-mta:+",
-            "sinaWeiboSdk"                          : "com.sina.weibo.sdk:core:4.3.7:openDefaultRelease@aar"
+            "sinaWeiboSdk"                          : "com.sina.weibo.sdk:core:4.3.7:openDefaultRelease@aar",
+            "luban"                                 : "top.zibin:Luban:1.1.8"
+
 
     ]
 

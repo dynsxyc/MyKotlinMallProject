@@ -59,6 +59,7 @@ dependencies {
     api rootProject.ext.dependencies["androidx-v4"]
     api rootProject.ext.dependencies["android-multidex"]
     api rootProject.ext.dependencies["androidx-appcompat"]
+    api rootProject.ext.dependencies["PhotoView"]
 
     api rootProject.ext.dependencies["kotlin-android"]
 
@@ -130,8 +131,10 @@ dependencies {
     api rootProject.ext.dependencies["aliyun-push-utils"]
     api rootProject.ext.dependencies["aliyun-push-beacon"]
     api rootProject.ext.dependencies["aliyun-push-utdid"]
+    api rootProject.ext.dependencies["luban"]
     api project(':alipaySdk')
     api project(':umengmodule')
+    api project(':imageselector')
 }
 
 

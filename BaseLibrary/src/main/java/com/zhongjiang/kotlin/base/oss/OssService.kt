@@ -8,25 +8,17 @@ import com.alibaba.sdk.android.oss.callback.OSSProgressCallback
 import com.alibaba.sdk.android.oss.common.OSSLog
 import com.alibaba.sdk.android.oss.common.auth.OSSCustomSignerCredentialProvider
 import com.alibaba.sdk.android.oss.common.auth.OSSPlainTextAKSKCredentialProvider
-import com.alibaba.sdk.android.oss.common.utils.CRC64
-import com.alibaba.sdk.android.oss.internal.OSSAsyncTask
 import com.alibaba.sdk.android.oss.model.*
-import com.uber.autodispose.ScopeProvider
-import com.uber.autodispose.autoDisposable
+import com.orhanobut.logger.Logger
 import com.zhongjiang.kotlin.base.common.YouXuanNetInterfaceConstant.Companion.BASE_URL_DEVELOP_TEST
 import com.zhongjiang.kotlin.base.ext.handlerThread
 import com.zhongjiang.kotlin.base.injection.module.sheduler.SchedulerProvider
+import io.reactivex.BackpressureStrategy
 import io.reactivex.Flowable
-import io.reactivex.Maybe
-import io.reactivex.Observable
-import io.reactivex.functions.Consumer
-import io.reactivex.functions.Function
+import io.reactivex.FlowableOnSubscribe
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.Response
-import org.intellij.lang.annotations.Flow
-import org.jetbrains.anko.doAsync
-import org.reactivestreams.Publisher
 import java.io.File
 import java.io.IOException
 import javax.inject.Inject
@@ -36,31 +28,22 @@ import javax.inject.Inject
  * Created by mOss on 2015/12/7 0007.
  * 支持普通上传，普通下载
  */
-class OssService @Inject constructor(var context: Context, var schedulerProvider: SchedulerProvider, mBucketType: BucketType) {
+class OssService @Inject constructor(var context: Context, var schedulerProvider: SchedulerProvider, val mBucketType: BucketType) {
 
     companion object {
         private const val GET_TOKEN_URL = "file/sts"
 
         private val mResumableObjectKey = "resumableObject"
-        private lateinit var mOss: OSS
-        private lateinit var mCallbackAddress: String
-        private lateinit var mBucket: String
     }
+    private lateinit var mOss: OSS
+    private var mCallbackAddress: String = mBucketType.callbackAddress
+    private var mBucket: String = mBucketType.bucketName
 
     init {
-        //storage/emulated/0/1.jpg
-        Maybe.fromAction<String> {
-            mBucket = mBucketType.bucketName
-            mCallbackAddress = mBucketType.callbackAddress
-            mOss = getDefaultOss(mBucketType.endpoint)
-        }.subscribe({
-
-        }, {
-            it.printStackTrace()
-        })
+        getDefaultOss(mBucketType.endpoint)
     }
 
-    private fun getDefaultOss(endpoint: String): OSS {
+    private fun getDefaultOss(endpoint: String) {
         //使用自己的获取STSToken的类
         val credentialProvider = MOSSAuthCredentialsProvider(BASE_URL_DEVELOP_TEST.plus(GET_TOKEN_URL))
 
@@ -69,7 +52,12 @@ class OssService @Inject constructor(var context: Context, var schedulerProvider
         conf.socketTimeout = 15 * 1000 // socket超时，默认15秒
         conf.maxConcurrentRequest = 5 // 最大并发请求书，默认5个
         conf.maxErrorRetry = 2 // 失败后最大重试次数，默认2次
-        return OSSClient(context, endpoint, credentialProvider, conf)
+        Flowable.just(credentialProvider).flatMap {
+            Flowable.just(OSSClient(context, endpoint, it, conf))
+        }.handlerThread(schedulerProvider).subscribe {
+            mOss = it
+        }
+
     }
 
     /**获取图片*/
@@ -128,42 +116,40 @@ class OssService @Inject constructor(var context: Context, var schedulerProvider
     }
 
 
-    fun asyncPutFile(array: ArrayList<UpFileBean>, scopeProvider: ScopeProvider, onProgress: (upfilebean: UpFileBean) -> Unit, onSuccess: (upfilebean: UpFileBean) -> Unit, onFail: (upfilebean: UpFileBean) -> Unit) :Flowable<OSSAsyncTask<PutObjectResult>>{
-        return Flowable.just(array).flatMap {
-            Flowable.fromIterable(it)
-
-        }.filter {
-            it.filePath.isNotEmpty()
-        }.flatMap {
-            val put = PutObjectRequest(mBucket, it.fileName, it.filePath)
+    fun asyncPutFile(upFile: UpFileBean): Flowable<UpFileBean> {
+        return Flowable.create(FlowableOnSubscribe<UpFileBean> { flowableEmitter ->
+            val file = File(upFile.filePath)
+            if (upFile.filePath.isEmpty() || file.exists().not()) {
+                upFile.upType = 3
+                flowableEmitter.onNext(upFile)
+                flowableEmitter.onComplete()
+                return@FlowableOnSubscribe
+            }
+            val put = PutObjectRequest(mBucket, upFile.fileName, upFile.filePath)
             put.crC64 = OSSRequest.CRC64Config.YES
             put.progressCallback = OSSProgressCallback { request, currentSize, totalSize ->
-                it.progress = (100 * currentSize / totalSize).toInt()
-                Flowable
-                        .just(it).handlerThread(schedulerProvider).autoDisposable(scopeProvider).subscribe { it ->
-                            onProgress(it)
-                        }
+                upFile.progress = (100 * currentSize / totalSize).toInt()
+                upFile.upType = 1
+                flowableEmitter.onNext(upFile)
             }
-                    var result = mOss.asyncPutObject(put,object :OSSCompletedCallback<PutObjectRequest,PutObjectResult>{
-                        override fun onSuccess(request: PutObjectRequest?, result: PutObjectResult?) {
-                            Flowable
-                                    .just(it).handlerThread(schedulerProvider).autoDisposable(scopeProvider).subscribe {
-                                        onSuccess(it)
-                                    }
-                        }
+            mOss.asyncPutObject(put, object : OSSCompletedCallback<PutObjectRequest, PutObjectResult> {
+                override fun onSuccess(request: PutObjectRequest, result: PutObjectResult?) {
+                    upFile.upType = 2
+                    Logger.i("callbackAddress = $mCallbackAddress  mBucket = $mBucket")
+                    upFile.upSuccessUrl = when (mBucketType) {
+                        BucketType.BUCKET_CONFIT_TAG_PUBLIC -> mCallbackAddress.plus(request.objectKey)
+                        BucketType.BUCKET_CONFIT_TAG_SECURITY -> mCallbackAddress.plus(request.objectKey).plus("-watermark")
+                    }
+                    flowableEmitter.onNext(upFile)
+                }
 
-                        override fun onFailure(request: PutObjectRequest?, clientException: ClientException?, serviceException: ServiceException?) {
-                            Flowable
-                                    .just(it).handlerThread(schedulerProvider).autoDisposable(scopeProvider).subscribe {
-                                        onFail(it)
-                                    }
-                        }
-
-                    })
-            Flowable.just(result)
-
-
-        }
+                override fun onFailure(request: PutObjectRequest?, clientException: ClientException?, serviceException: ServiceException?) {
+                    upFile.upType = 3
+                    flowableEmitter.onNext(upFile)
+                }
+            })
+        }, BackpressureStrategy.BUFFER)
+                .handlerThread(schedulerProvider)
 
 
 //        val upload_start = System.currentTimeMillis()

@@ -8,5 +8,6 @@ class OssConstant {
         const val SECURITY_URL_HOST = "https://youxuan-serurity-pic.oss-cn-hangzhou.aliyuncs.com/"
 
         const val HANGZHOU_ENDPOINT = "https://oss-cn-hangzhou.aliyuncs.com"
+        const val BEIJING_ENDPOINT = "https://oss-cn-beijing.aliyuncs.com"
     }
 }

@@ -5,19 +5,29 @@ import androidx.annotation.MainThread
 import androidx.lifecycle.LifecycleOwner
 import com.orhanobut.logger.Logger
 import com.uber.autodispose.ScopeProvider
+import com.uber.autodispose.autoDisposable
 import com.zhongjiang.kotlin.base.NetWorkUtils
 import com.zhongjiang.kotlin.base.busevent.ActivityResultEvent
 import com.zhongjiang.kotlin.base.busevent.LoginSuccessEvent
 import com.zhongjiang.kotlin.base.common.BaseApplication
 import com.zhongjiang.kotlin.base.data.db.UserInfoEntity
 import com.zhongjiang.kotlin.base.ext.excute
+import com.zhongjiang.kotlin.base.oss.OssService
+import com.zhongjiang.kotlin.base.oss.UpFileBean
 import com.zhongjiang.kotlin.base.utils.RxBus
 import com.zhongjiang.kotlin.base.utils.RxLifecycleUtils
 import io.objectbox.Box
+import io.reactivex.BackpressureStrategy
+import io.reactivex.Flowable
+import io.reactivex.FlowableOnSubscribe
 import io.reactivex.disposables.Disposable
 import io.reactivex.functions.Action
 import io.reactivex.functions.Consumer
+import top.zibin.luban.Luban
+import top.zibin.luban.OnCompressListener
+import java.io.File
 import javax.inject.Inject
+import javax.inject.Named
 import javax.inject.Singleton
 
 /**
@@ -32,6 +42,14 @@ open class BasePresenter<V : IView, M : IModel> constructor(view: V, model: M) :
     var mModel = model
     @Inject
     lateinit var context: BaseApplication
+
+    @field:Named("public")
+    @Inject
+    lateinit var publicOssService: OssService
+
+    @field:Named("security")
+    @Inject
+    lateinit var securityOssService: OssService
 
     @Inject
     @Singleton
@@ -127,5 +145,64 @@ open class BasePresenter<V : IView, M : IModel> constructor(view: V, model: M) :
     }
     fun onLoginSuccess(){
         mRxBus.post(LoginSuccessEvent())
+    }
+
+    fun upFile(upFileBean: UpFileBean,callback:(UpFileBean)->Unit){
+        var ossService = publicOssService
+        if (upFileBean.filemoduleType.isSecurity){
+            ossService = securityOssService
+        }
+        if (upFileBean.isImage){
+            Flowable.create(FlowableOnSubscribe<UpFileBean> {
+                Luban.with(context).ignoreBy(500).filter {
+                    it.isNotEmpty() or it.toLowerCase().endsWith(".gif")
+                }.load(upFileBean.filePath).setCompressListener(object :OnCompressListener{
+                    override fun onSuccess(file: File) {
+                        upFileBean.filePath = file.absolutePath
+                        it.onNext(upFileBean)
+                    }
+
+                    override fun onError(e: Throwable) {
+                        it.onError(e)
+                    }
+
+                    override fun onStart() {
+
+                    }
+
+                }).launch()
+            },BackpressureStrategy.BUFFER).subscribe({
+                    ossService.asyncPutFile(it).autoDisposable(bindBusLifecycle()).subscribe({
+                        callback(it)
+                    }, {
+                        upFileBean.upType = 3
+                        callback(upFileBean)
+                    })
+                }, {
+                    ossService.asyncPutFile(upFileBean).autoDisposable(bindBusLifecycle()).subscribe({
+                        callback(it)
+                    }, {
+                        upFileBean.upType = 3
+                        callback(upFileBean)
+                    })
+
+            })
+        }else {
+            ossService.asyncPutFile(upFileBean).autoDisposable(bindBusLifecycle()).subscribe({
+                callback(it)
+            }, {
+                upFileBean.upType = 3
+                callback(upFileBean)
+            })
+        }
+    }
+    /**
+     * 多文件上传
+     * */
+    fun upFiles(list:List<UpFileBean>,callback:(UpFileBean)->Unit){
+        Flowable.fromIterable(list).flatMap {
+            upFile(it,callback)
+            Flowable.empty<String>()
+        }.subscribe()
     }
 }

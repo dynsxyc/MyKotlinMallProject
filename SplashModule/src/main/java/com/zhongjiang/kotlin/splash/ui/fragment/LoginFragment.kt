@@ -12,13 +12,12 @@ import androidx.core.content.ContextCompat
 import com.gyf.barlibrary.BarHide
 import com.gyf.barlibrary.ImmersionBar
 import com.jakewharton.rxbinding2.view.RxView
+import com.zhongjiang.dyn.imageselector.utils.ImageSelectorUtils
 import com.zhongjiang.kotlin.base.ext.editEnable
 import com.zhongjiang.kotlin.base.ext.setVisible
 import com.zhongjiang.kotlin.base.ext.shieldDoubleClick
 import com.zhongjiang.kotlin.base.injection.module.sheduler.SchedulerProvider
 import com.zhongjiang.kotlin.base.oss.OssService
-import com.zhongjiang.kotlin.base.oss.UIDisplayer
-import com.zhongjiang.kotlin.base.oss.UpFileBean
 import com.zhongjiang.kotlin.base.ui.fragment.BaseMvpFragment
 import com.zhongjiang.kotlin.base.utils.FromatPhoneTextWatcher
 import com.zhongjiang.kotlin.provider.router.NavigationUtil
@@ -118,13 +117,7 @@ class LoginFragment : BaseMvpFragment<LoginFragmentPresenter>(), LoginFragmentCo
 //            ) { isOk, s ->
 //                _mActivity.toast(s)
 //            }
-//            publicOssService.asyncPutFile("Android test.png","storage/emulated/0/1.jpg",object :UIDisplayer{
-//                override fun displayInfo(s: String) {
-//                    super.displayInfo(s)
-//                    com.orhanobut.logger.Logger.i(s)
-//                }
-//
-//            })
+            ImageSelectorUtils.openPhoto(_mActivity,333,false,9)
         }
         RxView.clicks(mLoginFragmentRoundTvLogin).shieldDoubleClick {
             //登录
