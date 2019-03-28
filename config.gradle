@@ -159,7 +159,8 @@ ext {
             "umengUtdid"                            : "com.umeng.umsdk:utdid:1.1.5.3",
             "wechatSdk"                             : "com.tencent.mm.opensdk:wechat-sdk-android-with-mta:+",
             "sinaWeiboSdk"                          : "com.sina.weibo.sdk:core:4.3.7:openDefaultRelease@aar",
-            "luban"                                 : "top.zibin:Luban:1.1.8"
+            "luban"                                 : "top.zibin:Luban:1.1.8",
+            "dynPictureSelector"                    : "com.github.dynsxyc.PictureSelector:picture_library:-SNAPSHOT"
 
 
     ]

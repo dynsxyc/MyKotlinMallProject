@@ -25,13 +25,6 @@ object YuanFenConverter {
     /*
         分 转换为 元
      */
-    fun changeF2Y(amount: Int?, defaultString: String): String {
-        return changeF2Y(amount as Long, defaultString)
-    }
-
-    /*
-        分 转换为 元
-     */
     @Throws(Exception::class)
     fun changeF2Y(amount: Long?): String {
         if (null == amount) {

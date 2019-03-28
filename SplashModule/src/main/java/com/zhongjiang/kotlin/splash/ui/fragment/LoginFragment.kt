@@ -12,12 +12,9 @@ import androidx.core.content.ContextCompat
 import com.gyf.barlibrary.BarHide
 import com.gyf.barlibrary.ImmersionBar
 import com.jakewharton.rxbinding2.view.RxView
-import com.zhongjiang.dyn.imageselector.utils.ImageSelectorUtils
 import com.zhongjiang.kotlin.base.ext.editEnable
 import com.zhongjiang.kotlin.base.ext.setVisible
 import com.zhongjiang.kotlin.base.ext.shieldDoubleClick
-import com.zhongjiang.kotlin.base.injection.module.sheduler.SchedulerProvider
-import com.zhongjiang.kotlin.base.oss.OssService
 import com.zhongjiang.kotlin.base.ui.fragment.BaseMvpFragment
 import com.zhongjiang.kotlin.base.utils.FromatPhoneTextWatcher
 import com.zhongjiang.kotlin.provider.router.NavigationUtil
@@ -28,8 +25,6 @@ import com.zhongjiang.kotlin.splash.presenter.loginfragment.LoginFragmentPresent
 import kotlinx.android.synthetic.main.fragment_login.*
 import kotlinx.android.synthetic.main.viewsub_login_video.*
 import org.jetbrains.anko.toast
-import javax.inject.Inject
-import javax.inject.Named
 
 class LoginFragment : BaseMvpFragment<LoginFragmentPresenter>(), LoginFragmentContract.View {
     override fun onLoginSuccess() {
@@ -40,13 +35,6 @@ class LoginFragment : BaseMvpFragment<LoginFragmentPresenter>(), LoginFragmentCo
     /**公共实现部分 start*/
     var mSingleCode: String = ""
     var isToLogin: Boolean = false
-
-    @field:Named("public")
-    @Inject
-    lateinit var publicOssService: OssService
-
-    @Inject
-    lateinit var schedulers: SchedulerProvider
 
     companion object {
         fun newInstance(isToLogin: Boolean): LoginFragment {
@@ -66,7 +54,8 @@ class LoginFragment : BaseMvpFragment<LoginFragmentPresenter>(), LoginFragmentCo
             mp.start()
         }
         RxView.clicks(mLoginFragmentRoundTvSkip).shieldDoubleClick {
-            showLoginView()
+//            showLoginView()
+            start(TestPictureFragment())
         }
     }
 
@@ -111,13 +100,12 @@ class LoginFragment : BaseMvpFragment<LoginFragmentPresenter>(), LoginFragmentCo
         }
         RxView.clicks(mLoginFragmentTvServerAgreement).shieldDoubleClick {
             //服务协议
-//            NavigationUtil.navigationToWebShow("http://www.baidu.com")
+            NavigationUtil.navigationToWebShow("http://www.baidu.com")
 //            WXPayUtils.startPay(_mActivity,"wx72a9d8637eb96ea1","1341772801","wx22171503762155c7a9eaeb523173771940","Sign=WXPay","vqoMUlYsJgSkykqg","1553346066","Tsou1234567891234567891234567890")
 //            AliPayUtils.startPay(_mActivity,"partner=\"2088221618455679\"&seller_id=\"caiwu@youx.mobi\"&out_trade_no=\"1109046297907691520\"&subject=\"YOU选订单支付\"&body=\"YOU选订单支付-1109046297907691520\"&total_fee=\"0.01\"&notify_url=\"http://testapi.you-x.cn/pay/alipay/payCallBack\"&service=\"mobile.securitypay.pay\"&payment_type=\"1\"&_input_charset=\"utf-8\"&it_b_pay=\"30m\"&return_url=\"m.alipay.com\"&sign=\"QICVWq%2BWrl2J8Rf%2B5efj%2BFsWOWNDaCA59D%2ByJKtw6vq7TScenKfhJOnzWRc3lbJ9o0A2gkgwSkytZM537pW6ws1foEF7eVRcdNFPP9cG%2FPjGtnSGGq6kFgREnffuM7IWJ%2BcQ8FMltx5zEFHOoSFhf8P3Til6kT9IAYCfqjrXK%2Bs%3D\"&sign_type=\"RSA\"",schedulers
 //            ) { isOk, s ->
 //                _mActivity.toast(s)
 //            }
-            ImageSelectorUtils.openPhoto(_mActivity,333,false,9)
         }
         RxView.clicks(mLoginFragmentRoundTvLogin).shieldDoubleClick {
             //登录

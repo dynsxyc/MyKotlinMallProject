@@ -561,7 +561,15 @@ public class ImageSelectorActivity extends AppCompatActivity {
                 mFolders = folders;
                 if (mFolders != null && !mFolders.isEmpty()) {
                     initFolderList();
-                    setFolder(mFolders.get(0));
+                    if (mFolder != null){
+                        for (Folder folder : mFolders) {
+                            if (mFolder.getId() == folder.getId()){
+                                setFolder(folder);
+                            }
+                        }
+                    }else {
+                        setFolder(mFolders.get(0));
+                    }
                     if (mSelectedImages != null && mAdapter != null) {
                         mAdapter.setSelectedImages(mSelectedImages);
                         mSelectedImages = null;

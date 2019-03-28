@@ -17,15 +17,10 @@ import com.zhongjiang.kotlin.base.oss.UpFileBean
 import com.zhongjiang.kotlin.base.utils.RxBus
 import com.zhongjiang.kotlin.base.utils.RxLifecycleUtils
 import io.objectbox.Box
-import io.reactivex.BackpressureStrategy
 import io.reactivex.Flowable
-import io.reactivex.FlowableOnSubscribe
 import io.reactivex.disposables.Disposable
 import io.reactivex.functions.Action
 import io.reactivex.functions.Consumer
-import top.zibin.luban.Luban
-import top.zibin.luban.OnCompressListener
-import java.io.File
 import javax.inject.Inject
 import javax.inject.Named
 import javax.inject.Singleton
@@ -152,49 +147,12 @@ open class BasePresenter<V : IView, M : IModel> constructor(view: V, model: M) :
         if (upFileBean.filemoduleType.isSecurity){
             ossService = securityOssService
         }
-        if (upFileBean.isImage){
-            Flowable.create(FlowableOnSubscribe<UpFileBean> {
-                Luban.with(context).ignoreBy(500).filter {
-                    it.isNotEmpty() or it.toLowerCase().endsWith(".gif")
-                }.load(upFileBean.filePath).setCompressListener(object :OnCompressListener{
-                    override fun onSuccess(file: File) {
-                        upFileBean.filePath = file.absolutePath
-                        it.onNext(upFileBean)
-                    }
-
-                    override fun onError(e: Throwable) {
-                        it.onError(e)
-                    }
-
-                    override fun onStart() {
-
-                    }
-
-                }).launch()
-            },BackpressureStrategy.BUFFER).subscribe({
-                    ossService.asyncPutFile(it).autoDisposable(bindBusLifecycle()).subscribe({
-                        callback(it)
-                    }, {
-                        upFileBean.upType = 3
-                        callback(upFileBean)
-                    })
-                }, {
-                    ossService.asyncPutFile(upFileBean).autoDisposable(bindBusLifecycle()).subscribe({
-                        callback(it)
-                    }, {
-                        upFileBean.upType = 3
-                        callback(upFileBean)
-                    })
-
-            })
-        }else {
             ossService.asyncPutFile(upFileBean).autoDisposable(bindBusLifecycle()).subscribe({
                 callback(it)
             }, {
                 upFileBean.upType = 3
                 callback(upFileBean)
             })
-        }
     }
     /**
      * 多文件上传

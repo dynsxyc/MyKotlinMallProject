@@ -13,7 +13,7 @@ import com.gyf.barlibrary.BarHide
 import com.gyf.barlibrary.ImmersionBar
 import com.jakewharton.rxbinding2.view.RxView
 import com.orhanobut.logger.Logger
-import com.zhongjiang.kotlin.base.busevent.ActivityResultEvent
+import com.zhongjiang.kotlin.base.busevent.ActivityRequestCode
 import com.zhongjiang.kotlin.base.data.db.SplashAdEntity
 import com.zhongjiang.kotlin.base.ext.shieldDoubleClick
 import com.zhongjiang.kotlin.base.imageloader.ImageLoaderUtil
@@ -25,7 +25,6 @@ import com.zhongjiang.kotlin.splash.presenter.splashfragment.SplashFragmentContr
 import com.zhongjiang.kotlin.splash.presenter.splashfragment.SplashFragmentPresenter
 import kotlinx.android.synthetic.main.fragment_splash.*
 import me.yokeyword.fragmentation.ISupportFragment
-import org.jetbrains.anko.toast
 import javax.inject.Inject
 
 /**
@@ -40,8 +39,7 @@ class SplashFragment : BaseMvpFragment<SplashFragmentPresenter>(), SplashFragmen
         mPresenter.registerActivityResultEvent {
             Logger.i("registerActivityResultEvent ${it.requestCoder}")
             when(it.requestCoder){
-                ActivityResultEvent.Companion.ActivityRequestCode.REQUEST_WEBSHOW_CODE.requestCode -> {
-                    context?.toast("页面返回")
+                ActivityRequestCode.REQUEST_WEBSHOW_CODE.requestCode -> {
                     mPresenter.checkSkip()
                 }
             }

@@ -45,16 +45,18 @@ class ClearEditText (context:Context,attributes: AttributeSet): AppCompatEditTex
     }
 
     override fun onTouchEvent(event: MotionEvent): Boolean {
-        if (event.action === MotionEvent.ACTION_DOWN){
-            // 点击是的 x 坐标
-            val xDown = event.getX().toInt()
-            // 清除按钮的起始区间大致为[getWidth() - getCompoundPaddingRight(), getWidth()]，
-            // 点击的x坐标在此区间内则可判断为点击了清除按钮
-            if (xDown >= width - compoundPaddingRight && xDown < width) {
-                // 清空文本
-                setText("")
+        when(event.action){
+            MotionEvent.ACTION_DOWN->{
+                // 点击是的 x 坐标
+                val xDown = event.getX().toInt()
+                // 清除按钮的起始区间大致为[getWidth() - getCompoundPaddingRight(), getWidth()]，
+                // 点击的x坐标在此区间内则可判断为点击了清除按钮
+                if (xDown >= width - compoundPaddingRight && xDown < width) {
+                    // 清空文本
+                    setText("")
+                }
+                updateIconClear()
             }
-            updateIconClear()
         }
         return super.onTouchEvent(event)
     }

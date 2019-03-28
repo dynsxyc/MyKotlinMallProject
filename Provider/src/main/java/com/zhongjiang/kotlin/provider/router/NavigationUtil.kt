@@ -2,7 +2,7 @@ package com.zhongjiang.kotlin.provider.router
 
 import android.app.Activity
 import com.alibaba.android.arouter.launcher.ARouter
-import com.zhongjiang.kotlin.base.busevent.ActivityResultEvent
+import com.zhongjiang.kotlin.base.busevent.ActivityRequestCode
 import com.zhongjiang.kotlin.provider.R
 import com.zhongjiang.kotlin.provider.router.NavigationConstant.Companion.NAVIGATION_DATA_BOOLEAN
 import com.zhongjiang.kotlin.provider.router.NavigationConstant.Companion.NAVIGATION_DATA_WEBURL
@@ -22,7 +22,7 @@ class NavigationUtil @Inject constructor() {
          * 跳转到web 有返回结果
          * */
         fun navigationToWebShowResult(context: Activity, webUrl: String) {
-            navigationResult(RouterPath.BaseUI.PATH_WEBSHOW,ActivityResultEvent.Companion.ActivityRequestCode.REQUEST_WEBSHOW_CODE.requestCode,context, mapOf(Pair(NAVIGATION_DATA_WEBURL,webUrl)),null)
+            navigationResult(RouterPath.BaseUI.PATH_WEBSHOW, ActivityRequestCode.REQUEST_WEBSHOW_CODE.requestCode,context, mapOf(Pair(NAVIGATION_DATA_WEBURL,webUrl)),null)
         }
         /**
          * 跳转到web 没有返回结果

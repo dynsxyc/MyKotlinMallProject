@@ -63,7 +63,7 @@ abstract class BaseDialogFragment : DialogFragment() {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        mRootView = inflater!!.inflate(setLayoutId(), container, false)
+        mRootView = inflater.inflate(setLayoutId(), container, false)
         return mRootView
     }
 

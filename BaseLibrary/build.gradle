@@ -131,10 +131,10 @@ dependencies {
     api rootProject.ext.dependencies["aliyun-push-utils"]
     api rootProject.ext.dependencies["aliyun-push-beacon"]
     api rootProject.ext.dependencies["aliyun-push-utdid"]
-    api rootProject.ext.dependencies["luban"]
+    api rootProject.ext.dependencies["dynPictureSelector"]
     api project(':alipaySdk')
     api project(':umengmodule')
-    api project(':imageselector')
+//    api project(':imageselector')
 }
 
 

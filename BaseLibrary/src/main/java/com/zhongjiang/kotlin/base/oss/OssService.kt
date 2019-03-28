@@ -150,67 +150,6 @@ class OssService @Inject constructor(var context: Context, var schedulerProvider
             })
         }, BackpressureStrategy.BUFFER)
                 .handlerThread(schedulerProvider)
-
-
-//        val upload_start = System.currentTimeMillis()
-//        OSSLog.logDebug("upload start")
-//        val file = File(localFile)
-//        if (!file.exists()) {
-//            Log.w("AsyncPutImage", "FileNotExist")
-//            Log.w("LocalFile", localFile)
-//            mDisplayer.uploadFail("文件不存在")
-//            return
-//        }
-//        // 构造上传请求
-//        OSSLog.logDebug("create PutObjectRequest ")
-//        val put = PutObjectRequest(mBucket, fileName, localFile)
-//        put.crC64 = OSSRequest.CRC64Config.YES
-//
-//        // 异步上传时可以设置进度回调
-//        put.progressCallback = OSSProgressCallback { request, currentSize, totalSize ->
-//            Log.d("PutObject", "currentSize: $currentSize totalSize: $totalSize")
-//            val progress = (100 * currentSize / totalSize).toInt()
-//            mDisplayer.updateProgress(progress)
-//            mDisplayer.displayInfo("上传进度: $progress%")
-//        }
-//        OSSLog.logDebug(" asyncPutObject ")
-//        mOss.asyncPutObject(put, object : OSSCompletedCallback<PutObjectRequest, PutObjectResult> {
-//            override fun onSuccess(request: PutObjectRequest, result: PutObjectResult) {
-//                Log.d("PutObject", "UploadSuccess")
-//
-//                Log.d("ETag", result.eTag)
-//                Log.d("RequestId", result.requestId)
-//
-//                val upload_end = System.currentTimeMillis()
-//                OSSLog.logDebug("upload cost: " + (upload_end - upload_start) / 1000f)
-//                mDisplayer.uploadComplete()
-//                mDisplayer.displayInfo("Bucket: " + mBucket
-//                        + "\nObject: " + request.objectKey
-//                        + "\nETag: " + result.eTag
-//                        + "\nRequestId: " + result.requestId
-//                        + "\nCallback: " + result.serverCallbackReturnBody)
-//            }
-//
-//            override fun onFailure(request: PutObjectRequest, clientExcepion: ClientException?, serviceException: ServiceException?) {
-//                var info = ""
-//                // 请求异常
-//                if (clientExcepion != null) {
-//                    // 本地异常如网络异常等
-//                    clientExcepion.printStackTrace()
-//                    info = clientExcepion.toString()
-//                }
-//                if (serviceException != null) {
-//                    // 服务异常
-//                    Log.e("ErrorCode", serviceException.errorCode)
-//                    Log.e("RequestId", serviceException.requestId)
-//                    Log.e("HostId", serviceException.hostId)
-//                    Log.e("RawMessage", serviceException.rawMessage)
-//                    info = serviceException.toString()
-//                }
-//                mDisplayer.uploadFail(info)
-//                mDisplayer.displayInfo(info)
-//            }
-//        })
     }
 
 

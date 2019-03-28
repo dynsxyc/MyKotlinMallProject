@@ -45,9 +45,9 @@ class LoginFragmentPresenter @Inject constructor(view: LoginFragmentContract.Vie
 
             }
         })
-//        var upFileBean = UpFileBean(UpFileBean.Companion.FileModuleType.ORDER,"/storage/emulated/0/tencent/MicroMsg/WeiXin/mmexport1553585976662.jpg")
-//        var upFileBean1 = UpFileBean(UpFileBean.Companion.FileModuleType.ORDER_SECURITY,"/storage/emulated/0/tencent/MicroMsg/WeiXin/mmexport1553585976662.jpg")
-//        upFiles(arrayListOf(upFileBean,upFileBean1)) {
+//        var upFileBean = UpFileBean(UpFileBean.Companion.FileModuleType.ORDER,"/storage/emulated/0/40529-666.dib")
+//        var upFileBean1 = UpFileBean(UpFileBean.Companion.FileModuleType.ORDER_SECURITY,"/storage/emulated/0/40529-666.webp")
+//        upFiles(arrayListOf(upFileBean1,upFileBean)) {
 //            com.orhanobut.logger.Logger.i("文件名 = ${it.fileName},上传状态= ${it.upType},上传进度= ${it.progress},图片路径 = ${it.filePath},上传返回路径=${it.upSuccessUrl}")
 //            if (it.upType ==2 || it.upType == 3){
 //                mView.timerFinish()

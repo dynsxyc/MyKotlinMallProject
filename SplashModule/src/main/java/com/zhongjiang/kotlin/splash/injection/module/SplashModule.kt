@@ -10,6 +10,7 @@ import com.zhongjiang.kotlin.splash.injection.module.SplashServiceModule
 import com.zhongjiang.kotlin.splash.ui.activity.SplashActivity
 import com.zhongjiang.kotlin.splash.ui.fragment.LoginFragment
 import com.zhongjiang.kotlin.splash.ui.fragment.SplashFragment
+import com.zhongjiang.kotlin.splash.ui.fragment.TestPictureFragment
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
@@ -25,6 +26,10 @@ abstract class SplashModule {
     @ActivityScope
     @ContributesAndroidInjector(modules = [LoginFragmentModule::class])
     abstract fun contributeLoginFragmentInjector():LoginFragment
+
+    @ActivityScope
+    @ContributesAndroidInjector(modules = [LoginFragmentModule::class])
+    abstract fun contributeTestPictureFragmentInjector():TestPictureFragment
 
     @ActivityScope
     @ContributesAndroidInjector(modules = [SplashActivityModule::class])

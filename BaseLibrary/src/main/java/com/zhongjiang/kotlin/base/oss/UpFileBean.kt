@@ -12,6 +12,7 @@ class UpFileBean constructor(var filemoduleType: FileModuleType, var filePath: S
         enum class FileModuleType constructor(internal var content: String, internal var isSecurity: Boolean) {
             COMMUNITY("community", false),
             HEAD("head", false),
+            ANDROID("android", false),
             EVALUATE("evaluate", false),
             FEEDBACK("feedback", false),
             ORDER("order", false),
@@ -21,10 +22,6 @@ class UpFileBean constructor(var filemoduleType: FileModuleType, var filePath: S
     }
 
     var fileName = getOssUUIDFileName(filemoduleType)
-    /**
-     * 是图片 要进行压缩上传
-     * */
-    var isImage = filemoduleType != FileModuleType.ORDER_MP3
     /**
      * 上传进度
      * */

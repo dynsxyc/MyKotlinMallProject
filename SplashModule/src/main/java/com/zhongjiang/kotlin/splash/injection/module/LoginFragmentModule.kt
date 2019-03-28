@@ -3,7 +3,10 @@ package com.zhongjiang.kotlin.splash.injection.module
 import com.zhongjiang.kotlin.base.injection.scope.ActivityScope
 import com.zhongjiang.kotlin.splash.presenter.loginfragment.LoginFragmentContract
 import com.zhongjiang.kotlin.splash.presenter.loginfragment.LoginFragmentModel
+import com.zhongjiang.kotlin.splash.presenter.loginfragment.TestFragmentContract
+import com.zhongjiang.kotlin.splash.presenter.loginfragment.TestFragmentModel
 import com.zhongjiang.kotlin.splash.ui.fragment.LoginFragment
+import com.zhongjiang.kotlin.splash.ui.fragment.TestPictureFragment
 import dagger.Module
 import dagger.Provides
 
@@ -11,14 +14,24 @@ import dagger.Provides
 class LoginFragmentModule {
     @Provides
     @ActivityScope
-    fun provideLoginView(splashFragment: LoginFragment): LoginFragmentContract.View {
-        return splashFragment
+    fun provideLoginView(loginFragment: LoginFragment): LoginFragmentContract.View {
+        return loginFragment
+    }
+    @Provides
+    @ActivityScope
+    fun provideTestView(loginFragment: TestPictureFragment): TestFragmentContract.View {
+        return loginFragment
+    }
+    @Provides
+    @ActivityScope
+    fun provideTestModel(loginFragment: TestFragmentModel): TestFragmentContract.Model {
+        return loginFragment
     }
 
     @Provides
     @ActivityScope
-    fun provideLoginModel(splashFragmentModel: LoginFragmentModel): LoginFragmentContract.Model {
-        return splashFragmentModel
+    fun provideLoginModel(loginFragmentModel: LoginFragmentModel): LoginFragmentContract.Model {
+        return loginFragmentModel
     }
 
 }
