@@ -28,6 +28,7 @@ abstract class BaseSelectorImgFragment<P : BasePresenter<V, M>, V : IView, M : I
                             // 2.media.getCutPath();为裁剪后path，需判断media.isCut();是否为true  注意：音视频除外
                             // 3.media.getCompressPath();为压缩后path，需判断media.isCompressed();是否为true  注意：音视频除外
                             // 如果裁剪并压缩了，以取压缩路径为准，因为是先裁剪后压缩的
+                            var newUpFiles = arrayListOf<UpFileBean>()
                             selectList.map { it ->
                                 var filePath = it.path
                                 if (it.isCompressed) {
@@ -35,9 +36,11 @@ abstract class BaseSelectorImgFragment<P : BasePresenter<V, M>, V : IView, M : I
                                 } else if (it.isCut) {
                                     filePath = it.cutPath
                                 }
-                                upFileList.add(UpFileBean(defaultPictureSelectorConfig.filemoduleType, filePath))
+                                var upFileBean = UpFileBean(defaultPictureSelectorConfig.filemoduleType,filePath)
+                                upFileList.add(upFileBean)
+                                newUpFiles.add(upFileBean)
                             }
-                            upFile()
+                            upFile(newUpFiles)
 
                         }
                     }
@@ -112,8 +115,8 @@ abstract class BaseSelectorImgFragment<P : BasePresenter<V, M>, V : IView, M : I
      * */
     abstract fun onFileUpIng(upFileBean: UpFileBean)
 
-    protected fun upFile() {
-        mPresenter.upFiles(upFileList) {
+    protected fun upFile(upFileBeans: ArrayList<UpFileBean>) {
+        mPresenter.upFiles(upFileBeans) {
             onFileUpIng(it)
         }
     }

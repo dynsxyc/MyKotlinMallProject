@@ -130,6 +130,7 @@ class OssService @Inject constructor(var context: Context, var schedulerProvider
             put.progressCallback = OSSProgressCallback { request, currentSize, totalSize ->
                 upFile.progress = (100 * currentSize / totalSize).toInt()
                 upFile.upType = 1
+                Logger.i("progress = ${upFile.progress}")
                 flowableEmitter.onNext(upFile)
             }
             mOss.asyncPutObject(put, object : OSSCompletedCallback<PutObjectRequest, PutObjectResult> {
@@ -141,11 +142,13 @@ class OssService @Inject constructor(var context: Context, var schedulerProvider
                         BucketType.BUCKET_CONFIT_TAG_SECURITY -> mCallbackAddress.plus(request.objectKey).plus("-watermark")
                     }
                     flowableEmitter.onNext(upFile)
+                    flowableEmitter.onComplete()
                 }
 
                 override fun onFailure(request: PutObjectRequest?, clientException: ClientException?, serviceException: ServiceException?) {
                     upFile.upType = 3
                     flowableEmitter.onNext(upFile)
+                    flowableEmitter.onComplete()
                 }
             })
         }, BackpressureStrategy.BUFFER)

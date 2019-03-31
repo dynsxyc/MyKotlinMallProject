@@ -160,7 +160,7 @@ ext {
             "wechatSdk"                             : "com.tencent.mm.opensdk:wechat-sdk-android-with-mta:+",
             "sinaWeiboSdk"                          : "com.sina.weibo.sdk:core:4.3.7:openDefaultRelease@aar",
             "luban"                                 : "top.zibin:Luban:1.1.8",
-            "dynPictureSelector"                    : "com.github.dynsxyc.PictureSelector:picture_library:-SNAPSHOT"
+            "dynPictureSelector"                    : "com.github.dynsxyc:PictureSelector:v2.2.50"
 
 
     ]

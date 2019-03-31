@@ -1,5 +1,7 @@
 package com.zhongjiang.kotlin.base.oss
 
+import io.reactivex.disposables.Disposable
+import org.reactivestreams.Subscription
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -34,6 +36,8 @@ class UpFileBean constructor(var filemoduleType: FileModuleType, var filePath: S
      * */
     var upType: Int = 1
     var upSuccessUrl: String? = null
+
+    var disposable: Disposable?= null
 
     /**
      * @param type  1 语音文件mp3  默认传图片

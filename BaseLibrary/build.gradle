@@ -59,7 +59,6 @@ dependencies {
     api rootProject.ext.dependencies["androidx-v4"]
     api rootProject.ext.dependencies["android-multidex"]
     api rootProject.ext.dependencies["androidx-appcompat"]
-    api rootProject.ext.dependencies["PhotoView"]
 
     api rootProject.ext.dependencies["kotlin-android"]
 
@@ -94,7 +93,6 @@ dependencies {
     api rootProject.ext.dependencies["dagger-android-support"]
     kapt rootProject.ext.dependencies["dagger-android-processor"]
     kapt rootProject.ext.dependencies["dagger-compiler"]
-
 
     //Glide
     api rootProject.ext.dependencies["glide"]

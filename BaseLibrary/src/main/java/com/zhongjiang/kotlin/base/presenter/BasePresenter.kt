@@ -21,6 +21,8 @@ import io.reactivex.Flowable
 import io.reactivex.disposables.Disposable
 import io.reactivex.functions.Action
 import io.reactivex.functions.Consumer
+import org.jetbrains.anko.doAsync
+import org.reactivestreams.Subscription
 import javax.inject.Inject
 import javax.inject.Named
 import javax.inject.Singleton
@@ -126,41 +128,74 @@ open class BasePresenter<V : IView, M : IModel> constructor(view: V, model: M) :
             Logger.i("registerActivityResultEvent  isDisposed =  ${it.isDisposed}")
         }, bindBusLifecycle())
     }
+
     /**开启一个定时器 1秒*/
-    fun startTimmer(number:Long,onNext: Consumer<Long>, onComplete: Action):Disposable{
-        timerDisposable = mModel.startTimer(number,onNext,onComplete).excute(bindBusLifecycle())
+    fun startTimmer(number: Long, onNext: Consumer<Long>, onComplete: Action): Disposable {
+        timerDisposable = mModel.startTimer(number, onNext, onComplete).excute(bindBusLifecycle())
         return timerDisposable
     }
+
     /**关闭定时器*/
-    fun stopTimeer(){
+    fun stopTimeer() {
         timerDisposable?.let {
             if (it.isDisposed.not())
                 it.dispose()
         }
     }
-    fun onLoginSuccess(){
+
+    fun onLoginSuccess() {
         mRxBus.post(LoginSuccessEvent())
     }
 
-    fun upFile(upFileBean: UpFileBean,callback:(UpFileBean)->Unit){
+    fun upFile(upFileBean: UpFileBean, callback: (UpFileBean) -> Unit): Disposable {
         var ossService = publicOssService
-        if (upFileBean.filemoduleType.isSecurity){
+        if (upFileBean.filemoduleType.isSecurity) {
             ossService = securityOssService
         }
-            ossService.asyncPutFile(upFileBean).autoDisposable(bindBusLifecycle()).subscribe({
-                callback(it)
-            }, {
-                upFileBean.upType = 3
-                callback(upFileBean)
-            })
+        var disposable =  ossService.asyncPutFile(upFileBean).autoDisposable(bindBusLifecycle()).subscribe({
+            callback(it)
+        }, {
+            upFileBean.upType = 3
+            callback(upFileBean)
+            upFileBean.disposable?.let {
+                if (!it.isDisposed){
+                    it.dispose()
+                }
+            }
+        }, {
+            upFileBean.disposable?.let {
+                if (!it.isDisposed){
+                    Logger.i("-----------------------dispose")
+                    it.dispose()
+                }
+            }
+        })
+        upFileBean.disposable = disposable
+        return disposable
     }
+
     /**
      * 多文件上传
      * */
-    fun upFiles(list:List<UpFileBean>,callback:(UpFileBean)->Unit){
-        Flowable.fromIterable(list).flatMap {
-            upFile(it,callback)
-            Flowable.empty<String>()
-        }.subscribe()
+    fun upFiles(list: List<UpFileBean>, callback: (UpFileBean) -> Unit) {
+        var subscription:Subscription?=null
+        Flowable.fromIterable(list).subscribe({
+            upFile(it) { it ->
+                if (it.upType!=1 && subscription != null){
+                    subscription!!.request(1)
+                }
+                callback(it)
+            }
+        },{
+            subscription?.let {
+                it.request(1)
+            }
+        },{
+
+        },{
+            subscription= it
+            it.request(1)
+
+        })
     }
 }
