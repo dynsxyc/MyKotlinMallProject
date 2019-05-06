@@ -47,8 +47,8 @@ abstract class BaseDialogFragment : DialogFragment() {
         super.onStart()
         val dialog = dialog
         //点击外部消失
-        dialog.setCanceledOnTouchOutside(true)
-        mWindow = dialog.window
+        dialog?.setCanceledOnTouchOutside(true)
+        mWindow = dialog?.window
         //测量宽高
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             val dm = DisplayMetrics()

@@ -21,8 +21,8 @@ android {
 dependencies {
     api fileTree(dir: 'libs', include: ['*.jar'])
     implementation rootProject.ext.dependencies["androidx-appcompat"]
-    implementation rootProject.ext.dependencies["recyclerview"]
     implementation rootProject.ext.dependencies["glide"]
+    implementation rootProject.ext.dependencies["recyclerview"]
     api rootProject.ext.dependencies["PhotoView"]
 
 

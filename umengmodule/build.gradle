@@ -35,13 +35,12 @@ android {
 dependencies {
     api fileTree(dir: 'libs', include: ['*.jar'])
 
-    testImplementation 'junit:junit:4.12'
+    testImplementation rootProject.ext.dependencies["junit"]
 
     api rootProject.ext.dependencies["umengCommon"]
     api rootProject.ext.dependencies["wechatSdk"]
 
-
-    api 'androidx.appcompat:appcompat:1.0.0-alpha1'
-    api 'androidx.constraintlayout:constraintlayout:1.1.2'
-    api "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    api rootProject.ext.dependencies["androidx-appcompat"]
+    implementation rootProject.ext.dependencies["constraintlayout"]
+    api rootProject.ext.dependencies["kotlin-android"]
 }

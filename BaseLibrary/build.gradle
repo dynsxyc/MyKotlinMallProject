@@ -4,7 +4,6 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'io.objectbox'
 
-
 kapt {
     arguments {
         arg("AROUTER_MODULE_NAME", project.getName())
@@ -59,7 +58,6 @@ dependencies {
     api rootProject.ext.dependencies["androidx-v4"]
     api rootProject.ext.dependencies["android-multidex"]
     api rootProject.ext.dependencies["androidx-appcompat"]
-
     api rootProject.ext.dependencies["kotlin-android"]
 
     // Anko
@@ -72,13 +70,13 @@ dependencies {
     api rootProject.ext.dependencies["agentWebFilechooser"]
 
     //Rx-Kotlin and Rx-Android
-    api rootProject.ext.dependencies["rxKotlin"]
-    api rootProject.ext.dependencies["rxAndroid"]
     api rootProject.ext.dependencies["rxRelay"]
+    api rootProject.ext.dependencies["rxAndroid"]
+    api rootProject.ext.dependencies["rxKotlin"]
     api rootProject.ext.dependencies["rxbinding"]
     api rootProject.ext.dependencies["rxPermissions"]
-    api rootProject.ext.dependencies["ktx-autodispose-android-archcomponents"]
     api rootProject.ext.dependencies["ktx-autodispose"]
+    api rootProject.ext.dependencies["ktx-autodispose-android-archcomponents"]
 
     //retrofit 配置
     api rootProject.ext.dependencies["retrofit"]

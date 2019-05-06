@@ -60,62 +60,6 @@ class OssService @Inject constructor(var context: Context, var schedulerProvider
 
     }
 
-    /**获取图片*/
-    fun asyncGetImage(getUrl: String, mDisplayer: UIDisplayer) {
-        val get_start = System.currentTimeMillis()
-        OSSLog.logDebug("get start")
-
-        OSSLog.logDebug("create GetObjectRequest")
-        val get = GetObjectRequest(mBucket, getUrl)
-        get.crC64 = OSSRequest.CRC64Config.YES
-        get.setProgressListener { request, currentSize, totalSize ->
-            Log.d("GetObject", "currentSize: $currentSize totalSize: $totalSize")
-            val progress = (100 * currentSize / totalSize).toInt()
-            mDisplayer.updateProgress(progress)
-            mDisplayer.displayInfo("下载进度: $progress%")
-        }
-        OSSLog.logDebug("asyncGetObject")
-        val task = mOss.asyncGetObject(get, object : OSSCompletedCallback<GetObjectRequest, GetObjectResult> {
-            override fun onSuccess(request: GetObjectRequest, result: GetObjectResult) {
-                // 请求成功
-                val inputStream = result.objectContent
-                //Bitmap bm = BitmapFactory.decodeStream(inputStream);
-                try {
-                    //需要根据对应的View大小来自适应缩放
-//                    val bm = mDisplayer.autoResizeFromStream(inputStream)
-                    val get_end = System.currentTimeMillis()
-                    OSSLog.logDebug("get cost: " + (get_end - get_start) / 1000f)
-                    mDisplayer.downloadComplete(get_end)
-                    mDisplayer.displayInfo("Bucket: " + mBucket + "\nObject: " + request.objectKey + "\nRequestId: " + result.requestId)
-                } catch (e: IOException) {
-                    e.printStackTrace()
-                }
-
-            }
-
-            override fun onFailure(request: GetObjectRequest, clientExcepion: ClientException?, serviceException: ServiceException?) {
-                var info = ""
-                // 请求异常
-                if (clientExcepion != null) {
-                    // 本地异常如网络异常等
-                    clientExcepion.printStackTrace()
-                    info = clientExcepion.toString()
-                }
-                if (serviceException != null) {
-                    // 服务异常
-                    Log.e("ErrorCode", serviceException.errorCode)
-                    Log.e("RequestId", serviceException.requestId)
-                    Log.e("HostId", serviceException.hostId)
-                    Log.e("RawMessage", serviceException.rawMessage)
-                    info = serviceException.toString()
-                }
-                mDisplayer.downloadFail(info)
-                mDisplayer.displayInfo(info)
-            }
-        })
-    }
-
-
     fun asyncPutFile(upFile: UpFileBean): Flowable<UpFileBean> {
         return Flowable.create(FlowableOnSubscribe<UpFileBean> { flowableEmitter ->
             val file = File(upFile.filePath)

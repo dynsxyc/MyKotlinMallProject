@@ -21,7 +21,6 @@ import io.reactivex.Flowable
 import io.reactivex.disposables.Disposable
 import io.reactivex.functions.Action
 import io.reactivex.functions.Consumer
-import org.jetbrains.anko.doAsync
 import org.reactivestreams.Subscription
 import javax.inject.Inject
 import javax.inject.Named
@@ -137,7 +136,7 @@ open class BasePresenter<V : IView, M : IModel> constructor(view: V, model: M) :
 
     /**关闭定时器*/
     fun stopTimeer() {
-        timerDisposable?.let {
+        timerDisposable.let {
             if (it.isDisposed.not())
                 it.dispose()
         }

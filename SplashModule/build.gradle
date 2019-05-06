@@ -20,7 +20,7 @@ android {
     defaultConfig {
         minSdkVersion rootProject.ext.android["minSdkVersion"]
         targetSdkVersion rootProject.ext.android["targetSdkVersion"]
-        applicationId "tsou.uxuan.user"
+        applicationId "tsou.uxuan.user_dev"
         versionCode 1
         versionName "1.0"
 
@@ -81,12 +81,12 @@ configurations.all {
 }
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation 'androidx.constraintlayout:constraintlayout:1.1.2'
-    implementation 'com.google.android.material:material:1.0.0-alpha1'
+    implementation rootProject.ext.dependencies["constraintlayout"]
+    implementation rootProject.ext.dependencies["googleMaterial"]
     implementation 'androidx.vectordrawable:vectordrawable:1.0.0-alpha1'
-    testImplementation 'junit:junit:4.12'
+    testImplementation rootProject.ext.dependencies["junit"]
     androidTestImplementation 'androidx.test:runner:1.1.1'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
+    androidTestImplementation rootProject.ext.dependencies["espresso-core"]
 
     //dagger2
     kapt rootProject.ext.dependencies["dagger-compiler"]

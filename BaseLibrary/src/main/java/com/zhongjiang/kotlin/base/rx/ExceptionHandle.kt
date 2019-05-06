@@ -10,14 +10,14 @@ import javax.net.ssl.SSLHandshakeException
 
 class ExceptionHandle {
     companion object {
-       open val  UNAUTHORIZED = 401
-        open val  FORBIDDEN = 403
-        open val  NOT_FOUND = 404
-        open val  REQUEST_TIMEOUT = 408
-        open val  INTERNAL_SERVER_ERROR = 500
-        open val  BAD_GATEWAY = 502
-        open val  SERVICE_UNAVAILABLE = 503
-        open val  GATEWAY_TIMEOUT = 504
+        val  UNAUTHORIZED = 401
+         val  FORBIDDEN = 403
+         val  NOT_FOUND = 404
+         val  REQUEST_TIMEOUT = 408
+         val  INTERNAL_SERVER_ERROR = 500
+         val  BAD_GATEWAY = 502
+         val  SERVICE_UNAVAILABLE = 503
+         val  GATEWAY_TIMEOUT = 504
 
         fun  handleException( roote : Throwable) :ResponeThrowable{
              var ex:ResponeThrowable

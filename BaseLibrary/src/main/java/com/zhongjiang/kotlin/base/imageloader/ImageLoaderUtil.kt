@@ -115,38 +115,40 @@ class ImageLoaderUtil {
             var transformations: Array<Transformation<Bitmap>> = arrayOf()
             when (type) {
             //dialog 弹框上部图片
-                ImageLoaderUtil.IMAGE_STYLE_TYPE.IMAGE_TYPE_ID_UXDIALOG_IMG -> {
+                IMAGE_STYLE_TYPE.IMAGE_TYPE_ID_UXDIALOG_IMG -> {
                     transformations = arrayOf()
                     transformations[0] = CenterCrop()
                     transformations[1] = GlideRoundedCornersTransformation(context, 12, GlideRoundedCornersTransformation.CornerType.TOP)
                 }
             //5圆角的图片
-                ImageLoaderUtil.IMAGE_STYLE_TYPE.IMAGE_TYPE_ID_FILLET_5 -> {
+                IMAGE_STYLE_TYPE.IMAGE_TYPE_ID_FILLET_5 -> {
                     transformations = arrayOf()
                     transformations[0] = CenterCrop()
                     transformations[1] = GlideRoundedCornersTransformation(context, 5)
                 }
             //默认图片样式显示
-                ImageLoaderUtil.IMAGE_STYLE_TYPE.IMAGE_TYPE_DEFAULT -> {
+                IMAGE_STYLE_TYPE.IMAGE_TYPE_DEFAULT -> {
                 }
             //用户头像显示
-                ImageLoaderUtil.IMAGE_STYLE_TYPE.IMAGE_TYPE_USER_ICON -> {
+                IMAGE_STYLE_TYPE.IMAGE_TYPE_USER_ICON -> {
                 }
             //意见反馈不规则圆角
-                ImageLoaderUtil.IMAGE_STYLE_TYPE.IMAGE_TYPE_FEED_BACK_SEND -> {
+                IMAGE_STYLE_TYPE.IMAGE_TYPE_FEED_BACK_SEND -> {
                     transformations = arrayOf()
                     transformations[0] = CenterCrop()
                     transformations[1] = GlideRoundedCornersTransformation(context, 20, 5, 20, 20)
                 }
             //20圆角的图片 社区列表
-                ImageLoaderUtil.IMAGE_STYLE_TYPE.IMAGE_TYPE_ID_FILLET_10 -> {
+                IMAGE_STYLE_TYPE.IMAGE_TYPE_ID_FILLET_10 -> {
                     transformations = arrayOf()
                     transformations[0] = CenterCrop()
                     transformations[1] = GlideRoundedCornersTransformation(context, 10)
                 }
-                ImageLoaderUtil.IMAGE_STYLE_TYPE.IMAGE_TYPE_RESOURCE -> {
+                IMAGE_STYLE_TYPE.IMAGE_TYPE_RESOURCE -> {
                 }
-                ImageLoaderUtil.IMAGE_STYLE_TYPE.IMAGE_TYPE_SHOP_HEADER -> {
+                IMAGE_STYLE_TYPE.IMAGE_TYPE_BANNER -> {
+                }
+                IMAGE_STYLE_TYPE.IMAGE_TYPE_SHOP_HEADER -> {
                     transformations = arrayOf()
                     transformations[0] = CenterCrop()
                     transformations[1] = GlideRoundedCornersTransformation(context, 5, true, 2, context.resources.getColor(R.color.common_white), GlideRoundedCornersTransformation.CornerType.ALL)
