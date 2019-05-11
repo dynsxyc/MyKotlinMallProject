@@ -7,3 +7,5 @@
 /build
 /captures
 .externalNativeBuild
+/MainModule/build
+/alipaySdk/build

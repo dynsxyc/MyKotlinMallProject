@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="HeaderTitleImgDefault">
+        <item name="tv_isImgLabel" >true</item>
+        <item name="tv_backgroundDrawable">@drawable/white_clickable_pressed</item>
+    </style>
+    <style name="HeaderTitleImgDefault.Back">
+        <item name="tv_imgDrawable">@drawable/icon_back_drawable_pressed</item>
+    </style>
+    <style name="HeaderTitleImgDefault.share">
+        <item name="tv_imgDrawable">@drawable/icon_share_drawable_pressed</item>
+    </style>
+    <style name="HeaderTitleImgDefault.collect">
+        <item name="tv_imgDrawable">@drawable/icon_collect_drawable_pressed</item>
+    </style>
+    <style name="HeaderTitleTextDefault">
+        <item name="tv_textColor">@color/text_color_33</item>
+        <item name="tv_textSize" >@dimen/sp_15</item>
+        <item name="tv_isImgLabel" >false</item>
+    </style>
+
+</resources>

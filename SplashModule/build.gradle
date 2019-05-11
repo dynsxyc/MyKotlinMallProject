@@ -20,7 +20,9 @@ android {
     defaultConfig {
         minSdkVersion rootProject.ext.android["minSdkVersion"]
         targetSdkVersion rootProject.ext.android["targetSdkVersion"]
-        applicationId "tsou.uxuan.user_dev"
+        if (!isUserModule.toBoolean()) {
+            applicationId "tsou.uxuan.user_dev"
+        }
         versionCode 1
         versionName "1.0"
 

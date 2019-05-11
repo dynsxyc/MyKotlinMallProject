@@ -5,7 +5,7 @@
     android:padding="10dp"
 
     >
-    <com.zhongjiang.kotlin.base.imageloader.YXImageView
+    <com.zhongjiang.youxuan.base.imageloader.YXImageView
         android:id="@+id/testImg"
         android:layout_width="50dp"
         android:layout_height="50dp" />

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <com.flyco.roundview.RoundTextView
+        android:id="@+id/mMessageCountViewRoundTvCount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:minHeight="15dp"
+        android:minWidth="15dp"
+        android:paddingLeft="3dp"
+        android:paddingRight="3dp"
+        android:textColor="@color/white"
+        android:textSize="@dimen/sp_10"
+        app:rv_strokeColor="@color/white"
+        app:rv_strokeWidth="0.5dp"
+        app:rv_backgroundColor="@color/common_red"
+        app:rv_isRadiusHalfHeight="true"
+        app:rv_isRippleEnable="false"
+        tools:text="9"
+        />
+
+    <com.flyco.roundview.RoundTextView
+        android:id="@+id/mMessageCountViewRoundTvStatus"
+        android:layout_width="10dp"
+        android:layout_height="10dp"
+        android:layout_centerInParent="true"
+        app:rv_backgroundColor="@color/common_red"
+        app:rv_isRadiusHalfHeight="true"
+        app:rv_isWidthHeightEqual="true"
+        app:rv_isRippleEnable="false"
+        android:visibility="gone"
+        />
+</merge>

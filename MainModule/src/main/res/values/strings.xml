@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">MainModule</string>
+    <string name="openYouXuan">开启YOU选</string>
+    <string name="user_server_agreement">《用户服务协议》</string>
+    <string name="login">登录</string>
+    <string name="input_verification_code">请输入验证码</string>
+    <string name="chinaPhoneCode">+86</string>
+</resources>

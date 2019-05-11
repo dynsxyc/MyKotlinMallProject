@@ -34,7 +34,7 @@
                 style="@style/WrapWrapTextSize21.ff.bold"
                 android:text="@string/chinaPhoneCode" />
 
-            <com.zhongjiang.kotlin.base.widgets.ClearEditText
+            <com.zhongjiang.youxuan.base.widgets.ClearEditText
                 android:id="@+id/mLoginFragmentEtPhone"
                 style="@style/MatchWrapTextSize21.ff.bold"
                 android:paddingTop="@dimen/common_padding_middle"
@@ -84,7 +84,7 @@
                 android:visibility="gone"
                 />
 
-            <com.zhongjiang.kotlin.base.widgets.ClearEditText
+            <com.zhongjiang.youxuan.base.widgets.ClearEditText
                 android:id="@+id/mLoginFragmentEtVerificationCode"
                 style="@style/MatchWrapTextSize21.ff.bold"
                 android:layout_toStartOf="@+id/mLoginFragmentRoundTvGetVerificationCode"

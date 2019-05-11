@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android">
+    <FrameLayout
+        android:id="@+id/mTextMessageCountViewFlContent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/common_padding_dp8"
+        android:layout_centerInParent="true">
+        <TextView
+            android:id="@+id/mTextMessageCountViewTv"
+            style="@style/WrapWrapTextSize15.33"
+            android:layout_gravity="center"
+            />
+        <ImageView
+            android:id="@+id/mTextMessageCountViewImgIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minWidth="26dp"
+            android:layout_gravity="center"
+            />
+    </FrameLayout>
+    <com.zhongjiang.youxuan.base.widgets.MessageCountView
+        android:id="@+id/mTextMessageCountViewMessageCountView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/mTextMessageCountViewFlContent"
+        android:layout_alignRight="@+id/mTextMessageCountViewFlContent"
+        android:layout_marginTop="8dp"
+        android:layout_marginRight="8dp"
+        />
+</merge>

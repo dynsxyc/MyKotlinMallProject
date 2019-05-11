@@ -9,7 +9,9 @@ kapt {
         arg("AROUTER_MODULE_NAME", project.getName())
     }
 }
-
+androidExtensions {
+    experimental = true
+}
 android {
     compileSdkVersion rootProject.ext.android["compileSdkVersion"]
     buildToolsVersion rootProject.ext.android["buildToolsVersion"]
@@ -27,6 +29,7 @@ android {
         }
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
+
     buildTypes {
         release {
             minifyEnabled false

@@ -11,7 +11,7 @@ import com.tencent.mm.opensdk.modelbase.BaseResp
 import com.tencent.mm.opensdk.openapi.IWXAPI
 import com.tencent.mm.opensdk.openapi.IWXAPIEventHandler
 import com.tencent.mm.opensdk.openapi.WXAPIFactory
-import com.zhongjiang.kotlin.splash.R
+import com.zhongjiang.youxuan.user.splash.R
 
 
 class WXPayEntryActivity : Activity(), IWXAPIEventHandler {

@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <com.zhongjiang.kotlin.base.imageloader.YXImageView
+    <com.zhongjiang.youxuan.base.imageloader.YXImageView
         android:id="@+id/mSplashFragmentImgAd"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -47,4 +47,5 @@
             app:rv_isRadiusHalfHeight="true"
             />
     </LinearLayout>
+
 </RelativeLayout>

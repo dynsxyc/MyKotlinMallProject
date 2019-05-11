@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <LinearLayout
+        android:id="@+id/mCommonHeaderTitleViewLlLeft"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:showDividers="middle"
+        android:divider="@drawable/divider_linearlayout_v"
+        android:dividerPadding="10dp"
+        android:layout_centerVertical="true">
+        <com.zhongjiang.youxuan.base.widgets.TextMessageCountView
+            android:id="@+id/mCommonHeaderTitleViewTvBack"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            />
+        <com.zhongjiang.youxuan.base.widgets.TextMessageCountView
+            android:id="@+id/mCommonHeaderTitleViewTvFinish"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            />
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/mCommonHeaderTitleViewLlRight"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true">
+        <com.zhongjiang.youxuan.base.widgets.TextMessageCountView
+            android:id="@+id/mCommonHeaderTitleViewTvRight"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            />
+        <com.zhongjiang.youxuan.base.widgets.TextMessageCountView
+            android:id="@+id/mCommonHeaderTitleViewTvLastRight"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            />
+    </LinearLayout>
+    <TextView
+        android:id="@+id/mCommonHeaderTitleViewTvCenter"
+        style="@style/MatchWrapTextSize15.33"
+        android:layout_centerInParent="true"
+        android:layout_marginLeft="@dimen/dp_70"
+        android:layout_marginRight="@dimen/dp_70"
+        android:ellipsize="marquee"
+        android:gravity="center"
+        android:singleLine="true" />
+</merge>
+
+
+

@@ -17,4 +17,31 @@
         <!-- 清除按钮的图标 -->
         <attr name="iconClear" format="reference"/>
     </declare-styleable>
+    <declare-styleable name="CommonHeaderTitleView">
+        <attr name="cht_TitleText" format="string"/>
+        <attr name="cht_hasFinish" format="boolean"/>
+        <attr name="cht_hasRight" format="boolean"/>
+        <attr name="cht_hasLastRight" format="boolean"/>
+        <attr name="cht_themeBack" format="reference"/>
+        <attr name="cht_themeFinish" format="reference"/>
+        <attr name="cht_themeRight" format="reference"/>
+        <attr name="cht_themeLastRight" format="reference"/>
+    </declare-styleable>
+    <declare-styleable name="MessageCountView">
+        <attr name="messageCount" format="integer"/>
+        <attr name="maxMessageCount" format="integer"/>
+    </declare-styleable>
+    <declare-styleable name="TextMessageCountView">
+        <attr name="tv_messageCount" format="integer"/>
+        <attr name="tv_maxMessageCount" format="integer"/>
+        <attr name="tv_textColor" format="color"/>
+        <attr name="tv_text" format="string"/>
+        <attr name="tv_textSize" format="dimension" />
+        <attr name="tv_drawableLeft" format="reference"/>
+        <attr name="tv_drawableRight" format="reference"/>
+        <attr name="tv_imgDrawable" format="reference"/>
+        <attr name="tv_backgroundDrawable" format="reference"/>
+        <attr name="tv_drawablePadding" format="dimension"/>
+        <attr name="tv_isImgLabel" format="boolean"/>
+    </declare-styleable>
 </resources>

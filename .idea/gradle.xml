@@ -5,18 +5,30 @@
       <GradleProjectSettings>
         <option name="distributionType" value="DEFAULT_WRAPPED" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="gradleHome" value="$APPLICATION_HOME_DIR$/gradle/gradle-3.2" />
-        <option name="gradleJvm" value="1.8" />
+        <option name="gradleHome" value="$APPLICATION_HOME_DIR$/gradle/gradle-4.1" />
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/BaseLibrary" />
+            <option value="$PROJECT_DIR$/MainModule" />
             <option value="$PROJECT_DIR$/Provider" />
             <option value="$PROJECT_DIR$/SplashModule" />
             <option value="$PROJECT_DIR$/alipaySdk" />
             <option value="$PROJECT_DIR$/imageselector" />
-            <option value="$PROJECT_DIR$/testapp" />
             <option value="$PROJECT_DIR$/umengmodule" />
+          </set>
+        </option>
+        <option name="resolveModulePerSourceSet" value="false" />
+        <option name="useQualifiedModuleNames" value="true" />
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="distributionType" value="DEFAULT_WRAPPED" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/../../../../snackbar" />
+        <option name="gradleHome" value="$APPLICATION_HOME_DIR$/gradle/gradle-3.2" />
+        <option name="gradleJvm" value="1.8" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/../../../../snackbar" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

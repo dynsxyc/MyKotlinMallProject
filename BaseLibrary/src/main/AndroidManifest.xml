@@ -1,7 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.zhongjiang.kotlin.base" >
+    package="com.zhongjiang.youxuan.base" >
     <!-- 网络权限 -->
-    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <!-- 外部存储读权限，调试工具加载本地补丁需要 -->
@@ -11,7 +10,6 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.RESTART_PACKAGES" />
@@ -27,11 +25,11 @@
         android:allowBackup="true"
         android:supportsRtl="true"
         >
-        <activity android:name=".ui.activity.WebShowActivity"/>
+        <activity android:name="com.zhongjiang.youxuan.base.ui.activity.WebShowActivity"/>
         <!--阿里推送   start -->
         <!-- 消息接收监听器 （用户可自主扩展） -->
         <receiver
-            android:name="com.zhongjiang.kotlin.base.push.AliPushMessageReceiver"
+            android:name="com.zhongjiang.youxuan.base.push.AliPushMessageReceiver"
             android:exported="false"> <!-- 为保证receiver安全，建议设置不可导出，如需对其他应用开放可通过android：permission进行限制 -->
             <intent-filter>
                 <action android:name="com.alibaba.push2.action.NOTIFICATION_OPENED" />
@@ -166,5 +164,11 @@
             >
         </activity>
         <!--阿里推送   end -->
+
+        <service android:name="com.baidu.location.f" android:enabled="true" android:process=":remote"> </service>
+        <meta-data
+            android:name="com.baidu.lbsapi.API_KEY"
+            android:value="MEpN4mYdsCzmOUpqZgf8iNvC2Su0hZSX" >
+        </meta-data>
     </application>
 </manifest>

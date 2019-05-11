@@ -3,7 +3,7 @@
 
     <!-- 文字大小  15sp-->
     <style name="WrapWrapTextSize15" parent="WrapWrap">
-        <item name="android:textSize">@dimen/text_size_15</item>
+        <item name="android:textSize">@dimen/sp_15</item>
     </style>
     <style name="WrapWrapTextSize15.ff">
         <item name="android:textColor">@color/common_white</item>
@@ -19,7 +19,7 @@
     </style>
 
     <style name="MatchWrapTextSize15" parent="MatchWrap">
-        <item name="android:textSize">@dimen/text_size_15</item>
+        <item name="android:textSize">@dimen/sp_15</item>
     </style>
     <style name="MatchWrapTextSize15.ff">
         <item name="android:textColor">@color/common_white</item>
@@ -35,7 +35,7 @@
     </style>
     <!-- 文字大小  13sp-->
     <style name="WrapWrapTextSize13" parent="WrapWrap">
-        <item name="android:textSize">@dimen/text_size_13</item>
+        <item name="android:textSize">@dimen/sp_13</item>
     </style>
     <style name="WrapWrapTextSize13.ff">
         <item name="android:textColor">@color/common_white</item>
@@ -51,7 +51,7 @@
     </style>
 
     <style name="MatchWrapTextSize13" parent="MatchWrap">
-        <item name="android:textSize">@dimen/text_size_13</item>
+        <item name="android:textSize">@dimen/sp_13</item>
     </style>
     <style name="MatchWrapTextSize13.ff">
         <item name="android:textColor">@color/common_white</item>
@@ -67,7 +67,7 @@
     </style>
 
     <style name="WrapMatchTextSize13" parent="WrapMatch">
-        <item name="android:textSize">@dimen/text_size_13</item>
+        <item name="android:textSize">@dimen/sp_13</item>
     </style>
     <style name="WrapMatchTextSize13.ff">
         <item name="android:textColor">@color/common_white</item>
@@ -84,7 +84,7 @@
 
     <!-- 文字大小  12sp-->
     <style name="WrapWrapTextSize12" parent="WrapWrap">
-        <item name="android:textSize">@dimen/text_size_12</item>
+        <item name="android:textSize">@dimen/sp_12</item>
     </style>
     <style name="WrapWrapTextSize12.ff">
         <item name="android:textColor">@color/common_white</item>
@@ -100,7 +100,7 @@
     </style>
 
     <style name="MatchWrapTextSize12" parent="MatchWrap">
-        <item name="android:textSize">@dimen/text_size_12</item>
+        <item name="android:textSize">@dimen/sp_12</item>
     </style>
     <style name="MatchWrapTextSize12.ff">
         <item name="android:textColor">@color/common_white</item>
@@ -116,7 +116,7 @@
     </style>
     <!-- 文字大小  10sp-->
     <style name="WrapWrapTextSize10" parent="WrapWrap">
-        <item name="android:textSize">@dimen/text_size_10</item>
+        <item name="android:textSize">@dimen/sp_10</item>
     </style>
     <style name="WrapWrapTextSize10.ff">
         <item name="android:textColor">@color/common_white</item>
@@ -132,7 +132,7 @@
     </style>
 
     <style name="MatchWrapTextSize10" parent="MatchWrap">
-        <item name="android:textSize">@dimen/text_size_10</item>
+        <item name="android:textSize">@dimen/sp_10</item>
     </style>
     <style name="MatchWrapTextSize10.ff">
         <item name="android:textColor">@color/common_white</item>
@@ -149,7 +149,7 @@
 
     <!-- 文字大小  8sp-->
     <style name="WrapWrapTextSize8" parent="WrapWrap">
-        <item name="android:textSize">@dimen/text_size_12</item>
+        <item name="android:textSize">@dimen/sp_12</item>
     </style>
     <style name="WrapWrapTextSize8.ff">
         <item name="android:textColor">@color/common_white</item>
@@ -165,7 +165,7 @@
     </style>
 
     <style name="MatchWrapTextSize8" parent="MatchWrap">
-        <item name="android:textSize">@dimen/text_size_12</item>
+        <item name="android:textSize">@dimen/sp_12</item>
     </style>
     <style name="MatchWrapTextSize8.ff">
         <item name="android:textColor">@color/common_white</item>
@@ -182,7 +182,7 @@
 
     <!-- 文字大小  21sp-->
     <style name="WrapWrapTextSize21" parent="WrapWrap">
-        <item name="android:textSize">@dimen/text_size_21</item>
+        <item name="android:textSize">@dimen/sp_21</item>
     </style>
     <style name="WrapWrapTextSize21.ff">
         <item name="android:textColor">@color/common_white</item>
@@ -201,7 +201,7 @@
     </style>
 
     <style name="MatchWrapTextSize21" parent="MatchWrap">
-        <item name="android:textSize">@dimen/text_size_21</item>
+        <item name="android:textSize">@dimen/sp_21</item>
     </style>
     <style name="MatchWrapTextSize21.ff">
         <item name="android:textColor">@color/common_white</item>
@@ -221,7 +221,7 @@
 
     <!-- 文字大小  14sp-->
     <style name="WrapWrapTextSize14" parent="WrapWrap">
-        <item name="android:textSize">@dimen/text_size_14</item>
+        <item name="android:textSize">@dimen/sp_14</item>
     </style>
     <style name="WrapWrapTextSize14.ff">
         <item name="android:textColor">@color/common_white</item>
@@ -237,7 +237,7 @@
     </style>
 
     <style name="MatchWrapTextSize14" parent="MatchWrap">
-        <item name="android:textSize">@dimen/text_size_14</item>
+        <item name="android:textSize">@dimen/sp_14</item>
     </style>
     <style name="MatchWrapTextSize14.ff">
         <item name="android:textColor">@color/common_white</item>
