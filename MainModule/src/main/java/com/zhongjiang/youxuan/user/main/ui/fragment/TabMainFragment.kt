@@ -2,6 +2,7 @@ package com.zhongjiang.kotlin.splash.ui.fragment
 
 import android.graphics.drawable.Drawable
 import android.util.Log
+import android.view.View
 import android.view.View.VISIBLE
 import android.widget.ImageView
 import com.bumptech.glide.load.DataSource
@@ -9,6 +10,7 @@ import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
 import com.jakewharton.rxbinding2.view.RxView
+import com.orhanobut.logger.Logger
 import com.zhongjiang.kotlin.splash.presenter.splashfragment.TabMainFragmentContract
 import com.zhongjiang.kotlin.splash.presenter.splashfragment.TabMainFragmentPresenter
 import com.zhongjiang.youxuan.base.busevent.ActivityRequestCode
@@ -36,14 +38,15 @@ class TabMainFragment : BaseMvpFragment<TabMainFragmentPresenter>(), TabMainFrag
     override fun initData() {
         mPresenter.requestAdInfo("")
         mPresenter.registerActivityResultEvent {
-            when(it.requestCoder){
+            when (it.requestCoder) {
                 ActivityRequestCode.REQUEST_WEBSHOW_CODE.requestCode -> {
                     mPresenter.checkSkip()
                 }
             }
         }
         baiDuUtils?.let {
-            it.start(BaiDuUtils.BaseLocationListener(baiDuUtils))
+            it.start(null)
+
         }
 
     }
@@ -91,7 +94,20 @@ class TabMainFragment : BaseMvpFragment<TabMainFragmentPresenter>(), TabMainFrag
         }
         RxView.clicks(mSplashFragmentTvSkip).shieldDoubleClick {
             mPresenter.checkSkip()
+            baiDuUtils.start(object : BaiDuUtils.LocationCallBackListener {
+                override fun onCallback(isSuccess: Boolean) {
+                    Logger.i(isSuccess.toString())
+                    Logger.i("经度=${baiDuUtils.longitudeStr} 纬度=${baiDuUtils.latitudeStr} city=${baiDuUtils.city} addrStr=${baiDuUtils.addrStr}")
+                }
+            })
         }
+    }
+
+    override fun onRight(view: View) {
+        baiDuUtils.start(null)
+    }
+    override fun onLastRight(view: View) {
+        start(TabMainFragment.newInstance())
     }
 
     override fun onRefreshTimer(time: String) {
@@ -110,7 +126,7 @@ class TabMainFragment : BaseMvpFragment<TabMainFragmentPresenter>(), TabMainFrag
     }
 
     override fun skipWeb(webUrl: String) {
-        NavigationUtil.navigationToWebShowResult(_mActivity,"http://youx7.youx.mobi/activity/qualitylife?appAreaCode=441723&appUserMobile=15868490449")
+        NavigationUtil.navigationToWebShowResult(_mActivity, "http://youx7.youx.mobi/activity/qualitylife?appAreaCode=441723&appUserMobile=15868490449")
     }
 
     /**当前业务部分 end*/

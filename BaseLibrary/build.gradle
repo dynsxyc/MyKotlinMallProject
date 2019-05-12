@@ -35,6 +35,7 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -43,6 +44,12 @@ android {
 
     dataBinding {
         enabled = true
+    }
+    sourceSets {
+        main {
+            jniLibs.srcDir 'libs'
+            jniLibs.srcDirs = ['libs']
+        }
     }
 }
 configurations.all {
