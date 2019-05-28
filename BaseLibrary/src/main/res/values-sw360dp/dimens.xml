@@ -6,8 +6,13 @@
 	<dimen name="common_padding">@dimen/dp_15</dimen>
 	<dimen name="common_padding_middle">@dimen/dp_12</dimen>
 	<dimen name="common_padding_small">@dimen/dp_10</dimen>
+	<dimen name="common_padding_dp8">@dimen/dp_8</dimen>
+	<dimen name="common_padding_dp5">@dimen/dp_5</dimen>
 	<dimen name="common_divider_height">@dimen/dp_0_5</dimen>
 	<dimen name="common_header_bar_height">@dimen/dp_45</dimen>
+	<dimen name="common_border_size">@dimen/dp_0_5</dimen>
+	<dimen name="common_window_screenWidth">@dimen/dp_375</dimen>
+	<dimen name="common_window_screenHalfWidth">@dimen/dp_187_5</dimen>
 	<dimen name="dp_m_60">-57.6000dp</dimen>
 	<dimen name="dp_m_30">-28.8000dp</dimen>
 	<dimen name="dp_m_20">-19.2000dp</dimen>
@@ -211,6 +216,7 @@
 	<dimen name="dp_185">177.6000dp</dimen>
 	<dimen name="dp_186">178.5600dp</dimen>
 	<dimen name="dp_187">179.5200dp</dimen>
+	<dimen name="dp_187_5">180.0000dp</dimen>
 	<dimen name="dp_188">180.4800dp</dimen>
 	<dimen name="dp_189">181.4400dp</dimen>
 	<dimen name="dp_190">182.4000dp</dimen>
@@ -386,6 +392,7 @@
 	<dimen name="dp_360">345.6000dp</dimen>
 	<dimen name="dp_365">350.4000dp</dimen>
 	<dimen name="dp_370">355.2000dp</dimen>
+	<dimen name="dp_375">360.0000dp</dimen>
 	<dimen name="dp_400">384.0000dp</dimen>
 	<dimen name="dp_410">393.6000dp</dimen>
 	<dimen name="dp_422">405.1200dp</dimen>

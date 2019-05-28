@@ -162,7 +162,7 @@ abstract class BaseInjectActivity : BaseSupportActivity(), HasSupportFragmentInj
             if (root is FrameLayout) {
                 val content = root as FrameLayout
                 val stackView = ImageView(this)
-                stackView.setImageResource(R.drawable.img_bug)
+                stackView.setImageResource(R.mipmap.img_bug)
                 val params = FrameLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT)
                 params.gravity = Gravity.BOTTOM
                 val dp18 = dip(18)

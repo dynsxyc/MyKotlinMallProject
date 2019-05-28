@@ -84,7 +84,6 @@ dependencies {
     api rootProject.ext.dependencies["rxAndroid"]
     api rootProject.ext.dependencies["rxKotlin"]
     api rootProject.ext.dependencies["rxbinding"]
-    api rootProject.ext.dependencies["rxPermissions"]
     api rootProject.ext.dependencies["ktx-autodispose"]
     api rootProject.ext.dependencies["ktx-autodispose-android-archcomponents"]
 
@@ -114,8 +113,9 @@ dependencies {
     //Alert View
 //    api "com.bigkoo:alertview:${alert_view_version}"
     //底部导航
-    api rootProject.ext.dependencies["navigationBar"]
+    api rootProject.ext.dependencies["pageBottomNavigation"]
     api rootProject.ext.dependencies["immersionBar"]
+    api rootProject.ext.dependencies["ViewPagerBanner"]
 
     //Arouter
     api rootProject.ext.dependencies["router"]
@@ -137,7 +137,10 @@ dependencies {
     api rootProject.ext.dependencies["aliyun-push-utils"]
     api rootProject.ext.dependencies["aliyun-push-beacon"]
     api rootProject.ext.dependencies["aliyun-push-utdid"]
-    api rootProject.ext.dependencies["dynPictureSelector"]
+    implementation rootProject.ext.dependencies["dynPictureSelector"]
+    implementation rootProject.ext.dependencies["dynXunFeiSpeechProject"]
+    api rootProject.ext.dependencies["smartRefreshHeader"]
+    api rootProject.ext.dependencies["smartRefreshLayout"]
     api project(':alipaySdk')
     api project(':umengmodule')
 //    api project(':imageselector')

@@ -10,6 +10,9 @@
     <style name="HeaderTitleImgDefault.share">
         <item name="tv_imgDrawable">@drawable/icon_share_drawable_pressed</item>
     </style>
+    <style name="HeaderTitleImgDefault.message">
+        <item name="tv_imgDrawable">@drawable/icon_share_drawable_pressed</item>
+    </style>
     <style name="HeaderTitleImgDefault.collect">
         <item name="tv_imgDrawable">@drawable/icon_collect_drawable_pressed</item>
     </style>

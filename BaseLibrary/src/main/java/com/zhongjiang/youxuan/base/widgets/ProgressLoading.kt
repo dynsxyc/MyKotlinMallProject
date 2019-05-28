@@ -22,10 +22,10 @@ class ProgressLoading private constructor(context: Context,theme:Int) :Dialog(co
             mDialog.setContentView(R.layout.progress_dialog)
             mDialog.setCancelable(cancelable)
             mDialog.setCanceledOnTouchOutside(cancelable)
-            mDialog.window.attributes.gravity = Gravity.CENTER
-            val  lp = mDialog.window.attributes
-                    lp.dimAmount = 0.2f
-            mDialog.window.attributes = lp
+            mDialog.window?.attributes?.gravity = Gravity.CENTER
+            val  lp = mDialog.window?.attributes
+                    lp?.dimAmount = 0.2f
+            mDialog.window?.attributes = lp
                     val  loadingView = mDialog.find<ImageView>(R.id.iv_loading)
             animDrawable = loadingView.background as AnimationDrawable
 

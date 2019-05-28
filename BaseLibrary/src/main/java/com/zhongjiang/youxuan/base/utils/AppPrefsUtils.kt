@@ -44,7 +44,7 @@ object AppPrefsUtils {
         默认 ""
      */
     fun getString(key: String): String {
-        return sp.getString(key, "")
+        return sp.getString(key,"")
     }
 
     /*

@@ -1,5 +1,6 @@
 package com.zhongjiang.youxuan.base.presenter
 
+import android.app.Activity
 import androidx.annotation.CallSuper
 import androidx.annotation.MainThread
 import androidx.lifecycle.LifecycleOwner
@@ -14,6 +15,7 @@ import com.zhongjiang.youxuan.base.data.db.UserInfoEntity
 import com.zhongjiang.youxuan.base.ext.excute
 import com.zhongjiang.youxuan.base.oss.OssService
 import com.zhongjiang.youxuan.base.oss.UpFileBean
+import com.zhongjiang.youxuan.base.utils.BaiDuUtils
 import com.zhongjiang.youxuan.base.utils.RxBus
 import com.zhongjiang.youxuan.base.utils.RxLifecycleUtils
 import io.objectbox.Box
@@ -29,7 +31,7 @@ import javax.inject.Singleton
 /**
  * Created by dyn on 2018/7/13.
  */
-open class BasePresenter<V : IView, M : IModel> constructor(view: V, model: M) : IPresenter {
+open class BasePresenter<V : IView, M : IModel> constructor(view: V, model: M) : IPresenter,BaiDuUtils.LocationCallBackListener {
     //    1. lateinit 延迟加载
 //    2.lateinit 只能修饰, 非kotlin基本类型
 //    因为Kotlin会使用null来对每一个用lateinit修饰的属性做初始化，而基础类型是没有null类型，所以无法使用lateinit。
@@ -50,6 +52,9 @@ open class BasePresenter<V : IView, M : IModel> constructor(view: V, model: M) :
     @Inject
     @Singleton
     lateinit var mRxBus: RxBus
+
+    @Inject
+    lateinit var mBaiDuUtils: BaiDuUtils
 
     lateinit var timerDisposable: Disposable
 
@@ -112,7 +117,15 @@ open class BasePresenter<V : IView, M : IModel> constructor(view: V, model: M) :
     @MainThread
     override fun onLifecycleChanged(owner: LifecycleOwner) {
     }
-
+    /**
+     * 开始定位
+     * */
+    fun startLocation(activity: Activity){
+        mBaiDuUtils.start(activity,this)
+    }
+    /**
+     * 注册页面调用回调 监听
+     * */
     fun registerActivityResultEvent(method: (ActivityResultEvent) -> Unit) {
         mRxBus.toObservable(ActivityResultEvent::class.java, Consumer {
             method(it)
@@ -196,5 +209,11 @@ open class BasePresenter<V : IView, M : IModel> constructor(view: V, model: M) :
             it.request(1)
 
         })
+    }
+    override fun onLocationCallback(isSuccess: Boolean) {
+
+    }
+    override fun onLackLocationPermissions() {
+        //定位没有权限  在这里可以加个提示框
     }
 }

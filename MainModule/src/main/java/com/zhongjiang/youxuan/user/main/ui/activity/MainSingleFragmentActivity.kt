@@ -64,6 +64,6 @@ class MainSingleFragmentActivity : BaseInjectActivity() {
     }
 
     override fun onBackPressedSupport() {
-        commonUtils.appExit(this)
+        super.onBackPressedSupport()
     }
 }

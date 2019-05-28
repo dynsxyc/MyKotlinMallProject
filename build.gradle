@@ -32,6 +32,9 @@ allprojects {
         maven {
             url 'http://maven.aliyun.com/nexus/content/repositories/releases/'
         }
+        maven{
+            url 'http://libmsc.xfyun.cn/repository/maven-releases/'
+        }
     }
 }
 task clean(type: Delete) {

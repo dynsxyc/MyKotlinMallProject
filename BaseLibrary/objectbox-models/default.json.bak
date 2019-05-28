@@ -97,12 +97,16 @@
     },
     {
       "id": "3:3549247955187924781",
-      "lastPropertyId": "11:5090866775928773105",
+      "lastPropertyId": "10:8812102775528298823",
       "name": "BaiduLocationEntity",
       "properties": [
         {
           "id": "1:7567346911891731301",
           "name": "id"
+        },
+        {
+          "id": "2:8962854878324150566",
+          "name": "isHasSuccessLocation"
         },
         {
           "id": "3:8380982223741814336",
@@ -135,10 +139,6 @@
         {
           "id": "10:8812102775528298823",
           "name": "addressStr"
-        },
-        {
-          "id": "11:5090866775928773105",
-          "name": "hasSuccessLocation"
         }
       ],
       "relations": []
@@ -152,9 +152,7 @@
   "modelVersionParserMinimum": 4,
   "retiredEntityUids": [],
   "retiredIndexUids": [],
-  "retiredPropertyUids": [
-    8962854878324150566
-  ],
+  "retiredPropertyUids": [],
   "retiredRelationUids": [],
   "version": 1
 }

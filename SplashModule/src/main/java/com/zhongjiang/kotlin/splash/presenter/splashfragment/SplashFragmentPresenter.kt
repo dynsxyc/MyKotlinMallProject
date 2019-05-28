@@ -1,12 +1,12 @@
 package com.zhongjiang.kotlin.splash.presenter.splashfragment
 
 import android.util.Log
-import com.zhongjiang.kotlin.base.data.db.SplashAdEntity
-import com.zhongjiang.kotlin.base.ext.excute
-import com.zhongjiang.kotlin.base.presenter.BasePresenter
-import com.zhongjiang.kotlin.base.rx.BaseMaybeObserver
-import com.zhongjiang.kotlin.provider.common.CommonUtils
 import com.zhongjiang.kotlin.splash.ui.fragment.SplashFragment
+import com.zhongjiang.youxuan.base.data.db.SplashAdEntity
+import com.zhongjiang.youxuan.base.ext.excute
+import com.zhongjiang.youxuan.base.presenter.BasePresenter
+import com.zhongjiang.youxuan.base.rx.BaseMaybeObserver
+import com.zhongjiang.youxuan.provider.common.CommonUtils
 import io.objectbox.Box
 import io.reactivex.functions.Action
 import io.reactivex.functions.Consumer
@@ -39,7 +39,7 @@ class SplashFragmentPresenter @Inject constructor(view: SplashFragmentContract.V
                         adInfoBox.put(t.data)
                     } else {
                         var adBean = adInfoBox.all[0]
-                        adBean.clone(t.data.get(0))
+                        adBean.clone(t.data[0])
                         adInfoBox.put(adBean)
                     }
             }

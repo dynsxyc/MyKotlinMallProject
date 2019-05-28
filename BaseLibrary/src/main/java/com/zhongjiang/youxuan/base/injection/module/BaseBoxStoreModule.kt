@@ -1,9 +1,7 @@
 package com.zhongjiang.youxuan.base.injection.module
 
 import com.zhongjiang.youxuan.base.common.BaseApplication
-import com.zhongjiang.youxuan.base.data.db.MyObjectBox
-import com.zhongjiang.youxuan.base.data.db.SplashAdEntity
-import com.zhongjiang.youxuan.base.data.db.UserInfoEntity
+import com.zhongjiang.youxuan.base.data.db.*
 import dagger.Module
 import dagger.Provides
 import io.objectbox.Box
@@ -28,6 +26,16 @@ class BaseBoxStoreModule {
     @Singleton
     fun providesSplashAdBox(boxStore: BoxStore): Box<SplashAdEntity> {
         return boxStore.boxFor(SplashAdEntity::class.java)
+    }
+    @Provides
+    @Singleton
+    fun providesLocationAreaBox(boxStore: BoxStore): Box<LocationAreaInfoEntity> {
+        return boxStore.boxFor(LocationAreaInfoEntity::class.java)
+    }
+    @Provides
+    @Singleton
+    fun providesBaiDuLocationBox(boxStore: BoxStore): Box<BaiduLocationEntity> {
+        return boxStore.boxFor(BaiduLocationEntity::class.java)
     }
 
 }

@@ -1,1 +1,1 @@
-include ':BaseLibrary', ':Provider', ':SplashModule', ':MainModule', ':umengmodule', ':alipaySdk',":imageselector"
+include ':BaseLibrary', ':Provider', ':SplashModule', ':MainModule', ':umengmodule', ':alipaySdk', ":imageselector"

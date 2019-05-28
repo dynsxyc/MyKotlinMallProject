@@ -10,14 +10,14 @@ import android.widget.TextView
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.jakewharton.rxbinding2.view.RxView
-import com.zhongjiang.kotlin.base.busevent.ActivityRequestCode
-import com.zhongjiang.kotlin.base.ext.shieldDoubleClick
-import com.zhongjiang.kotlin.base.imageloader.YXImageView
-import com.zhongjiang.kotlin.base.oss.UpFileBean
-import com.zhongjiang.kotlin.base.ui.fragment.BaseSelectorImgFragment
-import com.zhongjiang.kotlin.splash.R
 import com.zhongjiang.kotlin.splash.presenter.loginfragment.TestFragmentContract
 import com.zhongjiang.kotlin.splash.presenter.loginfragment.TestFragmentPresenter
+import com.zhongjiang.youxuan.base.busevent.ActivityRequestCode
+import com.zhongjiang.youxuan.base.ext.shieldDoubleClick
+import com.zhongjiang.youxuan.base.imageloader.YXImageView
+import com.zhongjiang.youxuan.base.oss.UpFileBean
+import com.zhongjiang.youxuan.base.ui.fragment.BaseSelectorImgFragment
+import com.zhongjiang.youxuan.user.splash.R
 import kotlinx.android.synthetic.main.fragment_testpicture.*
 
 class TestPictureFragment : BaseSelectorImgFragment<TestFragmentPresenter, TestFragmentContract.View, TestFragmentContract.Model>(), TestFragmentContract.View {

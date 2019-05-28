@@ -1,7 +1,12 @@
 package com.zhongjiang.youxuan.base.injection.module
 
+import android.content.Context
+import com.alibaba.sdk.android.push.CloudPushService
+import com.alibaba.sdk.android.push.CommonCallback
+import com.alibaba.sdk.android.push.noonesdk.PushServiceFactory
 import com.baidu.location.LocationClient
 import com.baidu.location.LocationClientOption
+import com.orhanobut.logger.Logger
 import com.zhongjiang.youxuan.base.common.BaseApplication
 import com.zhongjiang.youxuan.base.injection.module.sheduler.AppSchedulerProvider
 import com.zhongjiang.youxuan.base.injection.module.sheduler.SchedulerProvider
@@ -73,6 +78,7 @@ class AppModule(private val application: BaseApplication) {
         mOption.setWifiCacheTimeOut(5 * 60 * 1000)
         //可选，设置是否需要过滤GPS仿真结果，默认需要，即参数为false
         mOption.setEnableSimulateGps(false)
+        mOption.isOpenGps = true
         return mOption
     }
 
@@ -82,6 +88,28 @@ class AppModule(private val application: BaseApplication) {
         var locationClient = LocationClient(application)
         locationClient.locOption = locationClientOption
         return locationClient
+    }
+    /**
+     * 初始化云推送通道
+     * @param application
+     */
+    @Provides
+    @Singleton
+    fun provideAliPushService(application: Context) : CloudPushService {
+            PushServiceFactory.init(application)
+            var pushService = PushServiceFactory.getCloudPushService();
+            pushService.register(application, object : CommonCallback {
+                override fun onSuccess(p0: String?) {
+                    Logger.i("init cloudchannel success $p0")
+                }
+
+                override fun onFailed(errorCode: String?, errorMessage: String?) {
+                    Logger.i("init cloudchannel failed -- errorcode:$errorCode errorMessage: $errorMessage")
+                }
+
+            })
+            Logger.i("deviceId = ${pushService.deviceId}")
+        return pushService
     }
 
     @Provides

@@ -4,7 +4,7 @@
               style="@style/MatchMatch.Vertical">
     <ImageView
             style="@style/WrapWrap"
-            android:src="@drawable/icon_state_error"
+            android:src="@mipmap/icon_state_error"
             android:scaleType="centerCrop"/>
     <TextView
             style="@style/WrapWrap"

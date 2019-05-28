@@ -23,6 +23,14 @@ import com.zhongjiang.kotlin.provider.router.NavigationUtil
 import com.zhongjiang.kotlin.splash.R
 import com.zhongjiang.kotlin.splash.presenter.splashfragment.SplashFragmentContract
 import com.zhongjiang.kotlin.splash.presenter.splashfragment.SplashFragmentPresenter
+import com.zhongjiang.youxuan.base.busevent.ActivityRequestCode
+import com.zhongjiang.youxuan.base.data.db.SplashAdEntity
+import com.zhongjiang.youxuan.base.ext.shieldDoubleClick
+import com.zhongjiang.youxuan.base.imageloader.ImageLoaderUtil
+import com.zhongjiang.youxuan.base.injection.WindowScreenInfo
+import com.zhongjiang.youxuan.base.ui.fragment.BaseMvpFragment
+import com.zhongjiang.youxuan.provider.router.NavigationUtil
+import com.zhongjiang.youxuan.user.splash.R
 import kotlinx.android.synthetic.main.fragment_splash.*
 import me.yokeyword.fragmentation.ISupportFragment
 import javax.inject.Inject

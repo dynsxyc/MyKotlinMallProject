@@ -14,7 +14,7 @@ import org.jetbrains.anko.dip
 
 class ClearEditText (context:Context,attributes: AttributeSet): AppCompatEditText(context,attributes) {
     /** 默认的清除按钮图标资源  */
-    private val ICON_CLEAR_DEFAULT = R.drawable.img_login_delete
+    private val ICON_CLEAR_DEFAULT = R.mipmap.img_login_delete
 
     var drawableClear:Drawable
 

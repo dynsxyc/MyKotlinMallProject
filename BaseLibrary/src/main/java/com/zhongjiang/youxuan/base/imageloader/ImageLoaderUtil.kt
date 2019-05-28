@@ -101,7 +101,7 @@ class ImageLoaderUtil {
             }
             var drawable = getLoadingImageRadiusResourcesId(context, radius)
             if (type == IMAGE_STYLE_TYPE.IMAGE_TYPE_USER_ICON) {
-                drawable = context.getResources().getDrawable(R.drawable.default_user_icon)
+                drawable = context.getResources().getDrawable(R.mipmap.default_user_icon)
             }
             options.placeholder(drawable).error(drawable).diskCacheStrategy(diskCacheStrategy)
             val transformations = getTransformations(context, type)

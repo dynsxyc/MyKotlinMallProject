@@ -56,7 +56,7 @@ class CommonUtils @Inject constructor() {
         mUserInfoEntity.removeAll()
     }
 
-    var PATTERN_MOBILE = Pattern.compile("^1\\d{10}$")
+    private var patternMobile = Pattern.compile("^1\\d{10}$")
 
     /**
      * 判断输入的手机号是否合法 true 合法 false 不合法
@@ -65,7 +65,7 @@ class CommonUtils @Inject constructor() {
         if (TextUtils.isEmpty(mobiles)) {
             return false
         }
-        val m = PATTERN_MOBILE.matcher(mobiles.replace(" ".toRegex(), ""))
+        val m = patternMobile.matcher(mobiles.replace(" ".toRegex(), ""))
         return m.matches()
     }
 }

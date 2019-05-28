@@ -10,6 +10,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.jakewharton.rxbinding2.view.RxView
+import com.orhanobut.logger.Logger
 import com.zhongjiang.kotlin.splash.presenter.loginfragment.TestFragmentContract
 import com.zhongjiang.kotlin.splash.presenter.loginfragment.TestFragmentPresenter
 import com.zhongjiang.youxuan.base.busevent.ActivityRequestCode
@@ -39,11 +40,13 @@ class TestPictureFragment : BaseSelectorImgFragment<TestFragmentPresenter, TestF
     }
 
     override fun initView() {
+
         RxView.clicks(btCamera).shieldDoubleClick {
             openMedia(true)
         }
         RxView.clicks(btAlbum).shieldDoubleClick {
-            openMedia(false)
+            Logger.i(mPresenter.mBaiDuUtils.toString())
+            mPresenter.startLocation(_mActivity)
         }
         testRecyclerView.layoutManager = GridLayoutManager(_mActivity,2,GridLayoutManager.HORIZONTAL,false)
         var itemDate= ItemDate("测试行业","https://img-ads.csdn.net/2019/201903131400184107.png")
