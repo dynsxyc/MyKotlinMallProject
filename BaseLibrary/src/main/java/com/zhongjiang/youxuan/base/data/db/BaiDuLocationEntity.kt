@@ -21,7 +21,7 @@ import io.objectbox.annotation.Id
  **/
 
 @Entity
-class BaiduLocationEntity {
+class BaiDuLocationEntity {
     @Id(assignable = true)
     var id: Long = DEFAULT_LOCATION_ID
     /**
@@ -66,7 +66,7 @@ class BaiduLocationEntity {
         this.district = district
         this.addressStr = addressStr
     }
-    fun clone(baiduLocationEntity: BaiduLocationEntity):BaiduLocationEntity{
+    fun clone(baiduLocationEntity: BaiDuLocationEntity):BaiDuLocationEntity{
         this.hasSuccessLocation = baiduLocationEntity.hasSuccessLocation
         this.latitude = baiduLocationEntity.latitude
         this.latitudeStr = baiduLocationEntity.latitudeStr

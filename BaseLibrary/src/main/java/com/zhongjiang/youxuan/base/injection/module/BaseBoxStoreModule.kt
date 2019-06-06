@@ -34,8 +34,8 @@ class BaseBoxStoreModule {
     }
     @Provides
     @Singleton
-    fun providesBaiDuLocationBox(boxStore: BoxStore): Box<BaiduLocationEntity> {
-        return boxStore.boxFor(BaiduLocationEntity::class.java)
+    fun providesBaiDuLocationBox(boxStore: BoxStore): Box<BaiDuLocationEntity> {
+        return boxStore.boxFor(BaiDuLocationEntity::class.java)
     }
 
 }

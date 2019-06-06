@@ -7,7 +7,7 @@ import com.baidu.location.BDLocation
 import com.baidu.location.LocationClient
 import com.luck.picture.lib.permissions.RxPermissions
 import com.orhanobut.logger.Logger
-import com.zhongjiang.youxuan.base.data.db.BaiduLocationEntity
+import com.zhongjiang.youxuan.base.data.db.BaiDuLocationEntity
 import io.objectbox.Box
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -38,7 +38,7 @@ class BaiDuUtils @Inject constructor() {
     lateinit var mLocationClient: LocationClient
 
     @Inject
-    lateinit var baiduLocationBox: Box<BaiduLocationEntity>
+    lateinit var baiduLocationBox: Box<BaiDuLocationEntity>
 
     private var mBaseLocationListener = BaseLocationListener()
     private fun registerLocationListener(baseLocationListener: BaseLocationListener) {
@@ -97,7 +97,7 @@ class BaiDuUtils @Inject constructor() {
         var callBackListener: LocationCallBackListener? = null
 
 
-        override fun onReceiveLocation(location: BDLocation?) {
+        override fun onReceiveLocation(location: BDLocation) {
             var isHasSuccessLocation = 0
             var latitude = DEFAULT_LATITUDE
             var longitude = DEFAULT_LONGITUDE
@@ -105,7 +105,7 @@ class BaiDuUtils @Inject constructor() {
             var province = DEFAULT_PROVINCE
             var district = DEFAULT_DISTRICT
             var addressStr = DEFAULT_ADDRESSSTR
-            location?.let {
+            location.let {
                 Logger.i("百度定位返回结果  ---${it.latitude} ---${it.longitude} ---${it.city} ---${it.province} ---${it.district} ---${it.addrStr} ---${it.locType} ")
                 when (it.locType) {
                     BDLocation.TypeNetWorkLocation, BDLocation.TypeGpsLocation, BDLocation.TypeOffLineLocation -> {
@@ -128,7 +128,7 @@ class BaiDuUtils @Inject constructor() {
                     }
                 }
             }
-            var baiduLocationEntity = BaiduLocationEntity(isHasSuccessLocation, latitude, latitude.toString(), longitude, longitude.toString(), city, province, district, addressStr)
+            var baiduLocationEntity = BaiDuLocationEntity(isHasSuccessLocation, latitude, latitude.toString(), longitude, longitude.toString(), city, province, district, addressStr)
             if (baiduLocationBox.count() <= 0) {
                 baiduLocationBox.put(baiduLocationEntity)
             } else {
@@ -145,7 +145,7 @@ class BaiDuUtils @Inject constructor() {
         fun onLackLocationPermissions()
     }
 
-    private fun getLocationEntity(): BaiduLocationEntity? {
+    private fun getLocationEntity(): BaiDuLocationEntity? {
         baiduLocationBox?.let {
             if (baiduLocationBox.count() <= 0) {
                 return null
