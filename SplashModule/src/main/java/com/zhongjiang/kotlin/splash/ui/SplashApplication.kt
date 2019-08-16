@@ -1,8 +1,8 @@
 package com.zhongjiang.kotlin.splash.ui
 
-import com.zhongjiang.kotlin.base.common.BaseApplication
-import com.zhongjiang.kotlin.splash.BuildConfig
 import com.zhongjiang.kotlin.user.injection.component.DaggerSplashModuleComponent
+import com.zhongjiang.youxuan.base.common.BaseApplication
+import com.zhongjiang.youxuan.user.splash.BuildConfig
 import me.yokeyword.fragmentation.Fragmentation
 
 class SplashApplication : BaseApplication() {

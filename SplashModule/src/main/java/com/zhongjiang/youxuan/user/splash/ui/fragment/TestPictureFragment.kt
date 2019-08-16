@@ -34,7 +34,7 @@ class TestPictureFragment : BaseSelectorImgFragment<TestFragmentPresenter, TestF
         return UpFileBean.Companion.FileModuleType.ANDROID
     }
 
-    fun onFileUpIng(it: UpFileBean) {
+    override fun onFileUpIng(it: UpFileBean) {
         com.orhanobut.logger.Logger.i("文件名 = ${it.fileName},上传状态= ${it.upType},上传进度= ${it.progress},图片路径 = ${it.filePath},上传返回路径=${it.upSuccessUrl}")
     }
 

@@ -7,15 +7,12 @@ import com.gyf.barlibrary.BarHide
 import com.gyf.barlibrary.ImmersionBar
 import com.zhongjiang.kotlin.splash.ui.fragment.TabMainFragment
 import com.zhongjiang.youxuan.base.ui.activity.BaseInjectActivity
-import com.zhongjiang.youxuan.provider.common.CommonUtils
 import com.zhongjiang.youxuan.provider.router.NavigationConstant
 import com.zhongjiang.youxuan.provider.router.NavigationUtil
 import com.zhongjiang.youxuan.provider.router.RouterPath
 import com.zhongjiang.youxuan.user.main.R
 import com.zhongjiang.youxuan.user.main.common.MainModuleSingleActivityEntity
 import com.zhongjiang.youxuan.user.main.common.MainModuleSingleActivityType
-import javax.inject.Inject
-import javax.inject.Singleton
 /**
  * @date on 2019/05/08 09:24
  * @packagename
@@ -30,10 +27,6 @@ class MainSingleFragmentActivity : BaseInjectActivity() {
     @Autowired(name = NavigationConstant.NAVIGATION_DATA_PARCELABLE_CONTENT)
     @JvmField
     var intentData: MainModuleSingleActivityEntity? = null
-
-    @Inject
-    @Singleton
-    lateinit var commonUtils: CommonUtils
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

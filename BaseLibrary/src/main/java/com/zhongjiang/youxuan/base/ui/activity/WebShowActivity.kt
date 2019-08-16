@@ -187,7 +187,6 @@ class WebShowActivity : BaseMvpActivity<WebShowActivityPresenter>(), WebShowActi
     }
 
     override fun initImmersionBar() {
-        super.initImmersionBar()
         ImmersionBar.with(this).fitsSystemWindows(true).init()
     }
 }

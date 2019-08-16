@@ -21,7 +21,7 @@ import io.objectbox.annotation.Id
  **/
 
 @Entity
-class BaiDuLocationEntity {
+class BaiDuLocationEntity constructor() {
     @Id(assignable = true)
     var id: Long = DEFAULT_LOCATION_ID
     /**
@@ -55,7 +55,9 @@ class BaiDuLocationEntity {
      */
     var addressStr = DEFAULT_ADDRESSSTR
 
-    constructor(isHasSuccessLocation: Int, latitude: Double, latitudeStr: String, longitude: Double, longitudeStr: String, city: String, province: String, district: String, addressStr: String) {
+
+
+    constructor(isHasSuccessLocation: Int, latitude: Double, latitudeStr: String, longitude: Double, longitudeStr: String, city: String, province: String, district: String, addressStr: String):this() {
         this.hasSuccessLocation = isHasSuccessLocation
         this.latitude = latitude
         this.latitudeStr = latitudeStr

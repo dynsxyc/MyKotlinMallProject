@@ -1,8 +1,8 @@
 package com.zhongjiang.kotlin.user.data.protocol
 
-import com.zhongjiang.kotlin.base.common.YouXuanFieldConstant.Companion.API_DATA_FIELD_APPTYPE
-import com.zhongjiang.kotlin.base.common.YouXuanFieldConstant.Companion.API_DATA_FIELD_PAGE
-import com.zhongjiang.kotlin.base.common.YouXuanFieldConstant.Companion.API_DATA_FIELD_PAGESIZE
+import com.zhongjiang.youxuan.base.common.YouXuanFieldConstant.Companion.API_DATA_FIELD_APPTYPE
+import com.zhongjiang.youxuan.base.common.YouXuanFieldConstant.Companion.API_DATA_FIELD_PAGE
+import com.zhongjiang.youxuan.base.common.YouXuanFieldConstant.Companion.API_DATA_FIELD_PAGESIZE
 import retrofit2.http.Field
 
 /**

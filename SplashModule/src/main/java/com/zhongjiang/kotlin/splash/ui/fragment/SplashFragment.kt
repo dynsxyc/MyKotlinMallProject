@@ -13,14 +13,6 @@ import com.gyf.barlibrary.BarHide
 import com.gyf.barlibrary.ImmersionBar
 import com.jakewharton.rxbinding2.view.RxView
 import com.orhanobut.logger.Logger
-import com.zhongjiang.kotlin.base.busevent.ActivityRequestCode
-import com.zhongjiang.kotlin.base.data.db.SplashAdEntity
-import com.zhongjiang.kotlin.base.ext.shieldDoubleClick
-import com.zhongjiang.kotlin.base.imageloader.ImageLoaderUtil
-import com.zhongjiang.kotlin.base.injection.WindowScreenInfo
-import com.zhongjiang.kotlin.base.ui.fragment.BaseMvpFragment
-import com.zhongjiang.kotlin.provider.router.NavigationUtil
-import com.zhongjiang.kotlin.splash.R
 import com.zhongjiang.kotlin.splash.presenter.splashfragment.SplashFragmentContract
 import com.zhongjiang.kotlin.splash.presenter.splashfragment.SplashFragmentPresenter
 import com.zhongjiang.youxuan.base.busevent.ActivityRequestCode

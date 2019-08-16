@@ -7,6 +7,7 @@ import android.widget.Button
 import android.widget.EditText
 import com.flyco.roundview.RoundTextView
 import com.kotlin.base.widgets.DefaultTextWatcher
+import com.orhanobut.logger.Logger
 import com.uber.autodispose.ScopeProvider
 import com.uber.autodispose.autoDisposable
 import com.zhongjiang.youxuan.base.data.protocol.BaseList
@@ -72,9 +73,12 @@ fun Button.editEmptyEnable(et: EditText, method: () -> Boolean) {
 
 fun Observable<Any>.shieldDoubleClick(method: () -> Unit) {
     this.throttleFirst(1000, TimeUnit.MILLISECONDS)
-            .subscribe {
+            .subscribe( {
                 method()
-            }
+            },{
+                Logger.i("点击调用失败")
+                it.printStackTrace()
+            })
 }
 
 fun RoundTextView.editEnable(et: EditText, method: () -> Boolean){

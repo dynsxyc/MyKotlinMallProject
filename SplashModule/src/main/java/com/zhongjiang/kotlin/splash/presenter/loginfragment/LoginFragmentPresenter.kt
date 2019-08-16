@@ -1,12 +1,12 @@
 package com.zhongjiang.kotlin.splash.presenter.loginfragment
 
 import com.uber.autodispose.autoDisposable
-import com.zhongjiang.kotlin.base.data.db.UserInfoEntity
-import com.zhongjiang.kotlin.base.ext.excute
-import com.zhongjiang.kotlin.base.presenter.BasePresenter
-import com.zhongjiang.kotlin.base.rx.BaseMaybeObserver
-import com.zhongjiang.kotlin.provider.common.CommonUtils
 import com.zhongjiang.kotlin.splash.data.VerificationCodeResuleInfo
+import com.zhongjiang.youxuan.base.data.db.UserInfoEntity
+import com.zhongjiang.youxuan.base.ext.excute
+import com.zhongjiang.youxuan.base.presenter.BasePresenter
+import com.zhongjiang.youxuan.base.rx.BaseMaybeObserver
+import com.zhongjiang.youxuan.provider.common.CommonUtils
 import io.reactivex.functions.Action
 import io.reactivex.functions.Consumer
 import javax.inject.Inject

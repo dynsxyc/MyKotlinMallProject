@@ -5,12 +5,12 @@ import com.alibaba.android.arouter.facade.annotation.Autowired
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.gyf.barlibrary.BarHide
 import com.gyf.barlibrary.ImmersionBar
-import com.zhongjiang.kotlin.base.ui.activity.BaseInjectActivity
-import com.zhongjiang.kotlin.provider.router.NavigationConstant
-import com.zhongjiang.kotlin.provider.router.RouterPath
-import com.zhongjiang.kotlin.splash.R
 import com.zhongjiang.kotlin.splash.ui.fragment.LoginFragment
 import com.zhongjiang.kotlin.splash.ui.fragment.SplashFragment
+import com.zhongjiang.youxuan.base.ui.activity.BaseInjectActivity
+import com.zhongjiang.youxuan.provider.router.NavigationConstant
+import com.zhongjiang.youxuan.provider.router.RouterPath
+import com.zhongjiang.youxuan.user.splash.R
 
 /**
  * Created by dyn on 2018/7/25.

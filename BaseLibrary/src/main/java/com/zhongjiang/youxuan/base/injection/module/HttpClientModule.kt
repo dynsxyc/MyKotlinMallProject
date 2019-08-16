@@ -1,7 +1,12 @@
 package com.zhongjiang.youxuan.base.injection.module
 
 import com.google.gson.Gson
+import com.google.gson.GsonBuilder
 import com.zhongjiang.youxuan.base.data.net.interceptor.RequestInterceptor
+import com.zhongjiang.youxuan.base.utils.gsontypeadapter.DoubleDefaultAdapter
+import com.zhongjiang.youxuan.base.utils.gsontypeadapter.IntDefaultAdapter
+import com.zhongjiang.youxuan.base.utils.gsontypeadapter.LongDefaultAdapter
+import com.zhongjiang.youxuan.base.utils.gsontypeadapter.StringNullAdapter
 import dagger.Module
 import dagger.Provides
 import okhttp3.HttpUrl
@@ -25,12 +30,12 @@ class HttpClientModule {
 
     @Singleton
     @Provides
-    fun provideRetrofit(builder: Retrofit.Builder, client: OkHttpClient, httpUrl: HttpUrl): Retrofit {
+    fun provideRetrofit(builder: Retrofit.Builder, client: OkHttpClient, httpUrl: HttpUrl,gson: Gson): Retrofit {
         return builder
                 .baseUrl(httpUrl)
                 .client(client)
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                .addConverterFactory(GsonConverterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create(gson))
                 .build()
     }
 
@@ -70,7 +75,12 @@ class HttpClientModule {
     @Singleton
     @Provides
     fun provideGson(): Gson {
-        return Gson()
+        return GsonBuilder()
+                .registerTypeAdapter(Integer::class.java, IntDefaultAdapter())
+                .registerTypeAdapter(Double::class.java, DoubleDefaultAdapter())
+                .registerTypeAdapter(Long::class.java, LongDefaultAdapter())
+                .registerTypeAdapter(String::class.java, StringNullAdapter())
+                .create()
     }
 
 }

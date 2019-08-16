@@ -1,12 +1,12 @@
 package com.zhongjiang.kotlin.splash.injection.module
 
-import com.zhongjiang.kotlin.base.injection.scope.ActivityScope
 import com.zhongjiang.kotlin.splash.presenter.loginfragment.LoginFragmentContract
 import com.zhongjiang.kotlin.splash.presenter.loginfragment.LoginFragmentModel
 import com.zhongjiang.kotlin.splash.presenter.loginfragment.TestFragmentContract
 import com.zhongjiang.kotlin.splash.presenter.loginfragment.TestFragmentModel
 import com.zhongjiang.kotlin.splash.ui.fragment.LoginFragment
 import com.zhongjiang.kotlin.splash.ui.fragment.TestPictureFragment
+import com.zhongjiang.youxuan.base.injection.scope.ActivityScope
 import dagger.Module
 import dagger.Provides
 

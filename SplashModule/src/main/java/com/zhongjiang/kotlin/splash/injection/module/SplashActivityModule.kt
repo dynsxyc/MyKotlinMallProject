@@ -1,7 +1,7 @@
 package com.zhongjiang.kotlin.splash.injection.module
 
-import com.zhongjiang.kotlin.base.injection.scope.ActivityScope
 import com.zhongjiang.kotlin.splash.ui.activity.SplashActivity
+import com.zhongjiang.youxuan.base.injection.scope.ActivityScope
 import dagger.Module
 import dagger.Provides
 
