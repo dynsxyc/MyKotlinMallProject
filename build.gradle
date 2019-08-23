@@ -11,7 +11,7 @@ buildscript {
             url 'http://maven.aliyun.com/nexus/content/repositories/releases/'
         }
     }
-    ext.objectboxVersion = '2.2.0'
+    ext.objectboxVersion = '2.3.4'
     dependencies {
         classpath "io.objectbox:objectbox-gradle-plugin:$objectboxVersion"
         classpath 'com.android.tools.build:gradle:3.2.1'

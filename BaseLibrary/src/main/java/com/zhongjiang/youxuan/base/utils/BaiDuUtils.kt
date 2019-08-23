@@ -18,7 +18,7 @@ import javax.inject.Singleton
  * @author dyn
  * @fileName BaiDuUtils
  * @org com.zhongjiang.youxuan
- * @describe 添加描述
+ * @describe 百度定位数据
  * @email 583454199@qq.com
  **/
 class BaiDuUtils @Inject constructor() {
@@ -31,6 +31,7 @@ class BaiDuUtils @Inject constructor() {
         const val DEFAULT_PROVINCE = "浙江省"
         const val DEFAULT_DISTRICT = "江干区"
         const val DEFAULT_ADDRESSSTR = ""
+        val DEFAULT_BAIDU_ENTITY = BaiDuLocationEntity(0, DEFAULT_LATITUDE, DEFAULT_LATITUDE.toString(), DEFAULT_LONGITUDE, DEFAULT_LONGITUDE.toString(), DEFAULT_CITY, DEFAULT_PROVINCE, DEFAULT_DISTRICT, DEFAULT_ADDRESSSTR);
     }
 
     @Inject
@@ -54,7 +55,7 @@ class BaiDuUtils @Inject constructor() {
     }
 
     private var block = "block"
-    fun start(mContent:Activity,locationCallBackListener: LocationCallBackListener?) = synchronized(block) {
+    fun start(mContent: Activity, locationCallBackListener: LocationCallBackListener?) = synchronized(block) {
         RxPermissions(mContent).requestEach(Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION).subscribe {
             if (it.granted) {
                 //同意
@@ -95,8 +96,6 @@ class BaiDuUtils @Inject constructor() {
 
     inner class BaseLocationListener : BDAbstractLocationListener() {
         var callBackListener: LocationCallBackListener? = null
-
-
         override fun onReceiveLocation(location: BDLocation) {
             var isHasSuccessLocation = 0
             var latitude = DEFAULT_LATITUDE
@@ -132,7 +131,7 @@ class BaiDuUtils @Inject constructor() {
             if (baiduLocationBox.count() <= 0) {
                 baiduLocationBox.put(baiduLocationEntity)
             } else {
-                var newLocation =baiduLocationBox.get(DEFAULT_LOCATION_ID).clone(baiduLocationEntity)
+                var newLocation = baiduLocationBox.get(DEFAULT_LOCATION_ID).clone(baiduLocationEntity)
                 baiduLocationBox.put(newLocation)
             }
             Logger.i("baiduLocationBox count = ${baiduLocationBox.count()}")
@@ -145,10 +144,10 @@ class BaiDuUtils @Inject constructor() {
         fun onLackLocationPermissions()
     }
 
-    private fun getLocationEntity(): BaiDuLocationEntity? {
+    private fun getLocationEntity(): BaiDuLocationEntity {
         baiduLocationBox?.let {
             if (baiduLocationBox.count() <= 0) {
-                return null
+                return DEFAULT_BAIDU_ENTITY
             } else {
                 return baiduLocationBox.get(DEFAULT_LOCATION_ID)
             }
@@ -159,93 +158,57 @@ class BaiDuUtils @Inject constructor() {
      * 是否包含有成功的定位信息
      */
     fun isHasSuccessLocation(): Boolean {
-        if (getLocationEntity() != null) {
-            return getLocationEntity()!!.hasSuccessLocation == 1
-        } else {
-            return false
-        }
+        return getLocationEntity().hasSuccessLocation == 1
     }
 
     /**
      * gps 获取当前位置的【纬度】
      */
     fun getLatitude(): Double {
-        if (getLocationEntity() != null) {
-            return getLocationEntity()!!.latitude
-        } else {
-            return DEFAULT_LATITUDE
-        }
+        return getLocationEntity().latitude
     }
 
     fun getLatitudeStr(): String {
-        if (getLocationEntity() != null) {
-            return getLocationEntity()!!.latitudeStr
-        } else {
-            return DEFAULT_LATITUDE.toString()
-        }
+        return getLocationEntity().latitudeStr
     }
 
     /**
      * gps 获取当前位置的【经度】
      */
     fun getLongitude(): Double {
-        if (getLocationEntity() != null) {
-            return getLocationEntity()!!.longitude
-        } else {
-            return DEFAULT_LONGITUDE
-        }
+        return getLocationEntity().longitude
     }
 
     fun getLongitudeStr(): String {
-        if (getLocationEntity() != null) {
-            return getLocationEntity()!!.longitudeStr
-        } else {
-            return DEFAULT_LONGITUDE.toString()
-        }
+        return getLocationEntity().longitudeStr
     }
 
     /**
      * 获取当前位置的城市
      */
     fun getCity(): String {
-        if (getLocationEntity() != null) {
-            return getLocationEntity()!!.city
-        } else {
-            return DEFAULT_CITY
-        }
+        return getLocationEntity().city
     }
 
     /**
      * 获取当前位置的省
      */
     fun getProvince(): String {
-        if (getLocationEntity() != null) {
-            return getLocationEntity()!!.province
-        } else {
-            return DEFAULT_PROVINCE
-        }
+        return getLocationEntity().province
     }
 
     /**
      * 获取当前位置的区
      */
     fun getDistrict(): String {
-        if (getLocationEntity() != null) {
-            return getLocationEntity()!!.district
-        } else {
-            return DEFAULT_DISTRICT
-        }
+        return getLocationEntity().district
     }
 
     /**
      * 获取当前位置的详细地址信息
      */
     fun getAddressStr(): String {
-        if (getLocationEntity() != null) {
-            return getLocationEntity()!!.addressStr
-        } else {
-            return DEFAULT_ADDRESSSTR
-        }
+        return getLocationEntity().addressStr
     }
 
     override fun toString(): String {

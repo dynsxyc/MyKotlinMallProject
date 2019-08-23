@@ -9,6 +9,7 @@ import com.zhongjiang.youxuan.base.utils.BaiDuUtils.Companion.DEFAULT_LONGITUDE
 import com.zhongjiang.youxuan.base.utils.BaiDuUtils.Companion.DEFAULT_PROVINCE
 import io.objectbox.annotation.Entity
 import io.objectbox.annotation.Id
+import io.objectbox.relation.ToMany
 
 /**
  * @date on 2019/5/28 9:13
@@ -22,6 +23,7 @@ import io.objectbox.annotation.Id
 
 @Entity
 class BaiDuLocationEntity constructor() {
+
     @Id(assignable = true)
     var id: Long = DEFAULT_LOCATION_ID
     /**
