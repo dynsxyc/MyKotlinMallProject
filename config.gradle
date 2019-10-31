@@ -44,6 +44,7 @@ ext {
 
             //kotlin
             "kotlin-android"                        : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${dependVersion.kotlin_version}",
+            "kotlin-reflect"                        : "org.jetbrains.kotlin:kotlin-reflect:${dependVersion.kotlin_version}",
             "smartRefreshLayout"                        : "com.scwang.smartrefresh:SmartRefreshLayout:1.1.0-andx-8",
             "smartRefreshHeader"                        : "com.scwang.smartrefresh:SmartRefreshHeader:1.1.0-andx-8",
 

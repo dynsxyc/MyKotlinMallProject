@@ -69,6 +69,7 @@ dependencies {
     api rootProject.ext.dependencies["android-multidex"]
     api rootProject.ext.dependencies["androidx-appcompat"]
     api rootProject.ext.dependencies["kotlin-android"]
+    implementation rootProject.ext.dependencies["kotlin-reflect"]
 
     // Anko
     api rootProject.ext.dependencies["ankoCommons"]

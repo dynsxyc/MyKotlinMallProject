@@ -5,6 +5,7 @@ import android.app.Service
 import android.content.BroadcastReceiver
 import android.content.ContentProvider
 import android.content.Context
+import android.content.ContextWrapper
 import android.graphics.Point
 import android.os.Build
 import android.view.WindowManager
@@ -70,7 +71,7 @@ abstract class BaseApplication : MultiDexApplication(), HasActivityInjector,
     override fun supportFragmentInjector(): DispatchingAndroidInjector<androidx.fragment.app.Fragment>? {
         return supportFragmentInjector
     }
-
+    object AppContext:ContextWrapper(instance)
     override fun onCreate() {
         super.onCreate()
         initRouter()

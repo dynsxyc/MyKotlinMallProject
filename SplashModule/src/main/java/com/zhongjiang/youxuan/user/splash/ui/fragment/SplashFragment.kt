@@ -18,6 +18,7 @@ import com.zhongjiang.youxuan.base.ext.shieldDoubleClick
 import com.zhongjiang.youxuan.base.imageloader.ImageLoaderUtil
 import com.zhongjiang.youxuan.base.injection.WindowScreenInfo
 import com.zhongjiang.youxuan.base.ui.fragment.BaseMvpFragment
+import com.zhongjiang.youxuan.base.utils.Settings
 import com.zhongjiang.youxuan.provider.router.NavigationUtil
 import com.zhongjiang.youxuan.user.splash.R
 import com.zhongjiang.youxuan.user.splash.presenter.splashfragment.SplashFragmentContract
@@ -42,7 +43,7 @@ class SplashFragment : BaseMvpFragment<SplashFragmentPresenter>(), SplashFragmen
                 }
             }
         }
-
+        Settings.test = "55"
     }
 
     override fun getLayoutRes(): Int {
