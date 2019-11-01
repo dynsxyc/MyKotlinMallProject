@@ -16,16 +16,19 @@ class WithData<T>(val value: T) : BooleanExt<T>()
 
 fun <T> Boolean.yes(block: () -> T) =
         when {
-            this -> WithData(block())
+            this -> {
+                WithData(block())
+                block.invoke()
+            }
             else -> Otherwise
         }
 
 
-inline fun <T>Boolean.no(block: () -> T):BooleanExt<T> =
-    when{
-        this ->Otherwise
-        else ->WithData(block())
-    }
+inline fun <T> Boolean.no(block: () -> T): BooleanExt<T> =
+        when {
+            this -> Otherwise
+            else -> WithData(block())
+        }
 
 
 inline fun <T> BooleanExt<T>.otherwise(block: () -> T): T =
@@ -35,10 +38,3 @@ inline fun <T> BooleanExt<T>.otherwise(block: () -> T): T =
 
         }
 
-fun main() {
-    val  yes = true.yes {
-        "33"
-    }.otherwise {
-        "555"
-    }
-}
