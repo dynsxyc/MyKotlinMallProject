@@ -7,18 +7,44 @@ import android.view.ViewGroup
 import androidx.annotation.CallSuper
 import androidx.annotation.MainThread
 import androidx.lifecycle.Lifecycle
-import com.zhongjiang.youxuan.base.presenter.IFragment
-import com.zhongjiang.youxuan.base.presenter.IPresenter
+import com.zhongjiang.youxuan.base.presenter.*
 import com.zhongjiang.youxuan.base.widgets.ProgressLoading
 import org.jetbrains.anko.toast
 import javax.inject.Inject
+import kotlin.reflect.KClass
+import kotlin.reflect.jvm.jvmErasure
 
 /**
  * Created by dyn on 2018/7/13.
  */
-abstract class BaseMvpFragment<P : IPresenter> : BaseInjectFragment(), IFragment {
-    @Inject
-    protected lateinit var mPresenter: P
+abstract class BaseMvpFragment<out P : BasePresenter<BaseMvpFragment<P,M>,M>,M:IModel> : IView<P>, BaseInjectFragment() {
+
+    override val presenter: P
+
+    init {
+        presenter = createPresenterKt()
+        presenter.view = this
+    }
+
+    fun createPresenterKt():P {
+        buildSequence {
+          var thisClass:KClass<*> = this@BaseMvpFragment::class
+            while (true){
+                yield(thisClass.supertypes)
+                thisClass = thisClass.supertypes.firstOrNull()?.jvmErasure?:break
+            }
+        }.flaMap{
+            it.flaMap{
+                it.arguments
+            }.asSequence()
+        }.first{
+            it.type?jvmErasure?.isSubclassOf(IPresenter::class)?:false
+        }.let{
+            return it.type!!.jvmErasure.primaryConstructor!!.call() as P
+        }
+    }
+
+    fun create
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
@@ -42,8 +68,8 @@ abstract class BaseMvpFragment<P : IPresenter> : BaseInjectFragment(), IFragment
     @CallSuper
     @MainThread
     protected fun initLifecycleObserver(lifecycle: Lifecycle) {
-        mPresenter.setLifecycleOwner(this)
-        lifecycle.addObserver(mPresenter)
+        presenter.setLifecycleOwner(this)
+        lifecycle.addObserver(presenter)
     }
 
     private val progressLoading by lazy {
