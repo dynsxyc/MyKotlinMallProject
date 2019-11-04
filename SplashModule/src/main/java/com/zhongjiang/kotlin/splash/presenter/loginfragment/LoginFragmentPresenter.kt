@@ -2,6 +2,7 @@ package com.zhongjiang.kotlin.splash.presenter.loginfragment
 
 import com.uber.autodispose.autoDisposable
 import com.zhongjiang.kotlin.splash.data.VerificationCodeResuleInfo
+import com.zhongjiang.kotlin.splash.ui.fragment.LoginFragment
 import com.zhongjiang.youxuan.base.data.db.UserInfoEntity
 import com.zhongjiang.youxuan.base.ext.excute
 import com.zhongjiang.youxuan.base.presenter.BasePresenter
@@ -12,20 +13,20 @@ import io.reactivex.functions.Consumer
 import javax.inject.Inject
 import javax.inject.Singleton
 
-class LoginFragmentPresenter @Inject constructor(view: LoginFragmentContract.View, model: LoginFragmentContract.Model) : BasePresenter<LoginFragmentContract.View, LoginFragmentContract.Model>(view, model), LoginFragmentContract.Presenter {
+class LoginFragmentPresenter : BasePresenter<LoginFragment, LoginFragmentContract.Model>(), LoginFragmentContract.Presenter {
 
     @Inject
     @Singleton
     lateinit var commonUtils: CommonUtils
 
     override fun requestLogin(code: String, phoneStr: String, verificationCode: String) {
-        mView.showLoading()
-        mModel.requestLogin(code, phoneStr, verificationCode).excute(bindLifecycle(), object : BaseMaybeObserver<UserInfoEntity>(mView) {
+        view.showLoading()
+        mModel.requestLogin(code, phoneStr, verificationCode).excute(bindLifecycle(), object : BaseMaybeObserver<UserInfoEntity>(view) {
             override fun onSuccess(t: UserInfoEntity) {
                 super.onSuccess(t)
                 commonUtils.setUserInfo(t)
                 onLoginSuccess()
-                mView.onLoginSuccess()
+                view.onLoginSuccess()
             }
         })
 //        upFile(UpFileBean(UpFileBean.Companion.FileModuleType.ORDER_SECURITY,"/storage/emulated/0/tencent/MicroMsg/WeiXin/mmexport1553585976662.jpg")) {
@@ -34,11 +35,11 @@ class LoginFragmentPresenter @Inject constructor(view: LoginFragmentContract.Vie
     }
 
     override fun requestVerificationCode(phoneStr: String) {
-        mView.showLoading()
-        mModel.requestVerificationCode(phoneStr).autoDisposable(bindLifecycle()).subscribe(object : BaseMaybeObserver<VerificationCodeResuleInfo>(mView) {
+        view.showLoading()
+        mModel.requestVerificationCode(phoneStr).autoDisposable(bindLifecycle()).subscribe(object : BaseMaybeObserver<VerificationCodeResuleInfo>(view) {
             override fun onSuccess(t: VerificationCodeResuleInfo) {
                 super.onSuccess(t)
-                mView.getVerificationCodeSuccess(t)
+                view.getVerificationCodeSuccess(t)
                 if (t.status == 1) {
                     startVerificationCodeTimer()
                 }
@@ -58,9 +59,9 @@ class LoginFragmentPresenter @Inject constructor(view: LoginFragmentContract.Vie
 
     fun startVerificationCodeTimer() {
         mModel.startTimer(60, Consumer { t ->
-            mView.refreshVerificationCodeView(60.minus(t).toString())
+            view.refreshVerificationCodeView(60.minus(t).toString())
         }, Action {
-            mView.timerFinish()
+            view.timerFinish()
         }).excute(bindBusLifecycle())
     }
 }

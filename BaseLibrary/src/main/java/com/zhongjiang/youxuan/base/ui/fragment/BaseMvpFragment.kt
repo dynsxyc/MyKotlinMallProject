@@ -10,8 +10,11 @@ import androidx.lifecycle.Lifecycle
 import com.zhongjiang.youxuan.base.presenter.*
 import com.zhongjiang.youxuan.base.widgets.ProgressLoading
 import org.jetbrains.anko.toast
-import javax.inject.Inject
+import java.lang.reflect.ParameterizedType
 import kotlin.reflect.KClass
+import kotlin.reflect.KType
+import kotlin.reflect.full.isSubclassOf
+import kotlin.reflect.full.primaryConstructor
 import kotlin.reflect.jvm.jvmErasure
 
 /**
@@ -26,25 +29,44 @@ abstract class BaseMvpFragment<out P : BasePresenter<BaseMvpFragment<P,M>,M>,M:I
         presenter.view = this
     }
 
-    fun createPresenterKt():P {
-        buildSequence {
-          var thisClass:KClass<*> = this@BaseMvpFragment::class
+    private fun createPresenterKt():P {
+        sequence {
+            var thisClass:KClass<*> = this@BaseMvpFragment::class
             while (true){
                 yield(thisClass.supertypes)
                 thisClass = thisClass.supertypes.firstOrNull()?.jvmErasure?:break
             }
-        }.flaMap{
-            it.flaMap{
+        }.flatMap{
+            it.flatMap{
                 it.arguments
             }.asSequence()
         }.first{
-            it.type?jvmErasure?.isSubclassOf(IPresenter::class)?:false
+            it.type?.jvmErasure?.isSubclassOf(IPresenter::class)?:false
         }.let{
             return it.type!!.jvmErasure.primaryConstructor!!.call() as P
         }
     }
+    /**
+     * 以下是java写法
+     * */
+    private fun createPresenterJava():P {
+        sequence {
+            var thisClass:Class<*> = this@BaseMvpFragment.javaClass
+            while (true){
+                yield(thisClass.genericSuperclass)
+                thisClass = thisClass.superclass?:break
+            }
+        }.filter{
+            it is ParameterizedType
+        }.flatMap{
+            (it as ParameterizedType).actualTypeArguments.asSequence()
+        }.first{
+            it is Class<*> && IPresenter::class.java.isAssignableFrom(it)
+        }.let{
+            return (it as Class<P>).newInstance()
+        }
+    }
 
-    fun create
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)

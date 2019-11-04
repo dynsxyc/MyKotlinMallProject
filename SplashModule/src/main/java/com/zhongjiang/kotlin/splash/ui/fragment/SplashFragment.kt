@@ -30,17 +30,17 @@ import javax.inject.Inject
 /**
  * Created by dyn on 2018/7/25.
  */
-class SplashFragment : BaseMvpFragment<SplashFragmentPresenter>(), SplashFragmentContract.View {
+class SplashFragment : BaseMvpFragment<SplashFragmentPresenter,SplashFragmentContract.Model>(), SplashFragmentContract.View {
     @Inject
     lateinit var screenWidth: WindowScreenInfo
     /**公共实现部分 start*/
     override fun initData() {
-        mPresenter.requestAdInfo("")
-        mPresenter.registerActivityResultEvent {
+        presenter.requestAdInfo("")
+        presenter.registerActivityResultEvent {
             Logger.i("registerActivityResultEvent ${it.requestCoder}")
             when(it.requestCoder){
                 ActivityRequestCode.REQUEST_WEBSHOW_CODE.requestCode -> {
-                    mPresenter.checkSkip()
+                    presenter.checkSkip()
                 }
             }
         }
@@ -75,23 +75,23 @@ class SplashFragment : BaseMvpFragment<SplashFragmentPresenter>(), SplashFragmen
     override fun onShowAd(adBean: SplashAdEntity) {
         ImageLoaderUtil.displayImage(adBean.imgPathUrl, mSplashFragmentImgAd, ImageLoaderUtil.IMAGE_STYLE_TYPE.IMAGE_TYPE_RESOURCE, object : RequestListener<Drawable> {
             override fun onLoadFailed(e: GlideException?, model: Any?, target: Target<Drawable>?, isFirstResource: Boolean): Boolean {
-                mPresenter.checkSkip()
+                presenter.checkSkip()
                 return false
             }
 
             override fun onResourceReady(resource: Drawable?, model: Any?, target: Target<Drawable>?, dataSource: DataSource?, isFirstResource: Boolean): Boolean {
-                mPresenter.startAdTime(adBean.showTime.toLong())
+                presenter.startAdTime(adBean.showTime.toLong())
                 return false
             }
 
         }, screenWidth.width, screenWidth.height * 1080 / 1334)
         RxView.clicks(mSplashFragmentImgAd).shieldDoubleClick {
             //点击广告
-            mPresenter.stopTimeer()
+            presenter.stopTimeer()
             skipWeb(adBean.imgPageUrl)
         }
         RxView.clicks(mSplashFragmentTvSkip).shieldDoubleClick {
-            mPresenter.checkSkip()
+            presenter.checkSkip()
         }
     }
 

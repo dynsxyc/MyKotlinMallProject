@@ -12,11 +12,11 @@ import com.zhongjiang.youxuan.base.presenter.IModel
 import com.zhongjiang.youxuan.base.presenter.IView
 
 
-abstract class BaseSelectorImgFragment<P : BasePresenter<V, M>, V : IView, M : IModel> : BaseMvpFragment<P>() {
+abstract class BaseSelectorImgFragment<P : BasePresenter<BaseSelectorImgFragment<P,V,M>, M> , V : IView<P> , M : IModel> : BaseMvpFragment<P ,M>() {
     var defaultPictureSelectorConfig = PictureSelectorConfig(getDefaultFileModuleType(), getDefaultMaxSelectNum(), true, false, false, 0, 0)
     private var upFileList: ArrayList<UpFileBean> = arrayListOf()
     override fun initData() {
-        mPresenter.registerActivityResultEvent { activityResultEvent ->
+        presenter.registerActivityResultEvent { activityResultEvent ->
             when (activityResultEvent.requestCoder) {
                 getRequestSelectorImgCode().plus(PictureConfig.CHOOSE_REQUEST) -> {
                     if (activityResultEvent.resultCode == Activity.RESULT_OK) {
@@ -116,7 +116,7 @@ abstract class BaseSelectorImgFragment<P : BasePresenter<V, M>, V : IView, M : I
     abstract fun onFileUpIng(upFileBean: UpFileBean)
 
     protected fun upFile(upFileBeans: ArrayList<UpFileBean>) {
-        mPresenter.upFiles(upFileBeans) {
+        presenter.upFiles(upFileBeans) {
             onFileUpIng(it)
         }
     }

@@ -16,7 +16,6 @@ import com.zhongjiang.kotlin.splash.data.VerificationCodeResuleInfo
 import com.zhongjiang.kotlin.splash.presenter.loginfragment.LoginFragmentContract
 import com.zhongjiang.kotlin.splash.presenter.loginfragment.LoginFragmentPresenter
 import com.zhongjiang.youxuan.base.ext.editEnable
-import com.zhongjiang.youxuan.base.ext.padLeft
 import com.zhongjiang.youxuan.base.ext.setVisible
 import com.zhongjiang.youxuan.base.ext.shieldDoubleClick
 import com.zhongjiang.youxuan.base.ui.fragment.BaseMvpFragment
@@ -27,7 +26,7 @@ import kotlinx.android.synthetic.main.fragment_login.*
 import kotlinx.android.synthetic.main.viewsub_login_video.*
 import org.jetbrains.anko.toast
 
-class LoginFragment : BaseMvpFragment<LoginFragmentPresenter>(), LoginFragmentContract.View {
+class LoginFragment : BaseMvpFragment<LoginFragmentPresenter,LoginFragmentContract.Model>(), LoginFragmentContract.View {
     override fun onLoginSuccess() {
         _mActivity.finish()
         NavigationUtil.navigationToMain()
@@ -85,7 +84,7 @@ class LoginFragment : BaseMvpFragment<LoginFragmentPresenter>(), LoginFragmentCo
     }
 
     override fun onBackPressedSupport(): Boolean {
-        mPresenter.commonUtils.appExit(_mActivity)
+        presenter.commonUtils.appExit(_mActivity)
         return true
     }
 
@@ -97,7 +96,7 @@ class LoginFragment : BaseMvpFragment<LoginFragmentPresenter>(), LoginFragmentCo
         RxView.clicks(mLoginFragmentRoundTvGetVerificationCode).shieldDoubleClick {
             //            获取验证码
             val phoneNumber = mLoginFragmentEtPhone.text.toString().replace(" ", "")
-            mPresenter.requestVerificationCode(phoneNumber)
+            presenter.requestVerificationCode(phoneNumber)
         }
         RxView.clicks(mLoginFragmentTvServerAgreement).shieldDoubleClick {
             //服务协议
@@ -111,7 +110,7 @@ class LoginFragment : BaseMvpFragment<LoginFragmentPresenter>(), LoginFragmentCo
         RxView.clicks(mLoginFragmentRoundTvLogin).shieldDoubleClick {
             //登录
             val phoneNumber = mLoginFragmentEtPhone.text.toString().replace(" ", "")
-            mPresenter.requestLogin(mSingleCode, phoneNumber, mLoginFragmentEtVerificationCode.text.toString())
+            presenter.requestLogin(mSingleCode, phoneNumber, mLoginFragmentEtVerificationCode.text.toString())
         }
     }
     /**公共实现部分 end*/
@@ -187,7 +186,7 @@ class LoginFragment : BaseMvpFragment<LoginFragmentPresenter>(), LoginFragmentCo
     }
 
     fun checkLoginEnable(): Boolean {
-        var phoneStatus = mLoginFragmentEtPhone.text.isNullOrEmpty().not() and mPresenter.commonUtils.isMobile(mLoginFragmentEtPhone.text.toString())
+        var phoneStatus = mLoginFragmentEtPhone.text.isNullOrEmpty().not() and presenter.commonUtils.isMobile(mLoginFragmentEtPhone.text.toString())
         var codeStatus = mLoginFragmentEtVerificationCode.text.isNullOrEmpty().not()
         var result = phoneStatus and codeStatus
 

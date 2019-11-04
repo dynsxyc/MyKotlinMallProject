@@ -17,7 +17,7 @@ import javax.inject.Singleton
 /**
  * Created by dyn on 2018/7/25.
  */
-class SplashFragmentPresenter @Inject constructor(view: SplashFragmentContract.View, model: SplashFragmentContract.Model) : BasePresenter<SplashFragmentContract.View, SplashFragmentContract.Model>(view, model), SplashFragmentContract.Presenter {
+class SplashFragmentPresenter @Inject constructor(model: SplashFragmentContract.Model) : BasePresenter<SplashFragment, SplashFragmentContract.Model>(), SplashFragmentContract.Presenter {
     @Inject
     lateinit var adInfoBox: Box<SplashAdEntity>
     @Inject
@@ -28,7 +28,7 @@ class SplashFragmentPresenter @Inject constructor(view: SplashFragmentContract.V
     lateinit var commonUtils: CommonUtils
 
     override fun requestAdInfo(name: String) {
-        mModel.requestAdInfo(name,true).excute(bindLifecycle(),object : BaseMaybeObserver<Reply<List<SplashAdEntity>>>(mView) {
+        mModel.requestAdInfo(name,true).excute(bindLifecycle(),object : BaseMaybeObserver<Reply<List<SplashAdEntity>>>(view) {
             override fun onSuccess(t: Reply<List<SplashAdEntity>>) {
                 super.onSuccess(t)
                 System.out.print(t)
@@ -52,7 +52,7 @@ class SplashFragmentPresenter @Inject constructor(view: SplashFragmentContract.V
         if (adInfoBox.count() > 0) {
             var adBean = adInfoBox.all[0]
             if (adBean.imgPathUrl.isNotEmpty()) {
-                mView.onShowAd(adBean)
+                view.onShowAd(adBean)
             }
         } else {
             startTimmer(2, Consumer { t ->
@@ -66,7 +66,7 @@ class SplashFragmentPresenter @Inject constructor(view: SplashFragmentContract.V
 
     fun startAdTime(long: Long) {
         startTimmer(long.plus(1), Consumer { t ->
-            mView.onRefreshTimer(long.minus(t).toString())
+            view.onRefreshTimer(long.minus(t).toString())
             Log.i("test1", "onTimer ${long.minus(t)}")
         }, Action {
             checkSkip()
@@ -78,9 +78,9 @@ class SplashFragmentPresenter @Inject constructor(view: SplashFragmentContract.V
     override fun checkSkip() {
         if (commonUtils.isUserLogin()) {
             onLoginSuccess()
-            mView.onLoginSuccess()
+            view.onLoginSuccess()
         } else {
-            mView.skipLogin()
+            view.skipLogin()
         }
     }
 

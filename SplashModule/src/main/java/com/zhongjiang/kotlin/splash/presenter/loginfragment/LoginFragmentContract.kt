@@ -8,7 +8,7 @@ import com.zhongjiang.youxuan.base.presenter.IView
 import io.reactivex.Maybe
 
 class LoginFragmentContract {
-    interface Presenter : IPresenter {
+    interface Presenter  {
         fun requestVerificationCode(phoneStr: String)
         fun requestLogin(code:String,phoneStr: String,verificationCode: String)
     }
@@ -20,7 +20,7 @@ class LoginFragmentContract {
         fun requestVerificationCode(phoneStr:String):Maybe<VerificationCodeResuleInfo>
     }
 
-    interface View : IView {
+    interface View  {
         fun refreshVerificationCodeView(long:String)
         fun onLoginSuccess()
         fun timerFinish()

@@ -31,15 +31,13 @@ import javax.inject.Singleton
 /**
  * Created by dyn on 2018/7/13.
  */
-open class BasePresenter<V : IView, M : IModel> constructor(view: V, model: M) : IPresenter,BaiDuUtils.LocationCallBackListener {
+open abstract class BasePresenter<out V : IView<BasePresenter<V,M>>, M : IModel> : IPresenter<V>,BaiDuUtils.LocationCallBackListener {
     //    1. lateinit 延迟加载
 //    2.lateinit 只能修饰, 非kotlin基本类型
 //    因为Kotlin会使用null来对每一个用lateinit修饰的属性做初始化，而基础类型是没有null类型，所以无法使用lateinit。
-    var mView = view
+    lateinit var mModel : M
 
-    var mModel = model
-    @Inject
-    lateinit var context: BaseApplication
+    override lateinit var view: @UnsafeVariance V
 
     @field:Named("public")
     @Inject
@@ -62,7 +60,7 @@ open class BasePresenter<V : IView, M : IModel> constructor(view: V, model: M) :
     lateinit var mUserInfoEntity: Box<UserInfoEntity>
 
     fun checkNetWork(): Boolean {
-        if (NetWorkUtils.isNetWorkAvailable(context)) {
+        if (NetWorkUtils.isNetWorkAvailable(BaseApplication.AppContext)) {
             return true
         }
         return false

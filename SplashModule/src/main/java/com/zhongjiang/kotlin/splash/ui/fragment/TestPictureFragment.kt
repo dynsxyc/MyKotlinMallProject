@@ -20,7 +20,7 @@ import com.zhongjiang.youxuan.base.ui.fragment.BaseSelectorImgFragment
 import com.zhongjiang.youxuan.user.splash.R
 import kotlinx.android.synthetic.main.fragment_testpicture.*
 
-class TestPictureFragment : BaseSelectorImgFragment<TestFragmentPresenter, TestFragmentContract.View, TestFragmentContract.Model>(), TestFragmentContract.View {
+class TestPictureFragment : BaseSelectorImgFragment<TestFragmentPresenter, TestPictureFragment, TestFragmentContract.Model>(), TestFragmentContract.View {
 
     override fun getRequestSelectorImgCode(): Int {
         return ActivityRequestCode.REQUEST_IMAGESELECTOR_CODE.requestCode
