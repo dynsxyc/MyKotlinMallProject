@@ -23,12 +23,12 @@ import javax.inject.Singleton
  * desc:
  */
 @Module
-class AppModule(private val application: BaseApplication) {
+class AppModule() {
 
     @Singleton
     @Provides
     fun provideApplication(): BaseApplication {
-        return application
+        return BaseApplication.AppContext.baseContext as BaseApplication
     }
 
     @Singleton

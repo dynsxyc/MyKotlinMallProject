@@ -79,10 +79,10 @@ class YXWebShowFragment : BaseInjectFragment() {
 
         }
         /*错误页回调该方法 ， 如果重写了该方法， 上面传入了布局将不会显示 ， 交由开发者实现，注意参数对齐。*/
-        //	    public void onMainFrameError(AbsAgentWebUIController agentWebUIController, WebView view, int errorCode, String description, String failingUrl) {
+        //	    public void onMainFrameError(AbsAgentWebUIController agentWebUIController, WebView mView, int errorCode, String description, String failingUrl) {
         //
         //            Log.i(TAG, "AgentWebFragment onMainFrameError");
-        //            agentWebUIController.onMainFrameError(view,errorCode,description,failingUrl);
+        //            agentWebUIController.onMainFrameError(mView,errorCode,description,failingUrl);
         //
         //        }
 
@@ -96,8 +96,8 @@ class YXWebShowFragment : BaseInjectFragment() {
     var mWebChromeClient =
             object : WebChromeClient() {
                 override fun onProgressChanged(view: WebView, newProgress: Int) {
-                    //  super.onProgressChanged(view, newProgress);
-                    Log.i(TAG, "onProgressChanged:$newProgress  view:$view")
+                    //  super.onProgressChanged(mView, newProgress);
+                    Log.i(TAG, "onProgressChanged:$newProgress  mView:$view")
                 }
 
                 override fun onReceivedTitle(view: WebView, title: String) {

@@ -11,7 +11,7 @@ class SplashApplication : BaseApplication() {
         DaggerSplashModuleComponent.builder().appModule(getAppModule())
                 .httpClientModule(getHttpClientModule())
                 .globalConfigModule(getGlobalConfigModule())
-                .cacheModule(getCacheModule()).build()
+                .build()
                 .inject(this)
 
         Fragmentation.builder().debug(BuildConfig.DEBUG).stackViewMode(Fragmentation.BUBBLE).install()

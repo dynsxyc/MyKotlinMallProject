@@ -66,9 +66,9 @@ abstract class BaseInjectFragment : BaseSupperFragment(), onCommonHeaderTitleVie
 //                .fullScreen(true)      //有导航栏的情况下，activity全屏显示，也就是activity最下面被导航栏覆盖，不写默认非全屏
 //                .hideBar(BarHide.FLAG_HIDE_BAR)  //隐藏状态栏或导航栏或两者，不写默认不隐藏
 //                .addViewSupportTransformColor(toolbar)  //设置支持view变色，可以添加多个view，不指定颜色，默认和状态栏同色，还有两个重载方法
-//                .titleBar(view)    //解决状态栏和布局重叠问题，任选其一
-//                .titleBarMarginTop(view)     //解决状态栏和布局重叠问题，任选其一
-//                .statusBarView(view)  //解决状态栏和布局重叠问题，任选其一
+//                .titleBar(mView)    //解决状态栏和布局重叠问题，任选其一
+//                .titleBarMarginTop(mView)     //解决状态栏和布局重叠问题，任选其一
+//                .statusBarView(mView)  //解决状态栏和布局重叠问题，任选其一
                 .fitsSystemWindows(true)    //activity 已经设置过 这里不能重复设置  解决状态栏和布局重叠问题，任选其一，默认为false，当为true时一定要指定statusBarColor()，不然状态栏为透明色，还有一些重载方法
 //                .supportActionBar(true) //支持ActionBar使用
 //                .statusBarColorTransform(R.color.orange)  //状态栏变色后的颜色

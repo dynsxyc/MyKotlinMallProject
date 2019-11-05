@@ -120,9 +120,8 @@ abstract class BaseApplication : MultiDexApplication(), HasActivityInjector,
         lateinit var instance: BaseApplication
     }
 
-
     protected fun getAppModule(): AppModule {
-        return AppModule(this)
+        return AppModule()
     }
 
     protected fun getGlobalConfigModule(): GlobalConfigModule {

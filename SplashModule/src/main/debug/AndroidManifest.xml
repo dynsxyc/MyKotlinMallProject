@@ -10,7 +10,7 @@
         android:theme="@style/UxAppTheme"
         tools:replace="android:theme">
         <activity
-            android:name=".ui.activity.SplashActivity"
+            android:name=".ui.activity.splash.SplashActivity"
             android:configChanges="orientation|screenSize"
             android:screenOrientation="portrait"
             android:theme="@style/AppSplashTheme">
@@ -20,7 +20,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.zhongjiang.youxuan.base.ui.activity.WebShowActivity" />
+        <activity android:name="com.zhongjiang.youxuan.base.ui.activity.web.WebShowActivity" />
         <activity
             android:name="tsou.uxuan.user.wxapi.WXPayEntryActivity"
             android:exported="true"

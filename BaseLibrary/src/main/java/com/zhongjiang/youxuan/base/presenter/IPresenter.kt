@@ -7,7 +7,7 @@ import androidx.lifecycle.OnLifecycleEvent
 import org.jetbrains.annotations.NotNull
 
 interface IPresenter<out View:IView<IPresenter<View>>> : LifecycleObserver {
-    val view:View
+    val mView:View
 
     fun setLifecycleOwner(lifecycleOwner: LifecycleOwner)
 

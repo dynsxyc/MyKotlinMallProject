@@ -1,25 +1,53 @@
 package com.zhongjiang.youxuan.base.ui.activity
 
+import android.app.Activity
 import android.os.Bundle
 import androidx.annotation.CallSuper
 import androidx.annotation.LayoutRes
 import androidx.annotation.MainThread
 import androidx.lifecycle.Lifecycle
 import com.uber.autodispose.ScopeProvider
+import com.zhongjiang.youxuan.base.presenter.BasePresenter
+import com.zhongjiang.youxuan.base.presenter.IModel
 import com.zhongjiang.youxuan.base.presenter.IPresenter
 import com.zhongjiang.youxuan.base.presenter.IView
 import com.zhongjiang.youxuan.base.utils.RxLifecycleUtils
 import com.zhongjiang.youxuan.base.widgets.ProgressLoading
 import org.jetbrains.anko.toast
-import javax.inject.Inject
+import kotlin.reflect.KClass
+import kotlin.reflect.full.isSubclassOf
+import kotlin.reflect.full.primaryConstructor
+import kotlin.reflect.jvm.jvmErasure
 
 /**
  * Created by dyn on 2018/7/13.
  */
-abstract class BaseMvpActivity<P : IPresenter> : BaseInjectActivity(), IView {
-    @Inject
-    lateinit var mPresenter: P
+abstract class BaseMvpActivity<P : BasePresenter<BaseMvpActivity<P,M>,M>,M:IModel> : BaseInjectActivity(), IView<P> {
+    override val mPresenter: P
 
+
+    init {
+        mPresenter = createPresenterKt()
+        mPresenter.mView = this
+    }
+
+    private fun createPresenterKt():P {
+        sequence {
+            var thisClass: KClass<*> = this@BaseMvpActivity::class
+            while (true){
+                yield(thisClass.supertypes)
+                thisClass = thisClass.supertypes.firstOrNull()?.jvmErasure?:break
+            }
+        }.flatMap{
+            it.flatMap{
+                it.arguments
+            }.asSequence()
+        }.first{
+            it.type?.jvmErasure?.isSubclassOf(IPresenter::class)?:false
+        }.let{
+            return it.type!!.jvmErasure.primaryConstructor!!.call() as P
+        }
+    }
     val progressLoading by lazy {
          ProgressLoading.create(this)
     }
@@ -74,5 +102,16 @@ abstract class BaseMvpActivity<P : IPresenter> : BaseInjectActivity(), IView {
     @MainThread
     abstract fun initView()
 
+    override fun getHostActivity(): Activity {
+        return this
+    }
+
+    override fun showToast(resId: Int) {
+
+    }
+
+    override fun showToast(message: String) {
+
+    }
 
 }

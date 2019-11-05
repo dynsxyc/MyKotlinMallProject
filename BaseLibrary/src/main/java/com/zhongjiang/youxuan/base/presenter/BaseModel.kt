@@ -17,9 +17,9 @@ import javax.inject.Inject
  * desc:
  */
 
-open class BaseModel<S : BaseServiceManager> constructor(serviceManager: S) : IModel {
-
-    var serviceManager: S = serviceManager
+abstract class BaseModel<S : BaseServiceManager>  : IModel {
+    @Inject
+    lateinit var serviceManager: S
 
     @Inject
     lateinit var cacheProviders: CacheProviders

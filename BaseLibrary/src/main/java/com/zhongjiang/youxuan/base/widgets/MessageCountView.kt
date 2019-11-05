@@ -11,7 +11,7 @@ import kotlinx.android.synthetic.main.view_merge_message_count.*
 
 /**
  * @date on 2019/04/25 16:20
- * @packagename tsou.uxuan.user.view
+ * @packagename tsou.uxuan.user.mView
  * @author dyn
  * @org com.zhongjiang.youxuan
  * @describe 自定义  消息红点样式

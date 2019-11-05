@@ -31,8 +31,8 @@ class UIController(private val mActivity: Activity) : AgentWebUIControllerImplBa
      * 修改文件选择的弹窗
      */
     /* @Override
-    public void onSelectItemsPrompt(WebView view, String mUrl, String[] ways, final Handler.Callback callback) {
-        //super.onSelectItemsPrompt(view,mUrl,ways,callback); //这行应该注释或者删除掉
+    public void onSelectItemsPrompt(WebView mView, String mUrl, String[] ways, final Handler.Callback callback) {
+        //super.onSelectItemsPrompt(mView,mUrl,ways,callback); //这行应该注释或者删除掉
         final AlertDialog mAlertDialog = new AlertDialog.Extra(mActivity)//
                 .setSingleChoiceItems(ways, -1, new DialogInterface.OnClickListener() {
                     @Override

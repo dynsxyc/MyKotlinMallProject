@@ -37,7 +37,7 @@ class WXPayEntryActivity : Activity(), IWXAPIEventHandler {
     override fun onResp(resp: BaseResp) {
         Log.d("tag", "onPayFinish, errCode = " + resp.errCode)
 
-        if (resp.getType() === ConstantsAPI.COMMAND_PAY_BY_WX) {
+        if (resp.type == ConstantsAPI.COMMAND_PAY_BY_WX) {
             val builder = AlertDialog.Builder(this)
             builder.setTitle("支付结果")
             builder.setMessage("状态码 = "+resp.errCode)

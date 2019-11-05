@@ -1,5 +1,6 @@
 package com.zhongjiang.youxuan.base.ui.fragment
 
+import android.app.Activity
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,8 +12,8 @@ import com.zhongjiang.youxuan.base.presenter.*
 import com.zhongjiang.youxuan.base.widgets.ProgressLoading
 import org.jetbrains.anko.toast
 import java.lang.reflect.ParameterizedType
+import javax.inject.Inject
 import kotlin.reflect.KClass
-import kotlin.reflect.KType
 import kotlin.reflect.full.isSubclassOf
 import kotlin.reflect.full.primaryConstructor
 import kotlin.reflect.jvm.jvmErasure
@@ -20,13 +21,12 @@ import kotlin.reflect.jvm.jvmErasure
 /**
  * Created by dyn on 2018/7/13.
  */
-abstract class BaseMvpFragment<out P : BasePresenter<BaseMvpFragment<P,M>,M>,M:IModel> : IView<P>, BaseInjectFragment() {
-
-    override val presenter: P
+abstract class BaseMvpFragment<P : BasePresenter<BaseMvpFragment<P,M>,M>,M:IModel> : IView<P>, BaseInjectFragment() {
+    @Inject
+    override lateinit var mPresenter: P
 
     init {
-        presenter = createPresenterKt()
-        presenter.view = this
+        mPresenter.mView = this@BaseMvpFragment
     }
 
     private fun createPresenterKt():P {
@@ -90,8 +90,8 @@ abstract class BaseMvpFragment<out P : BasePresenter<BaseMvpFragment<P,M>,M>,M:I
     @CallSuper
     @MainThread
     protected fun initLifecycleObserver(lifecycle: Lifecycle) {
-        presenter.setLifecycleOwner(this)
-        lifecycle.addObserver(presenter)
+        mPresenter.setLifecycleOwner(this)
+        lifecycle.addObserver(mPresenter)
     }
 
     private val progressLoading by lazy {
@@ -114,6 +114,18 @@ abstract class BaseMvpFragment<out P : BasePresenter<BaseMvpFragment<P,M>,M>,M:I
     @MainThread
     override fun hideLoading() {
         progressLoading.hideLoading()
+    }
+
+    override fun getHostActivity(): Activity {
+        return _mActivity
+    }
+
+    override fun showToast(message: String) {
+
+    }
+
+    override fun showToast(resId: Int) {
+
     }
 
 }

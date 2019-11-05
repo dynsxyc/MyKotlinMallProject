@@ -2,7 +2,9 @@ package com.zhongjiang.youxuan.base.presenter
 
 import android.content.res.Configuration
 import android.os.Bundle
-
+/**
+ * 生命周期函数
+ * */
 interface ILifecycle {
 
     fun onCreate(saveInstanceState: Bundle?)

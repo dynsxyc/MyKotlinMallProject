@@ -181,7 +181,7 @@ class StatusBarUtil {
             val clazz = window.javaClass
             try {
                 var darkModeFlag: Int
-                val layoutParams = Class.forName("android.view.MiuiWindowManager\$LayoutParams")
+                val layoutParams = Class.forName("android.mView.MiuiWindowManager\$LayoutParams")
                 val field = layoutParams.getField("EXTRA_FLAG_STATUS_BAR_DARK_MODE")
                 darkModeFlag = field.getInt(layoutParams)
                 val extraFlagField = clazz.getMethod("setExtraFlags", Int::class.javaPrimitiveType, Int::class.javaPrimitiveType)
@@ -367,7 +367,7 @@ class StatusBarUtil {
         /**
          * 添加上边距大小等于状态栏的视图高度。
          *
-         * @param view The view.
+         * @param view The mView.
          */
         fun addMarginTopEqualStatusBarHeight(@NonNull view: View) {
             if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) return
@@ -385,7 +385,7 @@ class StatusBarUtil {
         /**
          * 减去上边距大小等于状态栏的视图高度。
          *
-         * @param view The view.
+         * @param view The mView.
          */
         fun subtractMarginTopEqualStatusBarHeight(@NonNull view: View) {
             if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) return
@@ -457,7 +457,7 @@ class StatusBarUtil {
         /**
          * Set the status bar's color.
          *
-         * @param fakeStatusBar The fake status bar view.
+         * @param fakeStatusBar The fake status bar mView.
          * @param color         The status bar's color.
          */
         fun setStatusBarColor(@NonNull fakeStatusBar: View,
@@ -468,7 +468,7 @@ class StatusBarUtil {
         /**
          * Set the status bar's color.
          *
-         * @param fakeStatusBar The fake status bar view.
+         * @param fakeStatusBar The fake status bar mView.
          * @param color         The status bar's color.
          * @param alpha         The status bar's alpha which isn't the same as alpha in the color.
          */
@@ -534,7 +534,7 @@ class StatusBarUtil {
         /**
          * Set the status bar's alpha.
          *
-         * @param fakeStatusBar The fake status bar view.
+         * @param fakeStatusBar The fake status bar mView.
          */
         fun setStatusBarAlpha(@NonNull fakeStatusBar: View) {
             setStatusBarAlpha(fakeStatusBar, DEFAULT_ALPHA_M)
@@ -543,7 +543,7 @@ class StatusBarUtil {
         /**
          * Set the status bar's alpha.
          *
-         * @param fakeStatusBar The fake status bar view.
+         * @param fakeStatusBar The fake status bar mView.
          * @param alpha         The status bar's alpha.
          */
         fun setStatusBarAlpha(@NonNull fakeStatusBar: View,
@@ -560,7 +560,7 @@ class StatusBarUtil {
         /**
          * 设置自定义状态栏。
          *
-         * @param fakeStatusBar The fake status bar view.
+         * @param fakeStatusBar The fake status bar mView.
          */
         fun setStatusBarCustom(@NonNull fakeStatusBar: View) {
             if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) return
@@ -578,7 +578,7 @@ class StatusBarUtil {
          *
          * @param activity      The activity.
          * @param drawer        The DrawLayout.
-         * @param fakeStatusBar The fake status bar view.
+         * @param fakeStatusBar The fake status bar mView.
          * @param color         The status bar's color.
          * @param isTop         True to set DrawerLayout at the top layer, false otherwise.
          */
@@ -597,7 +597,7 @@ class StatusBarUtil {
          *
          * @param activity      The activity.
          * @param drawer        The DrawLayout.
-         * @param fakeStatusBar The fake status bar view.
+         * @param fakeStatusBar The fake status bar mView.
          * @param color         The status bar's color.
          * @param alpha         The status bar's alpha which isn't the same as alpha in the color.
          * @param isTop         True to set DrawerLayout at the top layer, false otherwise.
@@ -632,7 +632,7 @@ class StatusBarUtil {
          *
          * @param activity      The activity.
          * @param drawer        drawerLayout
-         * @param fakeStatusBar The fake status bar view.
+         * @param fakeStatusBar The fake status bar mView.
          * @param isTop         True to set DrawerLayout at the top layer, false otherwise.
          */
         fun setStatusBarAlpha4Drawer(@NonNull activity: Activity,
@@ -649,7 +649,7 @@ class StatusBarUtil {
          *
          * @param activity      The activity.
          * @param drawer        drawerLayout
-         * @param fakeStatusBar The fake status bar view.
+         * @param fakeStatusBar The fake status bar mView.
          * @param alpha         The status bar's alpha.
          * @param isTop         True to set DrawerLayout at the top layer, false otherwise.
          */
