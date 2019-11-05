@@ -12,7 +12,6 @@ import com.zhongjiang.youxuan.base.presenter.*
 import com.zhongjiang.youxuan.base.widgets.ProgressLoading
 import org.jetbrains.anko.toast
 import java.lang.reflect.ParameterizedType
-import javax.inject.Inject
 import kotlin.reflect.KClass
 import kotlin.reflect.full.isSubclassOf
 import kotlin.reflect.full.primaryConstructor
@@ -21,11 +20,12 @@ import kotlin.reflect.jvm.jvmErasure
 /**
  * Created by dyn on 2018/7/13.
  */
-abstract class BaseMvpFragment<P : BasePresenter<BaseMvpFragment<P,M>,M>,M:IModel> : IView<P>, BaseInjectFragment() {
-    @Inject
-    override lateinit var mPresenter: P
+abstract class BaseMvpFragment<out P : BasePresenter<BaseMvpFragment<P,M>,M>,M:IModel> : IView<P>, BaseInjectFragment() {
+
+    override val mPresenter: P
 
     init {
+        mPresenter = createPresenterKt()
         mPresenter.mView = this@BaseMvpFragment
     }
 
