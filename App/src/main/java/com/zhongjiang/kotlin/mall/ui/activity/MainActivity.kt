@@ -13,7 +13,7 @@ class MainActivity : BaseInjectActivity(){
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Logger.i(TAG,"onCreate");
+        ULogger.i(TAG,"onCreate");
         setContentView(R.layout.activity_main)
         initView()
     }

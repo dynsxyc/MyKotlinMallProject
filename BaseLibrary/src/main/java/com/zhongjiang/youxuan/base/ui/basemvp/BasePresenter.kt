@@ -128,15 +128,14 @@ abstract class BasePresenter<out V : IView<BasePresenter<V, M>>, M : IModel> : I
     fun registerActivityResultEvent(method: (ActivityResultEvent) -> Unit) {
         mRxBus.toObservable(ActivityResultEvent::class.java, Consumer {
             method(it)
-            Logger.i("registerActivityResultEvent   调用成功")
+            ULogger.i("registerActivityResultEvent   调用成功")
         }, Consumer {
             it.printStackTrace()
-            Logger.e("registerActivityResultEvent   error")
-            Logger.e("registerActivityResultEvent   $it")
+            ULogger.e("registerActivityResultEvent   $it")
         }, Action {
-            Logger.i("registerActivityResultEvent   oncomplete")
+            ULogger.i("registerActivityResultEvent   oncomplete")
         }, Consumer {
-            Logger.i("registerActivityResultEvent  isDisposed =  ${it.isDisposed}")
+            ULogger.i("registerActivityResultEvent  isDisposed =  ${it.isDisposed}")
         }, bindBusLifecycle())
     }
 

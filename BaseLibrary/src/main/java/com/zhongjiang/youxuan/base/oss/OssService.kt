@@ -73,13 +73,13 @@ class OssService @Inject constructor(var context: Context, var schedulerProvider
             put.progressCallback = OSSProgressCallback { request, currentSize, totalSize ->
                 upFile.progress = (100 * currentSize / totalSize).toInt()
                 upFile.upType = 1
-                Logger.i("progress = ${upFile.progress}")
+                ULogger.i("progress = ${upFile.progress}")
                 flowableEmitter.onNext(upFile)
             }
             mOss.asyncPutObject(put, object : OSSCompletedCallback<PutObjectRequest, PutObjectResult> {
                 override fun onSuccess(request: PutObjectRequest, result: PutObjectResult?) {
                     upFile.upType = 2
-                    Logger.i("callbackAddress = $mCallbackAddress  mBucket = $mBucket")
+                    ULogger.i("callbackAddress = $mCallbackAddress  mBucket = $mBucket")
                     upFile.upSuccessUrl = when (mBucketType) {
                         BucketType.BUCKET_CONFIT_TAG_PUBLIC -> mCallbackAddress.plus(request.objectKey)
                         BucketType.BUCKET_CONFIT_TAG_SECURITY -> mCallbackAddress.plus(request.objectKey).plus("-watermark")

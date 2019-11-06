@@ -82,7 +82,7 @@ abstract class BaseInjectActivity : BaseSupportActivity(), HasSupportFragmentInj
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        Logger.i("registerActivityResultEvent isObserver ${mRxBus.isObserver()}")
+        ULogger.i("registerActivityResultEvent isObserver ${mRxBus.isObserver()}")
         mRxBus.post(ActivityResultEvent(requestCode, resultCode, data))
         super.onActivityResult(requestCode, resultCode, data)
     }

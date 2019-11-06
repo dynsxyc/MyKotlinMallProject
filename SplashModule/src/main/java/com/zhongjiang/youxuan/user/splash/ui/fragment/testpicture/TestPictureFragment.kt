@@ -36,7 +36,7 @@ class TestPictureFragment : BaseSelectorImgFragment<TestFragmentPresenter, Splas
     }
 
     override fun onFileUpIng(upFileBean: UpFileBean) {
-        com.orhanobut.logger.Logger.i("文件名 = ${upFileBean.fileName},上传状态= ${upFileBean.upType},上传进度= ${upFileBean.progress},图片路径 = ${upFileBean.filePath},上传返回路径=${upFileBean.upSuccessUrl}")
+        ULogger.i("文件名 = ${upFileBean.fileName},上传状态= ${upFileBean.upType},上传进度= ${upFileBean.progress},图片路径 = ${upFileBean.filePath},上传返回路径=${upFileBean.upSuccessUrl}")
     }
 
     override fun initView() {

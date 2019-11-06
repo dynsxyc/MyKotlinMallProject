@@ -12,6 +12,7 @@ import com.zhongjiang.youxuan.base.injection.module.sheduler.AppSchedulerProvide
 import com.zhongjiang.youxuan.base.injection.module.sheduler.SchedulerProvider
 import com.zhongjiang.youxuan.base.oss.BucketType
 import com.zhongjiang.youxuan.base.oss.OssService
+import com.zhongjiang.youxuan.base.utils.ULogger
 import dagger.Module
 import dagger.Provides
 import javax.inject.Named
@@ -100,15 +101,15 @@ class AppModule() {
             var pushService = PushServiceFactory.getCloudPushService();
             pushService.register(application, object : CommonCallback {
                 override fun onSuccess(p0: String?) {
-                    Logger.i("init cloudchannel success $p0")
+                    ULogger.i("init cloudchannel success $p0")
                 }
 
                 override fun onFailed(errorCode: String?, errorMessage: String?) {
-                    Logger.i("init cloudchannel failed -- errorcode:$errorCode errorMessage: $errorMessage")
+                    ULogger.i("init cloudchannel failed -- errorcode:$errorCode errorMessage: $errorMessage")
                 }
 
             })
-            Logger.i("deviceId = ${pushService.deviceId}")
+        ULogger.i("deviceId = ${pushService.deviceId}")
         return pushService
     }
 

@@ -105,7 +105,7 @@ class BaiDuUtils @Inject constructor() {
             var district = DEFAULT_DISTRICT
             var addressStr = DEFAULT_ADDRESSSTR
             location.let {
-                Logger.i("百度定位返回结果  ---${it.latitude} ---${it.longitude} ---${it.city} ---${it.province} ---${it.district} ---${it.addrStr} ---${it.locType} ")
+                ULogger.i("百度定位返回结果  ---${it.latitude} ---${it.longitude} ---${it.city} ---${it.province} ---${it.district} ---${it.addrStr} ---${it.locType} ")
                 when (it.locType) {
                     BDLocation.TypeNetWorkLocation, BDLocation.TypeGpsLocation, BDLocation.TypeOffLineLocation -> {
                         //网络定位、GPS定位 、离线定位  状态代表定位有结果 定位成功
@@ -134,7 +134,7 @@ class BaiDuUtils @Inject constructor() {
                 var newLocation = baiduLocationBox.get(DEFAULT_LOCATION_ID).clone(baiduLocationEntity)
                 baiduLocationBox.put(newLocation)
             }
-            Logger.i("baiduLocationBox count = ${baiduLocationBox.count()}")
+            ULogger.i("baiduLocationBox count = ${baiduLocationBox.count()}")
             stopLocation()
         }
     }

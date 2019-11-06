@@ -76,7 +76,7 @@ fun Observable<Any>.shieldDoubleClick(method: () -> Unit) {
             .subscribe( {
                 method()
             },{
-                Logger.i("点击调用失败")
+                ULogger.i("点击调用失败")
                 it.printStackTrace()
             })
 }

@@ -23,6 +23,7 @@ import com.zhongjiang.youxuan.base.common.webclient.MiddlewareChromeClient
 import com.zhongjiang.youxuan.base.common.webclient.MiddlewareWebViewClient
 import com.zhongjiang.youxuan.base.ext.shieldDoubleClick
 import com.zhongjiang.youxuan.base.ui.activity.BaseMvpActivity
+import com.zhongjiang.youxuan.base.utils.ULogger
 import kotlinx.android.synthetic.main.activity_webshow.*
 import java.util.*
 import javax.inject.Inject
@@ -55,7 +56,7 @@ class WebShowActivity : BaseMvpActivity<WebShowActivityPresenter, WebShowActivit
          * @param action
          * @return true 该Url对应页面请求权限进行拦截 ，false 表示不拦截。
          */
-        Logger.i("mUrl:" + url + "  permission:" + mGson.toJson(permissions) + " action:" + action)
+        ULogger.i("mUrl:" + url + "  permission:" + mGson.toJson(permissions) + " action:" + action)
         false
     }
 
@@ -124,7 +125,7 @@ class WebShowActivity : BaseMvpActivity<WebShowActivityPresenter, WebShowActivit
         private val timer = HashMap<String, Long>()
         override fun onPageStarted(view: WebView, url: String, favicon: Bitmap?) {
             super.onPageStarted(view, url, favicon)
-            Logger.i("mUrl:$url onPageStarted  target:$webUrl")
+            ULogger.i("mUrl:$url onPageStarted  target:$webUrl")
             timer[url] = System.currentTimeMillis()
             if (url == webUrl) {
                 pageNavigator(View.GONE)
@@ -140,7 +141,7 @@ class WebShowActivity : BaseMvpActivity<WebShowActivityPresenter, WebShowActivit
             if (timer[url] != null) {
                 val overTime = System.currentTimeMillis()
                 val startTime = timer[url]
-                Logger.i("  page mUrl:" + url + "  used time:" + (overTime - startTime!!))
+                ULogger.i("  page mUrl:" + url + "  used time:" + (overTime - startTime!!))
             }
 
         }
@@ -155,7 +156,7 @@ class WebShowActivity : BaseMvpActivity<WebShowActivityPresenter, WebShowActivit
         override fun onReceivedHttpError(view: WebView, request: WebResourceRequest, errorResponse: WebResourceResponse) {
             super.onReceivedHttpError(view, request, errorResponse)
 
-            Logger.i("onReceivedHttpError:" + 3 + "  request:" + mGson.toJson(request) + "  errorResponse:" + mGson.toJson(errorResponse));
+            ULogger.i("onReceivedHttpError:" + 3 + "  request:" + mGson.toJson(request) + "  errorResponse:" + mGson.toJson(errorResponse));
         }
     }
 
@@ -163,7 +164,7 @@ class WebShowActivity : BaseMvpActivity<WebShowActivityPresenter, WebShowActivit
             object : WebChromeClient() {
                 override fun onProgressChanged(view: WebView, newProgress: Int) {
                     //  super.onProgressChanged(mView, newProgress);
-                    Logger.i("onProgressChanged:$newProgress  mView:$view")
+                    ULogger.i("onProgressChanged:$newProgress  mView:$view")
                 }
 
                 override fun onReceivedTitle(view: WebView, title: String) {
