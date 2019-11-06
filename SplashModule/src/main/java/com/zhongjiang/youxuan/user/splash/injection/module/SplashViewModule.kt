@@ -6,6 +6,7 @@ import com.zhongjiang.youxuan.user.splash.ui.fragment.splash.SplashFragmentContr
 import com.zhongjiang.youxuan.user.splash.ui.activity.splash.SplashActivity
 import com.zhongjiang.youxuan.user.splash.ui.fragment.login.LoginFragment
 import com.zhongjiang.youxuan.user.splash.ui.fragment.splash.SplashFragment
+import com.zhongjiang.youxuan.user.splash.ui.fragment.splash.SplashFragmentPresenter
 import com.zhongjiang.youxuan.user.splash.ui.fragment.testpicture.TestPictureFragment
 import dagger.Module
 import dagger.Provides
@@ -13,27 +14,4 @@ import dagger.Provides
 @Module
 class SplashViewModule {
 
-    @Provides
-    @ActivityScope
-    fun provideLoginView(loginFragment: LoginFragment): LoginFragment {
-        return loginFragment
-    }
-
-    @Provides
-    @ActivityScope
-    fun provideTestView(loginFragment: TestPictureFragment): TestPictureFragment {
-        return loginFragment
-    }
-
-    @Provides
-    @ActivityScope
-    fun provideSplashView(splashFragment: SplashFragment): SplashFragment {
-        return splashFragment
-    }
-
-    @Provides
-    @ActivityScope
-    fun provideSplashActivity(splashActivity: SplashActivity): SplashActivity {
-        return splashActivity
-    }
 }

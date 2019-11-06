@@ -6,7 +6,7 @@ import com.zhongjiang.youxuan.base.injection.scope.ActivityScope
 import javax.inject.Inject
 
 @ActivityScope
-class SplashServiceManager @Inject constructor(val splashService: MainService): BaseServiceManager {
+class MainServiceManager @Inject constructor(val splashService: MainService): BaseServiceManager {
     override fun destroy() {
 
     }

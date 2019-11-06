@@ -131,15 +131,15 @@ class CommonHeaderTitleView constructor(context: Context, attrs: AttributeSet?, 
      * 设置标题内容
      * */
     fun setTitleContent(content:String?){
-            mViewHolder?.let {
-                it.setTitle(content)
-            }
+        mViewHolder.let {
+            it.setTitle(content)
+        }
     }
     /**
      * 是否显示左边两个按钮的finish按钮
      * */
     fun setHasFinish(boolean: Boolean){
-        mViewHolder?.let {
+        mViewHolder.let {
             it.setHasFinish(boolean)
         }
     }
@@ -155,7 +155,7 @@ class CommonHeaderTitleView constructor(context: Context, attrs: AttributeSet?, 
      * 是否显示右边两个按钮的右按钮
      * */
     fun setHasLastRight(boolean: Boolean){
-        mViewHolder?.let {
+        mViewHolder.let {
             it.setHasLastRight(boolean)
         }
     }
@@ -169,11 +169,11 @@ class CommonHeaderTitleView constructor(context: Context, attrs: AttributeSet?, 
      * 设置按钮样式style
      * */
     fun setTextMessageCountViewTheme(themeBack:Int,themeFinish:Int,themeRight:Int,themeLastRight:Int){
-        mViewHolder?.let {
-           var themeBackTypedArray =  context.obtainStyledAttributes(null,R.styleable.TextMessageCountView,0,themeBack)
-           var themeFinishTypedArray =  context.obtainStyledAttributes(null,R.styleable.TextMessageCountView,0,themeFinish)
-           var themeRightTypedArray =  context.obtainStyledAttributes(null,R.styleable.TextMessageCountView,0,themeRight)
-           var themeLastRightTypedArray =  context.obtainStyledAttributes(null,R.styleable.TextMessageCountView,0,themeLastRight)
+        mViewHolder.let {
+            var themeBackTypedArray =  context.obtainStyledAttributes(null,R.styleable.TextMessageCountView,0,themeBack)
+            var themeFinishTypedArray =  context.obtainStyledAttributes(null,R.styleable.TextMessageCountView,0,themeFinish)
+            var themeRightTypedArray =  context.obtainStyledAttributes(null,R.styleable.TextMessageCountView,0,themeRight)
+            var themeLastRightTypedArray =  context.obtainStyledAttributes(null,R.styleable.TextMessageCountView,0,themeLastRight)
             it.setBackTheme(themeBackTypedArray)
             it.setFinishTheme(themeFinishTypedArray)
             it.setRightTheme(themeRightTypedArray)

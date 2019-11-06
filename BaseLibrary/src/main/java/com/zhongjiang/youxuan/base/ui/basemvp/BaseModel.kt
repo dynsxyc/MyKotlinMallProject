@@ -1,8 +1,9 @@
-package com.zhongjiang.youxuan.base.presenter
+package com.zhongjiang.youxuan.base.ui.basemvp
 
 import android.util.Log
 import com.zhongjiang.youxuan.base.data.net.cache.CacheProviders
 import com.zhongjiang.youxuan.base.data.net.service.BaseServiceManager
+import com.zhongjiang.youxuan.base.data.net.service.GlobalService
 import com.zhongjiang.youxuan.base.data.net.service.GlobalServiceManager
 import com.zhongjiang.youxuan.base.ext.handlerThread
 import com.zhongjiang.youxuan.base.injection.module.sheduler.SchedulerProvider
@@ -46,5 +47,7 @@ abstract class BaseModel<S : BaseServiceManager>  : IModel {
 
 
     override fun onDestroy() {
+        serviceManager.destroy()
+        globalServiceManager.destroy()
     }
 }

@@ -6,13 +6,14 @@ import com.zhongjiang.kotlin.splash.presenter.splashfragment.TabMainFragmentPres
 import com.zhongjiang.youxuan.base.injection.WindowScreenInfo
 import com.zhongjiang.youxuan.base.ui.fragment.BaseMvpFragment
 import com.zhongjiang.youxuan.user.main.R
+import com.zhongjiang.youxuan.user.main.ui.MainModel
 import kotlinx.android.synthetic.main.fragment_basehome.*
 import javax.inject.Inject
 
 /**
  * Created by dyn on 2018/7/25.
  */
-class TabMainFragment : BaseMvpFragment<TabMainFragmentPresenter>(), TabMainFragmentContract.View {
+class TabMainFragment : BaseMvpFragment<TabMainFragmentPresenter,MainModel>(), TabMainFragmentContract.View {
     @Inject
     lateinit var screenWidth: WindowScreenInfo
 

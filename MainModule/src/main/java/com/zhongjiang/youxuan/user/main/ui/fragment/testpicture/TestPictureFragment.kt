@@ -18,9 +18,10 @@ import com.zhongjiang.youxuan.base.imageloader.YXImageView
 import com.zhongjiang.youxuan.base.oss.UpFileBean
 import com.zhongjiang.youxuan.base.ui.fragment.BaseSelectorImgFragment
 import com.zhongjiang.youxuan.user.main.R
+import com.zhongjiang.youxuan.user.main.ui.MainModel
 import kotlinx.android.synthetic.main.fragment_testpicture.*
 
-class TestPictureFragment : BaseSelectorImgFragment<TestFragmentPresenter, TestFragmentContract.View, TestFragmentContract.Model>(), TestFragmentContract.View {
+class TestPictureFragment : BaseSelectorImgFragment<TestFragmentPresenter, MainModel>(), TestFragmentContract.View {
 
     override fun getRequestSelectorImgCode(): Int {
         return ActivityRequestCode.REQUEST_IMAGESELECTOR_CODE.requestCode

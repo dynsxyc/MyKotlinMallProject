@@ -99,6 +99,11 @@ abstract class BaseApplication : MultiDexApplication(), HasActivityInjector,
             override fun isLoggable(priority: Int, tag: String?): Boolean {
                 return BuildConfig.DEBUG
             }
+
+            override fun log(priority: Int, tag: String?, message: String) {
+                super.log(priority, "YX_DYN", message)
+            }
+
         })
     }
 

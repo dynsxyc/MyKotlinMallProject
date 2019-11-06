@@ -27,8 +27,8 @@ abstract class BaseSupportActivity : AppCompatActivity(), ISupportActivity, ISwi
         mDelegate.onDestroy()
     }
 
-    val mSwipeBackDelegate by lazy { SwipeBackActivityDelegate(this) }
-    val mDelegate by lazy { SupportActivityDelegate(this) }
+    private val mSwipeBackDelegate by lazy { SwipeBackActivityDelegate(this) }
+    private val mDelegate by lazy { SupportActivityDelegate(this) }
 
     override fun getSupportDelegate(): SupportActivityDelegate {
         return mDelegate;
@@ -82,7 +82,7 @@ abstract class BaseSupportActivity : AppCompatActivity(), ISupportActivity, ISwi
      * @return FragmentAnimator
      */
     override fun getFragmentAnimator(): FragmentAnimator {
-        return mDelegate.getFragmentAnimator();
+        return mDelegate.fragmentAnimator
     }
 
     /**
@@ -90,7 +90,7 @@ abstract class BaseSupportActivity : AppCompatActivity(), ISupportActivity, ISwi
      * 设置Fragment内的全局动画
      */
     override fun setFragmentAnimator(fragmentAnimator: FragmentAnimator) {
-        mDelegate.setFragmentAnimator(fragmentAnimator);
+        mDelegate.fragmentAnimator = fragmentAnimator
     }
 
     /**
@@ -180,7 +180,7 @@ abstract class BaseSupportActivity : AppCompatActivity(), ISupportActivity, ISwi
      * 获取栈内的fragment对象
      */
     fun <T : ISupportFragment> findFragment(fragmentClass: Class<T>): T {
-        return SupportHelper.findFragment(getSupportFragmentManager(), fragmentClass)
+        return SupportHelper.findFragment(supportFragmentManager, fragmentClass)
     }
 
     /******************** SwipeBack Start ************************/

@@ -2,7 +2,6 @@ package com.zhongjiang.youxuan.base.common
 
 import android.app.Activity
 import android.os.Handler
-import android.util.Log
 import android.webkit.WebView
 
 import com.just.agentweb.AgentWebUIControllerImplBase
@@ -19,7 +18,6 @@ class UIController(private val mActivity: Activity) : AgentWebUIControllerImplBa
 
     override fun onShowMessage(message: String, from: String) {
         super.onShowMessage(message, from)
-        Log.i(TAG, "message:$message")
     }
 
     override fun onSelectItemsPrompt(view: WebView, url: String, items: Array<String>, callback: Handler.Callback) {

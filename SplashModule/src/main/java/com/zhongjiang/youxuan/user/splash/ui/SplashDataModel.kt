@@ -5,13 +5,12 @@ import com.zhongjiang.youxuan.base.data.db.UserInfoEntity
 import com.zhongjiang.youxuan.base.ext.convert
 import com.zhongjiang.youxuan.base.ext.convertList
 import com.zhongjiang.youxuan.base.ext.handlerThread
-import com.zhongjiang.youxuan.base.presenter.BaseModel
+import com.zhongjiang.youxuan.base.ui.basemvp.BaseModel
 import com.zhongjiang.youxuan.user.data.protocol.SplashAdReq
 import com.zhongjiang.youxuan.user.splash.data.VerificationCodeResuleInfo
 import com.zhongjiang.youxuan.user.splash.data.cache.SplashModuleRxCacheProviders
 import com.zhongjiang.youxuan.user.splash.service.SplashServiceManager
 import com.zhongjiang.youxuan.user.splash.ui.fragment.ISplashModel
-import com.zhongjiang.youxuan.user.splash.ui.fragment.login.LoginFragmentContract
 import io.reactivex.Maybe
 import io.rx_cache2.EvictProvider
 import io.rx_cache2.Reply
@@ -29,6 +28,6 @@ class SplashDataModel @Inject constructor(): BaseModel<SplashServiceManager>(), 
     @Inject
     lateinit var splashModuleRxCacheProviders: SplashModuleRxCacheProviders;
     override fun requestAdInfo(name: String,update: Boolean): Maybe<Reply<List<SplashAdEntity>>> {
-        return splashModuleRxCacheProviders.getAdInfo(serviceManager.splashService.loadAd(SplashAdReq("1", "1", "")).convertList().handlerThread(schedulers), EvictProvider(update))
+        return splashModuleRxCacheProviders.getAdInfo(serviceManager.splashService.loadAd().convertList().handlerThread(schedulers), EvictProvider(update))
     }
 }

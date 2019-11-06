@@ -1,7 +1,7 @@
 package com.zhongjiang.youxuan.base.rx
 
 import android.util.Log
-import com.zhongjiang.youxuan.base.presenter.IView
+import com.zhongjiang.youxuan.base.ui.basemvp.IView
 import io.reactivex.MaybeObserver
 import io.reactivex.disposables.Disposable
 
@@ -14,8 +14,8 @@ open class BaseMaybeObserver<T>(private val view: IView<*>) : MaybeObserver<T> {
         e.printStackTrace()
         view.hideLoading()
         var responeThrowable = ExceptionHandle.handleException(e)
-        view.onError(responeThrowable.status, responeThrowable.msg)
-        Log.i("test1", "onError")
+        view.onNetError(responeThrowable.status, responeThrowable.msg)
+        Log.i("test1", "onNetError")
     }
 
     override fun onSuccess(t: T) {

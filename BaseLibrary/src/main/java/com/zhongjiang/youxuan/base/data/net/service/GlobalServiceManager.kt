@@ -5,7 +5,13 @@ import javax.inject.Singleton
 
 @Singleton
 class GlobalServiceManager @Inject
-constructor(val userInfoService: GlobalService) : BaseServiceManager {
+constructor(val gloableService: GlobalService) : BaseServiceManager {
     override fun destroy() {
     }
+    /**全局公共接口调用--------------------------------start-------------GlobalServiceManager中的接口-------------------*/
+    /**获取验证码*/
+    fun requestRegCode() {
+    }
+
+    /**全局公共接口调用--------------------------------end-------------GlobalServiceManager中的接口-------------------*/
 }

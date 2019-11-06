@@ -1,4 +1,4 @@
-package com.zhongjiang.youxuan.base.presenter
+package com.zhongjiang.youxuan.base.ui.basemvp
 
 import android.app.Activity
 import androidx.annotation.CallSuper
@@ -31,12 +31,14 @@ import javax.inject.Singleton
 /**
  * Created by dyn on 2018/7/13.
  */
-open abstract class BasePresenter<out V : IView<BasePresenter<V,M>>, M : IModel> : IPresenter<V>,BaiDuUtils.LocationCallBackListener {
+abstract class BasePresenter<out V : IView<BasePresenter<V, M>>, M : IModel> : IPresenter<V>,BaiDuUtils.LocationCallBackListener {
     //    1. lateinit 延迟加载
 //    2.lateinit 只能修饰, 非kotlin基本类型
 //    因为Kotlin会使用null来对每一个用lateinit修饰的属性做初始化，而基础类型是没有null类型，所以无法使用lateinit。
+    @Inject
     override lateinit var mView: @UnsafeVariance V
-
+    @Inject
+    lateinit var mModel:M
     @field:Named("public")
     @Inject
     lateinit var publicOssService: OssService
@@ -106,7 +108,8 @@ open abstract class BasePresenter<out V : IView<BasePresenter<V,M>>, M : IModel>
     @CallSuper
     @MainThread
     override fun onDestroy(owner: LifecycleOwner) {
-//        mModel.onDestroy()
+        mModel.onDestroy()
+
     }
 
     @CallSuper
@@ -138,8 +141,8 @@ open abstract class BasePresenter<out V : IView<BasePresenter<V,M>>, M : IModel>
     }
 
     /**开启一个定时器 1秒*/
-    fun startTimmer(number: Long, onNext: Consumer<Long>, onComplete: Action): Disposable {
-//        timerDisposable = mModel.startTimer(number, onNext, onComplete).excute(bindBusLifecycle())
+    fun startTimer(number: Long, next: Consumer<Long>, onComplete: Action): Disposable {
+        timerDisposable = mModel.startTimer(number, next, onComplete).excute(bindBusLifecycle())
         return timerDisposable
     }
 

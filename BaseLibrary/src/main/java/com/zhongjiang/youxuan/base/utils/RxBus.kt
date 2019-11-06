@@ -62,7 +62,7 @@ class RxBus @Inject constructor() {
 
     /**
      * 订阅在io线程  观察在子线程
-     * 处理onNext onError
+     * 处理onNext onNetError
      * */
     fun <T> toObservable(
             eventType: Class<T>,
@@ -90,7 +90,7 @@ class RxBus @Inject constructor() {
 
     /**
      * 自定义线程
-     * 处理onNext onError
+     * 处理onNext onNetError
      * */
     fun <T> toObservable(
             eventType: Class<T>,
@@ -115,7 +115,7 @@ class RxBus @Inject constructor() {
 
     /**
      * 自定义线程
-     * 处理onNext onError onComplete
+     * 处理onNext onNetError onComplete
      * */
     fun <T> toObservable(
             eventType: Class<T>,
@@ -129,7 +129,7 @@ class RxBus @Inject constructor() {
 
     /**
      * 自定义线程
-     * 处理onNext onError onComplete onSubscribe
+     * 处理onNext onNetError onComplete onSubscribe
      * */
     fun <T> toObservable(
             eventType: Class<T>,

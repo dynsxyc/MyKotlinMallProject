@@ -1,7 +1,6 @@
 package com.zhongjiang.youxuan.base.oss
 
 import android.content.Context
-import android.util.Log
 import com.alibaba.sdk.android.oss.*
 import com.alibaba.sdk.android.oss.callback.OSSCompletedCallback
 import com.alibaba.sdk.android.oss.callback.OSSProgressCallback

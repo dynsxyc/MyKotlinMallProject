@@ -3,52 +3,24 @@ package com.zhongjiang.youxuan.base.ui.activity
 import android.app.Activity
 import android.os.Bundle
 import androidx.annotation.CallSuper
-import androidx.annotation.LayoutRes
 import androidx.annotation.MainThread
 import androidx.lifecycle.Lifecycle
 import com.uber.autodispose.ScopeProvider
-import com.zhongjiang.youxuan.base.presenter.BasePresenter
-import com.zhongjiang.youxuan.base.presenter.IModel
-import com.zhongjiang.youxuan.base.presenter.IPresenter
-import com.zhongjiang.youxuan.base.presenter.IView
+import com.zhongjiang.youxuan.base.ui.basemvp.BasePresenter
+import com.zhongjiang.youxuan.base.ui.basemvp.IModel
+import com.zhongjiang.youxuan.base.ui.basemvp.IView
 import com.zhongjiang.youxuan.base.utils.RxLifecycleUtils
 import com.zhongjiang.youxuan.base.widgets.ProgressLoading
 import org.jetbrains.anko.toast
-import kotlin.reflect.KClass
-import kotlin.reflect.full.isSubclassOf
-import kotlin.reflect.full.primaryConstructor
-import kotlin.reflect.jvm.jvmErasure
+import javax.inject.Inject
 
 /**
  * Created by dyn on 2018/7/13.
  */
-abstract class BaseMvpActivity<P : BasePresenter<BaseMvpActivity<P,M>,M>,M:IModel> : BaseInjectActivity(), IView<P> {
-    override val mPresenter: P
-
-
-    init {
-        mPresenter = createPresenterKt()
-        mPresenter.mView = this
-    }
-
-    private fun createPresenterKt():P {
-        sequence {
-            var thisClass: KClass<*> = this@BaseMvpActivity::class
-            while (true){
-                yield(thisClass.supertypes)
-                thisClass = thisClass.supertypes.firstOrNull()?.jvmErasure?:break
-            }
-        }.flatMap{
-            it.flatMap{
-                it.arguments
-            }.asSequence()
-        }.first{
-            it.type?.jvmErasure?.isSubclassOf(IPresenter::class)?:false
-        }.let{
-            return it.type!!.jvmErasure.primaryConstructor!!.call() as P
-        }
-    }
-    val progressLoading by lazy {
+abstract class BaseMvpActivity<out P : BasePresenter<BaseMvpActivity<P, M>, M>,M: IModel>  : BaseInjectActivity(), IView<P> {
+    @Inject
+    lateinit var mPresenter: @UnsafeVariance P
+    private val progressLoading by lazy {
          ProgressLoading.create(this)
     }
     @MainThread
@@ -56,7 +28,7 @@ abstract class BaseMvpActivity<P : BasePresenter<BaseMvpActivity<P,M>,M>,M:IMode
         progressLoading.showLoading()
     }
     @MainThread
-    override fun onError(status:Int,text: String) {
+    override fun onNetError(status:Int, text: String) {
         toast(text)
     }
     @MainThread
@@ -72,7 +44,6 @@ abstract class BaseMvpActivity<P : BasePresenter<BaseMvpActivity<P,M>,M>,M:IMode
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(getLayoutId())
         initLifecycleObserver(lifecycle)
         initView()
         initData()
@@ -89,11 +60,6 @@ abstract class BaseMvpActivity<P : BasePresenter<BaseMvpActivity<P,M>,M>,M:IMode
         return RxLifecycleUtils.bindLifecycle(this)
     }
 
-    /**获取当前页  layoutId资源Id*/
-    @LayoutRes
-    @MainThread
-    abstract fun getLayoutId(): Int
-
     /**获取当前页数据*/
     @MainThread
     abstract fun initData()
@@ -107,11 +73,11 @@ abstract class BaseMvpActivity<P : BasePresenter<BaseMvpActivity<P,M>,M>,M:IMode
     }
 
     override fun showToast(resId: Int) {
-
+        toast(resId)
     }
 
     override fun showToast(message: String) {
-
+        toast(message)
     }
 
 }

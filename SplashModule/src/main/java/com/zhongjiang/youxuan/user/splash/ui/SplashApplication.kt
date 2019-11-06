@@ -11,6 +11,7 @@ class SplashApplication : BaseApplication() {
         DaggerSplashModuleComponent.builder().appModule(getAppModule())
                 .httpClientModule(getHttpClientModule())
                 .globalConfigModule(getGlobalConfigModule())
+                .cacheModule(getCacheModule())
                 .build()
                 .inject(this)
 

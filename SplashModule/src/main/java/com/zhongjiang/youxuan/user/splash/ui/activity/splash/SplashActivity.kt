@@ -30,11 +30,10 @@ class SplashActivity : BaseInjectActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_single_fragment)
         if (isToLogin)
             loadRootFragment(R.id.mActivitySingleFragmentContent, LoginFragment.newInstance(true))
         else
-            loadRootFragment(R.id.mActivitySingleFragmentContent, SplashFragment.newInstance())
+            loadRootFragment(R.id.mActivitySingleFragmentContent, SplashFragment())
     }
 
     override fun injectRouter(): Boolean {
@@ -51,5 +50,9 @@ class SplashActivity : BaseInjectActivity() {
 
     override fun onBackPressedSupport() {
         commonUtils.appExit(this)
+    }
+
+    override fun getLayoutId(): Int {
+        return R.layout.activity_single_fragment
     }
 }

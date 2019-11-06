@@ -7,12 +7,11 @@ import com.luck.picture.lib.config.PictureConfig
 import com.luck.picture.lib.config.PictureMimeType
 import com.zhongjiang.youxuan.base.common.PictureSelectorConfig
 import com.zhongjiang.youxuan.base.oss.UpFileBean
-import com.zhongjiang.youxuan.base.presenter.BasePresenter
-import com.zhongjiang.youxuan.base.presenter.IModel
-import com.zhongjiang.youxuan.base.presenter.IView
+import com.zhongjiang.youxuan.base.ui.basemvp.BasePresenter
+import com.zhongjiang.youxuan.base.ui.basemvp.IModel
 
 
-abstract class BaseSelectorImgFragment<P:BasePresenter<BaseSelectorImgFragment<P,M>,M>,M:IModel>: BaseMvpFragment<P ,M>() {
+abstract class BaseSelectorImgFragment<P: BasePresenter<BaseSelectorImgFragment<P, M>, M> ,M: IModel>: BaseMvpFragment<P ,M>() {
     var defaultPictureSelectorConfig = PictureSelectorConfig(getDefaultFileModuleType(), getDefaultMaxSelectNum(), true, false, false, 0, 0)
     private var upFileList: ArrayList<UpFileBean> = arrayListOf()
     override fun initData() {

@@ -145,7 +145,7 @@ class BaiDuUtils @Inject constructor() {
     }
 
     private fun getLocationEntity(): BaiDuLocationEntity {
-        baiduLocationBox?.let {
+        baiduLocationBox.let {
             if (baiduLocationBox.count() <= 0) {
                 return DEFAULT_BAIDU_ENTITY
             } else {

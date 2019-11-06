@@ -3,7 +3,7 @@ package com.zhongjiang.youxuan.user.splash.ui.fragment.splash
 import android.util.Log
 import com.zhongjiang.youxuan.base.data.db.SplashAdEntity
 import com.zhongjiang.youxuan.base.ext.excute
-import com.zhongjiang.youxuan.base.presenter.BasePresenter
+import com.zhongjiang.youxuan.base.ui.basemvp.BasePresenter
 import com.zhongjiang.youxuan.base.rx.BaseMaybeObserver
 import com.zhongjiang.youxuan.provider.common.CommonUtils
 import com.zhongjiang.youxuan.user.splash.ui.SplashDataModel
@@ -17,13 +17,9 @@ import javax.inject.Singleton
 /**
  * Created by dyn on 2018/7/25.
  */
-class SplashFragmentPresenter : BasePresenter<SplashFragment,SplashDataModel>(), SplashFragmentContract.Presenter {
-    @Inject
-    lateinit var mModel:SplashDataModel
+class SplashFragmentPresenter @Inject constructor() : BasePresenter<SplashFragment, SplashDataModel>(), SplashFragmentContract.Presenter {
     @Inject
     lateinit var adInfoBox: Box<SplashAdEntity>
-    @Inject
-    lateinit var mContent: SplashFragment
 
     @Inject
     @Singleton
@@ -31,7 +27,6 @@ class SplashFragmentPresenter : BasePresenter<SplashFragment,SplashDataModel>(),
 
     override fun requestAdInfo(name: String) {
         Log.w("test","--------------adInfoBox = $adInfoBox")
-        Log.w("test","--------------mContent = $mContent")
         Log.w("test","--------------mModel = $mModel")
         mModel.requestAdInfo(name,true).excute(bindLifecycle(),object : BaseMaybeObserver<Reply<List<SplashAdEntity>>>(mView) {
             override fun onSuccess(t: Reply<List<SplashAdEntity>>) {
@@ -60,7 +55,7 @@ class SplashFragmentPresenter : BasePresenter<SplashFragment,SplashDataModel>(),
                 mView.onShowAd(adBean)
             }
         } else {
-            startTimmer(2, Consumer {
+            startTimer(2, Consumer {
             }, Action {
                 checkSkip()
             })
@@ -70,7 +65,7 @@ class SplashFragmentPresenter : BasePresenter<SplashFragment,SplashDataModel>(),
     }
 
     fun startAdTime(long: Long) {
-        startTimmer(long.plus(1), Consumer { t ->
+        startTimer(long.plus(1), Consumer { t ->
             mView.onRefreshTimer(long.minus(t).toString())
             Log.i("test1", "onTimer ${long.minus(t)}")
         }, Action {

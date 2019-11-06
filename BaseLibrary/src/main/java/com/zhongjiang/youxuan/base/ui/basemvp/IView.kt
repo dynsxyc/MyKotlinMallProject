@@ -1,18 +1,16 @@
-package com.zhongjiang.youxuan.base.presenter
+package com.zhongjiang.youxuan.base.ui.basemvp
 
 import android.app.Activity
 import androidx.annotation.StringRes
-import javax.inject.Inject
 
 /**
  * Created by dyn on 2018/7/13.
  */
-interface IView<out P :IPresenter<IView<P>>>{
-    val mPresenter:P
+interface IView<out P : IPresenter<IView<P>>>{
     fun getHostActivity():Activity
     fun showToast(message:String)
     fun showToast(@StringRes resId:Int)
     fun showLoading()
     fun hideLoading()
-    fun onError(status:Int,text:String)
+    fun onNetError(status:Int, text:String)
 }

@@ -8,65 +8,57 @@ import android.view.ViewGroup
 import androidx.annotation.CallSuper
 import androidx.annotation.MainThread
 import androidx.lifecycle.Lifecycle
-import com.zhongjiang.youxuan.base.presenter.*
+import com.zhongjiang.youxuan.base.ui.basemvp.BasePresenter
+import com.zhongjiang.youxuan.base.ui.basemvp.IModel
+import com.zhongjiang.youxuan.base.ui.basemvp.IView
 import com.zhongjiang.youxuan.base.widgets.ProgressLoading
 import org.jetbrains.anko.toast
-import java.lang.reflect.ParameterizedType
 import javax.inject.Inject
-import kotlin.reflect.KClass
-import kotlin.reflect.full.isSubclassOf
-import kotlin.reflect.full.primaryConstructor
-import kotlin.reflect.jvm.jvmErasure
 
 /**
  * Created by dyn on 2018/7/13.
  */
-abstract class BaseMvpFragment< P : BasePresenter<BaseMvpFragment<P,M>,M>,M:IModel> : IView<P>, BaseInjectFragment() {
+abstract class BaseMvpFragment<out P : BasePresenter<BaseMvpFragment<P, M>, M>,M: IModel>  : IView<P>, BaseInjectFragment() {
     @Inject
-    override val mPresenter: P
+    lateinit var mPresenter:@UnsafeVariance P
 
-    init {
-        mPresenter = createPresenterKt()
-        mPresenter.mView = this@BaseMvpFragment
-    }
-
-    private fun createPresenterKt():P {
-        sequence {
-            var thisClass:KClass<*> = this@BaseMvpFragment::class
-            while (true){
-                yield(thisClass.supertypes)
-                thisClass = thisClass.supertypes.firstOrNull()?.jvmErasure?:break
-            }
-        }.flatMap{
-            it.flatMap{
-                it.arguments
-            }.asSequence()
-        }.first{
-            it.type?.jvmErasure?.isSubclassOf(IPresenter::class)?:false
-        }.let{
-            return it.type!!.jvmErasure.primaryConstructor!!.call() as P
-        }
-    }
+//    private fun createPresenterKt():P {
+//        sequence {
+//            var thisClass:KClass<*> = this@BaseMvpFragment::class
+//            while (true){
+//                yield(thisClass.supertypes)
+//                thisClass = thisClass.supertypes.firstOrNull()?.jvmErasure?:break
+//            }
+//        }.flatMap{
+//            it.flatMap{
+//                it.arguments
+//            }.asSequence()
+//        }.first{
+//            it.type?.jvmErasure?.isSubclassOf(IPresenter::class)?:false
+//        }.let{
+//            return it.type!!.jvmErasure.primaryConstructor!!.call() as P
+//        }
+//    }
     /**
      * 以下是java写法
      * */
-    private fun createPresenterJava():P {
-        sequence {
-            var thisClass:Class<*> = this@BaseMvpFragment.javaClass
-            while (true){
-                yield(thisClass.genericSuperclass)
-                thisClass = thisClass.superclass?:break
-            }
-        }.filter{
-            it is ParameterizedType
-        }.flatMap{
-            (it as ParameterizedType).actualTypeArguments.asSequence()
-        }.first{
-            it is Class<*> && IPresenter::class.java.isAssignableFrom(it)
-        }.let{
-            return (it as Class<P>).newInstance()
-        }
-    }
+//    private fun createPresenterJava():P {
+//        sequence {
+//            var thisClass:Class<*> = this@BaseMvpFragment.javaClass
+//            while (true){
+//                yield(thisClass.genericSuperclass)
+//                thisClass = thisClass.superclass?:break
+//            }
+//        }.filter{
+//            it is ParameterizedType
+//        }.flatMap{
+//            (it as ParameterizedType).actualTypeArguments.asSequence()
+//        }.first{
+//            it is Class<*> && IPresenter::class.java.isAssignableFrom(it)
+//        }.let{
+//            return (it as Class<P>).newInstance()
+//        }
+//    }
 
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -108,7 +100,7 @@ abstract class BaseMvpFragment< P : BasePresenter<BaseMvpFragment<P,M>,M>,M:IMod
     }
 
     @MainThread
-    override fun onError(status:Int,text: String) {
+    override fun onNetError(status:Int, text: String) {
         _mActivity.toast(text)
     }
 

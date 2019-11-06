@@ -4,7 +4,6 @@ import android.app.Activity
 import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import com.tencent.mm.opensdk.constants.ConstantsAPI
 import com.tencent.mm.opensdk.modelbase.BaseReq
 import com.tencent.mm.opensdk.modelbase.BaseResp
@@ -35,7 +34,7 @@ class WXPayEntryActivity : Activity(), IWXAPIEventHandler {
     override fun onReq(req: BaseReq) {}
 
     override fun onResp(resp: BaseResp) {
-        Log.d("tag", "onPayFinish, errCode = " + resp.errCode)
+        Logger.d("tag", "onPayFinish, errCode = " + resp.errCode)
 
         if (resp.getType() === ConstantsAPI.COMMAND_PAY_BY_WX) {
             val builder = AlertDialog.Builder(this)

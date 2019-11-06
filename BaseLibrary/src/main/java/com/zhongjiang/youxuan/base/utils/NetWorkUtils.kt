@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.net.ConnectivityManager
 import android.text.TextUtils
-import android.util.Log
 import java.security.MessageDigest
 import java.security.NoSuchAlgorithmException
 import java.util.*
@@ -85,7 +84,6 @@ object NetWorkUtils {
 
         result += "key=" + key
 
-        Log.i("okhttp","加密字符串 = "+result)
         // SHA1签名生成
         val md = MessageDigest.getInstance("SHA-1")
 

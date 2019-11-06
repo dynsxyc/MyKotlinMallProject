@@ -25,8 +25,5 @@ import javax.inject.Singleton
     CacheModule::class,
     SplashInjectionModule::class])
 interface SplashModuleComponent {
-    fun gson():Gson
-    fun baseApplication():BaseApplication
-    fun okHttpClient(): OkHttpClient
     fun inject(baseApplication: BaseApplication)
 }

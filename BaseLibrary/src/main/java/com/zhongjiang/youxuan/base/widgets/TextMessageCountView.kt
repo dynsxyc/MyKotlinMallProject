@@ -51,7 +51,7 @@ class TextMessageCountView constructor(context: Context, attrs: AttributeSet? = 
         }
     fun setMaxMessageCount(maxCount:Int){
         this.mMaxMessageCount = maxCount
-        mViewHolder?.let {
+        mViewHolder.let {
             it.setMaxMessageCount(maxCount)
         }
     }

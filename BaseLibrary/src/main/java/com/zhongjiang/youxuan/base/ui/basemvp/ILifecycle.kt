@@ -1,4 +1,4 @@
-package com.zhongjiang.youxuan.base.presenter
+package com.zhongjiang.youxuan.base.ui.basemvp
 
 import android.content.res.Configuration
 import android.os.Bundle

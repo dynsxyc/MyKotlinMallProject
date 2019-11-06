@@ -2,7 +2,6 @@ package com.zhongjiang.youxuan.base.ui.activity.web
 
 import android.graphics.Bitmap
 import android.text.TextUtils
-import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import android.webkit.*
@@ -125,7 +124,7 @@ class WebShowActivity : BaseMvpActivity<WebShowActivityPresenter, WebShowActivit
         private val timer = HashMap<String, Long>()
         override fun onPageStarted(view: WebView, url: String, favicon: Bitmap?) {
             super.onPageStarted(view, url, favicon)
-            Log.i(TAG, "mUrl:" + url + " onPageStarted  target:" + webUrl)
+            Logger.i("mUrl:$url onPageStarted  target:$webUrl")
             timer[url] = System.currentTimeMillis()
             if (url == webUrl) {
                 pageNavigator(View.GONE)

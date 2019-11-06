@@ -23,6 +23,9 @@ import com.zhongjiang.youxuan.user.main.common.MainModuleSingleActivityType
  **/
 @Route(path = RouterPath.MainModuleCenter.PATH_MAIN_MODULE_ENTRANCE)
 class MainSingleFragmentActivity : BaseInjectActivity() {
+    override fun getLayoutId(): Int {
+        return R.layout.activity_single_fragment
+    }
 
     @Autowired(name = NavigationConstant.NAVIGATION_DATA_PARCELABLE_CONTENT)
     @JvmField
@@ -30,7 +33,6 @@ class MainSingleFragmentActivity : BaseInjectActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_single_fragment)
         if (intentData == null) {
             NavigationUtil.navigationToMainModultEntrance(MainModuleSingleActivityEntity(MainModuleSingleActivityType.TEST_MAIN_FRAGMENT,null,null))
             finish()
@@ -38,7 +40,7 @@ class MainSingleFragmentActivity : BaseInjectActivity() {
         intentData?.let {
             when(it.type){
                 MainModuleSingleActivityType.TEST_MAIN_FRAGMENT->
-                    loadRootFragment(R.id.mActivitySingleFragmentContent, TabMainFragment.newInstance())
+                    loadRootFragment(R.id.mActivitySingleFragmentContent, TabMainFragment())
             }
         }
 

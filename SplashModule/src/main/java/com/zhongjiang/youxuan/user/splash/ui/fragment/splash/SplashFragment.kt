@@ -56,14 +56,6 @@ class SplashFragment : BaseMvpFragment<SplashFragmentPresenter, SplashDataModel>
         mSplashFragmentImgAd.layoutParams.height = screenWidth.height * 1080 / 1334
     }
 
-    companion object {
-        fun newInstance(): SplashFragment {
-            val args = Bundle()
-            val fragment = SplashFragment()
-            fragment.arguments = args
-            return fragment
-        }
-    }
 
     override fun getSwipeBackEnable(): Boolean {
         return false

@@ -1,5 +1,6 @@
 package com.zhongjiang.youxuan.base.ui.activity.web
 
-import com.zhongjiang.youxuan.base.presenter.BasePresenter
+import com.zhongjiang.youxuan.base.ui.basemvp.BasePresenter
+import javax.inject.Inject
 
-class WebShowActivityPresenter : BasePresenter<WebShowActivity, WebShowActivityModel>()
+class WebShowActivityPresenter @Inject constructor(): BasePresenter<WebShowActivity, WebShowActivityModel>()

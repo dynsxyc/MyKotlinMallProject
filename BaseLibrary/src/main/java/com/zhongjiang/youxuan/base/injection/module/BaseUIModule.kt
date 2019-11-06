@@ -10,21 +10,5 @@ import dagger.Provides
 
 @Module
 class BaseUIModule {
-    @Provides
-    @ActivityScope
-    fun provideWebShowActivityView(webshowView: WebShowActivity): WebShowActivity {
-        return webshowView
-    }
-
-    @Provides
-    @ActivityScope
-    fun provideWebShowActivityModel(webshowModel: WebShowActivityModel): WebShowActivityModel {
-        return webshowModel
-    }
-    @Provides
-    @ActivityScope
-    fun provideWebShowFragmentModel(webshowFragment: YXWebShowFragment): YXWebShowFragment {
-        return webshowFragment
-    }
 
 }

@@ -17,7 +17,9 @@ class RxLifecycleUtils private constructor() {
         fun bindLifecycle(lifecycleOwner: LifecycleOwner): ScopeProvider {
             return AndroidLifecycleScopeProvider.from(lifecycleOwner)
         }
-
+        /**
+         *
+         * */
         fun bindBusLifecycle(lifecycleOwner: LifecycleOwner): ScopeProvider {
             return AndroidLifecycleScopeProvider.from(lifecycleOwner, Lifecycle.Event.ON_DESTROY)
         }

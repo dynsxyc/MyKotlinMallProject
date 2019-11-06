@@ -3,7 +3,7 @@ package com.zhongjiang.youxuan.user.splash.ui.fragment.login
 import com.uber.autodispose.autoDisposable
 import com.zhongjiang.youxuan.base.data.db.UserInfoEntity
 import com.zhongjiang.youxuan.base.ext.excute
-import com.zhongjiang.youxuan.base.presenter.BasePresenter
+import com.zhongjiang.youxuan.base.ui.basemvp.BasePresenter
 import com.zhongjiang.youxuan.base.rx.BaseMaybeObserver
 import com.zhongjiang.youxuan.provider.common.CommonUtils
 import com.zhongjiang.youxuan.user.splash.data.VerificationCodeResuleInfo
@@ -18,8 +18,6 @@ class LoginFragmentPresenter @Inject constructor() : BasePresenter<LoginFragment
     @Inject
     @Singleton
     lateinit var commonUtils: CommonUtils
-    @Inject
-    lateinit var mModel:SplashDataModel
 
     override fun requestLogin(code: String, phoneStr: String, verificationCode: String) {
         mView.showLoading()

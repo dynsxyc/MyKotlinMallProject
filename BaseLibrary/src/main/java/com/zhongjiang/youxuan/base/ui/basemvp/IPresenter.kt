@@ -1,4 +1,4 @@
-package com.zhongjiang.youxuan.base.presenter
+package com.zhongjiang.youxuan.base.ui.basemvp
 
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleObserver
@@ -6,7 +6,7 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.OnLifecycleEvent
 import org.jetbrains.annotations.NotNull
 
-interface IPresenter<out View:IView<IPresenter<View>>> : LifecycleObserver {
+interface IPresenter<out View: IView<IPresenter<View>>> : LifecycleObserver {
     val mView:View
 
     fun setLifecycleOwner(lifecycleOwner: LifecycleOwner)

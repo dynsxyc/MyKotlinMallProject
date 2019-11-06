@@ -9,6 +9,8 @@ import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.annotation.LayoutRes
+import androidx.annotation.MainThread
 import androidx.fragment.app.Fragment
 import com.alibaba.android.arouter.launcher.ARouter
 import com.flyco.roundview.RoundTextView
@@ -42,6 +44,7 @@ abstract class BaseInjectActivity : BaseSupportActivity(), HasSupportFragmentInj
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        setContentView(getLayoutId())
         inject()
         if (isImmersionBarEnabled()) {
             initImmersionBar()
@@ -179,4 +182,9 @@ abstract class BaseInjectActivity : BaseSupportActivity(), HasSupportFragmentInj
             }
         }
     }
+
+    /**获取当前页  layoutId资源Id*/
+    @LayoutRes
+    @MainThread
+    abstract fun getLayoutId(): Int
 }

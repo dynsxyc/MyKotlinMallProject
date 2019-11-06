@@ -1,7 +1,6 @@
 package com.zhongjiang.youxuan.base.pay.weixinpay
 
 import android.content.Context
-import android.util.Log
 import com.tencent.mm.opensdk.modelpay.PayReq
 import com.tencent.mm.opensdk.openapi.WXAPIFactory
 
