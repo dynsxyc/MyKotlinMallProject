@@ -16,6 +16,6 @@ object Ulooger {
         Logger.i(any)
     }
     fun d(){
-        com.ihsanbal.logging.Logger { i, s, s2 ->  }
+        Logger.d()
     }
 }
