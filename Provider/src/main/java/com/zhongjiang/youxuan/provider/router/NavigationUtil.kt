@@ -1,13 +1,13 @@
 package com.zhongjiang.youxuan.provider.router
 
 import android.app.Activity
-import android.os.Parcelable
 import com.alibaba.android.arouter.facade.Postcard
 import com.alibaba.android.arouter.launcher.ARouter
 import com.zhongjiang.youxuan.base.busevent.ActivityRequestCode
 import com.zhongjiang.youxuan.provider.R
 import com.zhongjiang.youxuan.provider.router.NavigationConstant.Companion.NAVIGATION_DATA_BOOLEAN
-import com.zhongjiang.youxuan.provider.router.NavigationConstant.Companion.NAVIGATION_DATA_PARCELABLE_CONTENT
+import com.zhongjiang.youxuan.provider.router.NavigationConstant.Companion.NAVIGATION_DATA_STRING_MODULE_MAP
+import com.zhongjiang.youxuan.provider.router.NavigationConstant.Companion.NAVIGATION_DATA_STRING_MODULE_TYPE
 import com.zhongjiang.youxuan.provider.router.NavigationConstant.Companion.NAVIGATION_DATA_WEBURL
 import javax.inject.Inject
 
@@ -32,8 +32,8 @@ class NavigationUtil @Inject constructor() {
         /**
          * 跳转MainModule 主入口
          * */
-        fun navigationToMainModultEntrance(parcelable: Parcelable) {
-            navigationToPathWidthParcelable(RouterPath.MainModuleCenter.PATH_MAIN_MODULE_ENTRANCE,parcelable)
+        fun navigationToMainModuleEntrance(typeStr: String?, mapParams: HashMap<String,String>?) {
+            navigationToModule(RouterPath.MainModuleCenter.PATH_MAIN_MODULE_ENTRANCE,typeStr,mapParams)
         }
 
         /**
@@ -62,11 +62,12 @@ class NavigationUtil @Inject constructor() {
             navigationResult(builder, null, -1)
         }
         /**
-         * 单独path跳转
+         * 模块间跳转
          * */
-        private fun navigationToPathWidthParcelable(path: String,parcelable: Parcelable) {
+        private fun navigationToModule(path: String, typeStr: String?,mapParams: HashMap<String, String>?) {
             var builder = ARouter.getInstance().build(path)
-            builder.withParcelable(NAVIGATION_DATA_PARCELABLE_CONTENT,parcelable)
+            builder.withString(NAVIGATION_DATA_STRING_MODULE_TYPE,typeStr)
+            builder.withSerializable(NAVIGATION_DATA_STRING_MODULE_MAP,mapParams)
             navigationResult(builder, null, -1)
         }
 

@@ -8,7 +8,7 @@ import android.widget.RelativeLayout
 import com.jakewharton.rxbinding2.view.RxView
 import com.zhongjiang.youxuan.base.R
 import com.zhongjiang.youxuan.base.ext.shieldDoubleClick
-import com.zhongjiang.youxuan.base.widgets.listener.onCommonHeaderTitleViewClickListener
+import com.zhongjiang.youxuan.base.widgets.listener.OnCommonHeaderTitleViewClickListener
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.view_header_title.*
 
@@ -104,7 +104,7 @@ class CommonHeaderTitleView constructor(context: Context, attrs: AttributeSet?, 
                 it.setTheme(typeArray)
             }
         }
-        fun setOnViewClickListener(onCommonHeaderTitleViewClickListener: onCommonHeaderTitleViewClickListener?){
+        fun setOnViewClickListener(onCommonHeaderTitleViewClickListener: OnCommonHeaderTitleViewClickListener?){
             RxView.clicks(mCommonHeaderTitleViewTvBack).shieldDoubleClick {
                 onCommonHeaderTitleViewClickListener?.let {
                     it.onBack(mCommonHeaderTitleViewTvBack)
@@ -162,7 +162,7 @@ class CommonHeaderTitleView constructor(context: Context, attrs: AttributeSet?, 
     /**
      * 设置按钮事件响应
      * */
-    fun setOnViewClickListener(onCommonHeaderTitleViewClickListener: onCommonHeaderTitleViewClickListener){
+    fun setOnViewClickListener(onCommonHeaderTitleViewClickListener: OnCommonHeaderTitleViewClickListener){
         mViewHolder.setOnViewClickListener(onCommonHeaderTitleViewClickListener)
     }
     /**

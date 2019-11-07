@@ -6,13 +6,14 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import com.gyf.barlibrary.BarHide
 import com.gyf.barlibrary.ImmersionBar
 import com.zhongjiang.kotlin.splash.ui.fragment.TabMainFragment
+import com.zhongjiang.kotlin.splash.ui.fragment.TestPictureFragment
 import com.zhongjiang.youxuan.base.ui.activity.BaseInjectActivity
+import com.zhongjiang.youxuan.base.ui.fragment.BaseSupperFragment
 import com.zhongjiang.youxuan.provider.router.NavigationConstant
-import com.zhongjiang.youxuan.provider.router.NavigationUtil
 import com.zhongjiang.youxuan.provider.router.RouterPath
 import com.zhongjiang.youxuan.user.main.R
-import com.zhongjiang.youxuan.user.main.common.MainModuleSingleActivityEntity
-import com.zhongjiang.youxuan.user.main.common.MainModuleSingleActivityType
+import com.zhongjiang.youxuan.user.main.common.MainModuleActivityType
+
 /**
  * @date on 2019/05/08 09:24
  * @packagename
@@ -27,23 +28,28 @@ class MainSingleFragmentActivity : BaseInjectActivity() {
         return R.layout.activity_single_fragment
     }
 
-    @Autowired(name = NavigationConstant.NAVIGATION_DATA_PARCELABLE_CONTENT)
+    @Autowired(name = NavigationConstant.NAVIGATION_DATA_STRING_MODULE_TYPE)
     @JvmField
-    var intentData: MainModuleSingleActivityEntity? = null
+    var type: String? = null
+
+    @Autowired(name = NavigationConstant.NAVIGATION_DATA_STRING_MODULE_MAP)
+    @JvmField
+    var mapParams: Map<String,String>? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        if (intentData == null) {
-            NavigationUtil.navigationToMainModultEntrance(MainModuleSingleActivityEntity(MainModuleSingleActivityType.TEST_MAIN_FRAGMENT,null,null))
-            finish()
+        var supportFragment:BaseSupperFragment = when(MainModuleActivityType.nameToType(type)){
+            null -> TestPictureFragment()
+            MainModuleActivityType.MAIN_FRAGMENT -> TabMainFragment()
         }
-        intentData?.let {
-            when(it.type){
-                MainModuleSingleActivityType.TEST_MAIN_FRAGMENT->
-                    loadRootFragment(R.id.mActivitySingleFragmentContent, TabMainFragment())
+        var  bundle = Bundle()
+        mapParams?.let { it ->
+            it.forEach {item->
+                bundle.putString(item.key,item.value)
             }
         }
-
+        supportFragment.arguments = bundle
+        loadRootFragment(R.id.mActivitySingleFragmentContent, supportFragment)
     }
 
     override fun injectRouter(): Boolean {

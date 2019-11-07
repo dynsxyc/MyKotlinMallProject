@@ -27,7 +27,7 @@ import org.jetbrains.anko.toast
 
 class LoginFragment : BaseMvpFragment<LoginFragmentPresenter, SplashDataModel>(), LoginFragmentContract.View {
     override fun onLoginSuccess() {
-        _mActivity.finish()
+        mActivity.finish()
         NavigationUtil.navigationToMain()
     }
 
@@ -46,7 +46,7 @@ class LoginFragment : BaseMvpFragment<LoginFragmentPresenter, SplashDataModel>()
     }
 
     override fun initView() {
-        mLoginFragmentVideoView.setVideoURI(Uri.parse("android.resource://" + _mActivity.getPackageName() + "/" + R.raw.splash_video))
+        mLoginFragmentVideoView.setVideoURI(Uri.parse("android.resource://" + mActivity.getPackageName() + "/" + R.raw.splash_video))
         mLoginFragmentVideoView.setOnCompletionListener { mLoginFragmentVideoView.start() }
         mLoginFragmentVideoView.setOnPreparedListener { mp ->
             mp.setVolume(0f, 0f)
@@ -82,7 +82,7 @@ class LoginFragment : BaseMvpFragment<LoginFragmentPresenter, SplashDataModel>()
     }
 
     override fun onBackPressedSupport(): Boolean {
-        mPresenter.commonUtils.appExit(_mActivity)
+        mPresenter.commonUtils.appExit(mActivity)
         return true
     }
 
@@ -99,10 +99,10 @@ class LoginFragment : BaseMvpFragment<LoginFragmentPresenter, SplashDataModel>()
         RxView.clicks(mLoginFragmentTvServerAgreement).shieldDoubleClick {
             //服务协议
             NavigationUtil.navigationToWebShow("http://www.baidu.com")
-//            WXPayUtils.startPay(_mActivity,"wx72a9d8637eb96ea1","1341772801","wx22171503762155c7a9eaeb523173771940","Sign=WXPay","vqoMUlYsJgSkykqg","1553346066","Tsou1234567891234567891234567890")
-//            AliPayUtils.startPay(_mActivity,"partner=\"2088221618455679\"&seller_id=\"caiwu@youx.mobi\"&out_trade_no=\"1109046297907691520\"&subject=\"YOU选订单支付\"&body=\"YOU选订单支付-1109046297907691520\"&total_fee=\"0.01\"&notify_url=\"http://testapi.you-x.cn/pay/alipay/payCallBack\"&service=\"mobile.securitypay.pay\"&payment_type=\"1\"&_input_charset=\"utf-8\"&it_b_pay=\"30m\"&return_url=\"m.alipay.com\"&sign=\"QICVWq%2BWrl2J8Rf%2B5efj%2BFsWOWNDaCA59D%2ByJKtw6vq7TScenKfhJOnzWRc3lbJ9o0A2gkgwSkytZM537pW6ws1foEF7eVRcdNFPP9cG%2FPjGtnSGGq6kFgREnffuM7IWJ%2BcQ8FMltx5zEFHOoSFhf8P3Til6kT9IAYCfqjrXK%2Bs%3D\"&sign_type=\"RSA\"",schedulers
+//            WXPayUtils.startPay(mActivity,"wx72a9d8637eb96ea1","1341772801","wx22171503762155c7a9eaeb523173771940","Sign=WXPay","vqoMUlYsJgSkykqg","1553346066","Tsou1234567891234567891234567890")
+//            AliPayUtils.startPay(mActivity,"partner=\"2088221618455679\"&seller_id=\"caiwu@youx.mobi\"&out_trade_no=\"1109046297907691520\"&subject=\"YOU选订单支付\"&body=\"YOU选订单支付-1109046297907691520\"&total_fee=\"0.01\"&notify_url=\"http://testapi.you-x.cn/pay/alipay/payCallBack\"&service=\"mobile.securitypay.pay\"&payment_type=\"1\"&_input_charset=\"utf-8\"&it_b_pay=\"30m\"&return_url=\"m.alipay.com\"&sign=\"QICVWq%2BWrl2J8Rf%2B5efj%2BFsWOWNDaCA59D%2ByJKtw6vq7TScenKfhJOnzWRc3lbJ9o0A2gkgwSkytZM537pW6ws1foEF7eVRcdNFPP9cG%2FPjGtnSGGq6kFgREnffuM7IWJ%2BcQ8FMltx5zEFHOoSFhf8P3Til6kT9IAYCfqjrXK%2Bs%3D\"&sign_type=\"RSA\"",schedulers
 //            ) { isOk, s ->
-//                _mActivity.toast(s)
+//                mActivity.toast(s)
 //            }
         }
         RxView.clicks(mLoginFragmentRoundTvLogin).shieldDoubleClick {
@@ -118,7 +118,7 @@ class LoginFragment : BaseMvpFragment<LoginFragmentPresenter, SplashDataModel>()
      * 显示登录内容
      */
     private fun showLoginView() {
-        _mActivity.window.clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
+        mActivity.window.clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
         ImmersionBar.with(this).hideBar(BarHide.FLAG_SHOW_BAR).keyboardEnable(true).autoDarkModeEnable(false).statusBarColorTransform(R.color.black).statusBarAlpha(0.2f).init()
         mLoginFragmentViewSub.inflate()
         initSubView()
@@ -191,7 +191,7 @@ class LoginFragment : BaseMvpFragment<LoginFragmentPresenter, SplashDataModel>()
         var result = phoneStatus and codeStatus
 
         if (result) {
-            mLoginFragmentRoundTvLogin.delegate.backgroundColor = ContextCompat.getColor(_mActivity,R.color.common_red)
+            mLoginFragmentRoundTvLogin.delegate.backgroundColor = ContextCompat.getColor(mActivity,R.color.common_red)
         } else {
             mLoginFragmentRoundTvLogin.delegate.backgroundColor = Color.parseColor("#99dc2828")
         }

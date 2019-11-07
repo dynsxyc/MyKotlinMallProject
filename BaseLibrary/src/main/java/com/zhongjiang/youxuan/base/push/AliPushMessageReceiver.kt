@@ -3,7 +3,6 @@ package com.zhongjiang.youxuan.base.push
 import android.content.Context
 import com.alibaba.sdk.android.push.MessageReceiver
 import com.alibaba.sdk.android.push.notification.CPushMessage
-import com.orhanobut.logger.Logger
 import com.zhongjiang.youxuan.base.utils.ULogger
 
 class AliPushMessageReceiver : MessageReceiver() {

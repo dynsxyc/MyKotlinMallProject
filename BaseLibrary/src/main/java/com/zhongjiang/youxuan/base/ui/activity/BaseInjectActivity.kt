@@ -16,11 +16,11 @@ import com.alibaba.android.arouter.launcher.ARouter
 import com.flyco.roundview.RoundTextView
 import com.gyf.barlibrary.ImmersionBar
 import com.gyf.barlibrary.OSUtils
-import com.orhanobut.logger.Logger
 import com.zhongjiang.youxuan.base.BuildConfig
 import com.zhongjiang.youxuan.base.R
 import com.zhongjiang.youxuan.base.busevent.ActivityResultEvent
 import com.zhongjiang.youxuan.base.utils.RxBus
+import com.zhongjiang.youxuan.base.utils.ULogger
 import com.zhongjiang.youxuan.base.widgets.listener.StackViewTouchListener
 import dagger.android.AndroidInjection
 import dagger.android.AndroidInjector

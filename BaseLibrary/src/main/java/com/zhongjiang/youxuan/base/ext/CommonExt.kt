@@ -7,7 +7,6 @@ import android.widget.Button
 import android.widget.EditText
 import com.flyco.roundview.RoundTextView
 import com.kotlin.base.widgets.DefaultTextWatcher
-import com.orhanobut.logger.Logger
 import com.uber.autodispose.ScopeProvider
 import com.uber.autodispose.autoDisposable
 import com.zhongjiang.youxuan.base.data.protocol.BaseList
@@ -15,6 +14,7 @@ import com.zhongjiang.youxuan.base.data.protocol.BaseResp
 import com.zhongjiang.youxuan.base.injection.module.sheduler.SchedulerProvider
 import com.zhongjiang.youxuan.base.rx.BaseFunc
 import com.zhongjiang.youxuan.base.rx.BaseMaybeObserver
+import com.zhongjiang.youxuan.base.utils.ULogger
 import io.reactivex.Flowable
 import io.reactivex.Maybe
 import io.reactivex.Observable

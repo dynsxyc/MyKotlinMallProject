@@ -23,7 +23,7 @@ import java.util.regex.Matcher
 import java.util.regex.Pattern
 
 
-class CrashHandler @Inject constructor(val mContext: BaseApplication): Thread.UncaughtExceptionHandler {
+class CrashHandler constructor(val mContext: BaseApplication): Thread.UncaughtExceptionHandler {
 
     val TAG = "TEST"
 

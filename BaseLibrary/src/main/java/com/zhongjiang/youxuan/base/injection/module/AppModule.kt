@@ -6,9 +6,7 @@ import com.alibaba.sdk.android.push.CommonCallback
 import com.alibaba.sdk.android.push.noonesdk.PushServiceFactory
 import com.baidu.location.LocationClient
 import com.baidu.location.LocationClientOption
-import com.orhanobut.logger.Logger
 import com.zhongjiang.youxuan.base.common.BaseApplication
-import com.zhongjiang.youxuan.base.common.CrashHandler
 import com.zhongjiang.youxuan.base.injection.module.sheduler.AppSchedulerProvider
 import com.zhongjiang.youxuan.base.injection.module.sheduler.SchedulerProvider
 import com.zhongjiang.youxuan.base.oss.BucketType
@@ -31,11 +29,6 @@ class AppModule() {
     @Provides
     fun provideApplication(): BaseApplication {
         return BaseApplication.AppContext.baseContext as BaseApplication
-    }
-    @Singleton
-    @Provides
-    fun provideCrashHandler(baseApplication: BaseApplication): CrashHandler {
-        return CrashHandler(baseApplication)
     }
 
     @Singleton

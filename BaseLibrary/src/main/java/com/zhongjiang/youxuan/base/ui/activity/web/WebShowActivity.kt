@@ -14,7 +14,6 @@ import com.just.agentweb.AgentWeb
 import com.just.agentweb.AgentWebConfig
 import com.just.agentweb.DefaultWebClient
 import com.just.agentweb.PermissionInterceptor
-import com.orhanobut.logger.Logger
 import com.zhongjiang.youxuan.base.BuildConfig
 import com.zhongjiang.youxuan.base.R
 import com.zhongjiang.youxuan.base.common.UIController

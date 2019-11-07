@@ -2,7 +2,6 @@ package com.zhongjiang.youxuan.user.splash.ui.fragment.splash
 
 import android.annotation.SuppressLint
 import android.graphics.drawable.Drawable
-import android.os.Bundle
 import android.util.Log
 import android.view.View.VISIBLE
 import com.bumptech.glide.load.DataSource
@@ -96,7 +95,7 @@ class SplashFragment : BaseMvpFragment<SplashFragmentPresenter, SplashDataModel>
     }
 
     override fun onLoginSuccess() {
-        _mActivity.finish()
+        mActivity.finish()
         NavigationUtil.navigationToMain()
     }
 
@@ -105,7 +104,7 @@ class SplashFragment : BaseMvpFragment<SplashFragmentPresenter, SplashDataModel>
     }
 
     override fun skipWeb(webUrl: String) {
-        NavigationUtil.navigationToWebShowResult(_mActivity,"http://youx7.youx.mobi/activity/qualitylife?appAreaCode=441723&appUserMobile=15868490449")
+        NavigationUtil.navigationToWebShowResult(mActivity,"http://youx7.youx.mobi/activity/qualitylife?appAreaCode=441723&appUserMobile=15868490449")
     }
 
     override fun initImmersionBar() {

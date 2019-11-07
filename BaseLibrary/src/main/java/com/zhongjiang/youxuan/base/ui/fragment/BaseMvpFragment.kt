@@ -88,7 +88,7 @@ abstract class BaseMvpFragment<out P : BasePresenter<BaseMvpFragment<P, M>, M>,M
     }
 
     private val progressLoading by lazy {
-        ProgressLoading.create(_mActivity)
+        ProgressLoading.create(mActivity)
     }
 
     @MainThread
@@ -101,7 +101,7 @@ abstract class BaseMvpFragment<out P : BasePresenter<BaseMvpFragment<P, M>, M>,M
 
     @MainThread
     override fun onNetError(status:Int, text: String) {
-        _mActivity.toast(text)
+        mActivity.toast(text)
     }
 
     @MainThread
@@ -110,7 +110,7 @@ abstract class BaseMvpFragment<out P : BasePresenter<BaseMvpFragment<P, M>, M>,M
     }
 
     override fun getHostActivity(): Activity {
-        return _mActivity
+        return mActivity
     }
 
     override fun showToast(message: String) {

@@ -17,7 +17,10 @@ import com.zhongjiang.youxuan.base.ext.shieldDoubleClick
 import com.zhongjiang.youxuan.base.imageloader.YXImageView
 import com.zhongjiang.youxuan.base.oss.UpFileBean
 import com.zhongjiang.youxuan.base.ui.fragment.BaseSelectorImgFragment
+import com.zhongjiang.youxuan.base.utils.ULogger
+import com.zhongjiang.youxuan.provider.router.NavigationUtil
 import com.zhongjiang.youxuan.user.main.R
+import com.zhongjiang.youxuan.user.main.common.MainModuleActivityType
 import com.zhongjiang.youxuan.user.main.ui.MainModel
 import kotlinx.android.synthetic.main.fragment_testpicture.*
 
@@ -36,23 +39,24 @@ class TestPictureFragment : BaseSelectorImgFragment<TestFragmentPresenter, MainM
     }
 
     override fun onFileUpIng(it: UpFileBean) {
-        com.orhanobut.logger.Logger.i("文件名 = ${it.fileName},上传状态= ${it.upType},上传进度= ${it.progress},图片路径 = ${it.filePath},上传返回路径=${it.upSuccessUrl}")
+        ULogger.i("文件名 = ${it.fileName},上传状态= ${it.upType},上传进度= ${it.progress},图片路径 = ${it.filePath},上传返回路径=${it.upSuccessUrl}")
     }
 
     override fun initView() {
 
         RxView.clicks(btCamera).shieldDoubleClick {
-            openMedia(true)
+//            openMedia(true)
+            NavigationUtil.navigationToMainModuleEntrance(MainModuleActivityType.MAIN_FRAGMENT.name, hashMapOf(("a" to "A"),("b" to "B")))
         }
         RxView.clicks(btAlbum).shieldDoubleClick {
-            mPresenter.startLocation(_mActivity)
+            mPresenter.startLocation(mActivity)
         }
-        testRecyclerView.layoutManager = GridLayoutManager(_mActivity,2,GridLayoutManager.HORIZONTAL,false)
+        testRecyclerView.layoutManager = GridLayoutManager(mActivity,2,GridLayoutManager.HORIZONTAL,false)
         var itemDate= ItemDate("测试行业","https://img-ads.csdn.net/2019/201903131400184107.png")
         var list = arrayListOf<ItemDate>(itemDate,itemDate,itemDate,itemDate,itemDate,itemDate,
                                                                itemDate,itemDate,itemDate,itemDate,itemDate,itemDate,
                                                                 itemDate,itemDate,itemDate,itemDate,itemDate,itemDate)
-        var adapter = Adapter(_mActivity,list)
+        var adapter = Adapter(mActivity,list)
         testRecyclerView.adapter = adapter
         testRecyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {

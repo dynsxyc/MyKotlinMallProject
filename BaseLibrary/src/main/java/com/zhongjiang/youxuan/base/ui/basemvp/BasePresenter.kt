@@ -4,7 +4,6 @@ import android.app.Activity
 import androidx.annotation.CallSuper
 import androidx.annotation.MainThread
 import androidx.lifecycle.LifecycleOwner
-import com.orhanobut.logger.Logger
 import com.uber.autodispose.ScopeProvider
 import com.uber.autodispose.autoDisposable
 import com.zhongjiang.youxuan.base.NetWorkUtils
@@ -18,6 +17,7 @@ import com.zhongjiang.youxuan.base.oss.UpFileBean
 import com.zhongjiang.youxuan.base.utils.BaiDuUtils
 import com.zhongjiang.youxuan.base.utils.RxBus
 import com.zhongjiang.youxuan.base.utils.RxLifecycleUtils
+import com.zhongjiang.youxuan.base.utils.ULogger
 import io.objectbox.Box
 import io.reactivex.Flowable
 import io.reactivex.disposables.Disposable
@@ -131,7 +131,7 @@ abstract class BasePresenter<out V : IView<BasePresenter<V, M>>, M : IModel> : I
             ULogger.i("registerActivityResultEvent   调用成功")
         }, Consumer {
             it.printStackTrace()
-            ULogger.e("registerActivityResultEvent   $it")
+            ULogger.d("registerActivityResultEvent   $it")
         }, Action {
             ULogger.i("registerActivityResultEvent   oncomplete")
         }, Consumer {
@@ -175,7 +175,7 @@ abstract class BasePresenter<out V : IView<BasePresenter<V, M>>, M : IModel> : I
         }, {
             upFileBean.disposable?.let {
                 if (!it.isDisposed){
-                    Logger.i("-----------------------dispose")
+                    ULogger.i("-----------------------dispose")
                     it.dispose()
                 }
             }

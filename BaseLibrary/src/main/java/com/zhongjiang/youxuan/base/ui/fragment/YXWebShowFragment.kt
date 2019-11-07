@@ -126,7 +126,7 @@ class YXWebShowFragment : BaseInjectFragment() {
                 .setWebChromeClient(mWebChromeClient) //WebChromeClient
                 .setPermissionInterceptor(mPermissionInterceptor) //权限拦截 2.0.0 加入。
                 .setSecurityType(AgentWeb.SecurityType.STRICT_CHECK) //严格模式 Android 4.2.2 以下会放弃注入对象 ，使用AgentWebView没影响。
-                .setAgentWebUIController(UIController(_mActivity)) //自定义UI  AgentWeb3.0.0 加入。
+                .setAgentWebUIController(UIController(mActivity)) //自定义UI  AgentWeb3.0.0 加入。
                 .setMainFrameErrorView(R.layout.agentweb_error_page, -1) //参数1是错误显示的布局，参数2点击刷新控件ID -1表示点击整个布局都刷新， AgentWeb 3.0.0 加入。
                 .useMiddlewareWebChrome(getMiddlewareWebChrome()) //设置WebChromeClient中间件，支持多个WebChromeClient，AgentWeb 3.0.0 加入。
                 .useMiddlewareWebClient(getMiddlewareWebClient()) //设置WebViewClient中间件，支持多个WebViewClient， AgentWeb 3.0.0 加入。

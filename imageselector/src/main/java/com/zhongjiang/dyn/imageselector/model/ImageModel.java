@@ -6,7 +6,6 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.util.Log;
 
 import com.zhongjiang.dyn.imageselector.entry.Folder;
 import com.zhongjiang.dyn.imageselector.entry.Image;
@@ -63,7 +62,6 @@ public class ImageModel {
 
         @Override
         public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
-            Log.i("test","onLoadFinished");
             if (data == null || data.isClosed()) {
                 mLoaderManager.restartLoader(0,mBundle,mPhotoDirLoaderCallbacks);
                 return;
@@ -115,7 +113,6 @@ public class ImageModel {
 
         @Override
         public void onLoaderReset(Loader<Cursor> loader) {
-            Log.i("test","onLoaderReset");
         }
     }
 

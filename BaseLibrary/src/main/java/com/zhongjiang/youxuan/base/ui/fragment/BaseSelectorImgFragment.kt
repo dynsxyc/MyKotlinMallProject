@@ -51,7 +51,7 @@ abstract class BaseSelectorImgFragment<P: BasePresenter<BaseSelectorImgFragment<
     }
 
     protected fun openMedia(isCamera: Boolean) {
-        var pictureselector = PictureSelector.create(_mActivity)
+        var pictureselector = PictureSelector.create(mActivity)
         var pictureselectionmodel: PictureSelectionModel
         if (isCamera) {
             pictureselectionmodel = pictureselector.openCamera(PictureMimeType.ofImage())

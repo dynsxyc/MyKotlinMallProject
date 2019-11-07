@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.view.View
 import android.view.animation.Animation
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentActivity
 import com.gyf.barlibrary.SimpleImmersionOwner
 import com.gyf.barlibrary.SimpleImmersionProxy
 import me.yokeyword.fragmentation.*
@@ -20,7 +21,7 @@ import me.yokeyword.fragmentation_swipeback.core.SwipeBackFragmentDelegate
 abstract class BaseSupperFragment : Fragment(), ISupportFragment, ISwipeBackFragment, SimpleImmersionOwner {
     private val mDelegate by lazy { SupportFragmentDelegate(this) }
     private val mSwipeBackDelegate by lazy { SwipeBackFragmentDelegate(this) }
-    val _mActivity by lazy {
+    val mActivity: FragmentActivity by lazy {
         mDelegate.activity
     }
 

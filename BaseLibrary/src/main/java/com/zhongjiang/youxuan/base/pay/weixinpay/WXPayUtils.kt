@@ -3,6 +3,7 @@ package com.zhongjiang.youxuan.base.pay.weixinpay
 import android.content.Context
 import com.tencent.mm.opensdk.modelpay.PayReq
 import com.tencent.mm.opensdk.openapi.WXAPIFactory
+import com.zhongjiang.youxuan.base.utils.ULogger
 
 open class WXPayUtils {
     companion object {
@@ -43,7 +44,7 @@ open class WXPayUtils {
             sb.append(key)
 
             val appSign = WXPayMD5.getMessageDigest(sb.toString().toByteArray())?.toUpperCase()
-            Log.e("orion", appSign)
+            ULogger.e("orion", appSign)
             return appSign
         }
     }

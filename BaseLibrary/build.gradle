@@ -133,7 +133,7 @@ dependencies {
     //RxCache
     api rootProject.ext.dependencies["rxCache"]
     api rootProject.ext.dependencies["rxCache-Jolyglot"]
-    api rootProject.ext.dependencies["logger"]
+    api rootProject.ext.dependencies["androidUtilsCode"]
     api rootProject.ext.dependencies["aliyun-push-core"]
     api rootProject.ext.dependencies["aliyun-push-utils"]
     api rootProject.ext.dependencies["aliyun-push-beacon"]
@@ -142,6 +142,7 @@ dependencies {
     implementation rootProject.ext.dependencies["dynXunFeiSpeechProject"]
     api rootProject.ext.dependencies["smartRefreshHeader"]
     api rootProject.ext.dependencies["smartRefreshLayout"]
+    debugImplementation rootProject.ext.dependencies["leakcanary"]
     api project(':alipaySdk')
     api project(':umengmodule')
 

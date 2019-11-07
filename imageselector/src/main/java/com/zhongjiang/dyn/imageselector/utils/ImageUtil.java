@@ -5,7 +5,6 @@ import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
 import android.media.ExifInterface;
 import android.text.format.DateFormat;
-import android.util.Log;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -118,7 +117,6 @@ public class ImageUtil {
 
             return bitmap;
         } catch (OutOfMemoryError error) {
-            Log.e("eee", "内存泄露！");
             return null;
         }
     }

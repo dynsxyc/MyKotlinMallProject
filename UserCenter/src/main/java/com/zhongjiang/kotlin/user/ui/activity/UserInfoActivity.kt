@@ -141,8 +141,6 @@ class UserInfoActivity : BaseMvpActivity<UserInfoPresenter>(), UserInfoView, Vie
     }
 
     override fun takeSuccess(result: TResult?) {
-        Log.d("test", "takePhoto 压缩地址" + result?.image?.compressPath)
-        Log.d("test", "takePhoto 原始地址" + result?.image?.originalPath)
         mLocalFileUrl = result?.image?.compressPath
         mPresenter.getUploadToken()
     }

@@ -8,10 +8,10 @@ import com.alibaba.sdk.android.oss.common.OSSLog
 import com.alibaba.sdk.android.oss.common.auth.OSSCustomSignerCredentialProvider
 import com.alibaba.sdk.android.oss.common.auth.OSSPlainTextAKSKCredentialProvider
 import com.alibaba.sdk.android.oss.model.*
-import com.orhanobut.logger.Logger
 import com.zhongjiang.youxuan.base.common.YouXuanNetInterfaceConstant.Companion.BASE_URL_DEVELOP_TEST
 import com.zhongjiang.youxuan.base.ext.handlerThread
 import com.zhongjiang.youxuan.base.injection.module.sheduler.SchedulerProvider
+import com.zhongjiang.youxuan.base.utils.ULogger
 import io.reactivex.BackpressureStrategy
 import io.reactivex.Flowable
 import io.reactivex.FlowableOnSubscribe
@@ -104,8 +104,8 @@ class OssService @Inject constructor(var context: Context, var schedulerProvider
         OSSLog.logDebug("upload start")
         val file = File(localFile)
         if (!file.exists()) {
-            Log.w("AsyncPutImage", "FileNotExist")
-            Log.w("LocalFile", localFile)
+            ULogger.w("AsyncPutImage", "FileNotExist")
+            ULogger.w("LocalFile", localFile)
             mDisplayer.uploadFail("文件不存在")
             return
         }
@@ -116,7 +116,7 @@ class OssService @Inject constructor(var context: Context, var schedulerProvider
 
         // 异步上传时可以设置进度回调
         put.progressCallback = OSSProgressCallback { request, currentSize, totalSize ->
-            Log.d("PutObject", "currentSize: $currentSize totalSize: $totalSize")
+            ULogger.d("PutObject", "currentSize: $currentSize totalSize: $totalSize")
             val progress = (100 * currentSize / totalSize).toInt()
             mDisplayer.updateProgress(progress)
             mDisplayer.displayInfo("上传进度: $progress%")
@@ -124,10 +124,10 @@ class OssService @Inject constructor(var context: Context, var schedulerProvider
         OSSLog.logDebug(" asyncPutObject ")
         mOss.asyncPutObject(put, object : OSSCompletedCallback<PutObjectRequest, PutObjectResult> {
             override fun onSuccess(request: PutObjectRequest, result: PutObjectResult) {
-                Log.d("PutObject", "UploadSuccess")
+                ULogger.d("PutObject", "UploadSuccess")
 
-                Log.d("ETag", result.eTag)
-                Log.d("RequestId", result.requestId)
+                ULogger.d("ETag", result.eTag)
+                ULogger.d("RequestId", result.requestId)
 
                 val upload_end = System.currentTimeMillis()
                 OSSLog.logDebug("upload cost: " + (upload_end - upload_start) / 1000f)
@@ -149,10 +149,10 @@ class OssService @Inject constructor(var context: Context, var schedulerProvider
                 }
                 if (serviceException != null) {
                     // 服务异常
-                    Log.e("ErrorCode", serviceException.errorCode)
-                    Log.e("RequestId", serviceException.requestId)
-                    Log.e("HostId", serviceException.hostId)
-                    Log.e("RawMessage", serviceException.rawMessage)
+                    ULogger.e("ErrorCode", serviceException.errorCode)
+                    ULogger.e("RequestId", serviceException.requestId)
+                    ULogger.e("HostId", serviceException.hostId)
+                    ULogger.e("RawMessage", serviceException.rawMessage)
                     info = serviceException.toString()
                 }
                 mDisplayer.uploadFail(info)
@@ -253,7 +253,7 @@ class OssService @Inject constructor(var context: Context, var schedulerProvider
     fun asyncResumableUpload(resumableFilePath: String, mDisplayer: UIDisplayer) {
         val request = ResumableUploadRequest(mBucket, mResumableObjectKey, resumableFilePath)
         request.progressCallback = OSSProgressCallback<ResumableUploadRequest> { request, currentSize, totalSize ->
-            Log.d("GetObject", "currentSize: $currentSize totalSize: $totalSize")
+            ULogger.d("GetObject", "currentSize: $currentSize totalSize: $totalSize")
             val progress = (100 * currentSize / totalSize).toInt()
             mDisplayer.updateProgress(progress)
             mDisplayer.displayInfo("上传进度: $progress%")
@@ -403,7 +403,7 @@ class OssService @Inject constructor(var context: Context, var schedulerProvider
         val get = GetObjectRequest(mBucket, objectKey)
         get.crC64 = OSSRequest.CRC64Config.YES
         get.setProgressListener { request, currentSize, totalSize ->
-            Log.d("GetObject", "currentSize: $currentSize totalSize: $totalSize")
+            ULogger.d("GetObject", "currentSize: $currentSize totalSize: $totalSize")
             val progress = (100 * currentSize / totalSize).toInt()
             mDisplayer.updateProgress(progress)
             mDisplayer.displayInfo("下载进度: $progress%")

@@ -46,12 +46,12 @@ class TestPictureFragment : BaseSelectorImgFragment<TestFragmentPresenter, Splas
         RxView.clicks(btAlbum).shieldDoubleClick {
             openMedia(false)
         }
-        testRecyclerView.layoutManager = GridLayoutManager(_mActivity,2,GridLayoutManager.HORIZONTAL,false)
+        testRecyclerView.layoutManager = GridLayoutManager(mActivity,2,GridLayoutManager.HORIZONTAL,false)
         var itemDate= ItemDate("测试行业", "https://img-ads.csdn.net/2019/201903131400184107.png")
         var list = arrayListOf<ItemDate>(itemDate,itemDate,itemDate,itemDate,itemDate,itemDate,
                                                                itemDate,itemDate,itemDate,itemDate,itemDate,itemDate,
                                                                 itemDate,itemDate,itemDate,itemDate,itemDate,itemDate)
-        var adapter = Adapter(_mActivity, list)
+        var adapter = Adapter(mActivity, list)
         testRecyclerView.adapter = adapter
         testRecyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {

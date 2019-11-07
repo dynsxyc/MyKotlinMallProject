@@ -9,10 +9,10 @@ import com.flyco.roundview.RoundTextView
 import com.gyf.barlibrary.ImmersionBar
 import com.zhongjiang.youxuan.base.R
 import com.zhongjiang.youxuan.base.ui.activity.BaseSupportActivity
-import com.zhongjiang.youxuan.base.widgets.listener.onCommonHeaderTitleViewClickListener
+import com.zhongjiang.youxuan.base.widgets.listener.OnCommonHeaderTitleViewClickListener
 import dagger.android.support.AndroidSupportInjection
 /**注入类型*/
-abstract class BaseInjectFragment : BaseSupperFragment(), onCommonHeaderTitleViewClickListener {
+abstract class BaseInjectFragment : BaseSupperFragment(), OnCommonHeaderTitleViewClickListener {
     protected fun inject() {
         AndroidSupportInjection.inject(this)
         if (injectRouter())
@@ -91,8 +91,8 @@ abstract class BaseInjectFragment : BaseSupperFragment(), onCommonHeaderTitleVie
     }
 
     override fun onBackPressedSupport(): Boolean {
-        if (_mActivity is BaseSupportActivity) {
-            (_mActivity as BaseSupportActivity).onBackPressedSupport()
+        if (mActivity is BaseSupportActivity) {
+            (mActivity as BaseSupportActivity).onBackPressedSupport()
         }
         return true
     }

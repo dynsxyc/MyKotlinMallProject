@@ -6,7 +6,6 @@ import com.baidu.location.BDAbstractLocationListener
 import com.baidu.location.BDLocation
 import com.baidu.location.LocationClient
 import com.luck.picture.lib.permissions.RxPermissions
-import com.orhanobut.logger.Logger
 import com.zhongjiang.youxuan.base.data.db.BaiDuLocationEntity
 import io.objectbox.Box
 import javax.inject.Inject

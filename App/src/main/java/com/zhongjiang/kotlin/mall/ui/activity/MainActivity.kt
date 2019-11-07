@@ -2,7 +2,6 @@ package com.zhongjiang.kotlin.mall.ui.activity
 
 import android.os.Bundle
 import com.alibaba.android.arouter.facade.annotation.Route
-import com.orhanobut.logger.Logger
 import com.zhongjiang.kotlin.base.ui.activity.BaseInjectActivity
 import com.zhongjiang.kotlin.mall.R
 import com.zhongjiang.kotlin.mall.ui.fragment.MainFragment

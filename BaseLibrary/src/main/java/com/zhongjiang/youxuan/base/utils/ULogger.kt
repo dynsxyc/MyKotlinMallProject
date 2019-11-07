@@ -1,6 +1,6 @@
 package com.zhongjiang.youxuan.base.utils
 
-import com.orhanobut.logger.Logger
+import com.blankj.utilcode.util.LogUtils
 
 /**
  * @author dyn
@@ -12,34 +12,40 @@ import com.orhanobut.logger.Logger
  * @email 583454199@qq.com
  **/
 object ULogger {
-    fun i(message: String,vararg anyMessage:Any?){
-        Logger.i(message,anyMessage)
-    }
     fun i(vararg anyMessage:Any?){
-        Logger.i("",anyMessage)
+        LogUtils.i(anyMessage)
     }
-    fun d(message:String = "message",vararg any: Any?){
-        Logger.d(message,any)
+    fun iTag(tag:String,vararg anyMessage:Any?){
+        LogUtils.iTag(tag,anyMessage)
     }
     fun d(vararg any: Any?){
-        Logger.d(any)
+        LogUtils.d(any)
     }
-    fun e(throwable:Throwable,message: String, any: Any?){
-        Logger.e(throwable,message,any)
+    fun dTag(tag:String,vararg any: Any?){
+        LogUtils.dTag(tag,any)
     }
-    fun e(message: String, any: Any?){
-        Logger.e(message,any)
+    fun e(vararg any: Any?){
+        LogUtils.e(any)
     }
-    fun w(message: String, any: Any?){
-        Logger.w(message,any)
+    fun eTag(tag: String,vararg any: Any?){
+        LogUtils.eTag(tag,any)
     }
-    fun v(message: String, any: Any?){
-        Logger.v(message,any)
+    fun w(vararg any: Any?){
+        LogUtils.w(any)
     }
-    fun json(jsonStr: String){
-        Logger.json(jsonStr)
+    fun wTag(tag: String,vararg any: Any?){
+        LogUtils.wTag(tag,any)
+    }
+    fun v(vararg any: Any?){
+        LogUtils.v(any)
+    }
+    fun vTag(tag: String,vararg any: Any?){
+        LogUtils.v(tag,any)
+    }
+    fun json(jsonStr: Any){
+        LogUtils.json(jsonStr)
     }
     fun xml(xml: String){
-        Logger.xml(xml)
+        LogUtils.xml(xml)
     }
 }
