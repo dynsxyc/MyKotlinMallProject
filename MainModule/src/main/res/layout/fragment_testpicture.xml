@@ -1,37 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <include layout="@layout/toolbar_main"/>
-    <Button
-        android:id="@+id/btCamera"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/toolbar_main" />
+
+    <com.zhongjiang.youxuan.base.widgets.MultiStateView
+        android:id="@+id/contentMultiStateView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/common_margin"
-        android:text="相机"
-        />
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/common_margin"
-        android:id="@+id/btAlbum"
-        android:text="相册"
-        />
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/testRecyclerView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-    <SeekBar
-        android:id="@+id/slide_indicator_point"
-        android:layout_width="200dp"
-        android:layout_height="3dp"
-        android:layout_marginTop="@dimen/sp_15"
-        android:layout_gravity="center_horizontal"
-        android:focusable="true"
-        android:maxHeight="4.0dip"
-        android:minHeight="4.0dip"
-        android:background="@color/transparent"
-        android:progressDrawable="@drawable/bg_fast_scroll_bar_track"
-        android:thumb="@drawable/bg_fast_scroll_bar_thumb"
-        android:visibility="visible" />
+        android:layout_height="match_parent"
+        app:msv_viewState="loading">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/btCamera"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/common_margin"
+                android:text="相机" />
+
+            <Button
+                android:id="@+id/btAlbum"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/common_margin"
+                android:text="相册" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/testRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <SeekBar
+                android:id="@+id/slide_indicator_point"
+                android:layout_width="200dp"
+                android:layout_height="3dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/sp_15"
+                android:background="@color/transparent"
+                android:focusable="true"
+                android:maxHeight="4.0dip"
+                android:minHeight="4.0dip"
+                android:progressDrawable="@drawable/bg_fast_scroll_bar_track"
+                android:thumb="@drawable/bg_fast_scroll_bar_thumb"
+                android:visibility="visible" />
+        </LinearLayout>
+    </com.zhongjiang.youxuan.base.widgets.MultiStateView>
 </LinearLayout>

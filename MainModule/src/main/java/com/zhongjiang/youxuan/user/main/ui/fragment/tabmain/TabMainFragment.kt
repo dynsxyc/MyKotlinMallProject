@@ -9,6 +9,7 @@ import com.zhongjiang.youxuan.base.ui.fragment.BaseMvpFragment
 import com.zhongjiang.youxuan.base.utils.ULogger
 import com.zhongjiang.youxuan.user.main.R
 import com.zhongjiang.youxuan.user.main.ui.MainModel
+import com.zhongjiang.youxuan.user.main.ui.fragment.testpicture.TestPictureFragment
 import kotlinx.android.synthetic.main.fragment_basehome.*
 import javax.inject.Inject
 

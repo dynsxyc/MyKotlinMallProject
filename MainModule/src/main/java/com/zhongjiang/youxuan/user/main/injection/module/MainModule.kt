@@ -4,7 +4,7 @@ import com.zhongjiang.kotlin.splash.injection.module.MainActivityModule
 import com.zhongjiang.kotlin.splash.injection.module.MainFragmentModule
 import com.zhongjiang.kotlin.splash.injection.module.MainModuleServiceModule
 import com.zhongjiang.kotlin.splash.ui.fragment.TabMainFragment
-import com.zhongjiang.kotlin.splash.ui.fragment.TestPictureFragment
+import com.zhongjiang.youxuan.user.main.ui.fragment.testpicture.TestPictureFragment
 import com.zhongjiang.youxuan.base.injection.component.BaseActivityComponent
 import com.zhongjiang.youxuan.base.injection.component.BaseFragmentComponent
 import com.zhongjiang.youxuan.base.injection.scope.ActivityScope
@@ -28,7 +28,7 @@ abstract class MainModule {
 
     @ActivityScope
     @ContributesAndroidInjector(modules = [MainFragmentModule::class])
-    abstract fun contributeTestPictureFragmentInjector():TestPictureFragment
+    abstract fun contributeTestPictureFragmentInjector(): TestPictureFragment
 
     @ActivityScope
     @ContributesAndroidInjector(modules = [MainActivityModule::class])

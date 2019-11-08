@@ -6,7 +6,7 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import com.gyf.barlibrary.BarHide
 import com.gyf.barlibrary.ImmersionBar
 import com.zhongjiang.kotlin.splash.ui.fragment.TabMainFragment
-import com.zhongjiang.kotlin.splash.ui.fragment.TestPictureFragment
+import com.zhongjiang.youxuan.user.main.ui.fragment.testpicture.TestPictureFragment
 import com.zhongjiang.youxuan.base.ui.activity.BaseInjectActivity
 import com.zhongjiang.youxuan.base.ui.fragment.BaseSupperFragment
 import com.zhongjiang.youxuan.provider.router.NavigationConstant

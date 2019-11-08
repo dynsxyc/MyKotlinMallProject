@@ -4,7 +4,7 @@ import android.view.View
 
 /**
  * @date on 2019/5/10 14:48
- * @packagename com.zhongjiang.youxuan.base.widgets.listener
+ * @packagename com.zhongjiang.youxuan.base.widgets.stateListener
  * @author dyn
  * @fileName OnCommonHeaderTitleViewClickListener
  * @org com.zhongjiang.youxuan

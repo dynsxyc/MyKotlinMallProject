@@ -15,8 +15,8 @@ object KeyboardVisibilityEvent {
     private const val KEYBOARD_MIN_HEIGHT_RATIO = 0.15
 
     /**
-     * Set keyboard visibility change event listener.
-     * This automatically remove registered event listener when the Activity is destroyed
+     * Set keyboard visibility change event stateListener.
+     * This automatically remove registered event stateListener when the Activity is destroyed
      *
      * @param activity Activity
      * @param listener KeyboardVisibilityEventListener
@@ -36,7 +36,7 @@ object KeyboardVisibilityEvent {
     }
 
     /**
-     * Set keyboard visibility change event listener.
+     * Set keyboard visibility change event stateListener.
      *
      * @param activity Activity
      * @param listener KeyboardVisibilityEventListener
