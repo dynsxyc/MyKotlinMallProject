@@ -16,7 +16,6 @@ import com.zhongjiang.kotlin.splash.data.VerificationCodeResuleInfo
 import com.zhongjiang.kotlin.splash.presenter.loginfragment.LoginFragmentContract
 import com.zhongjiang.kotlin.splash.presenter.loginfragment.LoginFragmentPresenter
 import com.zhongjiang.youxuan.base.ext.editEnable
-import com.zhongjiang.youxuan.base.ext.padLeft
 import com.zhongjiang.youxuan.base.ext.setVisible
 import com.zhongjiang.youxuan.base.ext.shieldDoubleClick
 import com.zhongjiang.youxuan.base.ui.fragment.BaseMvpFragment

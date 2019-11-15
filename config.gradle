@@ -166,8 +166,9 @@ ext {
             "sinaWeiboSdk"                          : "com.sina.weibo.sdk:core:4.3.7:openDefaultRelease@aar",
             "luban"                                 : "top.zibin:Luban:1.1.8",
             "dynPictureSelector"                    : "com.github.dynsxyc:PictureSelector:v2.2.50",
-            "dynXunFeiSpeechProject"                    : "com.github.dynsxyc:XunFeiSpeechProject:1.0.2"
-
+            "dynXunFeiSpeechProject"                    : "com.github.dynsxyc:XunFeiSpeechProject:1.0.2",
+            //tab类型切换控件
+            "FlycoTabLayout"                    : "com.flyco.tablayout:FlycoTabLayout_Lib:2.1.2@aar"
 
     ]
 
