@@ -8,7 +8,9 @@
       <module fileurl="file://$PROJECT_DIR$/Provider/Provider.iml" filepath="$PROJECT_DIR$/Provider/Provider.iml" />
       <module fileurl="file://$PROJECT_DIR$/SplashModule/SplashModule.iml" filepath="$PROJECT_DIR$/SplashModule/SplashModule.iml" />
       <module fileurl="file://$PROJECT_DIR$/alipaySdk/alipaySdk.iml" filepath="$PROJECT_DIR$/alipaySdk/alipaySdk.iml" />
+      <module fileurl="file://$PROJECT_DIR$/httpframework/httpframework.iml" filepath="$PROJECT_DIR$/httpframework/httpframework.iml" />
       <module fileurl="file://$PROJECT_DIR$/imageselector/imageselector.iml" filepath="$PROJECT_DIR$/imageselector/imageselector.iml" />
+      <module fileurl="file://$PROJECT_DIR$/myDownload.MyKotlinMallProject.iml" filepath="$PROJECT_DIR$/myDownload.MyKotlinMallProject.iml" />
       <module fileurl="file://$PROJECT_DIR$/umengmodule/umengmodule.iml" filepath="$PROJECT_DIR$/umengmodule/umengmodule.iml" />
     </modules>
   </component>

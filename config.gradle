@@ -171,6 +171,8 @@ ext {
             "leakcanary-process"                    : "com.squareup.leakcanary:leakcanary-android-process:2.0-beta-3",
             "leakcanary"                    : "com.squareup.leakcanary:leakcanary-android:2.0-beta-3"
 
+            //tab类型切换控件
+            "FlycoTabLayout"                    : "com.flyco.tablayout:FlycoTabLayout_Lib:2.1.2@aar"
 
     ]
 

@@ -13,8 +13,26 @@
             <option value="$PROJECT_DIR$/Provider" />
             <option value="$PROJECT_DIR$/SplashModule" />
             <option value="$PROJECT_DIR$/alipaySdk" />
+            <option value="$PROJECT_DIR$/httpframework" />
             <option value="$PROJECT_DIR$/imageselector" />
             <option value="$PROJECT_DIR$/umengmodule" />
+          </set>
+        </option>
+        <option name="resolveModulePerSourceSet" value="false" />
+        <option name="testRunner" value="PLATFORM" />
+<<<<<<< HEAD
+=======
+        <option name="useQualifiedModuleNames" value="true" />
+>>>>>>> oldMvp
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="distributionType" value="DEFAULT_WRAPPED" />
+        <option name="externalProjectPath" value="I:/../../snackbar" />
+        <option name="gradleHome" value="$APPLICATION_HOME_DIR$/gradle/gradle-3.2" />
+        <option name="gradleJvm" value="1.8" />
+        <option name="modules">
+          <set>
+            <option value="I:/../../snackbar" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />
