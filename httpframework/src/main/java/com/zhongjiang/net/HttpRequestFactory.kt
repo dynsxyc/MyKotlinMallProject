@@ -5,5 +5,8 @@ import com.zhongjiang.net.http.HttpRequest
 import java.net.URI
 
 interface HttpRequestFactory {
-    fun createHttpRequest(uti:URI,httpMethod:HttpMethod):HttpRequest
+    fun createHttpRequest(uri:URI,httpMethod:HttpMethod):HttpRequest
+    fun setReadTimeOut(timeOut:Long)
+    fun setWriteTimeOut(timeOut:Long)
+    fun setConnectionTimeOut(timeOut:Long)
 }

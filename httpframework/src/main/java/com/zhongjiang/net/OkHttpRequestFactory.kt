@@ -6,16 +6,20 @@ import okhttp3.OkHttpClient
 import java.net.URI
 import java.util.concurrent.TimeUnit
 
-class OkhttpRequestFactory constructor(): HttpRequestFactory {
+class OkHttpRequestFactory constructor(): HttpRequestFactory {
+    override fun setConnectionTimeOut(timeOut: Long) {
+        mBuilder = mBuilder.connectTimeout(timeOut,TimeUnit.MILLISECONDS)
+    }
+
     constructor(builder: OkHttpClient.Builder) : this()
      {
         this.mBuilder = builder
     }
     private var mBuilder:OkHttpClient.Builder = OkHttpClient.Builder()
-    fun setReadTimeOut(readTimeOut:Long){
+    override fun setReadTimeOut(readTimeOut:Long){
         mBuilder = mBuilder.readTimeout(readTimeOut,TimeUnit.MILLISECONDS)
     }
-    fun setWriteTimeOut(writeTimeOut:Long){
+    override fun setWriteTimeOut(writeTimeOut:Long){
         mBuilder = mBuilder.writeTimeout(writeTimeOut,TimeUnit.MILLISECONDS)
     }
     override fun createHttpRequest(uri: URI, httpMethod: HttpMethod): HttpRequest {

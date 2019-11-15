@@ -6,7 +6,7 @@ import java.util.zip.GZIPInputStream
 
 abstract class AbstractHttpResponse : HttpResponse {
     private fun isGzip():Boolean{
-        val contentEncoding = getHeaders().getContentEncoding()
+        val contentEncoding = getHeaders()?.getContentEncoding()
         if (GZIP == contentEncoding){
             return true
         }

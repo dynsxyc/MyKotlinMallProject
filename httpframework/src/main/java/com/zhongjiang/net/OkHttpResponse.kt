@@ -5,9 +5,9 @@ import com.zhongjiang.net.http.HttpStatus
 import okhttp3.Response
 import java.io.InputStream
 
-class OkhttpResponse(val mResponse: Response) : AbstractHttpResponse() {
+class OkHttpResponse(val mResponse: Response) : AbstractHttpResponse() {
     companion object{
-        lateinit var mHttpHeader : HttpHeader
+        var mHttpHeader : HttpHeader? = null
     }
     override fun closeInternal() {
         mResponse.body()?.close()
@@ -25,11 +25,11 @@ class OkhttpResponse(val mResponse: Response) : AbstractHttpResponse() {
        return mResponse.message()
     }
 
-    override fun getHeaders(): HttpHeader {
+    override fun getHeaders(): HttpHeader? {
         if (mHttpHeader === null){
             mHttpHeader = HttpHeader()
             mResponse.headers().names().forEach {
-                mResponse.header(it)?.let { it1 -> mHttpHeader.set(it, it1) }
+                mResponse.header(it)?.let { it1 -> mHttpHeader?.set(it, it1) }
             }
         }
         return mHttpHeader
