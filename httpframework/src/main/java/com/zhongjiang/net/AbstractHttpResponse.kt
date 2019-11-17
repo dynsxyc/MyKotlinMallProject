@@ -1,19 +1,20 @@
 package com.zhongjiang.net
 
 import com.zhongjiang.net.http.HttpResponse
+import java.io.ByteArrayInputStream
 import java.io.InputStream
 import java.util.zip.GZIPInputStream
 
 abstract class AbstractHttpResponse : HttpResponse {
     private fun isGzip():Boolean{
-        val contentEncoding = getHeaders()?.getContentEncoding()
+        val contentEncoding = getHeaders().getContentEncoding()
         if (GZIP == contentEncoding){
             return true
         }
         return false
     }
 
-    override fun getBody(): InputStream? {
+    override fun getBody(): InputStream {
         val body = getBodyInternal()
         if (isGzip()){
             return getBodyGzip(body)
@@ -21,11 +22,11 @@ abstract class AbstractHttpResponse : HttpResponse {
         return body
     }
 
-    private fun getBodyGzip(inputStream: InputStream?):InputStream?{
+    private fun getBodyGzip(inputStream: InputStream):InputStream{
         if (mGzipInputStream === null){
             mGzipInputStream = GZIPInputStream(inputStream)
         }
-        return mGzipInputStream
+        return mGzipInputStream!!
     }
 
     override fun close() {
@@ -35,10 +36,10 @@ abstract class AbstractHttpResponse : HttpResponse {
 
     abstract fun closeInternal()
 
-    abstract fun getBodyInternal(): InputStream?
+    abstract fun getBodyInternal(): InputStream
 
     companion object {
         const val GZIP = "gzip"
-        private var mGzipInputStream:InputStream? = null
+        private var mGzipInputStream:GZIPInputStream?=null
     }
 }

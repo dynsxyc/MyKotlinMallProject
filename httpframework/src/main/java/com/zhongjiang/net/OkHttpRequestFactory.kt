@@ -10,7 +10,6 @@ class OkHttpRequestFactory constructor(): HttpRequestFactory {
     override fun setConnectionTimeOut(timeOut: Long) {
         mBuilder = mBuilder.connectTimeout(timeOut,TimeUnit.MILLISECONDS)
     }
-
     constructor(builder: OkHttpClient.Builder) : this()
      {
         this.mBuilder = builder

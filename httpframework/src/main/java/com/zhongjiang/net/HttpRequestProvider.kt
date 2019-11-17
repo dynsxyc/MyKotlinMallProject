@@ -13,11 +13,11 @@ class HttpRequestProvider {
         private var OKHTTP_REQUEST:Boolean = Utils.isExist("okhttp3.OkHttpClient",this::class.java.classLoader);
     }
     init {
-        if (OKHTTP_REQUEST){
-            mHttpRequestFactory = OkHttpRequestFactory(OkHttpClient.Builder())
-        }else{
+//        if (OKHTTP_REQUEST){
+//            mHttpRequestFactory = OkHttpRequestFactory(OkHttpClient.Builder())
+//        }else{
             mHttpRequestFactory = OriginHttpRequestFactory()
-        }
+//        }
 
     }
     fun getHttpRequest(uri: URI,httpMethod: HttpMethod):HttpRequest{

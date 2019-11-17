@@ -11,6 +11,7 @@ class HttpHeader : NameValueMap<String, String> {
         const val CONTENT_ENCODING = "Content-Encoding"
         const val CONNECTION = "Connection"
         const val CONTENT_LENGTH = "Content-Length"
+        const val CONTENT_TYPE = "content-type"
     }
 
     fun getAccept(): String? {
@@ -79,6 +80,13 @@ class HttpHeader : NameValueMap<String, String> {
 
     fun setContentLength(contentLength: String) {
         put(CONTENT_LENGTH, contentLength)
+    }
+    fun getContentType(): String? {
+        return get(CONTENT_TYPE)
+    }
+
+    fun setContentType(contentType: String) {
+        put(CONTENT_TYPE, contentType)
     }
 
 

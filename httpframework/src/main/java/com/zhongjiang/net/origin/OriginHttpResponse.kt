@@ -6,12 +6,12 @@ import com.zhongjiang.net.http.HttpStatus
 import java.io.InputStream
 import java.net.HttpURLConnection
 
-class OriginHttpResponse(val mURLConnection:HttpURLConnection) : AbstractHttpResponse() {
+class OriginHttpResponse(private val mURLConnection:HttpURLConnection) : AbstractHttpResponse() {
     override fun closeInternal() {
             mURLConnection.disconnect()
     }
 
-    override fun getBodyInternal(): InputStream? {
+    override fun getBodyInternal(): InputStream {
         return mURLConnection.inputStream
     }
 
@@ -33,5 +33,9 @@ class OriginHttpResponse(val mURLConnection:HttpURLConnection) : AbstractHttpRes
             }
         }
         return httpHeader
+    }
+
+    override fun getContentLength(): Long {
+        return mURLConnection.contentLengthLong
     }
 }

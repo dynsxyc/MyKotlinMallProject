@@ -9,8 +9,8 @@ import okhttp3.Request
 import okhttp3.RequestBody
 import java.net.URI
 
-class OkHttpRequest(val mClient:OkHttpClient, val mMethod: HttpMethod, val mUrl:String):BufferHttpRequest() {
-    override fun executeInternal(httpHeader: HttpHeader?, data: ByteArray?): HttpResponse {
+class OkHttpRequest(private val mClient:OkHttpClient, private val mMethod: HttpMethod, private val mUrl:String):BufferHttpRequest() {
+    override fun executeInternal(httpHeader: HttpHeader, data: ByteArray): HttpResponse {
         val isBody = mMethod == HttpMethod.POST
         var requestBody:RequestBody? = null
         if (isBody){
@@ -21,7 +21,7 @@ class OkHttpRequest(val mClient:OkHttpClient, val mMethod: HttpMethod, val mUrl:
             requestBody = RequestBody.create(MediaType.parse("application/x-www-form-urlencoded"),toData)
         }
         val builder = Request.Builder().url(mUrl).method(mMethod.name,requestBody)
-        httpHeader?.forEach{
+        httpHeader.forEach{
             builder.addHeader(it.key,it.value)
         }
         var response = mClient.newCall(builder.build()).execute()

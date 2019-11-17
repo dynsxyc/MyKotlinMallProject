@@ -1,6 +1,6 @@
 package com.zhongjiang.net.http
 
-enum class HttpStatus constructor(val code: Int, val message: String) {
+enum class HttpStatus constructor(private val mCode: Int, val message: String) {
     CONTINUE(100, "Continue"),
     SWITCHING_PROTOCOLS(101, "Switching Protocols"),
     OK(200, "OK"),
@@ -46,9 +46,18 @@ enum class HttpStatus constructor(val code: Int, val message: String) {
     companion object {
         open fun getValue(value: Int): HttpStatus {
             return values().first {
-                value === it.code
+                value == it.mCode
             }
         }
     }
+
+    open fun isSuccess():Boolean{
+        var value = mCode /100
+        if (value == 2){
+            return true
+        }
+        return false
+    }
+
 
 }

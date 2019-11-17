@@ -97,6 +97,7 @@ dependencies {
     kapt rootProject.ext.dependencies["router-compiler"]
 
     implementation project(':Provider')
+    implementation project(':httpframework')
 }
 repositories {
     mavenCentral()

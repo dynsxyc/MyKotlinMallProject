@@ -1,9 +1,13 @@
 package com.zhongjiang.kotlin.splash.ui.fragment
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import com.zhongjiang.kotlin.splash.presenter.splashfragment.TabMainFragmentContract
 import com.zhongjiang.kotlin.splash.presenter.splashfragment.TabMainFragmentPresenter
+import com.zhongjiang.net.service.IApiProvider
+import com.zhongjiang.net.service.IRequest
+import com.zhongjiang.net.service.IResponse
 import com.zhongjiang.youxuan.base.injection.WindowScreenInfo
 import com.zhongjiang.youxuan.base.ui.fragment.BaseMvpFragment
 import com.zhongjiang.youxuan.base.utils.ULogger
@@ -25,6 +29,15 @@ class TabMainFragment : BaseMvpFragment<TabMainFragmentPresenter,MainModel>(), T
         arguments?.let {
             ULogger.i(arguments)
         }
+        IApiProvider.test("https://getman.cn/echo", mutableMapOf(Pair("name","张三丰"),Pair("age","99")),object : IResponse<Any>() {
+            override fun success(request: IRequest, data: Any) {
+                ULogger.i("success ${(data as String).toString()}")
+            }
+
+            override fun fail(errorCode: Int, errorMessage: String) {
+                println("fail ")
+            }
+        })
     }
 
     override fun getLayoutRes(): Int {

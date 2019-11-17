@@ -6,7 +6,7 @@ import java.net.URI
 interface HttpRequest : Header {
     fun getMethod(): HttpMethod
     fun getUri(): URI
-    fun getBody():OutputStream?
+    fun getBody():OutputStream
     fun execute(): HttpResponse
 
 }

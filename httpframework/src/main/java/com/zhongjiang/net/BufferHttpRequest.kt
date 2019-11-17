@@ -7,18 +7,18 @@ import java.io.OutputStream
 
 abstract class BufferHttpRequest : AbstractHttpRequest() {
     companion object {
-        var mByteArray: ByteArrayOutputStream? = null
+        var mByteArray= ByteArrayOutputStream()
     }
 
-    override fun getBodyOutPutStream(): OutputStream? {
+    override fun getBodyOutPutStream(): OutputStream {
         return mByteArray
     }
 
-    override fun executeInternal(header: HttpHeader?): HttpResponse {
-        var data: ByteArray? = null
-        mByteArray?.let { data = it.toByteArray() }
+    override fun executeInternal(header: HttpHeader): HttpResponse {
+        var data : ByteArray
+        mByteArray.let { data = it.toByteArray() }
         return executeInternal(header, data)
     }
 
-    abstract fun executeInternal(httpHeader: HttpHeader?, data: ByteArray?): HttpResponse
+    abstract fun executeInternal(httpHeader: HttpHeader, data: ByteArray): HttpResponse
 }
