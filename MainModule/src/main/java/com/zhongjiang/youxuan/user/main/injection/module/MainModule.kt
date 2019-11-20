@@ -7,7 +7,7 @@ import com.zhongjiang.kotlin.splash.ui.fragment.TabMainFragment
 import com.zhongjiang.youxuan.user.main.ui.fragment.testpicture.TestPictureFragment
 import com.zhongjiang.youxuan.base.injection.component.BaseActivityComponent
 import com.zhongjiang.youxuan.base.injection.component.BaseFragmentComponent
-import com.zhongjiang.youxuan.base.injection.scope.ActivityScope
+import com.zhongjiang.hotel.base.injection.scope.ActivityScope
 import com.zhongjiang.youxuan.user.main.ui.activity.MainSingleFragmentActivity
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
@@ -22,15 +22,15 @@ import dagger.android.ContributesAndroidInjector
  **/
 @Module(subcomponents = [BaseFragmentComponent::class, BaseActivityComponent::class],includes = [MainModuleServiceModule::class])
 abstract class MainModule {
-    @ActivityScope
+    @com.zhongjiang.hotel.base.injection.scope.ActivityScope
     @ContributesAndroidInjector(modules = [MainFragmentModule::class])
     abstract fun contributeSplashFragmentInjector():TabMainFragment
 
-    @ActivityScope
+    @com.zhongjiang.hotel.base.injection.scope.ActivityScope
     @ContributesAndroidInjector(modules = [MainFragmentModule::class])
     abstract fun contributeTestPictureFragmentInjector(): TestPictureFragment
 
-    @ActivityScope
+    @com.zhongjiang.hotel.base.injection.scope.ActivityScope
     @ContributesAndroidInjector(modules = [MainActivityModule::class])
     abstract fun contributeSplashActivityInjector(): MainSingleFragmentActivity
 

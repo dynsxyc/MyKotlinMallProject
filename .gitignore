@@ -1,11 +1,5 @@
 *.iml
+local.properties
+.idea
+build
 .gradle
-/local.properties
-.idea
-.idea
-.DS_Store
-/build
-/captures
-.externalNativeBuild
-/MainModule/build
-/alipaySdk/build

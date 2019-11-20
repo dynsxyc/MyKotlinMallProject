@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.jakewharton.rxbinding2.view.RxView
 import com.zhongjiang.kotlin.splash.presenter.loginfragment.TestFragmentContract
 import com.zhongjiang.kotlin.splash.presenter.loginfragment.TestFragmentPresenter
-import com.zhongjiang.youxuan.base.busevent.ActivityRequestCode
+import com.zhongjiang.hotel.provider.event.ActivityRequestCode
 import com.zhongjiang.youxuan.base.ext.setVisible
 import com.zhongjiang.youxuan.base.ext.shieldDoubleClick
 import com.zhongjiang.youxuan.base.imageloader.YXImageView
@@ -20,11 +20,10 @@ import com.zhongjiang.youxuan.base.oss.UpFileBean
 import com.zhongjiang.youxuan.base.ui.fragment.BaseSelectorImgFragment
 import com.zhongjiang.youxuan.base.utils.ULogger
 import com.zhongjiang.youxuan.base.widgets.MultiStateView
-import com.zhongjiang.youxuan.provider.router.NavigationUtil
+import com.zhongjiang.hotel.provider.router.NavigationUtil
 import com.zhongjiang.youxuan.user.main.R
 import com.zhongjiang.youxuan.user.main.common.MainModuleActivityType
 import com.zhongjiang.youxuan.user.main.ui.MainModel
-import kotlinx.android.synthetic.main.fragment_testpicture.*
 
 class TestPictureFragment : BaseSelectorImgFragment<TestFragmentPresenter, MainModel>(), TestFragmentContract.View {
 

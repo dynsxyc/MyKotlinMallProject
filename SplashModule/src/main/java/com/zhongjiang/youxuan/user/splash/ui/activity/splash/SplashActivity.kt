@@ -6,9 +6,9 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import com.gyf.barlibrary.BarHide
 import com.gyf.barlibrary.ImmersionBar
 import com.zhongjiang.youxuan.base.ui.activity.BaseInjectActivity
-import com.zhongjiang.youxuan.provider.common.CommonUtils
-import com.zhongjiang.youxuan.provider.router.NavigationConstant
-import com.zhongjiang.youxuan.provider.router.RouterPath
+import com.zhongjiang.hotel.provider.common.CommonUtils
+import com.zhongjiang.hotel.provider.router.NavigationConstant
+import com.zhongjiang.hotel.provider.router.RouterPath
 import com.zhongjiang.youxuan.user.splash.R
 import com.zhongjiang.youxuan.user.splash.ui.fragment.login.LoginFragment
 import com.zhongjiang.youxuan.user.splash.ui.fragment.splash.SplashFragment

@@ -10,16 +10,16 @@ import android.widget.TextView
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.jakewharton.rxbinding2.view.RxView
-import com.zhongjiang.youxuan.base.busevent.ActivityRequestCode
+import com.zhongjiang.hotel.provider.event.ActivityRequestCode
 import com.zhongjiang.youxuan.base.ext.shieldDoubleClick
 import com.zhongjiang.youxuan.base.imageloader.YXImageView
 import com.zhongjiang.youxuan.base.oss.UpFileBean
 import com.zhongjiang.youxuan.base.ui.fragment.BaseSelectorImgFragment
+import com.zhongjiang.youxuan.base.utils.ULogger
 import com.zhongjiang.youxuan.user.splash.R
 import com.zhongjiang.youxuan.user.splash.presenter.loginfragment.TestFragmentContract
 import com.zhongjiang.youxuan.user.splash.presenter.loginfragment.TestFragmentPresenter
 import com.zhongjiang.youxuan.user.splash.ui.SplashDataModel
-import kotlinx.android.synthetic.main.fragment_testpicture.*
 
 class TestPictureFragment : BaseSelectorImgFragment<TestFragmentPresenter, SplashDataModel>(), TestFragmentContract.View {
 

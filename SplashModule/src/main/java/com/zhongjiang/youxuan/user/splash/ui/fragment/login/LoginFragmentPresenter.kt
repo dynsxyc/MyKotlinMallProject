@@ -5,7 +5,7 @@ import com.zhongjiang.youxuan.base.data.db.UserInfoEntity
 import com.zhongjiang.youxuan.base.ext.excute
 import com.zhongjiang.youxuan.base.ui.basemvp.BasePresenter
 import com.zhongjiang.youxuan.base.rx.BaseMaybeObserver
-import com.zhongjiang.youxuan.provider.common.CommonUtils
+import com.zhongjiang.hotel.provider.common.CommonUtils
 import com.zhongjiang.youxuan.user.splash.data.VerificationCodeResuleInfo
 import com.zhongjiang.youxuan.user.splash.ui.SplashDataModel
 import io.reactivex.functions.Action

@@ -1,6 +1,6 @@
 package com.zhongjiang.kotlin.splash.injection.module
 
-import com.zhongjiang.youxuan.base.injection.scope.ActivityScope
+import com.zhongjiang.hotel.base.injection.scope.ActivityScope
 import com.zhongjiang.youxuan.user.main.ui.activity.MainSingleFragmentActivity
 import dagger.Module
 import dagger.Provides
@@ -8,7 +8,7 @@ import dagger.Provides
 @Module
 class MainActivityModule {
     @Provides
-    @ActivityScope
+    @com.zhongjiang.hotel.base.injection.scope.ActivityScope
     fun provideSplashActivity(splashActivity: MainSingleFragmentActivity): MainSingleFragmentActivity {
         return splashActivity
     }

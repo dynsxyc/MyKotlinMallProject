@@ -1,6 +1,6 @@
 package com.zhongjiang.youxuan.user.splash.injection.module
 
-import com.zhongjiang.youxuan.base.injection.scope.ActivityScope
+import com.zhongjiang.hotel.base.injection.scope.ActivityScope
 import com.zhongjiang.youxuan.user.splash.ui.SplashDataModel
 import com.zhongjiang.youxuan.user.splash.ui.fragment.splash.SplashFragmentContract
 import com.zhongjiang.youxuan.user.splash.ui.activity.splash.SplashActivity

@@ -11,18 +11,17 @@ import com.bumptech.glide.request.target.Target
 import com.gyf.barlibrary.BarHide
 import com.gyf.barlibrary.ImmersionBar
 import com.jakewharton.rxbinding2.view.RxView
-import com.zhongjiang.youxuan.base.busevent.ActivityRequestCode
+import com.zhongjiang.hotel.provider.event.ActivityRequestCode
 import com.zhongjiang.youxuan.base.data.db.SplashAdEntity
 import com.zhongjiang.youxuan.base.ext.shieldDoubleClick
 import com.zhongjiang.youxuan.base.imageloader.ImageLoaderUtil
 import com.zhongjiang.youxuan.base.injection.WindowScreenInfo
 import com.zhongjiang.youxuan.base.ui.fragment.BaseMvpFragment
 import com.zhongjiang.youxuan.base.utils.Settings
-import com.zhongjiang.youxuan.provider.router.NavigationUtil
+import com.zhongjiang.hotel.provider.router.NavigationUtil
 import com.zhongjiang.youxuan.user.splash.R
 import com.zhongjiang.youxuan.user.splash.ui.SplashDataModel
 import com.zhongjiang.youxuan.user.splash.ui.fragment.login.LoginFragment
-import kotlinx.android.synthetic.main.fragment_splash.*
 import me.yokeyword.fragmentation.ISupportFragment
 import javax.inject.Inject
 

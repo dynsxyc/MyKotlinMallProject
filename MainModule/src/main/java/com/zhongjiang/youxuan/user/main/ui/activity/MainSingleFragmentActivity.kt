@@ -9,8 +9,8 @@ import com.zhongjiang.kotlin.splash.ui.fragment.TabMainFragment
 import com.zhongjiang.youxuan.user.main.ui.fragment.testpicture.TestPictureFragment
 import com.zhongjiang.youxuan.base.ui.activity.BaseInjectActivity
 import com.zhongjiang.youxuan.base.ui.fragment.BaseSupperFragment
-import com.zhongjiang.youxuan.provider.router.NavigationConstant
-import com.zhongjiang.youxuan.provider.router.RouterPath
+import com.zhongjiang.hotel.provider.router.NavigationConstant
+import com.zhongjiang.hotel.provider.router.RouterPath
 import com.zhongjiang.youxuan.user.main.R
 import com.zhongjiang.youxuan.user.main.common.MainModuleActivityType
 

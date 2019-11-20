@@ -17,7 +17,7 @@ import com.zhongjiang.youxuan.base.ext.setVisible
 import com.zhongjiang.youxuan.base.ext.shieldDoubleClick
 import com.zhongjiang.youxuan.base.ui.fragment.BaseMvpFragment
 import com.zhongjiang.youxuan.base.utils.FromatPhoneTextWatcher
-import com.zhongjiang.youxuan.provider.router.NavigationUtil
+import com.zhongjiang.hotel.provider.router.NavigationUtil
 import com.zhongjiang.youxuan.user.splash.R
 import com.zhongjiang.youxuan.user.splash.data.VerificationCodeResuleInfo
 import com.zhongjiang.youxuan.user.splash.ui.SplashDataModel

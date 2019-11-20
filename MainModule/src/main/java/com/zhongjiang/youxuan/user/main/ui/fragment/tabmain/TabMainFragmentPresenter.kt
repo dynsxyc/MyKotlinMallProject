@@ -3,7 +3,7 @@ package com.zhongjiang.kotlin.splash.presenter.splashfragment
 import com.zhongjiang.kotlin.splash.ui.fragment.TabMainFragment
 import com.zhongjiang.youxuan.base.ui.basemvp.BasePresenter
 import com.zhongjiang.youxuan.base.utils.ULogger
-import com.zhongjiang.youxuan.provider.common.CommonUtils
+import com.zhongjiang.hotel.provider.common.CommonUtils
 import com.zhongjiang.youxuan.user.main.ui.MainModel
 import javax.inject.Inject
 import javax.inject.Singleton
