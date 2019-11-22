@@ -6,6 +6,7 @@ import com.zhongjiang.hotel.base.injection.module.AppModule
 import com.zhongjiang.hotel.base.injection.module.CacheModule
 import com.zhongjiang.hotel.base.injection.module.GlobalConfigModule
 import com.zhongjiang.hotel.base.injection.module.HttpClientModule
+import com.zhongjiang.hotel.provider.injection.BoxStoreModule
 import com.zhongjiang.kotlin.user.injection.module.MainModule
 import dagger.Component
 import dagger.android.AndroidInjectionModule
@@ -28,6 +29,7 @@ import javax.inject.Singleton
     GlobalConfigModule::class,
     AppModule::class,
     HttpClientModule::class,
+    BoxStoreModule::class,
     CacheModule::class,
     MainModule::class])
 interface MainModuleComponent {

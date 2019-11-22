@@ -1,5 +1,6 @@
 package com.zhongjiang.hotel.provider.injection
 
+import android.os.Looper
 import com.zhongjiang.hotel.base.common.BaseApplication
 import com.zhongjiang.hotel.provider.db.UserInfoEntity
 import dagger.Module
