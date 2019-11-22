@@ -1,7 +1,7 @@
 package com.zhongjiang.hotel.base.rx
 
 import android.util.Log
-import com.zhongjiang.youxuan.base.ui.basemvp.IView
+import com.zhongjiang.hotel.base.ui.basemvp.IView
 import io.reactivex.MaybeObserver
 import io.reactivex.disposables.Disposable
 

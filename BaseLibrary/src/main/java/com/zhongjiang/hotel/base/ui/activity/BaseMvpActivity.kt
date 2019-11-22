@@ -6,11 +6,11 @@ import androidx.annotation.CallSuper
 import androidx.annotation.MainThread
 import androidx.lifecycle.Lifecycle
 import com.uber.autodispose.ScopeProvider
-import com.zhongjiang.youxuan.base.ui.basemvp.BasePresenter
-import com.zhongjiang.youxuan.base.ui.basemvp.IModel
-import com.zhongjiang.youxuan.base.ui.basemvp.IView
-import com.zhongjiang.youxuan.base.utils.RxLifecycleUtils
-import com.zhongjiang.youxuan.base.widgets.ProgressLoading
+import com.zhongjiang.hotel.base.ui.basemvp.BasePresenter
+import com.zhongjiang.hotel.base.ui.basemvp.IModel
+import com.zhongjiang.hotel.base.ui.basemvp.IView
+import com.zhongjiang.hotel.base.utils.RxLifecycleUtils
+import com.zhongjiang.hotel.base.widgets.ProgressLoading
 import org.jetbrains.anko.toast
 import javax.inject.Inject
 

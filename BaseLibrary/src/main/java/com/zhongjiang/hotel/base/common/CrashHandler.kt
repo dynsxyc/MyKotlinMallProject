@@ -1,18 +1,11 @@
 package com.zhongjiang.hotel.base.common
 
-import javax.inject.Inject
-import java.nio.file.Files.exists
-import android.os.Environment.MEDIA_MOUNTED
-import java.lang.reflect.AccessibleObject.setAccessible
-import android.R.attr.versionCode
-import android.R.attr.versionName
 import android.content.pm.PackageManager
-import android.content.pm.PackageInfo
 import android.os.Build
 import android.os.Environment
 import android.os.Looper
 import android.widget.Toast
-import com.zhongjiang.youxuan.base.utils.ULogger
+import com.zhongjiang.hotel.base.utils.ULogger
 import java.io.File
 import java.io.FileOutputStream
 import java.io.PrintWriter

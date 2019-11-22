@@ -8,10 +8,10 @@ import com.alibaba.sdk.android.oss.common.OSSLog
 import com.alibaba.sdk.android.oss.common.auth.OSSCustomSignerCredentialProvider
 import com.alibaba.sdk.android.oss.common.auth.OSSPlainTextAKSKCredentialProvider
 import com.alibaba.sdk.android.oss.model.*
-import com.zhongjiang.youxuan.base.common.YouXuanNetInterfaceConstant.Companion.BASE_URL_DEVELOP_TEST
-import com.zhongjiang.youxuan.base.ext.handlerThread
+import com.zhongjiang.hotel.base.common.YouXuanNetInterfaceConstant.Companion.BASE_URL_DEVELOP_TEST
+import com.zhongjiang.hotel.base.ext.handlerThread
 import com.zhongjiang.hotel.base.injection.module.sheduler.SchedulerProvider
-import com.zhongjiang.youxuan.base.utils.ULogger
+import com.zhongjiang.hotel.base.utils.ULogger
 import io.reactivex.BackpressureStrategy
 import io.reactivex.Flowable
 import io.reactivex.FlowableOnSubscribe
@@ -27,7 +27,7 @@ import javax.inject.Inject
  * Created by mOss on 2015/12/7 0007.
  * 支持普通上传，普通下载
  */
-class OssService @Inject constructor(var context: Context, var schedulerProvider: com.zhongjiang.hotel.base.injection.module.sheduler.SchedulerProvider, val mBucketType: BucketType) {
+class OssService @Inject constructor(var context: Context, var schedulerProvider: SchedulerProvider, val mBucketType: BucketType) {
 
     companion object {
         private const val GET_TOKEN_URL = "file/sts"
@@ -44,7 +44,7 @@ class OssService @Inject constructor(var context: Context, var schedulerProvider
 
     private fun getDefaultOss(endpoint: String) {
         //使用自己的获取STSToken的类
-        val credentialProvider = com.zhongjiang.hotel.base.oss.MOSSAuthCredentialsProvider(BASE_URL_DEVELOP_TEST.plus(GET_TOKEN_URL))
+        val credentialProvider = MOSSAuthCredentialsProvider(BASE_URL_DEVELOP_TEST.plus(GET_TOKEN_URL))
 
         val conf = ClientConfiguration()
         conf.connectionTimeout = 15 * 1000 // 连接超时，默认15秒

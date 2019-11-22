@@ -2,7 +2,6 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
-apply plugin: 'io.objectbox'
 
 kapt {
     arguments {
@@ -42,9 +41,6 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
 
-    dataBinding {
-        enabled = true
-    }
     sourceSets {
         main {
             jniLibs.srcDir 'libs'
@@ -138,6 +134,7 @@ dependencies {
     api rootProject.ext.dependencies["aliyun-push-utils"]
     api rootProject.ext.dependencies["aliyun-push-beacon"]
     api rootProject.ext.dependencies["aliyun-push-utdid"]
+
     implementation rootProject.ext.dependencies["dynPictureSelector"]
     implementation rootProject.ext.dependencies["dynXunFeiSpeechProject"]
     api rootProject.ext.dependencies["smartRefreshHeader"]

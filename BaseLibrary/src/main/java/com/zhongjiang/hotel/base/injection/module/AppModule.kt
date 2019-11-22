@@ -6,12 +6,12 @@ import com.alibaba.sdk.android.push.CommonCallback
 import com.alibaba.sdk.android.push.noonesdk.PushServiceFactory
 import com.baidu.location.LocationClient
 import com.baidu.location.LocationClientOption
-import com.zhongjiang.youxuan.base.common.BaseApplication
+import com.zhongjiang.hotel.base.common.BaseApplication
 import com.zhongjiang.hotel.base.injection.module.sheduler.AppSchedulerProvider
 import com.zhongjiang.hotel.base.injection.module.sheduler.SchedulerProvider
-import com.zhongjiang.youxuan.base.oss.BucketType
-import com.zhongjiang.youxuan.base.oss.OssService
-import com.zhongjiang.youxuan.base.utils.ULogger
+import com.zhongjiang.hotel.base.oss.BucketType
+import com.zhongjiang.hotel.base.oss.OssService
+import com.zhongjiang.hotel.base.utils.ULogger
 import dagger.Module
 import dagger.Provides
 import javax.inject.Named
@@ -23,7 +23,7 @@ import javax.inject.Singleton
  * desc:
  */
 @Module
-class AppModule() {
+class AppModule {
 
     @Singleton
     @Provides
@@ -33,8 +33,8 @@ class AppModule() {
 
     @Singleton
     @Provides
-    fun provideSchedulers(): com.zhongjiang.hotel.base.injection.module.sheduler.SchedulerProvider {
-        return com.zhongjiang.hotel.base.injection.module.sheduler.AppSchedulerProvider()
+    fun provideSchedulers(): SchedulerProvider {
+        return AppSchedulerProvider()
     }
 
     @Provides
@@ -84,7 +84,7 @@ class AppModule() {
 
     @Provides
     @Singleton
-    fun provideBaiduLocationClient(application: BaseApplication, locationClientOption: LocationClientOption): LocationClient {
+    fun provideBaiDuLocationClient(application: BaseApplication, locationClientOption: LocationClientOption): LocationClient {
         var locationClient = LocationClient(application)
         locationClient.locOption = locationClientOption
         return locationClient
@@ -115,14 +115,16 @@ class AppModule() {
     @Provides
     @Singleton
     @Named("public")
-    fun providePublicOsservice(context: BaseApplication, schedulerProvider: com.zhongjiang.hotel.base.injection.module.sheduler.SchedulerProvider): OssService {
+    fun providePublicOsservice(context: BaseApplication, schedulerProvider: SchedulerProvider): OssService {
         return OssService(context, schedulerProvider, BucketType.BUCKET_CONFIT_TAG_PUBLIC)
     }
 
     @Provides
     @Singleton
     @Named("security")
-    fun provideSecurityOsservice(context: BaseApplication, schedulerProvider: com.zhongjiang.hotel.base.injection.module.sheduler.SchedulerProvider): OssService {
+    fun provideSecurityOsservice(context: BaseApplication, schedulerProvider: SchedulerProvider): OssService {
         return OssService(context, schedulerProvider, BucketType.BUCKET_CONFIT_TAG_SECURITY)
     }
+
+
 }

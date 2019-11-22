@@ -1,6 +1,6 @@
 package com.zhongjiang.hotel.base.injection.component
 
-import com.zhongjiang.youxuan.base.ui.activity.BaseInjectActivity
+import com.zhongjiang.hotel.base.ui.activity.BaseInjectActivity
 import dagger.Subcomponent
 import dagger.android.AndroidInjectionModule
 import dagger.android.AndroidInjector

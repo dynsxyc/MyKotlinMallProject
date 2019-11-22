@@ -1,8 +1,6 @@
 package com.zhongjiang.hotel.base.utils
 
-import android.app.Application
 import android.content.Context
-import java.lang.IllegalArgumentException
 import kotlin.properties.ReadWriteProperty
 import kotlin.reflect.KProperty
 

@@ -1,6 +1,6 @@
 package com.zhongjiang.kotlin.splash.data.cache
 
-import com.zhongjiang.youxuan.base.data.db.SplashAdEntity
+import com.zhongjiang.hotel.provider.db.SplashAdEntity
 import io.reactivex.Maybe
 import io.rx_cache2.EncryptKey
 import io.rx_cache2.EvictProvider

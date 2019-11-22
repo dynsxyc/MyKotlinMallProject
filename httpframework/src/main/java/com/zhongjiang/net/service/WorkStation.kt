@@ -1,9 +1,7 @@
 package com.zhongjiang.net.service
 
 import android.util.Log
-import androidx.lifecycle.ViewModelProvider
 import com.zhongjiang.net.HttpRequestProvider
-import com.zhongjiang.net.http.HttpRequest
 import java.net.URI
 import java.util.*
 import java.util.concurrent.SynchronousQueue
@@ -21,7 +19,6 @@ class WorkStation(private val mHttpRequestProvider: HttpRequestProvider) {
             thread.name = "http thread name is ${index.getAndIncrement()}"
             return@ThreadFactory thread
         })
-
     }
     var mRunning = ArrayDeque<IRequest>()
     var mCache = ArrayDeque<IRequest>()

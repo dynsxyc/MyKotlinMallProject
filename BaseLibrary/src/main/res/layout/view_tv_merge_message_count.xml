@@ -19,7 +19,7 @@
             android:layout_gravity="center"
             />
     </FrameLayout>
-    <com.zhongjiang.youxuan.base.widgets.MessageCountView
+    <com.zhongjiang.hotel.base.widgets.MessageCountView
         android:id="@+id/mTextMessageCountViewMessageCountView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

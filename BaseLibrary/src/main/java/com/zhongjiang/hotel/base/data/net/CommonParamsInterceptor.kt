@@ -2,12 +2,12 @@ package com.zhongjiang.hotel.base.data.net
 
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+import com.zhongjiang.hotel.base.data.NetConstantField.Companion.API_DATA_NONCE
+import com.zhongjiang.hotel.base.data.NetConstantField.Companion.API_DATA_SIGNATURE
+import com.zhongjiang.hotel.base.data.NetConstantField.Companion.API_DATA_TICKET
+import com.zhongjiang.hotel.base.data.NetConstantField.Companion.API_DATA_TIMESTAMP
+import com.zhongjiang.hotel.base.data.NetConstantField.Companion.API_DATA_V
 import com.zhongjiang.youxuan.base.NetWorkUtils
-import com.zhongjiang.youxuan.base.data.NetConstantField.Companion.API_DATA_NONCE
-import com.zhongjiang.youxuan.base.data.NetConstantField.Companion.API_DATA_SIGNATURE
-import com.zhongjiang.youxuan.base.data.NetConstantField.Companion.API_DATA_TICKET
-import com.zhongjiang.youxuan.base.data.NetConstantField.Companion.API_DATA_TIMESTAMP
-import com.zhongjiang.youxuan.base.data.NetConstantField.Companion.API_DATA_V
 import okhttp3.FormBody
 import okhttp3.Interceptor
 import okhttp3.Response
@@ -26,10 +26,8 @@ open class CommonParamsInterceptor constructor(val mGson: Gson) : Interceptor {
         val method = request.method()
 
         try {
-
             //公共参数
             val commomParamsMap = HashMap<String, String>()
-
             commomParamsMap.put(API_DATA_TIMESTAMP, "1539251402138")
             commomParamsMap.put(API_DATA_NONCE, "967985")
             commomParamsMap.put(API_DATA_V, "f05e4d4e017a40ed9c810a64664f0b90|Android|5.0_21|20|3.0.2")
@@ -76,7 +74,7 @@ open class CommonParamsInterceptor constructor(val mGson: Gson) : Interceptor {
                     }
                 } else {
                     val buffer = Buffer()
-                    body!!.writeTo(buffer)
+                    body?.writeTo(buffer)
                     val oldJsonParams = buffer.readUtf8()
                     val map = mGson.fromJson<HashMap<String, String>>(
                             oldJsonParams,
@@ -86,9 +84,9 @@ open class CommonParamsInterceptor constructor(val mGson: Gson) : Interceptor {
                     rootMap.put(API_DATA_SIGNATURE, NetWorkUtils.getSign(rootMap, "4c1dde4fa3bcd0c1c03a637c95adb593"))
 
                     val formBody = FormBody.Builder()
-                    rootMap.forEach({
+                    rootMap.forEach {
                         formBody.add(it.key, it.value)
-                    })
+                    }
                     request = request.newBuilder().post(formBody.build()).url(request.url()).build()
                 }
 

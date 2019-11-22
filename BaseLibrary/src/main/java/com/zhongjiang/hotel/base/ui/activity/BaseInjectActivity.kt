@@ -16,7 +16,7 @@ import com.alibaba.android.arouter.launcher.ARouter
 import com.flyco.roundview.RoundTextView
 import com.gyf.barlibrary.ImmersionBar
 import com.gyf.barlibrary.OSUtils
-import com.zhongjiang.hotel.base.utils.RxBus
+import com.zhongjiang.hotel.base.rx.RxBus
 import com.zhongjiang.hotel.base.utils.ULogger
 import com.zhongjiang.hotel.base.widgets.listener.StackViewTouchListener
 import com.zhongjiang.youxuan.base.BuildConfig
@@ -82,7 +82,6 @@ abstract class BaseInjectActivity : BaseSupportActivity(), HasSupportFragmentInj
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         ULogger.i("registerActivityResultEvent isObserver ${mRxBus.isObserver()}")
-        mRxBus.post(ActivityResultEvent(requestCode, resultCode, data))
         super.onActivityResult(requestCode, resultCode, data)
     }
 

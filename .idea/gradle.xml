@@ -12,6 +12,7 @@
             <option value="$PROJECT_DIR$/MainModule" />
             <option value="$PROJECT_DIR$/Provider" />
             <option value="$PROJECT_DIR$/SplashModule" />
+            <option value="$PROJECT_DIR$/WebModule" />
             <option value="$PROJECT_DIR$/alipaySdk" />
             <option value="$PROJECT_DIR$/httpframework" />
             <option value="$PROJECT_DIR$/imageselector" />
@@ -19,6 +20,7 @@
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />
+        <option name="testRunner" value="PLATFORM" />
       </GradleProjectSettings>
     </option>
   </component>

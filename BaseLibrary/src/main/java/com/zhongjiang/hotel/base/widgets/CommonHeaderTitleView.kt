@@ -6,9 +6,9 @@ import android.util.AttributeSet
 import android.view.View
 import android.widget.RelativeLayout
 import com.jakewharton.rxbinding2.view.RxView
+import com.zhongjiang.hotel.base.ext.shieldDoubleClick
+import com.zhongjiang.hotel.base.widgets.listener.OnCommonHeaderTitleViewClickListener
 import com.zhongjiang.youxuan.base.R
-import com.zhongjiang.youxuan.base.ext.shieldDoubleClick
-import com.zhongjiang.youxuan.base.widgets.listener.OnCommonHeaderTitleViewClickListener
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.view_header_title.*
 
@@ -19,7 +19,7 @@ import kotlinx.android.synthetic.main.view_header_title.*
  * @author dyn
  * @fileName CommonHeaderTitleView
  * @org com.zhongjiang.youxuan
- * @describe 添加描述
+ * @describe 全局title样式
  * @email 583454199@qq.com
  **/
 class CommonHeaderTitleView constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : RelativeLayout(context, attrs, defStyleAttr) {

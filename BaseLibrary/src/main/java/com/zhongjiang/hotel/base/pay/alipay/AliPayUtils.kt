@@ -4,18 +4,17 @@ import android.app.Activity
 import android.text.TextUtils
 import android.widget.Toast
 import com.alipay.sdk.app.PayTask
-import com.zhongjiang.youxuan.base.ext.handlerThread
+import com.zhongjiang.hotel.base.ext.handlerThread
 import com.zhongjiang.hotel.base.injection.module.sheduler.SchedulerProvider
 import io.reactivex.Maybe
 
 class AliPayUtils {
     companion object {
-        fun startPay(activity:Activity, orderInfo:String, schedulers: com.zhongjiang.hotel.base.injection.module.sheduler.SchedulerProvider, result:(resultCode:Boolean, showMsg:String)->Unit){
+        fun startPay(activity:Activity, orderInfo:String, schedulers: SchedulerProvider, result:(resultCode:Boolean, showMsg:String)->Unit){
 
             // 调用支付接口，获取支付结果
             Maybe.just(activity).map {
-                val alipay = PayTask(it)
-                alipay.pay(orderInfo,true)
+                PayTask(it).pay(orderInfo,true)
             }.handlerThread(schedulers).subscribe({
                 val payResult = PayResult(it)
 

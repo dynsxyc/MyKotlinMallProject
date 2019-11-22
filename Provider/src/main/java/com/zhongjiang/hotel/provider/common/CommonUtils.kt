@@ -3,7 +3,7 @@ package com.zhongjiang.hotel.provider.common
 import android.content.Context
 import android.content.Intent
 import android.text.TextUtils
-import com.zhongjiang.youxuan.base.data.db.UserInfoEntity
+import com.zhongjiang.hotel.provider.db.UserInfoEntity
 import io.objectbox.Box
 import java.util.regex.Pattern
 import javax.inject.Inject

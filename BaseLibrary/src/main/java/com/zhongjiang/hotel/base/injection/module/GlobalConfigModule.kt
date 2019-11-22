@@ -42,7 +42,7 @@ class GlobalConfigModule  constructor(var buidler: Buidler) {
         return buidler.handler // HttpRequestHandler.EMPTY//打印请求信息
     }
 
-    class Buidler () {
+    class Buidler {
         lateinit var apiUrl:HttpUrl
         var interceptors = ArrayList<@JvmSuppressWildcards Interceptor>()
         lateinit var handler: HttpRequestHandler

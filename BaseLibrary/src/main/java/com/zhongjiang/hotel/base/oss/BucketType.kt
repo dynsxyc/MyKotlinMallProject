@@ -1,10 +1,11 @@
 package com.zhongjiang.hotel.base.oss
 
-import com.zhongjiang.youxuan.base.oss.OssConstant.Companion.HANGZHOU_ENDPOINT
-import com.zhongjiang.youxuan.base.oss.OssConstant.Companion.PUBLIC_BUCKET_NAME
-import com.zhongjiang.youxuan.base.oss.OssConstant.Companion.PUBLIC_URL_HOST
-import com.zhongjiang.youxuan.base.oss.OssConstant.Companion.SECURITY_BUCKET_NAME
-import com.zhongjiang.youxuan.base.oss.OssConstant.Companion.SECURITY_URL_HOST
+import com.zhongjiang.hotel.base.oss.OssConstant.Companion.HANGZHOU_ENDPOINT
+import com.zhongjiang.hotel.base.oss.OssConstant.Companion.PUBLIC_BUCKET_NAME
+import com.zhongjiang.hotel.base.oss.OssConstant.Companion.PUBLIC_URL_HOST
+import com.zhongjiang.hotel.base.oss.OssConstant.Companion.SECURITY_BUCKET_NAME
+import com.zhongjiang.hotel.base.oss.OssConstant.Companion.SECURITY_URL_HOST
+
 
 enum class BucketType constructor(val bucketName: String, val callbackAddress: String, val endpoint: String) {
     /**公共文件存储类型 */

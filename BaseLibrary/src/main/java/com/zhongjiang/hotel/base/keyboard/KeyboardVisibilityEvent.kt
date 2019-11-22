@@ -89,7 +89,7 @@ object KeyboardVisibilityEvent {
         }
         activityRoot.viewTreeObserver.addOnGlobalLayoutListener(layoutListener)
 
-        return SimpleUnregistrar(activity, layoutListener)
+        return SimpleUnRegistrar(activity, layoutListener)
     }
 
 

@@ -22,7 +22,7 @@ constructor(private val mHttpRequestHandler: HttpRequestHandler?) : Interceptor 
         val originalResponse = chain.proceed(request)
         val responseBody = originalResponse.body()
 
-        mHttpRequestHandler?.onHttpResultResponse(responseBody!!.toString(), chain, originalResponse)
+        mHttpRequestHandler?.onHttpResultResponse(responseBody.toString(), chain, originalResponse)
 
         return originalResponse
     }

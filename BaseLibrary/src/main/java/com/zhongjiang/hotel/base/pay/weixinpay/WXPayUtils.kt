@@ -3,7 +3,7 @@ package com.zhongjiang.hotel.base.pay.weixinpay
 import android.content.Context
 import com.tencent.mm.opensdk.modelpay.PayReq
 import com.tencent.mm.opensdk.openapi.WXAPIFactory
-import com.zhongjiang.youxuan.base.utils.ULogger
+import com.zhongjiang.hotel.base.utils.ULogger
 
 open class WXPayUtils {
     companion object {

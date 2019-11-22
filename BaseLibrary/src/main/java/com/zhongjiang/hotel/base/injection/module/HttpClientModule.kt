@@ -26,7 +26,7 @@ import javax.inject.Singleton
 class HttpClientModule {
 
 
-    val TIME_OUT_SECONDS = 20
+    private val TIME_OUT_SECONDS = 20
 
     @Singleton
     @Provides
@@ -41,7 +41,7 @@ class HttpClientModule {
 
     @Singleton
     @Provides
-    fun provideClient(okHttpClient: OkHttpClient.Builder, intercept: Interceptor, interceptors: List<@JvmSuppressWildcards Interceptor>): OkHttpClient {
+    fun provideClient(okHttpClient: OkHttpClient.Builder, intercept: Interceptor, interceptors: List<Interceptor>): OkHttpClient {
         val builder = okHttpClient
                 .connectTimeout(TIME_OUT_SECONDS.toLong(), TimeUnit.SECONDS)
                 .readTimeout(TIME_OUT_SECONDS.toLong(), TimeUnit.SECONDS)

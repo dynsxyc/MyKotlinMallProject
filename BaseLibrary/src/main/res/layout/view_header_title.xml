@@ -9,12 +9,12 @@
         android:divider="@drawable/divider_linearlayout_v"
         android:dividerPadding="10dp"
         android:layout_centerVertical="true">
-        <com.zhongjiang.youxuan.base.widgets.TextMessageCountView
+        <com.zhongjiang.hotel.base.widgets.TextMessageCountView
             android:id="@+id/mCommonHeaderTitleViewTvBack"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             />
-        <com.zhongjiang.youxuan.base.widgets.TextMessageCountView
+        <com.zhongjiang.hotel.base.widgets.TextMessageCountView
             android:id="@+id/mCommonHeaderTitleViewTvFinish"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
@@ -26,12 +26,12 @@
         android:layout_height="match_parent"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true">
-        <com.zhongjiang.youxuan.base.widgets.TextMessageCountView
+        <com.zhongjiang.hotel.base.widgets.TextMessageCountView
             android:id="@+id/mCommonHeaderTitleViewTvRight"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             />
-        <com.zhongjiang.youxuan.base.widgets.TextMessageCountView
+        <com.zhongjiang.hotel.base.widgets.TextMessageCountView
             android:id="@+id/mCommonHeaderTitleViewTvLastRight"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"

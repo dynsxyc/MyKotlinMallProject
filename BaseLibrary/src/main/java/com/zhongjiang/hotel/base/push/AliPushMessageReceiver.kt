@@ -3,7 +3,7 @@ package com.zhongjiang.hotel.base.push
 import android.content.Context
 import com.alibaba.sdk.android.push.MessageReceiver
 import com.alibaba.sdk.android.push.notification.CPushMessage
-import com.zhongjiang.youxuan.base.utils.ULogger
+import com.zhongjiang.hotel.base.utils.ULogger
 
 class AliPushMessageReceiver : MessageReceiver() {
     companion object {

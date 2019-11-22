@@ -1,13 +1,14 @@
 package com.zhongjiang.youxuan.user.injection.component
 
-import com.google.gson.Gson
-import com.zhongjiang.youxuan.base.common.BaseApplication
-import com.zhongjiang.youxuan.base.injection.module.*
+import com.zhongjiang.hotel.base.common.BaseApplication
+import com.zhongjiang.hotel.base.injection.module.AppModule
+import com.zhongjiang.hotel.base.injection.module.CacheModule
+import com.zhongjiang.hotel.base.injection.module.GlobalConfigModule
+import com.zhongjiang.hotel.base.injection.module.HttpClientModule
 import com.zhongjiang.youxuan.user.injection.module.SplashInjectionModule
 import dagger.Component
 import dagger.android.AndroidInjectionModule
 import dagger.android.support.AndroidSupportInjectionModule
-import okhttp3.OkHttpClient
 import javax.inject.Singleton
 
 /**
@@ -19,9 +20,6 @@ import javax.inject.Singleton
     GlobalConfigModule::class,
     AppModule::class,
     HttpClientModule::class,
-    BaseBoxStoreModule::class,
-    GlobalServiceModule::class,
-    BaseModule::class,
     CacheModule::class,
     SplashInjectionModule::class])
 interface SplashModuleComponent {

@@ -5,18 +5,18 @@ import com.luck.picture.lib.PictureSelectionModel
 import com.luck.picture.lib.PictureSelector
 import com.luck.picture.lib.config.PictureConfig
 import com.luck.picture.lib.config.PictureMimeType
-import com.zhongjiang.youxuan.base.common.PictureSelectorConfig
-import com.zhongjiang.youxuan.base.oss.UpFileBean
-import com.zhongjiang.youxuan.base.ui.basemvp.BasePresenter
-import com.zhongjiang.youxuan.base.ui.basemvp.IModel
+import com.zhongjiang.hotel.base.common.PictureSelectorConfig
+import com.zhongjiang.hotel.base.oss.UpFileBean
+import com.zhongjiang.hotel.base.ui.basemvp.BasePresenter
+import com.zhongjiang.hotel.base.ui.basemvp.IModel
 
 
-abstract class BaseSelectorImgFragment<P: BasePresenter<BaseSelectorImgFragment<P, M>, M> ,M: IModel>: BaseMvpFragment<P ,M>() {
+abstract class BaseSelectorImgFragment<P: BasePresenter<BaseSelectorImgFragment<P, M>, M>,M: IModel>: BaseMvpFragment<P ,M>() {
     var defaultPictureSelectorConfig = PictureSelectorConfig(getDefaultFileModuleType(), getDefaultMaxSelectNum(), true, false, false, 0, 0)
     private var upFileList: ArrayList<UpFileBean> = arrayListOf()
     override fun initData() {
         mPresenter.registerActivityResultEvent { activityResultEvent ->
-            when (activityResultEvent.requestCoder) {
+            when (activityResultEvent.requestCode) {
                 getRequestSelectorImgCode().plus(PictureConfig.CHOOSE_REQUEST) -> {
                     if (activityResultEvent.resultCode == Activity.RESULT_OK) {
                         activityResultEvent.intentData?.let {

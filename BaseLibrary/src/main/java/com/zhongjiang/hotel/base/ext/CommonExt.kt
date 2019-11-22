@@ -11,6 +11,7 @@ import com.uber.autodispose.ScopeProvider
 import com.uber.autodispose.autoDisposable
 import com.zhongjiang.hotel.base.data.protocol.BaseList
 import com.zhongjiang.hotel.base.data.protocol.BaseResp
+import com.zhongjiang.hotel.base.injection.module.sheduler.SchedulerProvider
 import com.zhongjiang.hotel.base.rx.BaseFunc
 import com.zhongjiang.hotel.base.rx.BaseMaybeObserver
 import com.zhongjiang.hotel.base.utils.ULogger
@@ -31,11 +32,11 @@ fun <T> Flowable<T>.excute(scopeProvider: ScopeProvider):Disposable{
     return this.autoDisposable(scopeProvider).subscribe()
 }
 
-fun <T> Maybe<T>.handlerThread(schedulers: com.zhongjiang.hotel.base.injection.module.sheduler.SchedulerProvider): Maybe<T> {
+fun <T> Maybe<T>.handlerThread(schedulers: SchedulerProvider): Maybe<T> {
     return this.subscribeOn(schedulers.io()).observeOn(schedulers.ui());
 }
 
-fun <T> Flowable<T>.handlerThread(schedulers: com.zhongjiang.hotel.base.injection.module.sheduler.SchedulerProvider): Flowable<T> {
+fun <T> Flowable<T>.handlerThread(schedulers: SchedulerProvider): Flowable<T> {
     return this.subscribeOn(schedulers.io()).observeOn(schedulers.ui());
 }
 

@@ -1,6 +1,8 @@
 package com.zhongjiang.hotel.base.utils
 
+import com.google.gson.Gson
 import com.zhongjiang.hotel.base.common.BaseApplication.AppContext
+import com.zhongjiang.hotel.base.data.BaiDuLocationEntity
 
 
 /**
@@ -14,4 +16,12 @@ import com.zhongjiang.hotel.base.common.BaseApplication.AppContext
  **/
 object PreferenceSettings {
     var test:String by Preference(AppContext,"","")
+    var mBaiDuLocation:String by Preference(AppContext,"BaiDuLocation",toJson(BaiDuLocationEntity()))
+
+    fun <T> fromJson(value: String,classOfT :Class<T>): T {
+        return Gson().fromJson(value, classOfT)
+    }
+    fun toJson(any:Any): String {
+        return Gson().toJson(any)
+    }
 }

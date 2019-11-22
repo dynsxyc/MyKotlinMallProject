@@ -15,13 +15,13 @@ import android.widget.FrameLayout
 import androidx.annotation.LayoutRes
 import androidx.annotation.Nullable
 import com.jakewharton.rxbinding2.view.RxView
+import com.zhongjiang.hotel.base.ext.shieldDoubleClick
 import com.zhongjiang.youxuan.base.R
-import com.zhongjiang.youxuan.base.ext.shieldDoubleClick
 
 class MultiStateView
-@JvmOverloads constructor(context: Context,
-                          attrs: AttributeSet? = null,
-                          defStyle: Int = 0) : FrameLayout(context, attrs, defStyle) {
+constructor(context: Context,
+            attrs: AttributeSet? = null,
+            defStyle: Int = 0) : FrameLayout(context, attrs, defStyle) {
 
     enum class ViewState {
         CONTENT,

@@ -28,8 +28,6 @@ android {
 
         multiDexEnabled true
 
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-
         vectorDrawables.useSupportLibrary = true
 
     }
@@ -71,10 +69,6 @@ android {
             }
         }
     }
-    dataBinding {
-        enabled = true
-    }
-
 
 }
 configurations.all {
@@ -85,10 +79,6 @@ dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation rootProject.ext.dependencies["constraintlayout"]
     implementation rootProject.ext.dependencies["googleMaterial"]
-    implementation 'androidx.vectordrawable:vectordrawable:1.0.0-alpha1'
-    testImplementation rootProject.ext.dependencies["junit"]
-    androidTestImplementation 'androidx.test:runner:1.1.1'
-    androidTestImplementation rootProject.ext.dependencies["espresso-core"]
 
     //dagger2
     kapt rootProject.ext.dependencies["dagger-compiler"]
@@ -97,7 +87,6 @@ dependencies {
     kapt rootProject.ext.dependencies["router-compiler"]
 
     implementation project(':Provider')
-    implementation project(':httpframework')
 }
 repositories {
     mavenCentral()
