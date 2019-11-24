@@ -36,12 +36,12 @@
         android:allowBackup="true"
         android:supportsRtl="true"
         >
-        <activity android:name="com.zhongjiang.youxuan.base.ui.activity.web.WebShowActivity"/>
         <!--阿里推送   start -->
         <!-- 消息接收监听器 （用户可自主扩展） -->
         <receiver
             android:name="com.zhongjiang.youxuan.base.push.AliPushMessageReceiver"
-            android:exported="false"> <!-- 为保证receiver安全，建议设置不可导出，如需对其他应用开放可通过android：permission进行限制 -->
+            android:exported="false">
+            <!-- 为保证receiver安全，建议设置不可导出，如需对其他应用开放可通过android：permission进行限制 -->
             <intent-filter>
                 <action android:name="com.alibaba.push2.action.NOTIFICATION_OPENED" />
             </intent-filter>
@@ -181,5 +181,13 @@
             android:name="com.baidu.lbsapi.API_KEY"
             android:value="MEpN4mYdsCzmOUpqZgf8iNvC2Su0hZSX" >
         </meta-data>
+        <!-- 屏幕适配 start-->
+        <meta-data
+            android:name="design_width_in_dp"
+            android:value="375"/>
+        <meta-data
+            android:name="design_height_in_dp"
+            android:value="640"/>
+        <!-- 屏幕适配  end -->
     </application>
 </manifest>

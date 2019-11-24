@@ -139,6 +139,7 @@ dependencies {
     implementation rootProject.ext.dependencies["dynXunFeiSpeechProject"]
     api rootProject.ext.dependencies["smartRefreshHeader"]
     api rootProject.ext.dependencies["smartRefreshLayout"]
+    api rootProject.ext.dependencies["AutoSize"]
     debugImplementation rootProject.ext.dependencies["leakcanary"]
     api project(':alipaySdk')
     api project(':umengmodule')

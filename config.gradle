@@ -175,6 +175,7 @@ ext {
 
             //tab类型切换控件
             "FlycoTabLayout"                        : "com.flyco.tablayout:FlycoTabLayout_Lib:2.1.2@aar",
+            "AutoSize"                        : "me.jessyan:autosize:1.1.2",
             "Gson"                                  : "com.google.code.gson:gson:2.8.5"
 
     ]
