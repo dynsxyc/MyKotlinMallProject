@@ -38,7 +38,7 @@ abstract class AbstractHttpRequest : HttpRequest {
     }
 
     private fun isGzip(): Boolean {
-        val contentEncoding = getHeaders()?.getContentEncoding()
+        val contentEncoding = getHeaders().getContentEncoding()
         if ("gzip" == contentEncoding) {
             return true
         }
@@ -47,7 +47,7 @@ abstract class AbstractHttpRequest : HttpRequest {
 
     override fun execute(): HttpResponse {
         try {
-            mZip?.close()
+            mZip.close()
         }catch (e:ZipException){
             e.printStackTrace()
         }

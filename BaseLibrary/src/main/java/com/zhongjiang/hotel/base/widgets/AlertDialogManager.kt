@@ -1,18 +1,15 @@
+package com.zhongjiang.hotel.base.widgets
 
-import android.app.Dialog
 import android.content.Context
 import android.content.DialogInterface
 import android.util.SparseArray
 import android.view.Gravity
 import android.view.View
 import android.view.ViewGroup
-import android.view.animation.Animation
 import androidx.annotation.NonNull
 import androidx.annotation.StyleRes
 import androidx.appcompat.app.AlertDialog
-import androidx.core.widget.PopupWindowCompat
 import com.zhongjiang.youxuan.base.R
-import java.lang.IllegalStateException
 
 class AlertDialogManager {
      class Builder constructor(@NonNull private val context:Context, @StyleRes private val themeResId:Int){
@@ -32,27 +29,27 @@ class AlertDialogManager {
 
         constructor(context: Context):this(context, R.style.dialog)
 
-        fun setView(view:View):Builder{
+        fun setView(view:View): Builder {
             mView = view
             return this
         }
-        fun setView(layoutResId:Int):Builder{
+        fun setView(layoutResId:Int): Builder {
             mLayoutResId = layoutResId
             return this
         }
-         fun setOnCancelListener(listener: DialogInterface.OnCancelListener) :Builder{
+         fun setOnCancelListener(listener: DialogInterface.OnCancelListener) : Builder {
              mOnCancelListener = listener
              return this
          }
-         fun setOnDismissListener( listener: DialogInterface.OnDismissListener) :Builder{
+         fun setOnDismissListener( listener: DialogInterface.OnDismissListener) : Builder {
              mOnDismissListener = listener
              return this
          }
-         fun setOnKeyListener( listener: DialogInterface.OnKeyListener) :Builder{
+         fun setOnKeyListener( listener: DialogInterface.OnKeyListener) : Builder {
              mOnKeyListener = listener
              return this
          }
-         fun setOnclickListener(viewId: Int, listener: View.OnClickListener) :Builder{
+         fun setOnclickListener(viewId: Int, listener: View.OnClickListener) : Builder {
              mClickArray.put(viewId,listener)
              return this
          }
@@ -60,7 +57,7 @@ class AlertDialogManager {
           *
           * 给对应viewId 的textView 设置文字内容
           * */
-         fun setText(viewId: Int, text: CharSequence) :Builder{
+         fun setText(viewId: Int, text: CharSequence) : Builder {
              mTextArray.put(viewId,text)
              return this
          }
@@ -112,7 +109,7 @@ class AlertDialogManager {
              return this
          }
 
-         fun setGrivaty(gravity : Int):Builder{
+         fun setGrivaty(gravity : Int): Builder {
              mGravity = gravity
              return this
          }
@@ -120,9 +117,9 @@ class AlertDialogManager {
 
         private fun create():AlertDialog{
             var builder = AlertDialog.Builder(context,themeResId)
-            var mDialogViewHelper:DialogViewHelper? = null
+            var mDialogViewHelper: DialogViewHelper? = null
             if (mLayoutResId != 0){
-                mDialogViewHelper = DialogViewHelper(context,mLayoutResId)
+                mDialogViewHelper = DialogViewHelper(context, mLayoutResId)
             }
             mView?.let {
                 mDialogViewHelper = DialogViewHelper()

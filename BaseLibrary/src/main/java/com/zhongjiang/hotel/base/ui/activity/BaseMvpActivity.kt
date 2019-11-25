@@ -1,13 +1,12 @@
 package com.zhongjiang.hotel.base.ui.activity
 
+import com.zhongjiang.hotel.base.ui.basemvp.BasePresenter
 import android.app.Activity
 import android.os.Bundle
 import androidx.annotation.CallSuper
 import androidx.annotation.MainThread
 import androidx.lifecycle.Lifecycle
 import com.uber.autodispose.ScopeProvider
-import com.zhongjiang.hotel.base.ui.basemvp.BasePresenter
-import com.zhongjiang.hotel.base.ui.basemvp.IModel
 import com.zhongjiang.hotel.base.ui.basemvp.IView
 import com.zhongjiang.hotel.base.utils.RxLifecycleUtils
 import com.zhongjiang.hotel.base.widgets.ProgressLoading
@@ -17,7 +16,7 @@ import javax.inject.Inject
 /**
  * Created by dyn on 2018/7/13.
  */
-abstract class BaseMvpActivity<out P : BasePresenter<BaseMvpActivity<P, M>, M>,M: IModel>  : BaseInjectActivity(), IView<P> {
+abstract class BaseMvpActivity<out P : BasePresenter<BaseMvpActivity<P>>>  : BaseInjectActivity(), IView<P> {
     @Inject
     lateinit var mPresenter: @UnsafeVariance P
     private val progressLoading by lazy {

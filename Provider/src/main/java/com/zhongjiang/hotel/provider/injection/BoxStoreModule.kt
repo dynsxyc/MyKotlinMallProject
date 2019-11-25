@@ -1,7 +1,8 @@
 package com.zhongjiang.hotel.provider.injection
 
-import android.os.Looper
 import com.zhongjiang.hotel.base.common.BaseApplication
+import com.zhongjiang.hotel.provider.db.MyObjectBox
+import com.zhongjiang.hotel.provider.db.SplashAdEntity
 import com.zhongjiang.hotel.provider.db.UserInfoEntity
 import dagger.Module
 import dagger.Provides
@@ -20,7 +21,12 @@ class BoxStoreModule {
 
     @Provides
     @Singleton
-    fun providesBoxStore(boxStore: BoxStore): Box<UserInfoEntity> {
+    fun providesBoxStoreForUserInfoEntity(boxStore: BoxStore): Box<UserInfoEntity> {
         return boxStore.boxFor(UserInfoEntity::class)
+    }
+    @Provides
+    @Singleton
+    fun providesBoxStoreForSplashAdEntity(boxStore: BoxStore): Box<SplashAdEntity> {
+        return boxStore.boxFor(SplashAdEntity::class)
     }
 }

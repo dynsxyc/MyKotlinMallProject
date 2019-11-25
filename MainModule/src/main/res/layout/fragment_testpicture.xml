@@ -7,7 +7,7 @@
 
     <include layout="@layout/toolbar_main" />
 
-    <com.zhongjiang.youxuan.base.widgets.MultiStateView
+    <com.zhongjiang.hotel.base.widgets.MultiStateView
         android:id="@+id/contentMultiStateView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -51,5 +51,5 @@
                 android:thumb="@drawable/bg_fast_scroll_bar_thumb"
                 android:visibility="visible" />
         </LinearLayout>
-    </com.zhongjiang.youxuan.base.widgets.MultiStateView>
+    </com.zhongjiang.hotel.base.widgets.MultiStateView>
 </LinearLayout>

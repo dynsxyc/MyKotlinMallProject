@@ -1,4 +1,4 @@
-package com.zhongjiang.hotel.base.imageloader;
+package com.zhongjiang.hotel.base.imageloader
 
 import android.app.Activity
 import android.content.Context

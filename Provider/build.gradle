@@ -1,5 +1,6 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
 apply plugin: 'io.objectbox'
 
 android {
@@ -22,8 +23,8 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_1_7
+        targetCompatibility JavaVersion.VERSION_1_7
     }
 }
 
@@ -33,6 +34,10 @@ dependencies {
     androidTestImplementation (rootProject.ext.dependencies["espresso-core"],{
         exclude group: 'com.android.support', module: 'support-annotations'})
     testImplementation rootProject.ext.dependencies["junit"]
+
+    kapt rootProject.ext.dependencies["dagger-compiler"]
+    kapt rootProject.ext.dependencies["dagger-android-processor"]
+
     api project(':BaseLibrary')
 }
 repositories {

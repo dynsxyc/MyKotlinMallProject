@@ -12,7 +12,7 @@ import io.reactivex.functions.Function
 class BaseFunc<T> : Function<BaseResp<T>, MaybeSource<T>> {
     override fun apply(t: BaseResp<T>): MaybeSource<T> {
         if (t.status != SUCCESS){
-            return Maybe.error(ResponeThrowable(null,ExceptionHandle.ERROR.PROFESSIONAL_ERROR,t.status,t.showMessage))
+            return Maybe.error(ResponeThrowable(null, ExceptionHandle.ERROR.PROFESSIONAL_ERROR,t.status,t.showMessage))
         }
         return Maybe.just(t.data)
     }

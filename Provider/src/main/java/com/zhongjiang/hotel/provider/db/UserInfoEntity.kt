@@ -2,7 +2,9 @@ package com.zhongjiang.hotel.provider.db
 
 import io.objectbox.annotation.Entity
 import io.objectbox.annotation.Id
+
 /**数据库 类名、属性重命名要看文档 不能随意修改字段名称  否则启动报错*/
+
 @Entity
 class UserInfoEntity {
     var nickName: String = ""

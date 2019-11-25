@@ -1,9 +1,9 @@
 package com.zhongjiang.hotel.provider.common
 
+import com.zhongjiang.hotel.provider.db.UserInfoEntity
 import android.content.Context
 import android.content.Intent
 import android.text.TextUtils
-import com.zhongjiang.hotel.provider.db.UserInfoEntity
 import io.objectbox.Box
 import java.util.regex.Pattern
 import javax.inject.Inject
@@ -32,7 +32,7 @@ class CommonUtils @Inject constructor() {
             return false
         }
         var userInfo = mUserInfoEntity.all[0]
-        return !userInfo.ticket.isEmpty()
+        return userInfo.ticket.isNotEmpty()
     }
 
     /**获取用户信息*/

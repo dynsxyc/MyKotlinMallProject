@@ -20,7 +20,7 @@
                 android:layout_weight="1.0"
                 android:inputType="phone"/>
             <View style="@style/DividerFixedWidth.MarginTopBottom"/>
-            <com.zhongjiang.kotlin.base.VerifyButton
+            <com.zhongjiang.kotlin.base.com.zhongjiang.hotel.base.widgets.VerifyButton
                 android:id="@+id/mVerifyCodeBtn"
                 style="@style/WrapMatch"
                 android:textColor="@color/common_blue"

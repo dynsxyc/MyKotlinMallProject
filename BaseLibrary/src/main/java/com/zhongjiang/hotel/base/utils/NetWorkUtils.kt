@@ -1,4 +1,4 @@
-package com.zhongjiang.youxuan.base
+package com.zhongjiang.hotel.base.utils
 
 import android.annotation.SuppressLint
 import android.content.Context

@@ -1,10 +1,11 @@
 package com.zhongjiang.hotel.base.pay.alipay
 
+import com.zhongjiang.hotel.base.ext.handlerThread
+
 import android.app.Activity
 import android.text.TextUtils
 import android.widget.Toast
 import com.alipay.sdk.app.PayTask
-import com.zhongjiang.hotel.base.ext.handlerThread
 import com.zhongjiang.hotel.base.injection.module.sheduler.SchedulerProvider
 import io.reactivex.Maybe
 

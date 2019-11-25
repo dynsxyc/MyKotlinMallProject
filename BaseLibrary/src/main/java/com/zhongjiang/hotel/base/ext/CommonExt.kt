@@ -1,12 +1,8 @@
-@file:Suppress("UNREACHABLE_CODE")
-
 package com.zhongjiang.hotel.base.ext
-
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import com.flyco.roundview.RoundTextView
-import com.kotlin.base.widgets.DefaultTextWatcher
 import com.uber.autodispose.ScopeProvider
 import com.uber.autodispose.autoDisposable
 import com.zhongjiang.hotel.base.data.protocol.BaseList
@@ -15,6 +11,7 @@ import com.zhongjiang.hotel.base.injection.module.sheduler.SchedulerProvider
 import com.zhongjiang.hotel.base.rx.BaseFunc
 import com.zhongjiang.hotel.base.rx.BaseMaybeObserver
 import com.zhongjiang.hotel.base.utils.ULogger
+import com.zhongjiang.hotel.base.widgets.DefaultTextWatcher
 import io.reactivex.Flowable
 import io.reactivex.Maybe
 import io.reactivex.Observable

@@ -4,11 +4,11 @@ import android.app.Activity
 import com.alibaba.android.arouter.facade.Postcard
 import com.alibaba.android.arouter.launcher.ARouter
 import com.zhongjiang.hotel.provider.event.ActivityRequestCode
-import com.zhongjiang.youxuan.provider.R
 import com.zhongjiang.hotel.provider.router.NavigationConstant.Companion.NAVIGATION_DATA_BOOLEAN
 import com.zhongjiang.hotel.provider.router.NavigationConstant.Companion.NAVIGATION_DATA_STRING_MODULE_MAP
 import com.zhongjiang.hotel.provider.router.NavigationConstant.Companion.NAVIGATION_DATA_STRING_MODULE_TYPE
 import com.zhongjiang.hotel.provider.router.NavigationConstant.Companion.NAVIGATION_DATA_WEBURL
+import com.zhongjiang.youxuan.provider.R
 import javax.inject.Inject
 
 class NavigationUtil @Inject constructor() {
@@ -40,7 +40,7 @@ class NavigationUtil @Inject constructor() {
          * 跳转到web 有返回结果
          * */
         fun navigationToWebShowResult(context: Activity, webUrl: String) {
-            var builder = ARouter.getInstance().build(RouterPath.BaseUI.PATH_WEBSHOW)
+            var builder = ARouter.getInstance().build(RouterPath.WebCenter.PATH_WEBSHOW)
             builder.withString(NAVIGATION_DATA_WEBURL,webUrl)
             navigationResult(builder, context, ActivityRequestCode.REQUEST_WEBSHOW_CODE.requestCode)
         }
@@ -49,7 +49,7 @@ class NavigationUtil @Inject constructor() {
          * 跳转到web 没有返回结果
          * */
         fun navigationToWebShow(webUrl: String) {
-            var builder = ARouter.getInstance().build(RouterPath.BaseUI.PATH_WEBSHOW)
+            var builder = ARouter.getInstance().build(RouterPath.WebCenter.PATH_WEBSHOW)
             builder.withString(NAVIGATION_DATA_WEBURL,webUrl)
             navigationResult(builder, null, -1)
         }

@@ -1,4 +1,4 @@
-package com.zhongjiang.youxuan.user.splash;
+package com.zhongjiang.hotel.splash;
 
 import org.junit.Test;
 

@@ -1,4 +1,4 @@
-package com.kotlin.base.utils
+package com.zhongjiang.hotel.base.utils
 
 import java.text.ParseException
 import java.text.SimpleDateFormat

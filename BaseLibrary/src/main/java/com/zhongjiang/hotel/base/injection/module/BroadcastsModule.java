@@ -1,6 +1,5 @@
 package com.zhongjiang.hotel.base.injection.module;
 
-
 import com.zhongjiang.hotel.base.injection.component.BroadcastsComponent;
 
 import dagger.Module;

@@ -14,10 +14,7 @@ class OkHttpRequest(private val mClient:OkHttpClient, private val mMethod: HttpM
         val isBody = mMethod == HttpMethod.POST
         var requestBody:RequestBody? = null
         if (isBody){
-            var toData = data
-            if (toData == null){
-                toData = ByteArray(0)
-            }
+            var toData = ByteArray(0)
             requestBody = RequestBody.create(MediaType.parse("application/x-www-form-urlencoded"),toData)
         }
         val builder = Request.Builder().url(mUrl).method(mMethod.name,requestBody)

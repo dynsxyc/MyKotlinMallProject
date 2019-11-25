@@ -34,7 +34,7 @@
                 style="@style/WrapWrapTextSize21.ff.bold"
                 android:text="@string/chinaPhoneCode" />
 
-            <com.zhongjiang.youxuan.base.widgets.ClearEditText
+            <com.zhongjiang.hotel.base.widgets.ClearEditText
                 android:id="@+id/mLoginFragmentEtPhone"
                 style="@style/MatchWrapTextSize21.ff.bold"
                 android:paddingTop="@dimen/common_padding_middle"
@@ -46,7 +46,8 @@
                 android:maxLength="13"
                 android:cursorVisible="true"
                 android:textCursorDrawable="@drawable/cursor_drawable_white"
-                app:iconClear="@drawable/img_white_finish" />
+                app:iconClear="@drawable/img_white_finish"
+                android:layout_marginLeft="@dimen/common_margin" />
         </LinearLayout>
 
         <View
@@ -84,7 +85,7 @@
                 android:visibility="gone"
                 />
 
-            <com.zhongjiang.youxuan.base.widgets.ClearEditText
+            <com.zhongjiang.hotel.base.widgets.ClearEditText
                 android:id="@+id/mLoginFragmentEtVerificationCode"
                 style="@style/MatchWrapTextSize21.ff.bold"
                 android:layout_toStartOf="@+id/mLoginFragmentRoundTvGetVerificationCode"
@@ -98,7 +99,9 @@
                 android:inputType="number"
                 android:textColorHint="#4cffffff"
                 android:textCursorDrawable="@drawable/cursor_drawable_white"
-                app:iconClear="@drawable/img_white_finish" />
+                app:iconClear="@drawable/img_white_finish"
+                android:layout_toLeftOf="@+id/mLoginFragmentRoundTvGetVerificationCode"
+                android:layout_marginRight="@dimen/common_margin_middle" />
         </RelativeLayout>
 
 

@@ -13,9 +13,9 @@ import com.zhongjiang.hotel.base.oss.UpFileBean
 import com.zhongjiang.hotel.base.rx.RxBus
 import com.zhongjiang.hotel.base.rx.event.ActivityResultEvent
 import com.zhongjiang.hotel.base.utils.BaiDuLocationManager
+import com.zhongjiang.hotel.base.utils.NetWorkUtils
 import com.zhongjiang.hotel.base.utils.RxLifecycleUtils
 import com.zhongjiang.hotel.base.utils.ULogger
-import com.zhongjiang.youxuan.base.NetWorkUtils
 import io.reactivex.Flowable
 import io.reactivex.disposables.Disposable
 import io.reactivex.functions.Action
@@ -28,14 +28,13 @@ import javax.inject.Singleton
 /**
  * Created by dyn on 2018/7/13.
  */
-abstract class BasePresenter<out V : IView<BasePresenter<V, M>>, M : IModel> : IPresenter<V>, BaiDuLocationManager.LocationCallBackListener {
+abstract class BasePresenter<out V : IView<BasePresenter<V>>>(private val mBaseModel: IModel) : IPresenter<V>, BaiDuLocationManager.LocationCallBackListener {
     //    1. lateinit 延迟加载
 //    2.lateinit 只能修饰, 非kotlin基本类型
 //    因为Kotlin会使用null来对每一个用lateinit修饰的属性做初始化，而基础类型是没有null类型，所以无法使用lateinit。
     @Inject
     override lateinit var mView: @UnsafeVariance V
-    @Inject
-    lateinit var mModel:M
+
     @field:Named("public")
     @Inject
     lateinit var publicOssService: OssService
@@ -102,7 +101,7 @@ abstract class BasePresenter<out V : IView<BasePresenter<V, M>>, M : IModel> : I
     @CallSuper
     @MainThread
     override fun onDestroy(owner: LifecycleOwner) {
-        mModel.onDestroy()
+        mBaseModel.onDestroy()
 
     }
 
@@ -135,7 +134,7 @@ abstract class BasePresenter<out V : IView<BasePresenter<V, M>>, M : IModel> : I
 
     /**开启一个定时器 1秒*/
     fun startTimer(number: Long, next: Consumer<Long>, onComplete: Action): Disposable {
-        timerDisposable = mModel.startTimer(number, next, onComplete).excute(bindBusLifecycle())
+        timerDisposable = mBaseModel.startTimer(number, next, onComplete).excute(bindBusLifecycle())
         return timerDisposable
     }
 

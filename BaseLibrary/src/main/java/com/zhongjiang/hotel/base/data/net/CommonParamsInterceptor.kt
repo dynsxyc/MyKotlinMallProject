@@ -7,7 +7,7 @@ import com.zhongjiang.hotel.base.data.NetConstantField.Companion.API_DATA_SIGNAT
 import com.zhongjiang.hotel.base.data.NetConstantField.Companion.API_DATA_TICKET
 import com.zhongjiang.hotel.base.data.NetConstantField.Companion.API_DATA_TIMESTAMP
 import com.zhongjiang.hotel.base.data.NetConstantField.Companion.API_DATA_V
-import com.zhongjiang.youxuan.base.NetWorkUtils
+import com.zhongjiang.hotel.base.utils.NetWorkUtils
 import okhttp3.FormBody
 import okhttp3.Interceptor
 import okhttp3.Response

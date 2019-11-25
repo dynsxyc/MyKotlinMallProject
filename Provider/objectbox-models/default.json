@@ -1,0 +1,137 @@
+{
+  "_note1": "KEEP THIS FILE! Check it into a version control system (VCS) like git.",
+  "_note2": "ObjectBox manages crucial IDs for your object model. See docs for details.",
+  "_note3": "If you have VCS merge conflicts, you must resolve them according to ObjectBox docs.",
+  "entities": [
+    {
+      "id": "1:1883679057758699787",
+      "lastPropertyId": "13:2504723787111176582",
+      "name": "SplashAdEntity",
+      "properties": [
+        {
+          "id": "1:1225926665940110792",
+          "name": "id",
+          "type": 6,
+          "flags": 129
+        },
+        {
+          "id": "2:6188258022006196368",
+          "name": "imgTitle",
+          "type": 9
+        },
+        {
+          "id": "3:1167604721693418857",
+          "name": "imgPathUrl",
+          "type": 9
+        },
+        {
+          "id": "4:7840561655185377855",
+          "name": "imgPageUrl",
+          "type": 9
+        },
+        {
+          "id": "5:5534785024751883093",
+          "name": "pageStatus",
+          "type": 5,
+          "flags": 4
+        },
+        {
+          "id": "6:1610147331895641034",
+          "name": "appType",
+          "type": 5,
+          "flags": 4
+        },
+        {
+          "id": "7:8823307482255047152",
+          "name": "showTime",
+          "type": 5,
+          "flags": 4
+        },
+        {
+          "id": "8:2434209685634663202",
+          "name": "funcType",
+          "type": 5,
+          "flags": 4
+        },
+        {
+          "id": "9:5823308828587821880",
+          "name": "isShare",
+          "type": 5,
+          "flags": 4
+        },
+        {
+          "id": "10:9060700184711238035",
+          "name": "shareTitle",
+          "type": 9
+        },
+        {
+          "id": "11:7166466395759887043",
+          "name": "shareContents",
+          "type": 9
+        },
+        {
+          "id": "12:7035584034712333113",
+          "name": "sharePic",
+          "type": 9
+        },
+        {
+          "id": "13:2504723787111176582",
+          "name": "shareUrl",
+          "type": 9
+        }
+      ],
+      "relations": []
+    },
+    {
+      "id": "2:3140540056977572458",
+      "lastPropertyId": "6:8292098880692536921",
+      "name": "UserInfoEntity",
+      "properties": [
+        {
+          "id": "1:8010523910745032364",
+          "name": "nickName",
+          "type": 9
+        },
+        {
+          "id": "2:8365899088708339763",
+          "name": "ticket",
+          "type": 9
+        },
+        {
+          "id": "3:6189599792656638315",
+          "name": "userName",
+          "type": 9
+        },
+        {
+          "id": "4:3628962422047904376",
+          "name": "headImg",
+          "type": 9
+        },
+        {
+          "id": "5:1883315466927957255",
+          "name": "isCreate",
+          "type": 5,
+          "flags": 4
+        },
+        {
+          "id": "6:8292098880692536921",
+          "name": "userId",
+          "type": 6,
+          "flags": 129
+        }
+      ],
+      "relations": []
+    }
+  ],
+  "lastEntityId": "2:3140540056977572458",
+  "lastIndexId": "0:0",
+  "lastRelationId": "0:0",
+  "lastSequenceId": "0:0",
+  "modelVersion": 5,
+  "modelVersionParserMinimum": 5,
+  "retiredEntityUids": [],
+  "retiredIndexUids": [],
+  "retiredPropertyUids": [],
+  "retiredRelationUids": [],
+  "version": 1
+}

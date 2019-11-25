@@ -16,35 +16,35 @@ import javax.inject.Singleton
  * Created by Glooory on 17/5/15.
  */
 @Module
-class GlobalConfigModule  constructor(var buidler: Buidler) {
+class GlobalConfigModule  constructor(private var mBuidler: Buidler) {
 
     @Singleton
     @Provides
-    fun provideInterceptors(): List<@JvmSuppressWildcards Interceptor> {
-        return buidler.interceptors
+    fun provideInterceptors(): List<Interceptor> {
+        return mBuidler.interceptors
     }
 
     @Singleton
     @Provides
     fun provideBaseUrl(): HttpUrl {
-        return buidler.apiUrl
+        return mBuidler.apiUrl
     }
 
     @Singleton
     @Provides
     fun provideWindowScreenInfo(): WindowScreenInfo {
-        return buidler.screenInfo
+        return mBuidler.screenInfo
     }
 
     @Singleton
     @Provides
     fun provideHttpRequestHandler(): HttpRequestHandler {
-        return buidler.handler // HttpRequestHandler.EMPTY//打印请求信息
+        return mBuidler.handler // HttpRequestHandler.EMPTY//打印请求信息
     }
 
     class Buidler {
         lateinit var apiUrl:HttpUrl
-        var interceptors = ArrayList<@JvmSuppressWildcards Interceptor>()
+        var interceptors = ArrayList<Interceptor>()
         lateinit var handler: HttpRequestHandler
         lateinit var cacheFile: File
         lateinit var screenInfo: WindowScreenInfo
@@ -67,7 +67,7 @@ class GlobalConfigModule  constructor(var buidler: Buidler) {
             return this
         }
 
-        fun setWindowScreenInfo(screenInfo: WindowScreenInfo):Buidler{
+        fun setWindowScreenInfo(screenInfo: WindowScreenInfo): Buidler {
             this.screenInfo =  screenInfo
             return this
         }

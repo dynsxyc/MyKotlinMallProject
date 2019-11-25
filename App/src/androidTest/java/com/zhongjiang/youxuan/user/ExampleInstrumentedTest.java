@@ -1,4 +1,4 @@
-package com.zhongjiang.youxuan.user;
+package com.zhongjiang.hotel;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

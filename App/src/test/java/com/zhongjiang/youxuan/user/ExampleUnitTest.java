@@ -1,4 +1,4 @@
-package com.zhongjiang.youxuan.user;
+package com.zhongjiang.hotel;
 
 import org.junit.Test;
 

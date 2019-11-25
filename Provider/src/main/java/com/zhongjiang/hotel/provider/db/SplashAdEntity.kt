@@ -35,7 +35,7 @@ class SplashAdEntity {
 
     var shareUrl: String = ""
 
-    fun getIsShare():Int{
+    fun getIsShare(): Int {
         return isShare
     }
 

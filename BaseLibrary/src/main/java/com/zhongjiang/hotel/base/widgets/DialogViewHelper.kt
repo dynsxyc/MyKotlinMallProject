@@ -1,3 +1,4 @@
+package com.zhongjiang.hotel.base.widgets
 
 import android.content.Context
 import android.util.SparseArray
@@ -57,7 +58,7 @@ internal class DialogViewHelper() {
                 mViews.put(viewId, WeakReference(view))
             }
         }
-        return view as T?
+        return view as T
     }
 
     /**

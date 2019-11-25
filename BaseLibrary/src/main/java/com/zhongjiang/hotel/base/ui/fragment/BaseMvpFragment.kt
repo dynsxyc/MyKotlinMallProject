@@ -9,7 +9,6 @@ import androidx.annotation.CallSuper
 import androidx.annotation.MainThread
 import androidx.lifecycle.Lifecycle
 import com.zhongjiang.hotel.base.ui.basemvp.BasePresenter
-import com.zhongjiang.hotel.base.ui.basemvp.IModel
 import com.zhongjiang.hotel.base.ui.basemvp.IView
 import com.zhongjiang.hotel.base.widgets.ProgressLoading
 import org.jetbrains.anko.toast
@@ -18,13 +17,13 @@ import javax.inject.Inject
 /**
  * Created by dyn on 2018/7/13.
  */
-abstract class BaseMvpFragment<out P : BasePresenter<BaseMvpFragment<P, M>, M>,M: IModel>  : IView<P>, BaseInjectFragment() {
+abstract class BaseMvpFragment<out P : BasePresenter<BaseMvpFragment<P>>>  : IView<P>, BaseInjectFragment() {
     @Inject
     lateinit var mPresenter:@UnsafeVariance P
 
 //    private fun createPresenterKt():P {
 //        sequence {
-//            var thisClass:KClass<*> = this@BaseMvpFragment::class
+//            var thisClass:KClass<*> = this@com.zhongjiang.hotel.base.ui.fragment.BaseMvpFragment::class
 //            while (true){
 //                yield(thisClass.supertypes)
 //                thisClass = thisClass.supertypes.firstOrNull()?.jvmErasure?:break
@@ -44,7 +43,7 @@ abstract class BaseMvpFragment<out P : BasePresenter<BaseMvpFragment<P, M>, M>,M
      * */
 //    private fun createPresenterJava():P {
 //        sequence {
-//            var thisClass:Class<*> = this@BaseMvpFragment.javaClass
+//            var thisClass:Class<*> = this@com.zhongjiang.hotel.base.ui.fragment.BaseMvpFragment.javaClass
 //            while (true){
 //                yield(thisClass.genericSuperclass)
 //                thisClass = thisClass.superclass?:break

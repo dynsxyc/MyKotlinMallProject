@@ -112,7 +112,7 @@ abstract class BaseApplication : MultiDexApplication(), HasActivityInjector,
     }
 
     private fun initCrash() {
-        CrashUtils.init { crashInfo, error ->
+        CrashUtils.init { crashInfo, _ ->
             LogUtils.e(crashInfo)
             AppUtils.relaunchApp()
         }

@@ -1,4 +1,4 @@
-package com.kotlin.base.ui.adapter
+package com.zhongjiang.hotel.base.ui.adapter
 
 import android.content.Context
 import androidx.recyclerview.widget.RecyclerView

@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
-    <com.zhongjiang.youxuan.base.widgets.CommonHeaderTitleView
+    <com.zhongjiang.hotel.base.widgets.CommonHeaderTitleView
         android:id="@+id/mTestCommonHeaderTitleView"
         android:layout_width="match_parent"
         android:layout_height="@dimen/common_header_bar_height"

@@ -8,10 +8,9 @@ import com.luck.picture.lib.config.PictureMimeType
 import com.zhongjiang.hotel.base.common.PictureSelectorConfig
 import com.zhongjiang.hotel.base.oss.UpFileBean
 import com.zhongjiang.hotel.base.ui.basemvp.BasePresenter
-import com.zhongjiang.hotel.base.ui.basemvp.IModel
 
 
-abstract class BaseSelectorImgFragment<P: BasePresenter<BaseSelectorImgFragment<P, M>, M>,M: IModel>: BaseMvpFragment<P ,M>() {
+abstract class BaseSelectorImgFragment<P: BasePresenter<BaseSelectorImgFragment<P>>>: BaseMvpFragment<P>() {
     var defaultPictureSelectorConfig = PictureSelectorConfig(getDefaultFileModuleType(), getDefaultMaxSelectNum(), true, false, false, 0, 0)
     private var upFileList: ArrayList<UpFileBean> = arrayListOf()
     override fun initData() {

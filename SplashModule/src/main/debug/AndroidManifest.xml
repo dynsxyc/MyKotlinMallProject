@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.zhongjiang.youxuan.user.splash">
+    package="com.zhongjiang.hotel.splash">
     <application
-        android:name=".ui.SplashApplication"
+        android:name="com.zhongjiang.hotel.splash.ui.SplashApplication"
         android:allowBackup="true"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/UxAppTheme"
         tools:replace="android:theme">
         <activity
-            android:name=".ui.activity.splash.SplashActivity"
+            android:name="com.zhongjiang.hotel.splash.ui.activity.splash.SplashActivity"
             android:configChanges="orientation|screenSize"
             android:screenOrientation="portrait"
             android:theme="@style/AppSplashTheme">

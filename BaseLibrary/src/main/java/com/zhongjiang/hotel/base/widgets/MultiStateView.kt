@@ -197,7 +197,7 @@ constructor(context: Context,
     }
 
     /* All of the addView methods have been overridden so that it can obtain the content view via XML
-     It is NOT recommended to add views into MultiStateView via the addView methods, but rather use
+     It is NOT recommended to add views into com.zhongjiang.hotel.base.widgets.MultiStateView via the addView methods, but rather use
      any of the setViewForState methods to set views for their given ViewState accordingly */
     override fun addView(child: View) {
         if (isValidContentView(child)) contentView = child
