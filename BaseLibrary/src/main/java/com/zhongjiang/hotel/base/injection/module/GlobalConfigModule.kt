@@ -8,7 +8,6 @@ import dagger.Provides
 import okhttp3.HttpUrl
 import okhttp3.Interceptor
 import java.io.File
-import java.util.*
 import javax.inject.Singleton
 
 
@@ -20,7 +19,7 @@ class GlobalConfigModule  constructor(private var mBuidler: Buidler) {
 
     @Singleton
     @Provides
-    fun provideInterceptors(): List<Interceptor> {
+    fun provideInterceptors(): MutableList<Interceptor> {
         return mBuidler.interceptors
     }
 
@@ -44,7 +43,7 @@ class GlobalConfigModule  constructor(private var mBuidler: Buidler) {
 
     class Buidler {
         lateinit var apiUrl:HttpUrl
-        var interceptors = ArrayList<Interceptor>()
+        var interceptors = mutableListOf<Interceptor>()
         lateinit var handler: HttpRequestHandler
         lateinit var cacheFile: File
         lateinit var screenInfo: WindowScreenInfo

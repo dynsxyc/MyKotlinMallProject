@@ -56,10 +56,6 @@ class BaiDuLocationManager @Inject constructor() {
         }
     }
 
-    init {
-        mLocationClient
-    }
-
     private var block = "block"
     fun start(mContent: Activity, callBackListener: LocationCallBackListener?){
         RxPermissions(mContent).requestEach(Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION).subscribe {

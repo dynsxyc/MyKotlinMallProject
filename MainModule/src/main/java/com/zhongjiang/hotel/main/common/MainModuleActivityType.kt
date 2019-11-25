@@ -14,7 +14,7 @@ import com.blankj.utilcode.util.StringUtils
 enum class MainModuleActivityType  {
     MAIN_FRAGMENT;
     companion object{
-        fun nameToType(name:String):MainModuleActivityType?{
+        fun nameToType(name:String?):MainModuleActivityType?{
             return values().firstOrNull{
                 StringUtils.equals(name, it.name)
             }

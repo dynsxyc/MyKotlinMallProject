@@ -2,6 +2,7 @@ package com.zhongjiang.hotel.main.ui
 
 import com.zhongjiang.hotel.base.common.BaseApplication
 import com.zhongjiang.hotel.main.BuildConfig
+import com.zhongjiang.hotel.main.injection.component.DaggerMainModuleComponent
 import me.yokeyword.fragmentation.Fragmentation
 
 class MainApplication : BaseApplication() {

@@ -41,7 +41,7 @@ class HttpClientModule {
 
     @Singleton
     @Provides
-    fun provideClient(okHttpClient: OkHttpClient.Builder, intercept: Interceptor, interceptors: List<Interceptor>): OkHttpClient {
+    fun provideClient(okHttpClient: OkHttpClient.Builder, intercept: Interceptor, interceptors: MutableList<Interceptor>): OkHttpClient {
         val builder = okHttpClient
                 .connectTimeout(TIME_OUT_SECONDS.toLong(), TimeUnit.SECONDS)
                 .readTimeout(TIME_OUT_SECONDS.toLong(), TimeUnit.SECONDS)

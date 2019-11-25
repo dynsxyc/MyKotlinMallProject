@@ -46,12 +46,6 @@ class TestPictureFragment : BaseSelectorImgFragment<TestFragmentPresenter>(), Te
         mMainToolbarRvTvRight!!.setText("你好啊")
         mMainToolbarRvTvRight!!.setVisible(true)
         RxView.clicks(mMainToolbarRvTvRight!!).shieldDoubleClick {
-            when(contentMultiStateView.viewState){
-                MultiStateView.ViewState.CONTENT -> contentMultiStateView.viewState = MultiStateView.ViewState.LOADING
-                MultiStateView.ViewState.LOADING -> contentMultiStateView.viewState = MultiStateView.ViewState.EMPTY
-                MultiStateView.ViewState.EMPTY -> contentMultiStateView.viewState = MultiStateView.ViewState.ERROR
-                MultiStateView.ViewState.ERROR -> contentMultiStateView.viewState = MultiStateView.ViewState.CONTENT
-            }
         }
         RxView.clicks(btCamera).shieldDoubleClick {
             //            openMedia(true)
